@@ -1,0 +1,11 @@
+## package.json
+
+**Summary:** npm package manifest for the TuyoTools Frontend project (package name: "fe"). Declares the Grunt-based build toolchain as devDependencies, including task runners (grunt, jit-grunt, time-grunt), code processing (grunt-babel with ES2015 preset, grunt-ng-annotate, grunt-contrib-uglify, grunt-contrib-concat), CSS compilation (grunt-contrib-compass, grunt-contrib-sass, grunt-autoprefixer, grunt-contrib-cssmin), asset optimization (grunt-contrib-imagemin, grunt-svgmin, grunt-filerev), linting (grunt-contrib-jshint, jshint-stylish), Bower wiring (grunt-wiredep), and live development (grunt-contrib-watch, grunt-contrib-connect). Also lists a few runtime dependencies including Angular 1.5.x and grunt-angular-templates. Requires Node >= 0.10.0.
+
+**Dependencies:**
+- bower.json — frontend library dependencies managed separately via Bower
+- Gruntfile.js — consumes these npm packages as Grunt plugins for the build pipeline
+
+**Tags:** dependencies, npm, build, grunt, configuration
+
+**Implementation:** package.json

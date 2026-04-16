@@ -1,0 +1,10 @@
+## deploy_config.js
+
+**Summary:** Environment-specific URL configuration file loaded before the Angular application bootstraps. Defines an ENVTS enum with four environments (DEVELOPMENT_LOCAL, DEVELOPMENT_OUT, TEST, PRODUCCION) and a single EVIRONMENT switch variable that controls which environment is active. A switch statement sets the global variables BASE_URL, HELP_URL, MEDIA_URL, SOCKET_SERVER, SOCKET_PATH, SCRIPT_SRC, FACEBOOK_APP_ID, and FACEBOOK_LOG_IN_URL based on the selected environment. DEVELOPMENT_LOCAL targets localhost:8000; DEVELOPMENT_OUT targets devapi.tuyo.uy; TEST targets testapi.tuyo.uy; PRODUCCION targets api.tuyo.uy. Media URLs point to DigitalOcean Spaces CDN. This file is the sole place where deployment targets are configured for the entire frontend.
+
+**Dependencies:**
+(none -- this is a standalone configuration file loaded via a script tag before Angular)
+
+**Tags:** configuration
+
+**Implementation:** app/deploy_config.js

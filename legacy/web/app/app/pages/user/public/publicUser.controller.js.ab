@@ -1,0 +1,12 @@
+## publicUser.controller.js
+
+**Summary:** Controller (`userPublicController`) for the public user profile view. Exposes the current authenticated user's data and media URL, manages tab state between history and profile views, and applies a temporary click-blocking overlay during initial page load.
+
+**Dependencies:**
+- app/app/pages/user/user.module.js — registers controller on the `user` module
+- app/app/scripts/services/auth.js — Auth for userData
+- app/app/scripts/services/api.js — API for mediaURL
+
+**Tags:** user-profile, controller, public
+
+**Implementation:** app/app/pages/user/public/publicUser.controller.js

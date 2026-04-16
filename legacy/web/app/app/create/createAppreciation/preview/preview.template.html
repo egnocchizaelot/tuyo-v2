@@ -1,0 +1,103 @@
+<div class="body-forms">
+    <nav class="navbar secondary-navbar bg-brand-color">
+        <div class="container-fluid">
+            <h3>Vista previa</h3>
+            <a href="" class="btn-eliminar float-right" ng-click="Close()" style="top: 0px !important">
+                <i class="fa fa-times" aria-hidden="true"></i>
+            </a>
+        </div>
+    </nav>
+
+    <div class="card default-border-radius margin-bottom card-alert preview-agradecimiento agradecimiento">
+        <div class="container">
+            <div class="user-header">
+                <div class="avatars-wrapper">
+                    <div class="avatar first-child active">
+                        <a role="tab" data-toggle="tab">
+                            <img ng-if="pathL" ng-src="{{pathL}}" class="img-responsive" onerror="this.onerror=null; if (this.src != 'error.jpg') this.src = 'assets/images/user2.png';"/>
+                            <img ng-if="!pathL" src="assets/images/user2.png" class="img-responsive"/>
+                        </a>
+                    </div>
+
+                    <div class="avatar second-child">
+                        <img ng-if="pathR" ng-src="{{pathR}}" class="img-responsive" onerror="this.onerror=null; if (this.src != 'error.jpg') this.src = 'assets/images/user2.png';"/>
+                        <img ng-if="!pathR" src="assets/images/user2.png" class="img-responsive"/>
+                    </div>
+                </div>
+                <h3 class="text-center">Agradecimiento</h3>
+            </div>
+        </div>
+
+
+        <div class="tab-content">
+            <div role="tabpanel" class="tab-pane fade in active">
+
+                <div class="container" id='appreciationText'>
+                    <div class="arrow-up"></div>
+                    <h3> {{fullName}} <span am-time-ago="now  || 'YYYY-MM-DD HH:mm:ss'"></span></h3>
+                    <p id='appreciationDescription' style="white-space: pre-wrap;">{{description}}</p>
+                </div>
+
+                <div id="carousel" ng-show='doIt'>
+
+                    <slick
+                      id = 'slickSlide'
+                      dots = 'false'
+                      infinite = 'true'
+                      mobile-first = 'true'
+                      arrows = 'false'
+                      >
+
+                        <div ng-repeat="image in images">
+                            <img ng-src="{{image.img}}" class="img-responsive" ng-style='{"max-height": laHeight+"px","width":"100%","height":"100%","object-fit":"contain","margin":"0 auto"}'>
+                        </div>
+
+                    </slick>
+
+                      <a class="left carousel-control" ng-click='prevImg()' title="Anterior">
+                          <span class="sr-only">Anterior</span>
+                      </a>
+
+                      <a class="right carousel-control" ng-click="nextImg()" title="Siguiente">
+                          <span class="sr-only">Siguiente</span>
+                      </a>
+
+                      <ol class="carousel-indicators">
+                          <li ng-repeat="image in images" ng-class="{active: $index === currentIndex }" ng-click="goToImg($index)"></li>
+                      </ol>
+
+                </div>
+            </div>
+        </div>
+
+
+        <div class="card default-border-radius margin-bottom footer-stick-to-bottom">
+
+            <div class="container footer footer-compartir">
+                <!-- <p>Compartir</p>
+                <div class="checkbox bigger">
+                    <label>
+                        <input type="checkbox"> <a href="" class="fa fa-facebook" aria-hidden="true"></a>
+                    </label>
+                </div>
+
+                <div class="checkbox bigger">
+                    <label>
+                        <input type="checkbox"> <a href="" class="fa fa-twitter" aria-hidden="true"></a>
+                    </label>
+                </div> -->
+
+                <div class="row margin-top">
+                    <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                        <a class="btn btn-line-green" ng-click="editAppreciation()" title="Editar"> Editar</a>
+                    </div>
+                    <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8 no-padding-left">
+                        <a class="btn btn-primary display-block" ng-click="publishAppreciation()" title="Publicar"> Publicar</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>

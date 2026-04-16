@@ -1,0 +1,10 @@
+## step2.directive.js
+
+**Summary:** Directive (element: "stepTwo") for the second step of donation creation. Collects pickup time description (max 300 chars) and a mandatory-only checkbox, supports editing mode, and validates via readyToGo callback.
+
+**Dependencies:**
+- app/app/create/createDonation/creation.module.js — registered on the creation module
+
+**Tags:** creation, donations, directive, wizard
+
+**Implementation:** app/app/create/createDonation/step2/step2.directive.js

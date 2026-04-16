@@ -1,0 +1,12 @@
+## auth_aux.js
+
+**Summary:** Legacy directive (`permissions`) registered on the `TuyoTools` module that shows or hides DOM elements based on user permissions/roles. Uses `Authorization` and `PermissionMap` services to evaluate `only` and `except` attribute bindings, adding/removing the `ng-hide` class based on authorization results.
+
+**Dependencies:**
+- app/app/app/app.js — registers directive on root `TuyoTools` module
+- app/app/scripts/services/authorization.js — Authorization service for authorize()
+- app/app/scripts/services/permissionMap.js — PermissionMap for permission configuration
+
+**Tags:** legacy, directive, authentication, authorization
+
+**Implementation:** app/app/scripts/controllers/auth_aux.js

@@ -1,0 +1,11 @@
+## carousel.directive.js
+
+**Summary:** Directive (element: "theSlider") that implements a Slick-based image carousel for donation posts. Manages slide navigation (next/prev/goTo), click-based navigation by detecting left/right half clicks, handles lazy image loading with adaptive height, listens for showSlider events to reinitialize, and emits readyToShowSlider when all images are loaded.
+
+**Dependencies:**
+- app/app/post/post.module.js — registered on the post module
+- app/app/post/carousel/carousel.controller.js — uses theSliderController
+
+**Tags:** post, carousel, directive, slick, images, ui
+
+**Implementation:** app/app/post/carousel/carousel.directive.js

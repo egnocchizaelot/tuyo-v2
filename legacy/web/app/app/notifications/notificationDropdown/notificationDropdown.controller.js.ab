@@ -1,0 +1,11 @@
+## notificationDropdown.controller.js
+
+**Summary:** Controller for the notification dropdown component. On mobile devices, adjusts the font size of the title element and back-arrow styling for a mobile-friendly presentation using `appService.isMobile`.
+
+**Dependencies:**
+- app/app/notifications/notifications.module.js — registers on the `notifications` module
+- app/app/app.service.js — `appService` for `isMobile` detection
+
+**Tags:** notifications, controller, ui, mobile, responsive
+
+**Implementation:** app/app/notifications/notificationDropdown/notificationDropdown.controller.js

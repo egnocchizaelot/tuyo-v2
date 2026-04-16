@@ -1,0 +1,9 @@
+{
+  "token": "asd",
+  "user": {
+    "id": "1",
+    "person": {
+      "name": "User 1"
+    }
+  }
+}

@@ -1,0 +1,59 @@
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Architect
+.architect/
+reports/
+**/reports/
+*.db
+*.sqlite
+*.sqlite3
+*.zip
+*.7z
+*.rar
+*.tar
+*.gz
+*.tgz
+*.bz2
+*.xz
+*.bin
+
+# Node
+node_modules/
+bower_components/
+.next/
+.artifacts/
+dist/
+.sass-cache/
+.tmp/
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+*.egg-info/
+
+# Django
+*.log
+db.sqlite3
+media/
+
+# SQL dumps & fixtures
+dumps/
+*.sql
+db.json
+admin.json
+user.json
+
+# Secrets
+.env
+.env.local
+

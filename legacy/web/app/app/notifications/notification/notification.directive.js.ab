@@ -1,0 +1,12 @@
+## notification.directive.js
+
+**Summary:** Directive (`<notification>`) that renders a single notification item. Accepts a `notification` object via isolate scope binding, resolves the thumbnail image URL via `API.mediaURL`, determines the display text (link label) based on the notification type using an extensive switch-case covering ~20+ notification types (e.g., DonationLikes, Applicants, SelectedApplicant, AdminNotification), and handles click navigation (`goTo`) which routes to the appropriate state (donation detail, user profile, help topic, or standalone notification page) depending on notification type and URL parameters.
+
+**Dependencies:**
+- app/app/notifications/notifications.module.js — registers on the `notifications` module
+- app/app/notifications/notification/notification.controller.js — uses `notificationController`
+- app/app/scripts/services/api.js — `API` service for `mediaURL`
+
+**Tags:** notifications, directive, routing, ui, navigation
+
+**Implementation:** app/app/notifications/notification/notification.directive.js

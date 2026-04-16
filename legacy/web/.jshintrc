@@ -1,0 +1,30 @@
+{
+  "bitwise": true,
+  "browser": true,
+  "curly": true,
+  "eqeqeq": true,
+  "esnext": true,
+  "latedef": true,
+  "noarg": true,
+  "node": true,
+  "strict": "global",
+  "undef": true,
+  "unused": true,
+  "globals": {
+    "angular": false,
+    "document": false,
+    "window": false,
+    "navigator": false,
+    "alert": false,
+    "console": false,
+    "setTimeout": false,
+    "location": false,
+    "FB": false,
+    "SOCKET_SERVER": false,
+    "FACEBOOK_APP_ID": false,
+    "facebookIsLoaded": false,
+    "YT": false,
+    "$": false,
+    "ENVTS": false
+  }
+}

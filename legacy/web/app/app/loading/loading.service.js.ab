@@ -1,0 +1,12 @@
+## loading.service.js
+
+**Summary:** Service (`loadingService`) that provides a modal-based loading overlay. The `Show(text)` method opens a `$modal` dialog with the loading template and `loadingModalController`, using a static backdrop to prevent dismissal. The `Close()` method dismisses the modal. Used to display blocking loading indicators during long-running operations.
+
+**Dependencies:**
+- app/app/loading/loading.module.js — registers on the `loadingModule` module
+- app/app/modals/loading/loading.controller.js — uses `loadingModalController` for the modal instance
+- app/app/modals/loading/loading.template.html — modal template
+
+**Tags:** loading, service, modals, ui
+
+**Implementation:** app/app/loading/loading.service.js

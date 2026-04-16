@@ -1,0 +1,48 @@
+<div class="entrega-confirmada bg-brand-color" style="padding-bottom: 30px; !important">
+
+    <div class="text-center hero-usuario">
+        <h2>
+            <strong>
+                ¡Nos alegra! <br>
+                {{text}} publicación ha finalizado <br>
+                con éxito.
+            </strong>
+        </h2>
+
+
+        <div class="container text-center">
+
+            <ul class="list-inline avatar-oferente-solicitante">
+                <li>
+                    <div class="small-avatar">
+                        <img ng-src="{{leftPath}}" class="img-responsive"/>
+                    </div>
+                </li>
+
+                <li>
+                    <div class="small-avatar">
+                        <img ng-src="{{rightPath}}" class="img-responsive"/>
+                    </div>
+                </li>
+            </ul>
+
+            <p class="margin-bottom double-margin-bottom">¿Deseas publicar un <br>agradecimiento?</p>
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-10 col-xs-offset-1 margin-bottom">
+                        <a href="" class="btn btn-white display-block space-top" ng-click='addAppreciation()'> Escribir agradecimiento </a>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-xs-10 col-xs-offset-1 margin-bottom">
+                        <a href="" class="btn btn-white display-block space-top" ng-click='close()'> Salir </a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>

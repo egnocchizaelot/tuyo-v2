@@ -1,0 +1,13 @@
+## post.service.js
+
+**Summary:** Service that acts as a facade/router for post-related modal operations, delegating to either postMobileServices or postWebServices based on the appService.isMobile flag. Provides methods for showing reservation modals, public/private forum modals, appreciation modals, edit donation modals, calification modals, new donation creation, and share link toggling. Also contains utility functions for filtering donations by type, availability, recency, and sorting.
+
+**Dependencies:**
+- app/app/post/post.module.js — registered on the post module
+- app/app/post/post_mobile.service.js — delegates to mobile service implementations
+- app/app/post/post_web.service.js — delegates to web/desktop service implementations
+- app/app/app/app.service.js — uses appService.isMobile to choose mobile vs web
+
+**Tags:** post, donations, service, modals, responsive, mobile
+
+**Implementation:** app/app/post/post.service.js

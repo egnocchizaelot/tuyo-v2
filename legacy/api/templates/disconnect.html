@@ -1,0 +1,27 @@
+
+<form action="{% url 'getCsrfToken' %}" method="POST">
+    {% csrf_token %}
+    <input id="access_token" type="text" name="access_token" value="">
+    <input id="backend" type="text" name="backend" value="facebook">
+    <button type="submit">Auth login</button>
+</form>
+
+<form action="{% url 'social:disconnect_individual' 'facebook' assoc_id  %}" method="POST">
+    {% csrf_token %}
+    <button type="submit">Disconnect</button>
+</form>
+
+<form action="{% url 'unlink' %}" method="POST">
+    {% csrf_token %}
+    <button type="submit">Unlink</button>
+</form>
+
+<form action="/login/facebook/" method="POST">
+    {% csrf_token %}
+    <button type="submit">Login</button>
+</form> 
+
+<form action="/disconnect/facebook/" + {{ self.request.user.social_auth.id}} + "/" method="POST">
+    {% csrf_token %}
+    <button type="submit">desconectar</button>
+</form> 

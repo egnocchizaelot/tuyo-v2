@@ -1,0 +1,11 @@
+## help.controller.js
+
+**Summary:** Root controller for the help page. Reads the current help section state (`s`) and topic from `$stateParams`, listens for `openTopic` events to navigate to specific help topics via `$state.go`, and exposes a `login()` method that delegates to `appService.login()` for unauthenticated users.
+
+**Dependencies:**
+- app/app/help/help.module.js — registers on the `help` module
+- app/app/app.service.js — `appService` for `login()` method
+
+**Tags:** help, faq, controller, routing, authentication
+
+**Implementation:** app/app/help/help.controller.js

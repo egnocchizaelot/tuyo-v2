@@ -1,0 +1,12 @@
+## donation.service.js
+
+**Summary:** Service providing donation-specific operations: opening private chat, showing appreciation modals, and managing donation state transitions (Published, Reserved, Completed, OpenChat). Used as a helper by the reserve directive for state management and calification callbacks.
+
+**Dependencies:**
+- app/app/post/post.module.js — registered on the post module
+- app/app/post/post.service.js — delegates modal operations to postServices
+- app/app/scripts/services/auth.js — uses Auth for user identification
+
+**Tags:** post, donations, service, state-management
+
+**Implementation:** app/app/post/donation/donation.service.js

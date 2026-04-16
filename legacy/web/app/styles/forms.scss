@@ -1,0 +1,398 @@
+// VARIABLES
+@import "constants";
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="date"],
+textarea{
+  &, &.form-control{
+    background: $color-white;
+    border: 1px solid darken($light-grey, 2%);
+    border-radius: 0;
+    box-shadow: none;
+    color: $text-color;
+    font-size: 1rem;
+    &::-webkit-input-placeholder { color: lighten($text-color, 35%); }
+    &::-moz-placeholder { color: lighten($text-color, 35%); } /* firefox 19+ */
+    &:-ms-input-placeholder { color: lighten($text-color, 35%); } /* ie */
+    &:-moz-placeholder { color: lighten($text-color, 35%); }
+  }
+}
+
+.formsRight .formFloat { width: 24%; margin-right: 1%; float: left;}
+input[type=number].form-control {
+  background: white;
+    border: 1px solid #efefef;
+    border-radius: 0;
+    box-shadow: none;
+    color: #666666;
+    font-size: 1rem;
+}
+
+.btn{
+  border-radius: 0;
+  text-transform: uppercase;
+}
+
+.agregar-item-afectado{
+  display: inline-block;
+  width: 25%;
+  float: left;
+  margin-top: 0 !important;
+  padding: 0 15px;
+  .btn{
+    width: 100%;
+    line-height: 195px;
+    padding: 0;
+  }
+}
+
+.btn-primary{
+  color: darken($color-white, 7%);
+}
+
+.btn-lg{
+  font-size: 1.1rem;
+  padding: 1rem;
+}
+
+.btn-default:hover { background-color: white!important }
+
+.btn-default-focus{
+  box-shadow: none;
+  outline: none;
+}
+
+.main-container{
+  form,
+  .details-container{
+    background: $color-white;
+    padding: 1rem;
+    .panel-title{
+      a{
+        display: block;
+        &:active, &:focus, &:hover{
+          text-decoration: none;
+          outline: none;
+        }
+      }
+    }
+    .ui-select-container{
+      .btn{
+        text-transform: none;
+      }
+      .ui-select-toggle{
+        border: 1px solid $light-grey;
+        box-shadow: none;
+      }
+    }
+    .form-group{
+      label{
+        display: block;
+      }
+    }
+    .panel-group{
+      .panel{
+        border: none;
+        border-radius: 0;
+        box-shadow: none;
+      }
+      .panel-heading,
+      .panel-heading + .panel-collapse > .panel-body{
+        border: none;
+      }
+      .panel-heading .accordion-toggle:before {
+          content: "+ ";
+      }
+    }
+    accordion accordion .panel-group{
+      .panel-heading{
+        background: #EFEFEF;
+        border-bottom: 1px solid $light-grey;
+        margin: 1rem 0 0.5rem 0;
+      }
+    }
+  }
+}
+
+.details-container h3{
+  font-size: 20px;
+  margin: 20px 0 10px;
+}
+
+.input-wrapper-textarea{
+  clear:both;
+  width: 100%;
+}
+
+.input-wrapper {
+    float: left;
+    padding-right: 15px;
+    padding-bottom: 10px;
+    position: relative;
+}
+
+ .input-error-message {
+    color: $orange-dark;
+    font-size: 11px;
+    line-height: 11px;
+    position: absolute;
+    bottom: -5px;
+}
+
+ .form-actions{
+      margin: 15px 0px 0px;
+      text-align: right;
+ }
+
+  .btn-primary,
+  .btn-primary:hover{
+    border-color: transparent;
+  }
+
+
+//
+// FORMS - tables
+//
+
+.table > tbody > tr > td{
+  vertical-align: middle;
+}
+
+th {
+    font-size: 13px;
+    text-transform: uppercase;
+}
+
+td button.btn-primary {
+    font-size: 13px;
+    padding: 0px 10px;
+    line-height: 18px;
+}
+
+//
+// FORMS - tables state tags
+//
+
+table{
+  
+  span.state.state-Solicitud{
+    &.en.proceso {
+      background: transparent !important;
+      color: $yellow-dark !important;
+      font-weight: bold;
+      padding: 0px;
+      line-height: 17px;
+      float: none !important;
+    }
+    &.sin.procesar {
+      color: red !important;
+      background: transparent !important;
+      font-weight: bold;
+      padding: 0px;
+      line-height: 17px;
+    }
+  }
+
+  .state.state.state-Solicitud.procesada{
+    background: transparent !important;
+    color: $blue-positive !important;
+    font-weight: bold;
+    padding: 0px;
+    line-height: 17px;
+    float: none !important;
+    text-indent: 0px !important;
+  }
+
+} 
+
+
+
+
+.form-configurar-alertas{
+  padding: 0px;
+  background: transparent;
+}
+
+.label-block-left{
+  display: block;
+  text-align: left;
+}
+
+
+
+
+
+input[type="checkbox"]:after,
+input[type="radio"]:after {
+    content: " ";
+    opacity: 1;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    display: block;
+    width: 20px;
+    height: 20px;
+    background: #fff;
+    border: 1px solid #efefef;
+    text-align: center;
+}
+input[type="checkbox"],
+input[type="radio"] {
+    width: 20px;
+    height: 15px;
+    margin: 0px 2px 0px 0px;
+    position: relative;
+}
+
+input[type="checkbox"]:checked:after,
+input[type="radio"]:checked:after {
+  content: url("../images/check-icon-s.png");
+  border: 1px solid rgba(116, 116, 116, 0.5);
+}
+
+
+//upload files
+
+.file-wrapper{
+    background: #fff;
+    padding: 10px;
+    margin-bottom: 15px;
+    overflow: hidden;
+    max-width: 100%;
+}
+
+.img-wrapper{
+  max-width: 100%;
+  overflow: hidden;
+  text-align: center;
+  height: 159px;
+  margin-bottom: 5px;
+  position: relative;
+  background: #e6e6e6;
+}
+
+.img-wrapper img{
+  width: 100%;
+  height: auto;
+  vertical-align: middle;
+}
+
+.file-wrapper p{
+  font-size: 12px;
+  margin: 0px 0px 5px;
+  text-transform: uppercase;
+}
+
+.file-wrapper p a,
+.file-wrapper p .span-file-name{
+  display: block;
+  text-transform: none;
+  font-size: 14px;
+}
+
+.btns-actions{
+  margin: 15px 0px 0px;
+}
+
+.btns-actions a,
+.btns-actions button{
+  font-size: 12px;
+  padding: 4px 6px;
+  border: 0px none;
+}
+
+.upload-file-btn{
+  height: 303px;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  border:1px dashed #ccc;
+  background: rgba(255, 255, 255, 0.2);
+  margin-bottom: 15px;
+}
+
+.upload-file-btn input{
+  width: 100%;
+  height: 110%;
+  position: absolute;
+  left: 0px;
+  top: -10%;
+}
+
+.upload-file-btn input:after{
+  content: "SUBIR NUEVO ARCHIVO";
+  display:block;
+  opacity: 1;
+  color: #B2B2B2;
+  line-height: 264px;
+  text-align: center;
+  cursor:pointer;
+}
+
+.upload-file-btn input:focus{
+  outline: none;
+  box-shadow: none;
+}
+
+.img-wrapper p {
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    text-align: left;
+    padding: 5px;
+    overflow: hidden;
+    max-width: 100%;
+    color: #fff;
+    background: rgba(0, 0, 0, 0.35);
+    margin: 0px;
+}
+
+.file-wrapper label {
+    font-weight: normal;
+}
+
+.emtpy-btn{
+  background: rgba(255, 255, 255, 0.3);
+  border: 1px dashed #d9d9d9;
+}
+
+.drop-box {
+    background: #F8F8F8;
+    border: 5px dashed #DDD;
+    width: 200px;
+    height: 65px;
+    text-align: center;
+    padding-top: 25px;
+    margin: 10px;
+}
+.dragover {
+    border: 5px dashed blue;
+}
+
+.nuevo-testigo-tercero{
+  input{
+    margin-bottom: 15px;
+  }
+}
+.nuevo-fullwidth-btn {
+  clear: both;
+  float: none;
+  width: 100%;
+  padding: 0 15px;
+  .btn-default {
+    width: 100%;
+    margin: 0 0 10px;
+  }
+}
+
+button.close,
+button.close:hover,
+button.close:focus {
+  color: $orange-dark !important;
+}
+
+form.editar-compania{
+  background: transparent;
+  padding: 0;
+}

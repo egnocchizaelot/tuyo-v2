@@ -1,0 +1,11 @@
+## config.js
+
+**Summary:** Jasmine unit test specification for the Config service. Loads the `feApp` module and injects the `Config` service, then runs a basic existence check to verify the service is defined. This is a scaffold-generated smoke test confirming the Config service can be instantiated by Angular's dependency injection.
+
+**Dependencies:**
+- app/app/scripts/services/config.js — the Config service being tested
+- angular-mocks — provides `module()` and `inject()` test helpers
+
+**Tags:** testing, jasmine, spec, configuration
+
+**Implementation:** test/spec/services/config.js

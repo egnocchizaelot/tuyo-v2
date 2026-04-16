@@ -1,0 +1,10 @@
+## endbad.controller.js
+
+**Summary:** Controller for the bad-rating report form in cancellation flow. Initializes checkbox state for predefined report reasons.
+
+**Dependencies:**
+- app/app/calification/calification.module.js — registered on calification module
+
+**Tags:** calification, rating, cancelled, controller, reports
+
+**Implementation:** app/app/calification/cancelled/endBad/endbad.controller.js

@@ -1,0 +1,82 @@
+<div id="desktop" class="body-bg-whtie pagina-ayuda">
+
+    <div class="hero-text bg-gray-darker hero-after-navbar">
+        <div class="container text-center">
+            <p>Hola, <strong>{{fullName}}</strong>.<br>Si tienes una duda sobre como funciona el sitio, en esta sección econtrarás la respuesta.</p>
+        </div>
+    </div>
+
+
+    <div class="container">
+
+        <div class="subtitulos-ayuda respuestas-rapidas">
+            <h2>Respuestas rápidas</h2>
+            <p>Encuentra respuestas a las preguntas más frecuentes.</p>
+        </div><!-- /subtitulos-ayuda -->
+
+        <div class="wrapper-list-links">
+            <ul class="list-unstyled">
+                <li ng-repeat="question in questions[page] track by $index">
+                    <a ng-click="goToTopic($index)">{{question.topic_title}}</a>
+                </li>
+            </ul>
+
+
+            <!-- VER ESTE TEMA DEL PAGINADO -->
+            <div class="pagination text-right" ng-if="topicsLoaded">
+                <div class="pagination-wrapper">
+                    <a class="prev disable" ng-click="goToPage(page-1)">Prev</a>
+                    <ul class="list-unstyled list-inline">
+
+                        <li ng-repeat="i in getPages() track by $index" ng-click="goToPage($index+1)" style="cursor: pointer; !important" ng-class="{active: $index + 1 === page}">
+                            {{$index+1}}
+                            <!-- <a ng-click="goToPage($index+1)">{{$index+1}}</a> -->
+                        </li>
+
+                    </ul>
+                    <a class="next" ng-click="goToPage(page+1)">Next</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="row text-center bloques-respuestas-rapidas-vertical">
+
+            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4"ng-click="goToArea('ayuda')" style="cursor: pointer; !important">
+                <div class="bloques-respuestas-rapidas">
+                    <div class="img-wrapper">
+                        <img src="assets/images/ayuda-para-usar-el-sitio.svg" class="img-responsive">
+                    </div>
+                    <h4>Ayuda para usar el sitio</h4>
+                    <p>Como funciona el nuevo sitio explicado paso a paso.</p>
+                    <a class="ver-mas">Ver más</a>
+                </div><!-- /bloques-respuestas-rapidas -->
+            </div>
+
+            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4" ng-click="goToArea('problema')" style="cursor: pointer; !important">
+                <div class="bloques-respuestas-rapidas">
+                    <div class="img-wrapper">
+                        <img src="assets/images/tengo-un-problema.svg" class="img-responsive">
+                    </div>
+                    <h4>Tengo un problema!</h4>
+                    <p>Encuentra solución a los problemas más comunes.</p>
+                    <a class="ver-mas">Ver más</a>
+                </div><!-- /bloques-respuestas-rapidas -->
+            </div>
+
+            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4" ng-click="goToArea('buzon')" style="cursor: pointer; !important">
+                <div class="bloques-respuestas-rapidas">
+                    <div class="img-wrapper">
+                        <img src="assets/images/buzon-de-ayuda.svg" class="img-responsive">
+                    </div>
+                    <h4>Buzón de ayuda</h4>
+                    <p>Contacta a los administradores para recibir ayuda.</p>
+                    <a class="ver-mas">Ver más</a>
+                </div><!-- /bloques-respuestas-rapidas -->
+            </div>
+
+        </div><!-- /row -->
+
+    </div><!-- end container -->
+
+
+</div>

@@ -1,0 +1,14 @@
+## creation.directive.js
+
+**Summary:** Main directive (element: "createDonation") orchestrating the 4-step donation creation wizard. Manages step navigation with validation (description required, max characters, pickup text length, address selection), aggregates data from child step directives via dataSent events, and handles both new donation publishing (API.newDonation) and existing donation updates (API.updateDonation) with loading states.
+
+**Dependencies:**
+- app/app/create/createDonation/creation.module.js — registered on the creation module
+- app/app/create/createDonation/creation.controller.js — uses createDonationController
+- app/app/scripts/services/api.js — uses API.newDonation and API.updateDonation
+- app/app/modals/modals.service.js — uses modalServices for exit confirmation
+- app/app/loading/loading.service.js — uses loadingService for upload progress
+
+**Tags:** creation, donations, directive, wizard, api, ui
+
+**Implementation:** app/app/create/createDonation/creation.directive.js

@@ -1,0 +1,21 @@
+# File: stylesheets/screen.css.ab
+# Purpose: Compiled mobile/responsive application stylesheet in the default Compass output directory (stylesheets/)
+# Dependencies: []
+
+## Overview
+A compiled CSS stylesheet for mobile/responsive views located in the default Compass `stylesheets/` output directory at the project root. Compiled using Ruby 2.3.0 with RVM (`~/.rvm/gems/ruby-2.3.0/gems/compass-core-1.0.3`). Begins with the full Compass CSS reset followed by ProximaNova font declarations and application component styles (navbar, cards, buttons, etc.).
+
+This file appears to be an earlier Compass compilation output from the project root's `config.rb`, before the project standardized on `app/assets/css/` as the stylesheet output directory.
+
+## Interface
+No exports. Stylesheet file — not actively loaded by the running application (the `app/assets/css/screen.css` version is canonical).
+
+## Dependencies
+No project-level `.ab` dependencies. Requires ProximaNova font files at `../fonts/proximanova-*.ttf` (resolved relative to `stylesheets/`).
+
+## Implementation Notes
+- Compiled with Compass using RVM Ruby 2.3.0 on macOS/Linux
+- Compass source comment path: `../../../../../../.rvm/gems/ruby-2.3.0/gems/compass-core-1.0.3/`
+- Contains Compass CSS reset + ProximaNova fonts + application styles
+- Default Compass output directory — generated when `compass compile` is run from the project root with the default `config.rb`
+- The `app/assets/css/screen.css` is the current active version

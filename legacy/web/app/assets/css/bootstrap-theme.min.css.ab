@@ -1,0 +1,17 @@
+# File: app/assets/css/bootstrap-theme.min.css.ab
+# Purpose: Bootstrap 3.3.7 optional theme CSS — minified copy loaded by the application
+# Dependencies: []
+
+## Overview
+Minified copy of the Bootstrap 3.3.7 optional theme CSS (5 lines). Provides gradient and shadow enhancements on Bootstrap components. Loaded in `app/index.html` after the base Bootstrap stylesheet.
+
+## Interface
+No exports. Loaded as a `<link>` stylesheet in `app/index.html`.
+
+## Dependencies
+No project-level dependencies. Vendor file. Requires `bootstrap.min.css` to be loaded first.
+
+## Implementation Notes
+- Bootstrap theme version: 3.3.7
+- 5 lines minified
+- Same content as `app/styles/bootstrap-theme.min.css`

@@ -1,0 +1,11 @@
+## map.services.js
+
+**Summary:** Service (`mapService`) that parses Google Maps Geocoder results to extract structured location data. The `getData()` method delegates to the `getBigData()` helper function, which iterates through geocoder results to find entries with a `neighborhood` type and extracts the district (neighborhood), city (locality), and country. Also contains an unused `getData()` helper function for extracting a single address component by type.
+
+**Dependencies:**
+- app/app/map/map.module.js — registers on the `map` module
+- app/app/scripts/services/api.js — `API` service injected but not used
+
+**Tags:** map, location, google-maps, service, geocoding
+
+**Implementation:** app/app/map/map.services.js

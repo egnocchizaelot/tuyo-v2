@@ -1,0 +1,10 @@
+## notice.controller.js
+
+**Summary:** Empty controller for the notice post component. Logic is in the directive.
+
+**Dependencies:**
+- app/app/post/post.module.js — registered on the post module
+
+**Tags:** post, notices, controller
+
+**Implementation:** app/app/post/notice/notice.controller.js

@@ -1,0 +1,10 @@
+## modals.module.js
+
+**Summary:** Declares the `modal` AngularJS module with no external dependencies and configures the `$modalProvider` to disable animations globally by default. This module serves as the root for all modal dialog components including basic modals, confirmation modals, chat modals, donation creation, filtering, loading overlays, and mobile page modals.
+
+**Dependencies:**
+- None
+
+**Tags:** modals, module, angularjs, ui, dialogs
+
+**Implementation:** app/app/modals/modals.module.js

@@ -1,0 +1,13 @@
+## new_donation.js
+
+**Summary:** Legacy controller (`DonationsNewPage`) and directive (`fileUpload`) registered on the `TuyoTools` module for creating new donations. The controller manages a multi-step donation form with address creation via Google Maps Autocomplete/Geocoder (restricted to Uruguay), form validation (title, description, max applicants, type, at least one address and image), and address components parsing. The `fileUpload` directive handles file input change events and emits `fileSelected` events. Contains substantial commented-out FileUploader code.
+
+**Dependencies:**
+- app/app/app/app.js — registers controller and directive on root `TuyoTools` module
+- app/app/scripts/services/api.js — API for createAddress
+- app/app/scripts/services/auth.js — Auth for userData
+- Google Maps JavaScript API — Geocoder and Places Autocomplete
+
+**Tags:** legacy, controller, directive, donations, address-management, file-upload
+
+**Implementation:** app/app/scripts/controllers/pages/new_donation.js

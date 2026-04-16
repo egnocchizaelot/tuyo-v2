@@ -1,0 +1,19 @@
+<div ng-if="noticesLoaded && showNotices" class="feed-grid">
+    <div ng-repeat="notice in notices track by $index" class="feed-grid-full-width">
+        <important-notice notice='notice'></important-notice>
+    </div>
+</div>
+
+<div ng-if="donationsDone" class="feed-grid">
+    <div ng-repeat="donation in showingDonations track by donation.trackId" ng-if="!donation.deleted" id='donation_{{donation.id}}' class="anchor" ng-class="{'feed-grid-full-width': donation.notice}">
+        <notice notice='donation' ng-if="donation.notice" in-view="onView($index, $inview)" id='post_{{$index}}'></notice>
+
+        <donation-post donation='donation' ng-if='!donation.notice && donation.appreciation === null' in-view="onView($index, $inview)" id='post_{{$index}}'></donation-post>
+        <thanks-post donation='donation' ng-if='!donation.notice && donation.appreciation !== null' in-view="onView($index, $inview)" id='post_{{$index}}'></thanks-post>
+    </div>
+</div>
+
+<!-- <div ng-if="!noMoreDonations"> -->
+<div ng-class="{'hidden': noMoreDonations}">
+    <loading back="grey"></loading>
+</div>

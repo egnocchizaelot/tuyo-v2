@@ -1,0 +1,69 @@
+# File: app/app/post/post.directive.js.ab
+# Purpose: Directive (element: "posts") that renders the donation feed — template adds feed-grid class to wrap product cards in a 3-column desktop grid layout
+# Dependencies: [app/app/post/post.module.js, app/app/post/post.controller.js, app/app/socket.service.js, app/app/app.service.js]
+# Tags: [tag-post, tag-donations, tag-directive, tag-realtime, tag-socket-io, tag-feed, tag-ui, tag-feed-grid]
+
+## Overview
+Directive (element: "posts") that renders the donation post feed. Manages real-time updates via socketService by polling visible donations at a configurable interval, handles donation deletion, tracks which posts are in the viewport using angular-inview, and dispatches socket callbacks to individual donation or notice child scopes for live data refresh. Template modified to apply `.feed-grid` CSS class on the ng-repeat containers, enabling product cards to be arranged in a 3-column grid on desktop viewports (AC1) while preserving all existing card content (AC3) and mobile single-column behavior (AC2).
+
+## Interface
+- Element directive: `<posts></posts>`
+- Template: `app/post/post.template.html`
+- Controller: `postController`
+- Scope: isolated (empty scope object — data flows via controller and events)
+- Key scope methods: `onView(index, visible)`, `donationCallback(index, data)`, `noticeCallback(index, data)`, `callback(data)`
+
+## Dependencies
+- app/app/post/post.module.js — registered on the post module
+- app/app/post/post.controller.js — uses postController
+- app/app/socket.service.js — uses socketService for real-time donation updates
+- app/app/app.service.js — uses appService.donationUpdateTime for polling interval
+
+## Implementation Notes
+
+### AC1 — Desktop Shows 3-Column Grid (Template Change — Feed Grid Container)
+The template (`post.template.html`) must be modified to wrap the donation feed in a CSS Grid container so that on a desktop viewport above the mobile breakpoint, product cards are arranged in a 3-column grid that fills the available screen width.
+
+**Donations section**: The outer `<div ng-if="donationsDone">` element that wraps the `ng-repeat` of `showingDonations` must receive the `feed-grid` CSS class. This establishes the 3-column CSS Grid context for all donation cards. When the feed loads with 3 or more listings, cards fill rows left to right, 3 per row.
+
+**Important notices section**: The `<div ng-if="noticesLoaded && showNotices">` element that wraps the `ng-repeat` of important notices must also receive the `feed-grid` CSS class, since important notices rendered above the feed should also participate in the grid layout.
+
+### AC3 — Card Content Is Preserved
+Each card within the ng-repeat displays the same content as today — no changes to the card templates:
+- `donation-post` and `thanks-post` elements render as regular grid cells showing user avatar, name, date, star rating, urgency, location, description, full-size product image, status badge, and social action buttons
+- Card content and card design do not change — no truncation, no removed fields, no new fields
+- Product image size remains the same as the current implementation
+
+### AC4 — Partial Row With Fewer Than 3 Listings
+When the feed loads with fewer than 3 listings, cards are placed in the grid at normal card width. Remaining grid cells are empty — no stretching, no placeholder. This is handled naturally by CSS Grid in `_feed-grid.scss`.
+
+### AC7 — Notice Cards Span Full Width
+- `notice` elements already have `feed-grid-full-width` on their template root element (handled in notice.directive.js.ab), so when a system notice or announcement card appears in the feed, it spans all 3 columns at full width automatically
+- `important-notice` elements already have `feed-grid-full-width` on their template root element (handled in importantNotice.directive.js.ab)
+
+### No JavaScript Logic Changes
+The directive's link function remains completely unchanged:
+- Real-time socket polling interval logic is unaffected
+- `onView(index, visible)` viewport tracking via angular-inview continues to work because each card remains an individual DOM element within the grid — angular-inview detects viewport intersection per element
+- `donationCallback`, `noticeCallback`, and `callback` functions are unaffected
+- `$on('deletedDonation')` handler is unaffected
+- `$on('$destroy')` cleanup is unaffected
+- Filtering, sorting, and pagination behavior does not change
+
+### AC2 — Mobile Remains Single Column
+The `.feed-grid` class is applied unconditionally in the template. On mobile viewports at or below the mobile breakpoint, the CSS media query in `_feed-grid.scss` switches to `grid-template-columns: 1fr`, so the feed displays in a single column identical to the current mobile behavior. Mobile layout is not affected.
+
+### Existing Behavior Preserved
+- Real-time donation update polling at `appService.donationUpdateTime` interval
+- Viewport tracking for visible donations
+- Socket callback dispatch to child scopes
+- Donation deletion handling
+- Loading indicator display
+
+## Examples
+The template structure after modification:
+- Important notices block: `<div ng-if="noticesLoaded && showNotices" class="feed-grid">` wrapping the important notice ng-repeat
+- Donations block: `<div ng-if="donationsDone" class="feed-grid">` wrapping the showingDonations ng-repeat
+- Loading indicator: unchanged, remains outside the grid containers
+- On desktop above the mobile breakpoint: cards arranged in a 3-column grid filling the available screen width
+- On mobile at or below the breakpoint: cards display in a single column, current mobile behavior unchanged

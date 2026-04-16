@@ -1,0 +1,14 @@
+## modals.service.js
+
+**Summary:** Service (`modalServices`) providing centralized methods to open common modal dialogs via `$modal`. Includes `BasicModal` (yes/no confirmation with customizable title, text, and button labels), `CancelModal` (similar yes/no pattern for cancel confirmations), `BasicSingleButtonModal` (single-button acknowledgment dialog), and `ReserveConfirmation` (reserve confirmation dialog showing sender details). Each method opens a modal with a static backdrop, emits `addToHistory` on `$rootScope`, and invokes an optional callback with the modal result. Also listens for `$routeChangeStart` to dismiss any open modal on navigation.
+
+**Dependencies:**
+- app/app/modals/modals.module.js — registers on the `modal` module
+- app/app/modals/basicModal/basicModal.controller.js — used by `BasicModal`
+- app/app/modals/cancelModal/cancelModal.controller.js — used by `CancelModal`
+- app/app/modals/basicSingleButtonModal/basicSingleButtonModal.controller.js — used by `BasicSingleButtonModal`
+- app/app/modals/reserveConfirmation/reserveConfirmation.controller.js — used by `ReserveConfirmation`
+
+**Tags:** modals, service, dialogs, ui, confirmation
+
+**Implementation:** app/app/modals/modals.service.js

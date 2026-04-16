@@ -1,0 +1,29 @@
+{% extends "admin/change_form.html" %}
+
+
+{% block content_title %}<h1>System User</h1>{% endblock %}
+
+
+{% block field_sets %}
+  	<div style="float:right;">
+  		<input type="submit" value='Send notification' name="_send_notification" />  
+  	</div>
+  	
+  	<div style="min-height:30px"> 
+  		<img src="../../../../media/{{ original.picture_url }}" style="max-height: 200px;max-width: 200px;"/>
+	</div>
+	
+	{% for fieldset in adminform %}
+	  {% include "admin/includes/fieldset.html" %}
+	{% endfor %}
+	
+	<div style="float: right;">
+		{% if not original.banned %} <input type="submit" value='Disable' name="_disable" /> {% endif %}
+		{% if original.banned %} <input type="submit" value='Enable' name="_enable" /> {% endif %} 
+		
+		{% if original.enabled %} <input type="submit" value='Disapprove' name="_disapprove" /> {% endif %}
+		{% if not original.enabled %} <input type="submit" value='Approve' name="_approve" /> {% endif %} 
+	</div>
+	 
+{% endblock %} 	 
+ 

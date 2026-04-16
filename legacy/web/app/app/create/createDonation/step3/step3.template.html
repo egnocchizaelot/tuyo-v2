@@ -1,0 +1,31 @@
+
+<div class="card gray-border-bottom text-center">
+    <h3>Zona de retiro</h3>
+</div>
+
+<div ng-show="!newLocation">
+
+    <div class="gray-border-bottom" ng-repeat="address in user.addresses track by $index">
+        <div class="container">
+            <div class="checkbox bigger">
+                <label class="checkbox-wrapper">
+                    <input type="checkbox" ng-model="address.active" ng-change="change($index)">
+                    <span>{{address.district}}</span>
+                </label>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <a href="" class="btn-agregar"  ng-click="addLocation()" title="Agregar zona de retiro">
+            <i class="fa fa-plus" aria-hidden="true"></i>
+            <span ng-if="user.addresses.length !== 0">Agregar otra</span>
+            <span ng-if='user.addresses.length === 0'>Agregar una</span>
+        </a>
+    </div>
+
+</div>
+
+<div ng-if="newLocation" style="overflow: hidden; !important">
+    <address-map cancel="cancelNewLocation" accept="acceptNewLocation" width='width' height="height"></address-map>
+</div>

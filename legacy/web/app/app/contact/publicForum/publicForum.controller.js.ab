@@ -1,0 +1,10 @@
+## publicForum.controller.js
+
+**Summary:** Empty controller for the public forum view component.
+
+**Dependencies:**
+- app/app/contact/publicForum/publicForum.module.js — registered on publicForum module
+
+**Tags:** forum, communication, controller
+
+**Implementation:** app/app/contact/publicForum/publicForum.controller.js

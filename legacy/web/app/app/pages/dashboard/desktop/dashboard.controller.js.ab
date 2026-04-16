@@ -1,0 +1,12 @@
+## dashboard.controller.js
+
+**Summary:** Controller for the desktop dashboard view that initializes donation feed filters (all, donations, available, thanks, liked) from URL state parameters, determines the user's geolocation via the browser Geolocation API and Google Maps Geocoder to set location context, configures pagination settings, and scrolls to top on load. Handles both geolocated and map-data-based location display.
+
+**Dependencies:**
+- app/app/pages/dashboard/dashboard.module.js — registers controller on the `dashboard` module
+- app/app/scripts/services/map.service.js — mapService for parsing geocoder results into structured location data
+- app/app/app.service.js — appService for donationsPagination setting
+
+**Tags:** dashboard, controller, donations, geolocation, filters
+
+**Implementation:** app/app/pages/dashboard/desktop/dashboard.controller.js

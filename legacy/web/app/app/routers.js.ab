@@ -1,0 +1,12 @@
+## routers.js
+
+**Summary:** UI Router state definitions for the TuyoTools SPA. Configures the abstract parent state `app` and approximately 18 child states covering: landing page, static content pages (proyecto, reglamento, colaboradores, terminos y condiciones, articulos prohibidos, troubleshooting, wrong email link, confirmation success), map view, mobile modal, donations layout (abstract), individual donation view, notification view, dashboard, new donation creation, and help center. Registers the AuthInterceptor as an HTTP interceptor. Public routes explicitly set `data: { requireLogin: false }`; all other routes require authentication by default. The `$urlRouterProvider.otherwise` fallback redirects to the dashboard.
+
+**Dependencies:**
+- app/app/app_config.js — AuthInterceptor factory registered as an HTTP interceptor in the config block
+- angular ($stateProvider, $urlRouterProvider, $httpProvider) — UI Router configuration and HTTP provider
+- app/app/scripts/services/auth.js — Auth service used in the otherwise fallback (injected but commented-out superuser check)
+
+**Tags:** configuration
+
+**Implementation:** app/app/routers.js

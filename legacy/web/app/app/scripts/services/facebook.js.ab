@@ -1,0 +1,11 @@
+## facebook.js
+
+**Summary:** Angular factory wrapping the Facebook JavaScript SDK's login and logout flows in promise-based interfaces. Uses `FB.getLoginStatus()` to check existing sessions before invoking `FB.login()` or `FB.logout()`, and resolves/rejects using `$rootScope.$apply` to ensure Angular's digest cycle picks up the third-party callbacks. Requests `email` and `user_friends` permissions during login.
+
+**Dependencies:**
+- Facebook JS SDK (global `FB` object) — loaded asynchronously in app_config.js; provides getLoginStatus, login, and logout methods
+- angular ($q, $window, $rootScope) — AngularJS core services for promises, window access, and digest cycle integration
+
+**Tags:** facebook, oauth, authentication
+
+**Implementation:** app/app/scripts/services/facebook.js

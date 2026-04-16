@@ -1,0 +1,13 @@
+## dashboard.module.js
+
+**Summary:** Declares the `dashboard` AngularJS module with dependencies on `forumModule`, `popUps`, `post`, and `modal`. This module contains the main donation feed view that users see after logging in.
+
+**Dependencies:**
+- app/app/pages/forum/forum.module.js — forumModule dependency for forum features
+- app/app/pages/popUps/popUps.module.js — popUps dependency for popup dialogs
+- app/app/pages/post/post.module.js — post dependency for donation post components
+- app/app/modals/modal.module.js — modal dependency for modal dialogs
+
+**Tags:** dashboard, module, donations
+
+**Implementation:** app/app/pages/dashboard/dashboard.module.js

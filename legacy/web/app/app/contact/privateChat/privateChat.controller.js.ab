@@ -1,0 +1,11 @@
+## privateChat.controller.js
+
+**Summary:** Controller for the private chat component. Manages header animation (shrinking image header on scroll/click) and scroll event handlers for the chat container.
+
+**Dependencies:**
+- app/app/contact/privateChat/privateChat.module.js — registered on chat module
+- app/app/app/app.service.js — uses appService for mobile detection
+
+**Tags:** chat, communication, controller, ui
+
+**Implementation:** app/app/contact/privateChat/privateChat.controller.js

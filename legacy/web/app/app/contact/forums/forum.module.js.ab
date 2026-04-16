@@ -1,0 +1,10 @@
+## forum.module.js
+
+**Summary:** Declares the "forumModule" AngularJS module for public donation forums where applicants post interest and donors manage reservations. No external module dependencies.
+
+**Dependencies:**
+(none)
+
+**Tags:** forum, communication, module
+
+**Implementation:** app/app/contact/forums/forum.module.js

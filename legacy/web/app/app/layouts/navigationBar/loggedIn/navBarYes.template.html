@@ -1,0 +1,72 @@
+<nav class="navbar navbar-fixed-top navbar-primary bg-brand-color">
+    <div class="navbar-header">
+
+        <button id="menuButton" ng-click="toggleHover()" class="navbar-toggle collapsed">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+
+        <div class="btn-notification" ng-if='mobile && smallWidth'>
+            <notifications></notifications>
+        </div>
+
+    </div>
+
+    <!-- /navbar-header -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-12">
+        <div class="container">
+            <h1 id="logo" class="hidden-xs">
+                <a data-ui-sref="app.donations.dashboard({filters: 'none'})" data-ui-sref-opts="{reload: true, notify: true}" title="Inicio">Inicio</a>
+            </h1>
+
+            <ul class="nav navbar-nav">
+                <li id="inicio">
+                    <a data-ui-sref="app.donations.dashboard({filters: 'none'})" data-ui-sref-opts="{reload: true, notify: true}" >Inicio</a>
+                </li>
+
+                <li id='rules'>
+                    <a data-ui-sref="app.reglamento" data-ui-sref-opts="{reload: true, notify: true}" >Reglamento</a>
+                </li>
+
+                <li id='help'>
+                    <a data-ui-sref="app.help({ s: 'faq', t: -1 })" data-ui-sref-opts="{reload: true, notify: true}" >Ayuda</a>
+                </li>
+
+                <li id='project'>
+                    <a data-ui-sref="app.proyecto" data-ui-sref-opts="{reload: true, notify: true}" >El proyecto</a>
+                </li>
+<!--
+                <li id='colaborators'>
+                    <a data-ui-sref="app.colaboradores" data-ui-sref-opts="{reload: true, notify: true}" >Colaboradores</a>
+                </li>
+-->
+            </ul>
+
+            <ul class="list-inline list-unstyled user-menu" ng-if="userData">
+
+                <li id="botonOfrecer" class="ofrecer">
+                    <a href="" ng-click="newDonation()" class="btn-svg btn-svg-regalo-blanco" title="Ofrecer">Ofrecer</a>
+                </li>
+
+                <li class="dropdown notificaciones"  ng-if='!mobile || mobile && !smallWidth'>
+                    <notifications></notifications>
+                    <span>Notificaciones</span>
+                </li>
+
+                <li class="user-avatar">
+
+
+                    <a data-ui-sref="app.user({id: userData.id})" data-ui-sref-opts="{reload: true, inherit: false, notify: true}">
+                        <div class="avatar-wrapper">
+                            <img ng-if="userData.picture_url" ng-src="{{mediaURL}}{{userData.picture_url}}" class="img-responsive" onerror="this.onerror=null; if (this.src != 'error.jpg') this.src = 'assets/images/user2.png';">
+                        </div>
+                        <span>Mi perfil</span>
+                    </a>
+                </li>
+            </ul>
+
+    </div>
+
+</nav>

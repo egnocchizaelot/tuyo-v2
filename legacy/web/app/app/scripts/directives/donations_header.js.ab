@@ -1,0 +1,13 @@
+## donations_header.js
+
+**Summary:** Legacy directive (`donationsHeader`) registered on the `TuyoTools` module that implements the header/navigation for the donations section. Manages section switching (dashboard, donate, profile, donation details) with side menu toggling, exposes user data and media URLs, handles mobile profile menu and mobile navigation with click-outside-to-close behavior, listens for `changeSection` and `DONATION_DETAILS` rootScope events, and provides filter reset functionality via `FilterFields` service.
+
+**Dependencies:**
+- app/app/app/app.js — registers directive on root `TuyoTools` module
+- app/app/scripts/services/auth.js — Auth for userData
+- app/app/scripts/services/api.js — API for emailURL, baseURL, mediaURL
+- app/app/scripts/services/filterFields.js — FilterFields for selectedFilters management
+
+**Tags:** legacy, directive, donations, navigation, layout
+
+**Implementation:** app/app/scripts/directives/donations_header.js

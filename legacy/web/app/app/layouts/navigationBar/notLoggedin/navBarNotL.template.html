@@ -1,0 +1,107 @@
+<div class="wider-container registrate custom-modals">
+
+    <nav class="navbar navbar-fixed-top navbar-primary bg-brand-color">
+        <div class="navbar-header">
+
+            <!-- <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-12" aria-expanded="false"> -->
+            <button id="menuButton" ng-click="toggleHover()" class="navbar-toggle collapsed">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+
+            <h1 class="hidden-lg hidden-md">
+                <a href="index.html" title="Inicio">Si lo venis a buscar es tuyo</a>
+            </h1>
+        </div>
+
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-12">
+            <div class="container">
+                <img  class="hidden-xs float-left logo-img" style="padding-top: 9px !important" src="../assets/images/logo-desktop.svg"/>
+
+                <ul class="nav navbar-nav">
+                    <li>
+                        <h1>
+                            <a ng-href="{{homePage}}" target="_self" title="Inicio">Si lo venis a buscar es tuyo</a>
+                        </h1>
+                    </li>
+                    <li>
+                        <a ng-href="{{rulesPath}}" target="_self" title="Reglamento">Reglamento</a>
+                    </li>
+                    <li>
+                        <a ng-href="{{projectPath}}" target="_self" title="Información">Información</a>
+                    </li>
+                    <li>
+                        <a href="mailto:{{adminMail}}?Subject=Hola" target="_top" title="Contacto">Contacto</a>
+                    </li>
+
+                </ul>
+
+                <ul ng-if="!onLanding" class="nav navbar-nav navbar-right">
+
+                    <li>
+                        <a 
+                            title="Registrate" 
+                            class="btn-iniciar-sesion"
+                            ng-click="navigateAndOpenModal('register')"
+                        >
+                          <span 
+                            class="btn btn-black"
+                          >
+                            Regístrate
+                          </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a 
+                            title="Iniciar Sesión" 
+                            class="btn-iniciar-sesion"
+                            ng-click="navigateAndOpenModal('login')"
+                        >
+                          <span 
+                            class="btn btn-empty-black"
+                          >
+                            Iniciar Sesión
+                          </span>
+                        </a>
+                    </li>
+                </ul>
+
+                <ul ng-if="onLanding" class="nav navbar-nav navbar-right">
+
+                    <li>
+                        <a 
+                            title="Iniciar Sesión" 
+                            class="btn-iniciar-sesion"
+                            ng-click="registerWithTuyo()"
+                        >
+                          <span 
+                            class="btn btn-black"
+                          >
+                            Regístrate
+                          </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a 
+                            title="Iniciar Sesión" 
+                            class="btn-iniciar-sesion'"
+                            ng-click="openLoginModal()"
+                        >
+                          <span 
+                            class="btn btn-empty-black"
+                          >
+                            Iniciar Sesión
+                          </span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+
+    </nav>
+
+
+</div>

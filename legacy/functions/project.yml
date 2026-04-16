@@ -1,0 +1,16 @@
+environment:
+  dbuser: ${dbuser}
+  dbpassword: ${dbpassword}
+  dbhost: ${dbhost}
+  dbtuyo: ${dbtuyo}
+  dbnotif: ${dbnotif}
+  dbmail: ${dbmail}
+packages:
+    - name: tuyo
+      functions:
+        - name: notifications
+          runtime: 'python:default'
+          main: ''
+        - name: emails
+          runtime: 'python:default'
+          main: ''

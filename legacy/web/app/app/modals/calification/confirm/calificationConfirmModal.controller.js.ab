@@ -1,0 +1,10 @@
+## calificationConfirmModal.controller.js
+
+**Summary:** Controller for the calification (rating) confirmation modal. Receives a `donation` object via dependency injection resolve, exposes it on scope, and provides a `close()` method to dismiss the modal with a result.
+
+**Dependencies:**
+- app/app/modals/modals.module.js — registers on the `modal` module
+
+**Tags:** modals, dialogs, controller, calification, rating
+
+**Implementation:** app/app/modals/calification/confirm/calificationConfirmModal.controller.js

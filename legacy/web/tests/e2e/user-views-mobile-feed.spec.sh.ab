@@ -1,0 +1,96 @@
+# File: tests/e2e/user-views-mobile-feed.spec.sh.ab
+# Purpose: Verify the listing feed displays in a single column on mobile viewports, unaffected by the 3-column grid changes
+# Dependencies: [app/assets/scss/_feed-grid.scss.ab, app/app/post/post.directive.js.ab]
+
+## Overview
+An authenticated user loads the listing feed on a mobile viewport and sees the current single-column layout, confirming the 3-column grid CSS has no visual effect on mobile. The feed-grid class is present in the DOM but the media query ensures single-column rendering.
+
+## Covers
+app/assets/scss/_feed-grid.scss.ab, app/app/post/post.directive.js.ab
+
+## Business Actor
+Authenticated user viewing the listing feed on a mobile device or narrow viewport at or below 767px.
+
+## Business Goal
+Browse listings in the familiar single-column mobile layout with no visual regression from the desktop grid changes.
+
+## Test Accounts
+<!-- Credentials are defined here and used verbatim by the translator. Do NOT read from .env or any external file. -->
+<!-- Each actor gets a base email. At runtime the translator appends +<random_id> to make it unique per run. -->
+- Actor `user`: base email `e2e.mobileuser@test.local`, password `Test1234!`
+
+## Preconditions
+- Each run creates a fresh isolated account using `e2e.mobileuser+<random_id>@test.local` via the registration API before Scenario A runs. This account is fully isolated — no shared state with other specs or runs.
+- The test environment contains at least 3 existing donation listings (read-only seed data).
+- Mobile viewport is set at or below 767px (e.g., 375x812 for iPhone).
+
+Teardown (after all scenarios, even on failure):
+- Delete the per-run account created during setup and all records it owns.
+- Do NOT delete shared read-only seed fixtures.
+
+## Business Scenarios
+- Scenario A (DB-1): User loads the feed on mobile and sees single-column layout
+- Scenario B (DB-2): User loads the feed at desktop width and sees 3-column grid (cross-reference confirmation)
+
+## Actor Variants
+- EQ-1 — Mobile viewport at a common narrow width (375px): well below breakpoint -> DB-1
+- EQ-2 — Viewport at exactly 767px: maximum mobile width, one pixel below breakpoint -> DB-1
+
+## Outcome Branches
+- DB-1 -> Feed displays in single column, layout identical to current mobile behavior (EQ-1, EQ-2)
+- DB-2 -> Feed displays in 3-column grid (desktop path, confirmed separately to validate the breakpoint boundary)
+
+## Business Boundaries
+- BV-1 (viewport width at 767px): upper boundary of mobile range, single-column expected
+- BV-2 (viewport width at 768px): lower boundary of desktop range, 3-column grid activates
+
+## Acceptance Criteria
+- AC1: On mobile viewport, the feed displays cards in a single column identical to current mobile behavior (DB-1, EQ-1, EQ-2)
+- AC2: Card width, spacing, and design are unchanged from current mobile layout — no regression from the feed-grid class being in the DOM (DB-1)
+- AC3: At 767px, single-column displays; at 768px, 3-column grid activates (BV-1, BV-2)
+- AC4: No 3-column grid layout is visible on mobile — cards stack in single column (ABSENT-1)
+- AC5: No layout regression from the feed-grid class — spacing, card width, and card design unchanged on mobile (ABSENT-2)
+
+## Absent Elements
+- On mobile viewport: no 3-column grid layout visible — cards stack in single column
+- On mobile viewport: no layout regression from the .feed-grid class — spacing, card width, and card design unchanged from pre-grid behavior
+
+## Steps
+
+### Scenario A: User loads the feed on mobile viewport
+<!-- covers: DB-1, EQ-1, EQ-2, BV-1, ABSENT-1, ABSENT-2 -->
+1. Log in as the test user on a mobile viewport (375x812)
+2. Navigate to the listing feed at $E2E_BASE_URL
+3. Wait for the feed to load with donation cards visible
+4. Verify AC1: cards are displayed in a single column, one card per row
+5. Verify AC2: card width fills the viewport width (standard mobile layout)
+6. Verify Absent: no 3-column grid layout is visible
+7. Verify Absent: no layout regression — cards look identical to pre-grid mobile behavior
+8. Take a screenshot and save to $E2E_ARTIFACTS_DIR/mobile-feed/single-column-375.png
+9. Resize viewport to exactly 767px (maximum mobile width)
+10. Verify AC3: at 767px, single-column layout is still active
+11. Verify cards still display in a single column at this boundary width
+12. Take a screenshot and save to $E2E_ARTIFACTS_DIR/mobile-feed/single-column-767.png
+
+### Scenario B: Cross-reference at desktop width
+<!-- covers: DB-2, BV-2 -->
+1. Resize viewport to exactly 768px (first pixel of desktop range)
+2. Verify AC3: at 768px, the 3-column grid layout activates
+3. Verify cards are now arranged in columns rather than stacked vertically
+4. Take a screenshot and save to $E2E_ARTIFACTS_DIR/mobile-feed/desktop-768.png
+
+## Coverage Map
+
+| Case ID | Type | Description | Scenario | Status |
+|---------|------|-------------|----------|--------|
+| DB-1 | Decision Branch | Mobile viewport -> single-column feed | Scenario A | ✅ covered |
+| DB-2 | Decision Branch | Desktop viewport -> 3-column grid | Scenario B | ✅ covered |
+| EQ-1 | Equivalence Class | 375px mobile viewport | Scenario A | ✅ covered |
+| EQ-2 | Equivalence Class | 767px maximum mobile width | Scenario A | ✅ covered |
+| BV-1 | Boundary Value | 767px upper mobile boundary | Scenario A | ✅ covered |
+| BV-2 | Boundary Value | 768px lower desktop boundary | Scenario B | ✅ covered |
+| ABSENT-1 | Absent Element | No 3-column grid on mobile | Scenario A | ✅ covered |
+| ABSENT-2 | Absent Element | No layout regression from feed-grid class on mobile | Scenario A | ✅ covered |
+
+## Artifacts
+All written to $E2E_ARTIFACTS_DIR/mobile-feed/ with explicit filenames.

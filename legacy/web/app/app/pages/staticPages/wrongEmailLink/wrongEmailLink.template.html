@@ -1,0 +1,11 @@
+<navigation-bar-desktop ></navigation-bar-desktop>
+
+<div class="container lonely-tempalte">
+    <div class="card default-border-radius margin-bottom" style="padding-bottom: 15px; !important">
+        <div class="container" style="text-align: center;">
+            <p style="white-space: pre-wrap; !important">Al parecer el link de verificación de correo a caducado.</p>
+            <p ng-if="id" style="white-space: pre-wrap; !important">Por favor vuelve a comenzar el proceso de verificación </br>de correo a través de la sección <a data-ui-sref="app.user({id: {{id}} })">Mi perfil</a></p>
+            <p ng-if="!id"style="white-space: pre-wrap; !important">Por favor vuelve a comenzar el proceso de verificación </br>de correo a través de la sección Mi perfil una vez estés habilitado a entrar al sitio</p>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,13 @@
+<div id="notif" class="card-notificacion" ng-mousedown="goTo($event)" style="cursor: pointer; !important">
+    <div class="img-wrapper">
+        <img ng-src="{{imagePath}}" target="_self" class="img-responsive">
+    </div>
+    <div class="text-left text-wrapper no-padding-left">
+
+            <p>{{notification.text}}</p>
+            <a class="path-text">
+                <strong>{{pathText}}</strong>
+            </a>
+            <span class="time" am-time-ago="sendDate  || 'YYYY-MM-DD HH:mm:ss'"></span>
+    </div>
+</div>

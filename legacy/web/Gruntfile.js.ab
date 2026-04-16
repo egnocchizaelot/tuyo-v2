@@ -1,0 +1,11 @@
+## Gruntfile.js
+
+**Summary:** Primary Grunt build configuration for the TuyoTools frontend. Defines tasks for development serving (connect on port 9000 with livereload), SCSS compilation via Compass, CSS autoprefixing, CSS minification, JavaScript concatenation (module-first ordering: *.module.js, *.controller.js, *.directive.js, then *.js), Angular dependency annotation via ngAnnotate, ES2015 transpilation via Babel, JS uglification, file revisioning via filerev, HTML usemin-based asset pipeline, Bower wiredep injection, and file watching. Exposes composite tasks: `serve` (dev server with livereload), `build` (clean, copy, wiredep, useminPrepare, concurrent stylesheets/scripts/html, filerev, usemin), `stylesheets`, `scripts`, and `html`. Output goes to the `dist/` directory.
+
+**Dependencies:**
+- bower.json — read for appPath configuration
+- package.json — npm devDependencies providing grunt plugins (time-grunt, jit-grunt, grunt-usemin, grunt-contrib-compass, grunt-autoprefixer, grunt-contrib-cssmin, grunt-contrib-concat, grunt-ng-annotate, grunt-babel, grunt-contrib-uglify, grunt-contrib-htmlmin, grunt-filerev, grunt-contrib-copy, grunt-contrib-clean, grunt-contrib-connect, grunt-contrib-watch, grunt-wiredep, grunt-contrib-jshint, grunt-concurrent, grunt-bower-task)
+
+**Tags:** configuration
+
+**Implementation:** Gruntfile.js

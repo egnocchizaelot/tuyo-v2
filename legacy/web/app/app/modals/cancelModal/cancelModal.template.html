@@ -1,0 +1,18 @@
+<div class="bg-brand-color modal-body text-center" style="background-color: #cb4335 !important">
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close" ng-click="close(false)">
+        <span aria-hidden="true">&times;</span>
+    </button>
+
+    <h3 style="white-space: pre-wrap;">{{title}}</h3>
+    <p class="double-margin-bottom" style="white-space: pre-wrap;" ng-if="text">{{text}}</p>
+
+    <div class="row">
+        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+            <a href="" class="btn btn-empty-white display-block" ng-click='close(true)'>Si</a>
+        </div>
+
+        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+            <a class="btn btn-empty-white display-block" data-dismiss="modal" ng-click='close(false)'>No</a>
+        </div>
+    </div>
+ </div>

@@ -1,0 +1,10 @@
+## loading.controller.js
+
+**Summary:** Empty controller for the loading directive. Serves as a placeholder controller required by the `loading` directive; all logic resides in the directive's link function.
+
+**Dependencies:**
+- app/app/loading/loading.module.js — registers on the `loadingModule` module
+
+**Tags:** loading, controller, angularjs
+
+**Implementation:** app/app/loading/loading.controller.js

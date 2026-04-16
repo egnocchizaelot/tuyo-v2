@@ -1,0 +1,11 @@
+## userProfile.controller.js
+
+**Summary:** Controller that determines whether to show the private or public user profile view by comparing the route parameter `id` against the currently authenticated user's ID. Sets `$scope.private` to true when viewing one's own profile (or when id is 'user'), enabling the template to render the appropriate sub-directive.
+
+**Dependencies:**
+- app/app/pages/user/user.module.js — registers controller on the `user` module
+- app/app/scripts/services/auth.js — Auth service for userData.id to determine profile ownership
+
+**Tags:** user-profile, controller, routing
+
+**Implementation:** app/app/pages/user/userProfile.controller.js

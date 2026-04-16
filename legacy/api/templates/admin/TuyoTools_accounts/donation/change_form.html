@@ -1,0 +1,41 @@
+{% extends "admin/change_form.html" %}
+         
+{% block content_title %}<h1>Donation</h1>{% endblock %}
+    
+{% block field_sets %}
+	
+	{% if  show_change_state %}
+		<div style="float:right;">
+			<select name="state">
+			    {% for state in states %}
+			        {% ifequal state.id selected_state.id %}
+			            <option value="{{state.id}}" selected="selected">{{state.id}}: {{state.name}}</option>
+			        {% else %}
+			            <option value="{{state.id}}">{{state.id}}: {{state.name}}</option>
+			        {% endifequal %}
+			    {% endfor %}
+			</select>
+		 	<input type="submit" value='Change state' name="_change_state" />  
+		 
+		</div>
+	{% endif %}
+	
+	<input type="submit" value='Send notification to creator' name="_send_notification" style="float: right"/>  
+		
+	<div style="min-height:30px">
+		{% for img in files %}   
+	  		<img src="../../../../media/{{ img.file_url }}" style="max-height: 200px;max-width: 200px;"/>
+		{% endfor %}
+	</div>
+	
+	{% for fieldset in adminform %}
+	  {% include "admin/includes/fieldset.html" %}
+	{% endfor %}
+	
+	<div style="float: right;">
+		{% if original.enabled %} <input type="submit" value='Disable' name="_disable" /> {% endif %}
+		{% if not original.enabled %} <input type="submit" value='Enable' name="_enable" /> {% endif %} 
+	</div>
+	 
+{% endblock %} 	 
+

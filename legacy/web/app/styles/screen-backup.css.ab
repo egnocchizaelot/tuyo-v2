@@ -1,0 +1,17 @@
+# File: app/styles/screen-backup.css.ab
+# Purpose: Backup copy of a previous minified screen.css, preserved in app/styles/ as a rollback reference
+# Dependencies: []
+
+## Overview
+A single-line minified backup of the compiled mobile/responsive application stylesheet. Same structure and content type as `app/styles/screen.css` — contains the full application CSS for mobile views (ProximaNova fonts, CSS reset, navbar, cards, forms, etc.) in compressed form. Captured at a specific point in time as a manual backup before a change.
+
+## Interface
+No exports. Archive/reference file; not loaded by the running application.
+
+## Dependencies
+No project-level `.ab` dependencies.
+
+## Implementation Notes
+- Single-line minified (1 line) — represents a snapshot of the compiled screen.css
+- Paired with the active `app/styles/screen.css` as a before/after comparison or rollback option
+- Not referenced in `app/index.html` or any build configuration

@@ -1,0 +1,23 @@
+<h3 id="titulo">
+    <div ng-click="showNotifications()" class="btn-back float-left" title="Anterior">
+        <i id="backArrow" class="fa" ng-class="isMobile ? 'fa-angle-left' : 'fa-times'"></i>
+    </div>
+
+    Notificaciones
+
+</h3>
+
+<div id="theNotifications" class="scroll-y-wrapper">
+
+    <div class="card-notificacion" ng-if="notifications.length === 0">
+        <div class="row">
+            <div class="text-left text-wrapper no-padding-left">
+                <p>No tienes notificaciones</p>
+            </div>
+        </div>
+    </div>
+
+    <div ng-repeat="n in notifications track by n.id" ng-if="notificationsLoaded">
+        <notification notification='n' id='notification_{{$index}}'></notification>
+    </div>
+</div>

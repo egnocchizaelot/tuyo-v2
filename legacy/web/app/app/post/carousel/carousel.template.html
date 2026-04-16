@@ -1,0 +1,23 @@
+<slick
+  id = 'slickSlide'
+  settings = 'sliderSlickConfig'
+  style = "margin-bottom: 0px;"
+  >
+
+    <div ng-repeat="image in images track by $index">
+        <img on-image-load ng-src="{{image}}" class="img-responsive" style='width: 100% !important'>
+    </div>
+
+</slick>
+
+<!-- <a class="left carousel-control" ng-click='prevImg()'>
+    <span class="sr-only">Anterior</span>
+</a>
+
+<a class="right carousel-control" ng-click="nextImg()">
+    <span class="sr-only">Siguiente</span>
+</a> -->
+
+<ol class="carousel-indicators" ng-if="images.length > 1">
+    <li ng-repeat="image in images track by $index" ng-class="{ active: $index === slide.slick.currentSlide }" ng-click="goToImg($index)"></li>
+</ol>

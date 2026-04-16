@@ -1,0 +1,44 @@
+# File: app/app/post/notice/notice.directive.js.ab
+# Purpose: Directive (element: "notice") that renders a notice post in the feed — template adds feed-grid-full-width class so notice cards span all 3 columns in the desktop grid
+# Dependencies: [app/app/post/post.module.js, app/app/post/post.service.js, app/app/scripts/services/api.js, app/app/scripts/services/auth.js]
+# Tags: [tag-post, tag-notices, tag-directive, tag-likes, tag-realtime, tag-ui, tag-feed-grid]
+
+## Overview
+Directive (element: "notice") that renders a notice post in the feed. Displays HTML content via $sce.trustAsHtml, formats the notice date, provides like/unlike functionality with optimistic API updates, opens the public forum modal for comments, and handles real-time notice updates via the noticeChanged callback. Template modified to include `feed-grid-full-width` class so that when a system notice or announcement card appears in the feed and the 3-column grid is active, the notice card spans all 3 columns at full width with its layout and readability preserved (AC7).
+
+## Interface
+- Element directive: `<notice notice="donation"></notice>`
+- Scope binding: `notice` (two-way `=` binding) — the notice data object
+- Template: `app/post/notice/notice.template.html`
+- Controller: `noticeController`
+- Exposes to scope: `htmlText`, `userData`, `noticeDate`, `likeClick()`, `showForumModal()`, `noticeChanged()`
+
+## Dependencies
+- app/app/post/post.module.js — registered on the post module
+- app/app/post/post.service.js — uses postServices.ShowPublicForumModal
+- app/app/scripts/services/api.js — uses API for add_like and remove_like
+- app/app/scripts/services/auth.js — uses Auth for user data
+
+## Implementation Notes
+
+### AC7 — Notice Cards Span Full Width (Template Change — Feed Grid Full-Width Class)
+The template root element (currently `<div class="card default-border-radius margin-bottom">`) must additionally include the `feed-grid-full-width` CSS class so that when this system notice or announcement card renders inside the `.feed-grid` container, it spans all 3 grid columns at full width.
+
+The class is added directly and unconditionally to the root element: `<div class="card default-border-radius margin-bottom feed-grid-full-width">`. When the 3-column grid is active on desktop, the notice card spans all 3 columns at full width and its layout and readability are preserved. This is safe because in single-column mode (mobile at or below the mobile breakpoint), `grid-column: 1 / -1` on a 1-column grid has no visual effect — mobile layout is not affected.
+
+### No JavaScript Logic Changes
+The directive's link function, like/unlike logic, forum modal, and real-time update handler remain completely unchanged. The change is purely a template class addition. Card content and card design do not change.
+
+### Existing Behavior Preserved
+- HTML content rendering via $sce.trustAsHtml
+- Date formatting from notice.created
+- Optimistic like/unlike with API rollback on error
+- Public forum modal opening via postServices
+- Real-time notice updates via noticeChanged callback and $on("noticeChanged") listener
+
+## Examples
+Used inside the post feed template within the ng-repeat:
+```
+<notice notice='donation' ng-if="donation.notice" in-view="onView($index, $inview)"></notice>
+```
+When rendered inside the `.feed-grid` container on a desktop viewport above the mobile breakpoint, this notice card spans all 3 columns because of the `feed-grid-full-width` class on its root element. On mobile, the single-column layout is unchanged.

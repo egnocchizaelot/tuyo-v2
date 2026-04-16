@@ -1,0 +1,19 @@
+# File: app/assets/css/screen-prueba.css.ab
+# Purpose: Experimental/test variant of the mobile screen stylesheet — compiled on a Linux CI/server environment
+# Dependencies: []
+
+## Overview
+An earlier or alternative compiled version of the mobile application stylesheet (4791 lines). Has the same structure as `app/assets/css/screen.css` — Compass CSS reset, ProximaNova font declarations, and application component styles — but was compiled on a Linux machine using Ruby 2.3.0 (path: `/var/lib/gems/2.3.0/gems/compass-core-1.0.3`), unlike the macOS-compiled `screen.css`. The name "prueba" (Spanish for "test/trial") indicates this was an experimental version.
+
+## Interface
+No exports. Experimental stylesheet; not referenced in the current `app/index.html`.
+
+## Dependencies
+No project-level `.ab` dependencies. Requires ProximaNova font files at `../fonts/proximanova-*.ttf`.
+
+## Implementation Notes
+- 4791 lines (shorter than the current `screen.css` at 9182 lines — represents an older or partial snapshot of styles)
+- Compiled with Compass on Linux (Ruby 2.3.0 via `/var/lib/gems/`)
+- "prueba" = Spanish for "test" — indicates experimental/trial status
+- Contains Compass reset and ProximaNova fonts, with a subset of the application styles found in the current `screen.css`
+- Not actively loaded in production; kept for reference

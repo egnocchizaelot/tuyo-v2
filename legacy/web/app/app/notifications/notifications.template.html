@@ -1,0 +1,8 @@
+<div class="inline-block pop-number" ng-click="showNotifications()" style="cursor: pointer; !important">
+    <span ng-if="unread" id="unread-bubble"> {{unread}} </span>
+    <a href="" class="btn-svg btn-svg-campana-blanco" title="Notificaciones"></a>
+</div>
+
+<div class="dropdown-menu" ng-if="!isMobile">
+    <notifications-dropdown notifications="notifications" pages="pages"></notifications-dropdown>
+</div>

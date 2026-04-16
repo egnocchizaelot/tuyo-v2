@@ -1,0 +1,10 @@
+## area.controller.js
+
+**Summary:** Controller for the help area component. Defines area type constants (AYUDA=2 for help topics, PROBLEMA=3 for problem reports) and sets the default area to AYUDA.
+
+**Dependencies:**
+- app/app/help/help.module.js — registers on the `help` module
+
+**Tags:** help, faq, controller, angularjs
+
+**Implementation:** app/app/help/area/area.controller.js

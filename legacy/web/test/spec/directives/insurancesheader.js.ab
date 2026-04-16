@@ -1,0 +1,11 @@
+## insurancesheader.js
+
+**Summary:** Jasmine unit test specification for the `insurancesHeader` directive. Loads the `feApp` module, creates a new scope, then compiles the `<insurances-header>` element and asserts its rendered text content matches the expected placeholder string. This is a scaffold-generated test verifying the directive compiles and renders correctly.
+
+**Dependencies:**
+- app/ — the application module containing the insurancesHeader directive
+- angular-mocks — provides `module()`, `inject()`, and `$compile` test helpers
+
+**Tags:** testing, jasmine, spec, directives
+
+**Implementation:** test/spec/directives/insurancesheader.js

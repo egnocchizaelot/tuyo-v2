@@ -1,0 +1,10 @@
+## contact.controller.js
+
+**Summary:** Controller for the contact help form. Initializes an empty `attachments` array for file uploads in the contact message form.
+
+**Dependencies:**
+- app/app/help/help.module.js — registers on the `help` module
+
+**Tags:** help, contact, controller, angularjs
+
+**Implementation:** app/app/help/contact/contact.controller.js

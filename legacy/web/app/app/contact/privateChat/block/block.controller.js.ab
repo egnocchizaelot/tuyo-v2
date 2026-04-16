@@ -1,0 +1,10 @@
+## block.controller.js
+
+**Summary:** Empty controller for the chat message block component.
+
+**Dependencies:**
+- app/app/contact/privateChat/privateChat.module.js — registered on chat module
+
+**Tags:** chat, communication, controller
+
+**Implementation:** app/app/contact/privateChat/block/block.controller.js

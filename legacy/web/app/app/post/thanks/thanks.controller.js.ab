@@ -1,0 +1,10 @@
+## thanks.controller.js
+
+**Summary:** Controller for the thanks/appreciation post component. Defines user role constants (DONOR, APPLICANT) and sets the default selected view to DONOR.
+
+**Dependencies:**
+- app/app/post/post.module.js — registered on the post module
+
+**Tags:** post, appreciation, controller
+
+**Implementation:** app/app/post/thanks/thanks.controller.js

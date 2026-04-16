@@ -1,0 +1,13 @@
+## socket.service.js
+
+**Summary:** Socket.IO wrapper service providing real-time event handling for the TuyoTools application. Lazily loads the Socket.IO client library via `$.getScript()` on a 1-second interval until available, then connects to the configured socket server. Manages four real-time channels: donation/notice change tracking (emits `donation changed`/`notice changed`, listens for `it changed`/`notice changed`), new donations polling (emits `new donations`, listens for `new donations`), forum and chat message updates (emits `forum messages`/`chat messages`, listens for `new messages` with message data, deleted messages, thread updates, forum state, and applicant info), and notification updates (emits `new notifications`, listens for `new notifications`). Each channel includes call deduplication to prevent redundant socket emissions. Auth tokens from cookies are passed with every socket emission.
+
+**Dependencies:**
+- app/app/app.service.js — appService providing socketServer URL
+- app/deploy_config.js — provides global SCRIPT_SRC and SOCKET_PATH variables for Socket.IO client loading and connection
+- angular ($cookies) — AngularJS cookie service for reading the Authorization token
+- Socket.IO client library (global `io` object) — loaded dynamically at runtime
+
+**Tags:** realtime, donations, communication
+
+**Implementation:** app/app/socket.service.js

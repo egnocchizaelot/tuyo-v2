@@ -1,0 +1,15 @@
+## historial.directive.js
+
+**Summary:** Directive (`userHistory`) that implements the private user donation history view with three switchable panels (delivered, given, appreciations). Tracks visible donation items and uses Socket.IO via `socketService.donationChanged` to poll for real-time updates on visible donations at configurable intervals. Implements paginated scroll loading for each panel, fetching additional pages from the API when the user scrolls to the bottom.
+
+**Dependencies:**
+- app/app/pages/user/user.module.js — registers directive on the `user` module
+- app/app/pages/user/private/historial/historial.controller.js — uses `userHistoryController` as its controller
+- app/app/scripts/services/api.js — API for getDeliveredDonations, getReceivedDonations, getAppreciationDonations
+- app/app/socket.service.js — socketService for donationChanged polling and removeCallback cleanup
+- app/app/app.service.js — appService for donationUpdateTime interval
+- app/app/scripts/services/auth.js — Auth for userData.id
+
+**Tags:** user-profile, directive, private, donations, history, real-time, infinite-scroll
+
+**Implementation:** app/app/pages/user/private/historial/historial.directive.js

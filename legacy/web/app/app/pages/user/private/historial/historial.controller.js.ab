@@ -1,0 +1,11 @@
+## historial.controller.js
+
+**Summary:** Controller (`userHistoryController`) for the private user history tab. Manages three panels (delivered, received/given, thanks/appreciations) with their respective donation lists, pagination state, and count indicators. Listens for broadcast events from the parent directive to populate donation data and counts.
+
+**Dependencies:**
+- app/app/pages/user/user.module.js — registers controller on the `user` module
+- app/app/app.service.js — appService (injected but primarily used for configuration)
+
+**Tags:** user-profile, controller, private, donations, history
+
+**Implementation:** app/app/pages/user/private/historial/historial.controller.js

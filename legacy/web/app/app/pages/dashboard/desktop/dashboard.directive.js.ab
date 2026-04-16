@@ -1,0 +1,66 @@
+# File: app/app/pages/dashboard/desktop/dashboard.directive.js.ab
+# Purpose: Desktop dashboard directive with infinite scroll adjusted for 3-column feed grid layout — viewport-fill check ensures pagination works when grid compresses vertical height
+# Dependencies: [app/app/pages/dashboard/dashboard.module.js, app/app/pages/dashboard/desktop/dashboard.controller.js, app/app/scripts/services/api.js, app/app/app.service.js, app/app/socket.service.js, app/app/scripts/services/auth.js, app/app/scripts/services/post.service.js]
+# Tags: [tag-dashboard, tag-directive, tag-donations, tag-infinite-scroll, tag-real-time, tag-filters, tag-layout, tag-feed-grid]
+
+## Overview
+Directive (`dashboardDesktop`) that implements the main desktop listing feed UI with infinite scroll loading, real-time donation updates via Socket.IO, filter modal for donation categories (offered, available, recent, thanks, liked), location-based filtering with map integration, text search, scroll-based UI behaviors (sticky filter bar, location collapse), and periodic polling for new donations. Manages pagination by tracking first/last dates and like counts for cursor-based API queries. Modified to support the 3-column grid layout by adding a viewport-fill check that ensures infinite scroll still triggers correctly (AC6) when the grid reduces document height, and by widening the template container to accommodate 3 columns filling the available screen width (AC1).
+
+## Interface
+- Element directive: `<dashboard-desktop></dashboard-desktop>`
+- Template: `app/pages/dashboard/desktop/dashboard.template.html`
+- Controller: `dashboardControllerDesktop`
+- Scope: isolated (empty scope object — state managed via link function)
+- Key scope methods: `loadDonations()`, `loadOnContext()`, `loadOnScroll()`, `loadTopDonations()`, `showFilterModal()`, `textSearch()`, `clearTextSearch()`, `showLocationFilter()`, `mapLocation()`, `newDonation()`, `showPosts()`, `OnScroll()`, `isMobile()`
+
+## Dependencies
+- app/app/pages/dashboard/dashboard.module.js — registers directive on the `dashboard` module
+- app/app/pages/dashboard/desktop/dashboard.controller.js — uses `dashboardControllerDesktop` as its controller
+- app/app/scripts/services/api.js — API service for getNextDonations, getPrevDonations, getDonationContext, notices
+- app/app/app.service.js — appService for isMobile, titleHeight, navigationHeight, donationsPagination
+- app/app/socket.service.js — socketService for real-time new donation notifications
+- app/app/scripts/services/auth.js — Auth for userData (user profile link)
+- app/app/scripts/services/post.service.js — postServices for NewDonation modal
+
+## Implementation Notes
+
+### AC6 — Infinite Scroll Still Triggers Correctly (Viewport-Fill Check — CRITICAL CHANGE)
+The 3-column grid reduces the document height because the same number of cards now occupies roughly one-third the vertical space (3 cards per row instead of 1). This can cause the next page of listings to never load automatically because the scroll threshold was already passed on initial render — the page is too short for the user to ever scroll toward the bottom of the feed.
+
+**New behavior**: After the initial `loadDonations()` call completes and the first batch is rendered, the directive must check whether the document height exceeds the viewport height. If it does not, the directive must automatically trigger another `getNextDonations` call so the next page of listings loads automatically. This check-and-load cycle repeats until either:
+1. The document height exceeds the viewport height (the page becomes scrollable and the user can scroll toward the bottom), OR
+2. The API returns an empty elements array (all content has been loaded)
+
+**Implementation approach**: Listen for the `lastDonation` event (which fires after each batch is processed by the postController). After receiving it, use a short delay (to allow DOM rendering) and then compare `$(document).height()` against `scope.window.height()`. If the document is shorter, call `getNextDonations` again with the updated `scope.lastDate` cursor. Guard against infinite loops by checking `scope.donationsDone` and whether the last API response was empty. The feed never silently stops loading because the scroll threshold was already passed on initial render.
+
+### AC6 — Scroll Threshold Unchanged
+The existing `loadOnScroll` function checks `scope.window.scrollTop() + scope.window.height() >= $(document).height() - 400`. This threshold remains valid — the 400px buffer is a fixed offset that works regardless of total page height. When the user scrolls toward the bottom of the feed, the next page of listings loads automatically. The viewport-fill check above handles the edge case where the page is too short for scrolling to ever reach this threshold.
+
+### AC1 — Template Change — Wider Container (Desktop Shows 3-Column Grid)
+The dashboard template wraps the `<posts>` element in `<div class="container no-padding-container">`. The `.container` class in `_general-desktop.scss` has `width: 600px` which would constrain the 3-column grid to 600px total width, preventing product cards from being arranged in a 3-column grid that fills the available screen width.
+
+This wrapper must use a wider container approach — either:
+- Change to `<div class="wider-container no-padding-container">` (which has `width: 900px` in `_general-desktop.scss`), OR
+- Remove the fixed-width container class entirely and let the grid fill the available dashboard width, OR
+- Add a new CSS rule in `_feed-grid.scss` that overrides the container width when it contains the `.feed-grid` class
+
+The best approach is to remove the `container` class from this specific wrapper and replace it with a class that allows the grid to use the full available width within the dashboard. The `_feed-grid.scss` partial includes a rule for the feed's parent container to have `width: 100%` or `max-width` set to an appropriate value that allows 3 columns to render comfortably.
+
+### AC10 — Real-Time New Listings Do Not Cause Disorienting Reflow
+The existing real-time update mechanism via `socketService.newDonationsCallback` and `loadTopDonations` polling adds a new card at the top of the feed when a new listing is added in real time. In the 3-column grid, this means the new card appears at the first position of the first row. Existing visible cards shift naturally within the grid without jumping or reordering in a disorienting way because the grid re-lays out incrementally (one card shifts per new addition). The existing behavior is preserved — no changes needed to the real-time update mechanism.
+
+### Existing Behavior Preserved (Unchanged)
+- Filter modal (showFilterModal) — category filtering, sorting, and pagination behavior unchanged
+- Location filtering (showLocationFilter, mapLocation, acceptAddress, cancelAddress) — unchanged
+- Text search (textSearch, clearTextSearch) — unchanged
+- Scroll-based UI behaviors (filterBarOnScroll, locationsOnScroll) — sticky filter bar and location collapse unchanged
+- Real-time new donations via socketService.newDonationsCallback — unchanged
+- Top donations polling via setInterval(loadTopDonations, 20000) — unchanged
+- Pagination cursor tracking (firstDate, lastDate, countLikes, firstLikes) — unchanged
+- loadOnContext for focused donation navigation — unchanged
+- numberOfPosts event handler — unchanged
+- Mobile detection via isMobile() — unchanged
+- Scope cleanup on $destroy — scroll event handler removed, polling intervals cancelled
+
+## Examples
+The directive renders the full desktop dashboard view including hero banner, filter bar, location filter, the donation feed (now displayed in a 3-column grid that fills the available screen width), and loading indicators. The infinite scroll now includes a viewport-fill check that triggers immediately after the initial load to ensure the next page of listings loads automatically even when the 3-column grid compresses content height below the scroll threshold.

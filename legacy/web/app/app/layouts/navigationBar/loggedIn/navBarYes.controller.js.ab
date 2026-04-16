@@ -1,0 +1,10 @@
+## navBarYes.controller.js
+
+**Summary:** Controller (`navBarYesController`) for the logged-in navigation bar variant. Currently contains only commented-out code for handling new donation notifications. Serves as the controller for the `navBarYes` directive.
+
+**Dependencies:**
+- app/app/layouts/navigationBar/navigationBar.module.js — registers controller on `navigationBar` module
+
+**Tags:** navigation, controller, layout
+
+**Implementation:** app/app/layouts/navigationBar/loggedIn/navBarYes.controller.js

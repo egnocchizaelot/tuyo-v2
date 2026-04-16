@@ -1,0 +1,10 @@
+## notification.controller.js
+
+**Summary:** Empty controller for the individual notification directive. Serves as a placeholder controller required by the `notification` directive; all logic resides in the directive's link function.
+
+**Dependencies:**
+- app/app/notifications/notifications.module.js — registers on the `notifications` module
+
+**Tags:** notifications, controller, angularjs
+
+**Implementation:** app/app/notifications/notification/notification.controller.js

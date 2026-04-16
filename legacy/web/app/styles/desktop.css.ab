@@ -1,0 +1,18 @@
+# File: app/styles/desktop.css.ab
+# Purpose: Minified single-line compiled application stylesheet for desktop views — legacy app/styles/ location
+# Dependencies: []
+
+## Overview
+A single-line minified version of the compiled desktop stylesheet. This is the compressed form of what is expanded in `app/assets/css/desktop.css`. Located in the older `app/styles/` Compass output directory. Contains the full desktop layout CSS including the CSS reset, ProximaNova fonts, navbar, grid overrides, and all desktop-specific view styles.
+
+## Interface
+No exports. Stylesheet file — loaded as a `<link>` tag.
+
+## Dependencies
+No project-level `.ab` dependencies. Requires ProximaNova font files at `../fonts/proximanova-*.ttf`.
+
+## Implementation Notes
+- Single-line minified (1 line) — the expanded form is `app/assets/css/desktop.css` (8468 lines)
+- Located in the older `app/styles/` Compass output directory
+- The expanded `app/assets/css/desktop.css` is the authoritative source
+- Compiled from `app/assets/scss/` SCSS source files via Compass

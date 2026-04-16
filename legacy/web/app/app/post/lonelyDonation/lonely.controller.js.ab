@@ -1,0 +1,14 @@
+## lonely.controller.js
+
+**Summary:** Controller for displaying a single donation detail page. Handles two flows: logged-in users fetch full donation details via API.donation_details with real-time interval updates via socketService, while non-logged-in users fetch public donation data via API.public_donation with manual slider setup. Supports deep-linking to open chat via URL parameters.
+
+**Dependencies:**
+- app/app/post/post.module.js — registered on the post module
+- app/app/scripts/services/api.js — uses API for donation_details and public_donation
+- app/app/scripts/services/auth.js — uses Auth to check login state
+- app/app/socket.service.js — uses socketService for real-time donation polling
+- app/app/app/app.service.js — uses appService.donationUpdateTime for update interval
+
+**Tags:** post, donations, controller, detail-page, realtime
+
+**Implementation:** app/app/post/lonelyDonation/lonely.controller.js

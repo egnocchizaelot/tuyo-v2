@@ -1,0 +1,10 @@
+## loading.module.js
+
+**Summary:** Declares the `loadingModule` AngularJS module with no external dependencies. Provides loading indicator components including a directive for inline loading spinners and a service for modal loading overlays.
+
+**Dependencies:**
+- None
+
+**Tags:** loading, module, angularjs, ui
+
+**Implementation:** app/app/loading/loading.module.js

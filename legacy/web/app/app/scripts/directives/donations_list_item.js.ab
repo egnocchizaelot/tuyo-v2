@@ -1,0 +1,12 @@
+## donations_list_item.js
+
+**Summary:** Legacy directive (`donationsListItem`) registered on the `TuyoTools` module that renders individual donation cards in the feed. Uses isolate scope with a `donation` binding. Provides signup-on-donation functionality (two-step modal flow with forum message), like/unlike toggle via API, and donation detail modal views. Note: contains a duplicated `donation_modal_view` function definition.
+
+**Dependencies:**
+- app/app/app/app.js — registers directive on root `TuyoTools` module
+- app/app/scripts/services/api.js — API for donationApplicantsAcctions, add_like, remove_like, mediaURL
+- angular-growl — growl for error notifications
+
+**Tags:** legacy, directive, donations
+
+**Implementation:** app/app/scripts/directives/donations_list_item.js

@@ -1,0 +1,14 @@
+## createAppreciation.directive.js
+
+**Summary:** Directive (element: "createAppreciation") for the appreciation creation form. Shows creator/recipient images, validates description (max 800 chars), manages image uploads with remove, toggles between editing and preview modes, publishes via API.newAppreciation with loading indicator, and broadcasts newAppreciationCreated on success.
+
+**Dependencies:**
+- app/app/create/createAppreciation/createAppreciation.module.js — registered on createAppreciation module
+- app/app/scripts/services/api.js — uses API.newAppreciation
+- app/app/scripts/services/auth.js — uses Auth for user identification
+- app/app/modals/modals.service.js — uses modalServices for exit confirmation
+- app/app/loading/loading.service.js — uses loadingService for upload progress
+
+**Tags:** appreciation, creation, directive, api, ui
+
+**Implementation:** app/app/create/createAppreciation/createAppreciation.directive.js

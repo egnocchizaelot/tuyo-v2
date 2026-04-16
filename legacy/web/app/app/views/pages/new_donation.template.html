@@ -1,0 +1,119 @@
+<div class="container applications_new-page">
+    <h2>OFRECER ARTÍCULO</h2>
+    <p>A continuación se le desplegaran distintos campos que usted debe completar para continuar con la donacion</p>
+
+    <form novalidate="">
+      <div class="row">
+        <div class="col-md-12 col-xs-12">
+          <div class="form-select"><br>
+            <input class="form-control" placeholder="¿Que ofreces?" ng-model="formData.title" name="donation_title" required type="text"/>
+          </div>
+        </div>
+        <div class="col-md-12 col-xs-12">
+          <div class="form-select"><br>
+            <textarea style="resize: vertical;" class="form-control" placeholder="Añade una descripción" ng-model="formData.description" name="donation_description" required cols="40" rows="3"></textarea>
+          </div>
+        </div>
+      </div></br>
+
+      <div class="row">
+        <div class="col-md-12 col-xs-12">
+          <div class="input-group">
+            <ui-select multiple ng-model="formData.address.addresses" theme="bootstrap" required>
+              <ui-select-match placeholder="MI UBICACION">
+                {{$item.street}} {{$item.number}} &lt;{{$item.district}}, {{$item.city}}&gt;
+              </ui-select-match>
+              <ui-select-choices repeat="address in userData.addresses | filter: { 'street' : $select.search} | orderBy:'-street':true" refresh-delay="0">
+              <ui-select-choices repeat="address in userData.addresses | filter: { 'street' : $select.search} | orderBy:'-street':true" refresh-delay="0">
+                <span><center>{{address.street}} {{address.number}}</center></span>
+                <small>
+                  <p>{{address.district}} {{address.district ? ", " + address.district : "" }}</p>
+                </small>
+              </ui-select-choices>
+            </ui-select>
+            <div class="input-group-addon"><a tooltip="Nueva direccion" ng-click="newAddress()"><i class="glyphicon glyphicon-plus"></i></a></div>
+          </div>
+        </div>
+        <div class="col-md-12 col-xs-12">
+          <div class="form-select"><br>
+            <textarea style="resize: vertical;" class="form-control" placeholder="Agregar Fecha / Hora de retiro" ng-model="formData.address.description" name="donation_addressDescription" cols="40" rows="2"></textarea>
+          </div>
+        </div>
+      </div></br>
+
+      <div class="row">
+        <div class="col-md-6 col-xs-6">
+          <div class="form-select"><br>
+            <ui-select ng-model="formData.type_name" theme="bootstrap">
+              <ui-select-match placeholder="Tipo">{{$select.selected}}</ui-select-match>
+              <ui-select-choices repeat="type in ['Publica','Anonima']" refresh-delay="0">{{type}}</ui-select-choices>
+            </ui-select>
+          </div>
+        </div>
+        <div class="col-md-6 col-xs-6">
+          <div class="form-select"><br>
+            <input class="form-control" placeholder="Cantidad destinataros" onkeypress='return event.charCode >= 48 && event.charCode <= 57' maxlength="3" ng-model="formData.max_applicants" name="donation_max_applicants" required type="text"/>
+          </div>
+        </div>
+      </div></br>
+
+      <div class="row">
+        <!--div ng-repeat="item in uploader.queue" class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+          <div class="file-wrapper">
+            <div class="img-wrapper">
+              <img ngf-src="item.file.url"/>
+              <img id="output" onerror="if (this.src != 'error.jpg') this.src = 'images/no-image-default.png';" alt="Imagen default"/>
+              <p>Nombre:
+                <span class="span-file-name" ng-bind="item.file.name">{{item.file.name | limitTo:10}}</span>
+              </p>
+            </div>
+            <div class="btns-actions text-right">
+              <button class="btn btn-default btn-delete" ng-click="item.remove()">Quitar</button>
+              <button class="btn btn-primary" ng-click="item.upload()">Subir</button>
+            </div>
+          </div>
+        </div><br-->
+
+        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+          <div class="upload-file-btn">
+            <input type="file" file-upload multiple/>
+            <ul>
+                <li ng-repeat="file in files">{{file.name}}</li>
+            </ul>
+            <!--input type="file" file-upload multiple class="upload" nv-file-select/>
+            <input type="file" onchange="loadFile(event)" class="upload" nv-file-select uploader="uploader" /-->
+          </div>
+        </div>
+        <script>
+          var loadFile = function(event) {
+            var reader = new FileReader();
+            reader.onload = function(){
+              var output = document.getElementById('output');
+              output.src = reader.result;
+            };
+            reader.readAsDataURL(event.target.files[0]);
+          };
+        </script>
+      </div><br>
+
+      <div class="row">
+        <div class="col-md-6 col-xs-6">
+          <label class="checkbox-wrapper">
+            <input ng-model="formData.share_facebook" type="checkbox" />
+            <span>Facebook</span>
+          </label>
+        </div>
+        <div class="col-md-6 col-xs-6">
+          <label class="checkbox-wrapper">
+            <input ng-model="formData.twitter" type="checkbox" />
+            <span>Twitter</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="container" style="margin-top:30px">
+        <button style="float: left" ng-click="cancel();" class="btn btn-danger margin-right">Cancelar</button>
+        <button style="float:right" ng-click="createDonation(formData);" class="btn btn-primary">Publicar</button>
+      </div>
+  </form>
+</div>

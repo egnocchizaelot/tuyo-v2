@@ -1,0 +1,10 @@
+## footer.controller.js
+
+**Summary:** Controller (`tuyoFooterController`) for the site footer. Provides a login function that emits the `footerDecideLogIn` event upward to the parent scope, allowing the landing page controller to handle the login flow.
+
+**Dependencies:**
+- app/app/layouts/footer/footer.module.js — registers controller on `footer` module
+
+**Tags:** footer, controller, layout, authentication
+
+**Implementation:** app/app/layouts/footer/footer.controller.js

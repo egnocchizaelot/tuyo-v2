@@ -1,0 +1,10 @@
+## creation.module.js
+
+**Summary:** Declares the "creation" AngularJS module for the donation creation wizard. Depends on the post module.
+
+**Dependencies:**
+- app/app/post/post.module.js — depends on post module
+
+**Tags:** creation, donations, module
+
+**Implementation:** app/app/create/createDonation/creation.module.js

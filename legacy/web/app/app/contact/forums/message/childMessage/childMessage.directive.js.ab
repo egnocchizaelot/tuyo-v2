@@ -1,0 +1,10 @@
+## childMessage.directive.js
+
+**Summary:** Directive (element: "childMessage") rendering a reply/child message within a forum thread. Displays sender avatar, name, ranking stars, formatted send date, and message content.
+
+**Dependencies:**
+- app/app/contact/forums/forum.module.js — registered on forumModule
+
+**Tags:** forum, communication, directive, ui
+
+**Implementation:** app/app/contact/forums/message/childMessage/childMessage.directive.js

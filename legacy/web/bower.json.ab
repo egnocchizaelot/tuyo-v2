@@ -1,0 +1,11 @@
+## bower.json
+
+**Summary:** Bower package manifest for the TuyoTools Frontend project (package name: "fe", version 0.0.0). Declares ~30 frontend library dependencies pinned to Angular 1.4.14 as the resolution, including core Angular modules (angular-animate, angular-cookies, angular-sanitize), UI libraries (angular-bootstrap, angular-ui-router, angular-ui-select, angular-modal-service, angular-tooltips, angular-slick-carousel), utility libraries (lodash, moment, angular-moment, gsap, ngmap, ngstorage, ng-file-upload, exif-js), social/real-time features (ng-facebook, angular-socialshare, socket.io-client, ngclipboard), visual effects (animate.css, parallax.js, angular-inview), and Bootstrap 3 via bootstrap-sass-official. DevDependencies include angular-mocks for testing. Sets appPath to "app" and moduleName to "feApp".
+
+**Dependencies:**
+- app/index.html — loads all Bower components via script/link tags
+- test/karma.conf.js — includes Bower components for the test environment
+
+**Tags:** dependencies, bower, configuration
+
+**Implementation:** bower.json

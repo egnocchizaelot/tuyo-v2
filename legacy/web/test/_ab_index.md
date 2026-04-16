@@ -1,0 +1,13 @@
+## karma.conf.js
+- **Implementation:** test/karma.conf.js
+- **Summary:** Karma test runner configuration file for the TuyoTools Frontend project. Configures the Jasmine testing framework with PhantomJS as the browser, loads all Bower dependencies (jQuery, Angular, and ~30 third-party libraries), application source files from `app/scripts/`, mock files from `test/mock/`, and spec files from `test/spec/`. Runs on port 8080 with autoWatch enabled and singleRun disabled for development use. Generated from generator-karma 1.0.0.
+- **Tags:** testing, karma, jasmine, configuration, spec
+- **Dependencies:**
+  - bower_components/ — loads all Bower-managed frontend libraries for test environment
+  - app/scripts/ — application source files under test
+  - test/mock/ — mock data and services for tests
+  - test/spec/ — Jasmine test specifications
+
+---
+
+## Subdirectories

@@ -1,0 +1,18 @@
+## post_web.service.js
+
+**Summary:** Web/desktop-specific service for post modal operations. Opens Bootstrap modals via \$modal.open for each action: me-anoto reservation, public forum, private chat, appreciation, donation editing, calification confirm/cancel, and new donation creation. Manages modal state (processingModal, forumIsOpen) to prevent duplicate modals and handles result callbacks for state transitions.
+
+**Dependencies:**
+- app/app/post/post.module.js — registered on the post module
+- app/app/modals/modals.service.js — uses modalServices.BasicModal for confirmations
+- app/app/modals/chatModal/chat.controller.js — opens chatApplicantController modal
+- app/app/modals/privateChat/privateChat.controller.js — opens privateChatModalController
+- app/app/modals/appreciation/appreciation.controller.js — opens appreciationModalController
+- app/app/modals/createDonation/createDonation.controller.js — opens modalCreateController
+- app/app/modals/calification/confirm/calificationConfirmModal.controller.js — opens confirm calification modal
+- app/app/modals/calification/cancel/calificationCancelModal.controller.js — opens cancel calification modal
+- app/app/modals/publicForum/publicForum.controller.js — opens publicForumModalController
+
+**Tags:** post, donations, web, service, modals, ui
+
+**Implementation:** app/app/post/post_web.service.js

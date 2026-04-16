@@ -1,0 +1,10 @@
+## endgood.controller.js
+
+**Summary:** Empty controller for the good-outcome cancellation result screen.
+
+**Dependencies:**
+- app/app/calification/calification.module.js — registered on calification module
+
+**Tags:** calification, rating, cancelled, controller
+
+**Implementation:** app/app/calification/cancelled/endGood/endgood.controller.js

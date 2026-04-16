@@ -1,0 +1,11 @@
+## api.js
+
+**Summary:** Centralized HTTP API service for the TuyoTools application. Registers approximately 50 REST endpoints against configurable base URLs and exposes typed methods for each (GET, POST, PUT, DELETE). Implements built-in rate limiting (500 ms minimum between calls to the same endpoint) and request deduplication via pending promises. Handles token-invalid and permission-denied responses globally by clearing credentials and redirecting to the landing page. Covers domains including user profiles, donations, appreciations, forums, notifications, help/FAQ, complaints, file dispatching, Facebook sharing, and Facebook authentication.
+
+**Dependencies:**
+- app/app/scripts/services/config.js — provides Config service with baseURL, helpURL, mediaURL, and mockBaseURL used to construct endpoint URLs
+- angular ($q, $http, $cookies, $state, $localStorage, $modalStack) — AngularJS core services for promises, HTTP, cookies, routing, local storage, and modal management
+
+**Tags:** http-client, api, donations, user-profiles, communication, authentication, session, token-management
+
+**Implementation:** app/app/scripts/services/api.js

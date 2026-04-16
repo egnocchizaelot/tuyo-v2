@@ -1,0 +1,76 @@
+<div class="bg-white" style="padding-bottom: 30px; !important">
+
+    <div class="text-center hero-chat-blanco hero-mala-experiencia">
+        <div class="container">
+            <h2 class="margin-bottom">Lamentamos tu mala experiencia.</h2>
+            <p class="highlight">Ayúdanos a entender <br>qué pasó</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="report-menu">
+            <ul class="list-unstyled container underline-list margin-bottom">
+
+                <li>
+                    <div class="custom-checkbox" >
+                        <label for="c1" style="cursor: pointer; !important">
+                            <input id="c1" type="checkbox" ng-model='badCheckbox.one' ng-change="selectOption(1)">
+                            <span></span>
+                            {{options[0]}}
+                        </label>
+                    </div>
+                </li>
+
+                <li>
+                    <div class="custom-checkbox" >
+                        <label for="c2" style="cursor: pointer; !important">
+                            <input id="c2" type="checkbox" ng-model='badCheckbox.two' ng-change="selectOption(2)">
+                            <span></span>
+                            {{options[1]}}
+                        </label>
+                    </div>
+
+                </li>
+
+                <li>
+                    <div class="custom-checkbox">
+                        <label for="c3" style="cursor: pointer; !important">
+                            <input id="c3" type="checkbox" ng-model='badCheckbox.three' ng-change="selectOption(3)">
+                            <span></span>
+                            {{options[2]}}
+                        </label>
+                    </div>
+                </li>
+
+                <li>
+                    <div class="custom-checkbox">
+                        <label  for="c4" style="cursor: pointer; !important">
+                            <input id="c4" type="checkbox" ng-model='badCheckbox.four' ng-change="selectOption(4)">
+                            <span></span>
+                            {{options[3]}}
+                        </label>
+                    </div>
+                </li>
+
+                <li>
+                    <div class="custom-checkbox" style="width: 100%; !important">
+                        <label for="c5" style="cursor: pointer; !important">
+                            <input id="c5" type="checkbox" ng-model='badCheckbox.other' ng-change="selectOption(5)">
+                            <span></span>
+                            {{options[4]}}
+                        </label>
+                    </div>
+
+                    <input maxlength="{{maxLength}}" id='otherText' type="text" class="form-control" placeholder="Explica la situación" ng-disabled='!badCheckbox.other' ng-model="content">
+                </li>
+
+            </ul>
+
+            <div class="text-center">
+                <a href="" class="btn display-block btn-primary" ng-click="send()">Enviar</a>
+            </div>
+
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,13 @@
+## login.js
+
+**Summary:** Legacy controller (`LoginPage`) registered on the `TuyoTools` module that handles Facebook login via the Facebook JavaScript SDK. Calls `Facebook.login()` to obtain an access token, clears existing auth cookies and local storage, then authenticates with the backend via `Auth.login()` and redirects to the dashboard on success.
+
+**Dependencies:**
+- app/app/app/app.js — registers controller on root `TuyoTools` module
+- app/app/scripts/services/auth.js — Auth for login and token management
+- app/app/scripts/services/api.js — API (injected but not directly used)
+- app/app/scripts/services/facebook.js — Facebook service for SDK login
+
+**Tags:** legacy, controller, authentication, facebook-login
+
+**Implementation:** app/app/scripts/controllers/pages/login.js

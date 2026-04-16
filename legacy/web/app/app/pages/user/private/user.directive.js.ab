@@ -1,0 +1,14 @@
+## user.directive.js
+
+**Summary:** Directive (`userPrivate`) that serves as the container for the private user profile page. Fetches user ranking, email confirmation status, donation counts, and all activity/history data (reserved, offered, wanted, delivered, received, appreciation donations) from the API on initialization. Manages tab switching between activity, history, and profile sections, and implements scroll-based pagination loading by broadcasting scroll events to child directives.
+
+**Dependencies:**
+- app/app/pages/user/user.module.js — registers directive on the `user` module
+- app/app/pages/user/private/user.controller.js — uses `userPrivateController` as its controller
+- app/app/scripts/services/api.js — API for getUserRanking, getUserEmailConfirm, getUserCounts, reservedDonations, myDonations, wantedDonations, getDeliveredDonations, getReceivedDonations, getAppreciationDonations
+- app/app/scripts/services/auth.js — Auth for userData and changeData
+- app/app/app.service.js — appService (referenced in dependency injection)
+
+**Tags:** user-profile, directive, private, donations, layout
+
+**Implementation:** app/app/pages/user/private/user.directive.js

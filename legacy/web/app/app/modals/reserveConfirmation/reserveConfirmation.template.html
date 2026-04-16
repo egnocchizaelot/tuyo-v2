@@ -1,0 +1,32 @@
+<div class="modal-body text-center" style="background-color: #fefefe !important; z-index: 99999999">
+    <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button> -->
+    <h4>Reservar para</h4>
+    <div class="text-center">
+        <div class="avatar-round">
+            <img ng-src="{{mediaURL}}{{sender.picture_url}}" class="img-responsive">
+        </div>
+    </div>
+    <h4><strong>{{sender.full_name}}</strong></h4>
+    <p class="margin-bottom">Se habilitará un chat para coordinar la entrega. Si no logran concretar, puedes cancelar esta reserva y elegir a otro interesado de la lista.</p>
+
+    <div class="custom-checkbox double-margin-bottom" >
+ <!--       <label for="3" class="checkbox-wrapper">
+            <input type="checkbox" id="3" ng-model="check"/>
+            <span>No volver a mostrar.</span>
+        </label>
+-->
+        <input type="checkbox" id="3" ng-model="check"/>
+        <span></span>
+        <label for="3">No volver a mostrar.</label>
+
+    </div>
+
+    <div class="row text-center">
+        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+            <a href="" class="btn btn-primary display-block" ng-click="cancel()">Cancelar</a>
+        </div>
+        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+            <a href="" class="btn btn-primary display-block" ng-click="accept()">Es Tuyo!</a>
+        </div>
+    </div>
+</div>

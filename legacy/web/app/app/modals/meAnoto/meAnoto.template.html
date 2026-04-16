@@ -1,0 +1,27 @@
+<div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog bg-brand-color" role="document">
+        <div class="modal-content" style="background-color: #00c074; !important">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" ng-click="close(false)">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-first-title">¿Seguro puedes asumir el compromiso?</h4>
+                <h4 class="modal-title" id="myModalLabel">Este artículo se retira únicamente:</h4>
+            </div>
+            <div class="modal-body">
+                <p class="p-w-icon">
+                <i class="fa fa-clock-o" aria-hidden="true"></i>{{pickupTime}}</p>
+            </div>
+            <div class="modal-footer text-center">
+                <div class="row">
+                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                        <a class="btn btn-empty btn-empty-white display-block" data-dismiss="modal" ng-click="close(false)">No</a>
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                        <a class="btn btn-empty btn-empty-white display-block" data-dismiss="modal" ng-click="close(true)">Si</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

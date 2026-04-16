@@ -1,0 +1,56 @@
+
+<div class="foro-anotados foro has-replay-nav">
+
+    <nav class="navbar navbar-fixed-top secondary-navbar" id='navBar'>
+        <div class="container">
+            <div class="modal-navbar-back">
+              <a href="" class="btn-back" ng-click="Back()">
+                  <i class="fa fa-angle-left" aria-hidden="true"></i>
+              </a>
+            </div>
+            <p>
+                <span>{{theForum.messages.length || "0"}}</span> Mensajes
+            </p>
+
+        </div>
+    </nav>
+
+    <div id='messageContainer' style="overflow: auto;" ng-style="!isMobile ? {'padding-bottom': '75px' } : {}">
+
+        <!--<div ng-if="messagesLoaded" ng-repeat="message in data.messageTree track by $index">-->
+        <div ng-if="messagesLoaded" ng-repeat="message in data.messageTree track by message.repeatId">
+            <public-forum-message message='message'></public-forum-message>
+        </div>
+    </div>
+
+
+    <div ng-if='responding' class="nav-chat-replay bg-brand-color">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8 no-padding-right">
+                    <textarea maxlength="{{maxLength}}" id="messageText" rows="1" style="width:100% !important" placeholder="Escribir mensaje" ng-keyup="expand()" ng-model='text.response' ng-enter='Respond()'></textarea>
+                </div>
+
+                <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                    <a class="btn btn-empty-white display-block" aria-hidden="true" ng-click="Respond()" title="Responder">Responder</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div ng-if='!responding' class="nav-chat-replay bg-brand-color">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8 no-padding-right">
+                    <textarea maxlength="{{maxLength}}" id="messageText" rows="1" style="width:100% !important" placeholder="Escribir mensaje" ng-keyup="expand()" ng-model='text.appreciationText' ng-enter='Send()'></textarea>
+                </div>
+
+                <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                    <a class="btn btn-empty-white display-block" aria-hidden="true" ng-click="Send()" title="Enviar">Enviar</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>

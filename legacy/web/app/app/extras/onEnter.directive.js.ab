@@ -1,0 +1,10 @@
+## onEnter.directive.js
+
+**Summary:** Directive (`ng-enter`) that executes an AngularJS expression when the Enter key (keyCode 13) is pressed on the host element. Binds to both `keydown` and `keypress` events, evaluates the expression provided in the `ng-enter` attribute via `scope.$eval`, and prevents the default form submission behavior. Commonly used on input fields to trigger search or submit actions on Enter.
+
+**Dependencies:**
+- app/app/extras/tuyoAux.module.js — registers on the `tuyoAux` module
+
+**Tags:** utility, directive, keyboard, events, ui
+
+**Implementation:** app/app/extras/onEnter.directive.js

@@ -1,0 +1,10 @@
+<div class="box-respuesta">
+    <div class="avatar">
+        <img ng-if="child.sender.picture_url" ng-src="{{mediaURL}}{{child.sender.picture_url}}" class="img-responsive" onerror="this.onerror=null; if (this.src != 'error.jpg') this.src = 'assets/images/user2.png';"/>
+        <img ng-if="!child.sender.picture_url" src="assets/images/user2.png" class="img-responsive"/>
+    </div>
+    <div class="box-text">
+        <h4><strong>{{child.sender.full_name}}</strong><span am-time-ago="sendDate  || 'YYYY-MM-DD HH:mm:ss'"></span></h4>
+        <p style="overflow-x: auto; !important">{{child.content}}</p>
+    </div>
+</div>

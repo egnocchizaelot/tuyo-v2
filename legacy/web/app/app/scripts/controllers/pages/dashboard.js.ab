@@ -1,0 +1,12 @@
+## dashboard.js
+
+**Summary:** Legacy controller (`DashboardPage`) registered on the `TuyoTools` module that loads the initial dashboard data by fetching both donations and appreciations from the API in parallel using `$q.all`. Sets the current section to 'dashboard' and exposes loaded data to the scope.
+
+**Dependencies:**
+- app/app/app/app.js — registers controller on root `TuyoTools` module
+- app/app/scripts/services/api.js — API for donations() and appreciations()
+- app/app/scripts/services/auth.js — Auth for userData
+
+**Tags:** legacy, controller, dashboard, donations
+
+**Implementation:** app/app/scripts/controllers/pages/dashboard.js

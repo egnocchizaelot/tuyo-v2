@@ -1,0 +1,92 @@
+<div id="dashboard">
+
+    <div class="dashboard-hero bg-brand-color" id="bannerBar">
+        <h2 class="index-title">
+            <span class="logoHeader1">Si lo venis a buscar es tuyo!</span>
+            <div class="rightSide">
+                <h3>APOYA</h3>
+                <span class="logoHeader2">Intendencia Montevideo</span>
+            </div>
+        </h2>
+        <div class="action-row text-center">
+            <a class="btn btn-white btn-ofrecer" ng-click="newDonation()">Ofrecer</a>
+            <a class="btn btn-white btn-mi-perfil" ng-href='{{userPath}}' target="_self">Mi perfil</a>
+        </div>
+    </div>
+    <!--/dashboard-hero -->
+
+
+    <div class="filters-nav" id="filterBar">
+        <div class="container">
+            <!-- <a class="collapsable-button" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="locationFilter" title="Filtrar por ubicación"> -->
+            <a class="collapsable-button filter-nav-item-left" role="button" ng-click="showLocationFilter()" title="Filtrar por ubicación">
+                <span class="fa fa-map-marker" aria-hidden="true"></span>
+                        {{locationSelected}}
+                <span ng-if="!locationSelected">Uruguay</span>
+                <i class="fa fa-caret-down" aria-hidden="true"></i>
+            </a>
+            <!-- <p class="color-primary"> {{publicationsText}} </p> -->
+            <a class="filter-nav-item-left btn-filter" ng-click="showFilterModal()">
+                <span class="btn btn-empty-gray">
+                    <!-- <i class="glyphicon glyphicon-filter" aria-hidden="true"></i> --> {{filterName}}
+                </span>
+            </a>
+
+            <div class="search-bar-collapse" id="searchBarCollapse">
+                <input id="searchText" ng-model="search" type="search" class="form-control" placeholder="Buscar" style="padding-right: 30px !important;">
+                <a ng-if="canSearch" class="btn-svg" role="button" ng-click="textSearch()">
+                    <i class="fa fa-search" aria-hidden="true"></i>
+                </a>
+                <a ng-if="!canSearch" class="btn-svg primary" role="button" ng-click="clearTextSearch()">
+                    <i class="fa fa-times" aria-hidden="true"></i>
+                </a>
+            </div>
+
+
+        </div><!-- /container -->
+
+    </div><!-- / filters-nav -->
+
+    <div class="container">
+        <!--<div class="collapse collapse-filters" id="locationFilter">-->
+        <div class="collapse collapse-filters" id="locationFilter">
+            <ul class="list-unstyled">
+                <li>
+                    <a href="" ng-click="goTolocationFilter('country')"> Uruguay </a>
+                </li>
+
+                <!--
+                <li>
+                    <a href="" ng-click="locationFilter('departamento')"> {{departamento}} </a>
+                </li>
+                <li>
+                    <a href="" ng-click="locationFilter('barrio')"> {{barrio}} </a>
+                </li>
+                -->
+
+                <li>
+                    <a href="" ng-click="mapLocation()"> Elegir ubicación </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- <div class="container no-padding-container" ng-show="!noDonations || (!noNotices && Object.keys(filters).length === 0)"> -->
+    <div class="feed-grid-container" ng-show="showPosts()">
+        <posts></posts>
+    </div>
+
+    <div ng-if="!loadingStuff && !showPosts()" class="container">
+        <div class="card default-border-radius margin-bottom" style="padding-bottom: 15px; !important">
+            <div class="container" style="text-align: center !important;">
+                <h1>No hay resultados</h1>
+            </div>
+        </div>
+    </div>
+
+    <div ng-class="{'hidden': !loadingStuff}">
+        <loading back="grey"></loading>
+    </div>
+
+  <!-- end container -->
+</div>

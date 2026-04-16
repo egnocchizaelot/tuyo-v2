@@ -1,0 +1,24 @@
+# File: app/_data/login.json.ab
+# Purpose: Mock authentication API response fixture used for local development or test data
+# Dependencies: []
+
+## Overview
+A static JSON fixture that simulates a successful login API response. Contains a hardcoded authentication token and a minimal user object. Used as mock/stub data during development when the backend is unavailable, or as a reference for the expected shape of the login API response consumed by the `Auth` service and `appService`.
+
+## Interface
+JSON object with two top-level keys:
+- `token` (string) — authentication token value; hardcoded as `"asd"` in this fixture
+- `user` (object) — authenticated user record containing:
+  - `id` (string) — user identifier; hardcoded as `"1"`
+  - `person` (object) — nested person data:
+    - `name` (string) — display name; hardcoded as `"User 1"`
+
+## Dependencies
+No project-level `.ab` dependencies.
+
+## Implementation Notes
+- Located in `app/_data/`, which is the Yeoman Angular generator convention for JSON mock data files
+- This fixture defines the minimum required shape for the login response; the real API response likely includes additional fields (email, avatar, roles, etc.)
+- The `appService` stores user data from this response structure in `$localStorage` after login
+- The `Auth` service stores the `token` value in a cookie as `Authorization: Token <token>`
+- This file is not loaded by the Angular application at runtime; it serves as reference data or is used by tooling/tests that mock HTTP calls

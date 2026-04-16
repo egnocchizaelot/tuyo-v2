@@ -1,0 +1,11 @@
+## app.js
+
+**Summary:** Root module definition for the TuyoTools AngularJS application. Declares the `TuyoTools` module and composes approximately 21 feature modules including third-party libraries (angular-growl, ui.router, angular-loading-bar, ngCookies, ui.select, ui.bootstrap, angularFileUpload, permission, angular-sortable-view, ngMap, ngStorage, angularMoment, angularModalService, 720kb.socialshare, ngSanitize) and custom feature modules (tuyoAux, navigationBar, footer, landing, dashboard, user, creation, createAppreciation, calification, map, loadingModule, modal, staticPagesModule, help). Also defines application-wide constants AUTH_EVENTS and USER_ROLES used for authentication event broadcasting and role checking.
+
+**Dependencies:**
+- bower_components/ — all third-party AngularJS modules listed in the dependency array are loaded via Bower
+- app/app/ (feature modules) — tuyoAux, navigationBar, footer, landing, dashboard, user, creation, createAppreciation, calification, map, loadingModule, modal, staticPagesModule, help
+
+**Tags:** configuration
+
+**Implementation:** app/app/app.js

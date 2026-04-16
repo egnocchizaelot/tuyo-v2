@@ -1,0 +1,10 @@
+## donation.controller.js
+
+**Summary:** Empty controller for the donation post component. All donation display logic resides in the donationPost directive link function.
+
+**Dependencies:**
+- app/app/post/post.module.js — registered on the post module
+
+**Tags:** post, donations, controller
+
+**Implementation:** app/app/post/donation/donation.controller.js

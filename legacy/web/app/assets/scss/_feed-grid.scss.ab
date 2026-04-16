@@ -1,0 +1,66 @@
+# File: app/assets/scss/_feed-grid.scss.ab
+# Purpose: SCSS partial defining the 3-column CSS Grid layout for the desktop listing feed
+# Dependencies: [app/assets/scss/_variables.scss]
+# Tags: [tag-scss, tag-styles, tag-feed-grid, tag-layout, tag-dashboard, tag-responsive]
+
+## Overview
+Dedicated SCSS partial that converts the desktop listing feed to a 3-column grid layout. Product cards are arranged in a 3-column grid that fills the available screen width on desktop viewports above the mobile breakpoint. On mobile viewports at or below the mobile breakpoint, the feed displays in a single column preserving the current mobile behavior unchanged. Introduces `.feed-grid` container class and `.feed-grid-full-width` for system notice or announcement cards that must span all 3 columns at full width.
+
+## Interface
+Exposes the following CSS classes:
+- `.feed-grid` — applied to the container wrapping the ng-repeat feed items; establishes the CSS Grid context with 3 columns on desktop
+- `.feed-grid-full-width` — applied to notice and importantNotice card root elements; causes them to span all 3 grid columns at full width
+
+## Dependencies
+- `_variables.scss` — uses `$screen-sm` breakpoint variable (768px) for the responsive media query
+
+## Implementation Notes
+
+### AC1 — Desktop Shows 3-Column Grid (`.feed-grid`)
+- `display: grid` with `grid-template-columns: repeat(3, 1fr)` arranges product cards in a 3-column grid filling the available screen width
+- `gap: 15px` — aligns with the existing card `margin-bottom` spacing used in `_blocks-desktop.scss`
+- When the feed loads with 3 or more listings, cards fill rows left to right, 3 per row
+- Cards inside `.feed-grid` with the `.margin-bottom` utility class should have their bottom margin set to 0 since the grid gap handles spacing between rows
+
+### AC2 — Mobile Remains Single Column (Responsive Breakpoint)
+- Media query at `max-width: $screen-sm - 1` (767px) switches to `grid-template-columns: 1fr` for single-column mobile layout
+- When the viewport is at or below the mobile breakpoint, the feed displays in a single column identical to the current mobile behavior — mobile layout is not affected
+
+### AC4 — Partial Row With Fewer Than 3 Listings
+- When the feed loads with fewer than 3 listings, cards are placed in the grid at normal card width
+- Remaining grid cells are visually empty — no stretching, no placeholder cards
+- CSS Grid's default behavior handles this naturally: unfilled cells remain empty
+
+### AC5 — Live Window Resize Transitions Cleanly
+- When the user resizes the browser window across the breakpoint, the layout switches between 1-column and 3-column without requiring a page reload
+- This is handled entirely by the CSS media query — the browser applies the responsive transition with no JavaScript intervention
+- Scroll position is not lost because only the CSS grid layout changes, not the DOM structure
+
+### AC7 — Notice Cards Span Full Width (`.feed-grid-full-width`)
+- `grid-column: 1 / -1` causes the element to span from the first to the last grid track
+- When a system notice or announcement card appears in the feed and the 3-column grid is active, the notice card spans all 3 columns at full width
+- Layout and readability of the notice are preserved
+- Safe to apply unconditionally — on a 1-column grid (mobile), this has no visual effect
+
+### AC3 — Card Content Is Preserved (Card Container Width Override)
+- Inside `.feed-grid`, the `.card .container` elements must have `width: 100%` and `max-width: 100%` instead of the hardcoded `600px` from `_general-desktop.scss`
+- This allows card content to fill the grid column width naturally
+- Each card displays the same content as today: user avatar, name, date, star rating, urgency, location, description, product image, status badge, and social action buttons — card content and card design do not change
+
+### AC9 — Long Text Does Not Break Card Width (Text Overflow Protection)
+- `.feed-grid .card` needs `word-break: break-word`, `overflow-wrap: break-word`, and `min-width: 0`
+- The `min-width: 0` is critical — it overrides the CSS Grid default of `min-width: auto` which would allow long unbroken strings (e.g., a URL) to blow out the grid cell width
+- When a listing card has a very long unbroken string in the description, the text is constrained within the card boundaries and the card does not expand beyond its grid cell
+
+### AC11 — Card Footer Actions Remain Usable
+- `.feed-grid .card .footer` action buttons should wrap gracefully at narrower column widths
+- Use `flex-wrap: wrap` if the footer uses flexbox, or ensure inline-block buttons can wrap naturally
+- All action buttons (share, like, options) remain fully visible and clickable — no interactive element is hidden or overlapping another
+
+### AC8 — Image Carousels Render Correctly in Grid (Carousel Containment)
+- Carousel containers (`.carousel`, `.slick-slider`) inside `.feed-grid .card` should have `max-width: 100%` and `overflow: hidden` to prevent carousel content from exceeding the column boundary
+- Images inside carousels should have `max-width: 100%` and `height: auto` to scale proportionally within the narrower column
+- When a listing card contains a multi-image carousel, the carousel renders correctly at the column width and navigation indicators remain within the card boundaries
+
+## Examples
+The `.feed-grid` class is applied to the parent container wrapping the ng-repeat in `post.template.html`. Each card within the repeat is a natural grid item. Notice and importantNotice cards additionally receive `.feed-grid-full-width` to span all 3 columns. On desktop above the mobile breakpoint, cards arrange in 3 columns. On mobile at or below the breakpoint, the single-column layout is preserved unchanged.

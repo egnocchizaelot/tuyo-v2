@@ -1,0 +1,60 @@
+<div class="perfil-usuario-desktop" ng-if='userLoaded'>
+    <div class="container position-relative">
+        <div class="text-center hero-usuario-desktop">
+
+            <div class="avatar">
+                <img ng-if="userData.picture_url" ng-src="{{mediaURL}}{{userData.picture_url}}" class="img-responsive" onerror="this.onerror=null; if (this.src != 'error.jpg') this.src = 'assets/images/user2.png';">
+                <img ng-if="!userData.picture_url" src="assets/images/user2.png" class="img-responsive">
+            </div>
+
+<!--
+            <h1 class="text-icon best-user">
+                <strong>{{userData.full_name}}</strong> <span class="glyphicon glyphicon-ban-circle" style="color:red" aria-hidden="true" ng-show="userData.banned"></span>
+            </h1>
+-->
+
+            <h1 class="text-icon best-user" ng-if="scope.userData.colaborator">
+                <strong>{{userData.full_name}}</strong>
+            </h1>
+
+            <h1 class="text-icon" ng-if="!scope.userData.colaborator">
+                <strong>{{userData.full_name}}</strong>
+            </h1>
+
+
+            <a href="#" class="back-to-top">
+                <i class="fa fa-arrow-circle-up"></i>
+            </a>
+
+            <ul class="list-unstyled list-inline star-points">
+                <li class="got-star" ng-repeat="x in goldStars() track by $index"></li><li ng-repeat="x in greyStars() track by $index"></li>
+            </ul>
+
+        </div>
+
+        <div class="text-center bg-gray-superlighter" id="switchMenu">
+            <ul class="list-inline nav nav-tabs" role="tablist" style="cursor:pointer">
+                <li role="presentation" ng-class="{'active': active === state.HISTORY}">
+                    <a href="" ng-click="active = state.HISTORY">Historial</a>
+                </li>
+                <li role="presentation" ng-class="{'active': active === state.PROFILE}">
+                    <a href="" ng-click="active = state.PROFILE">Información </a>
+                </li>
+            </ul>
+        </div>
+
+        <user-public-history ng-show="active === state.HISTORY"></user-public-history>
+        <public-information ng-show="active === state.PROFILE" user-data='userData'></public-information>
+
+    </div>
+</div>
+
+
+<div class="container" ng-if="notFound" style="margin-top: 80px">
+    <div class="card default-border-radius margin-bottom" style="padding-bottom: 15px; !important">
+        <div class="container" style="text-align: center !important;">
+            <h1>El usuario no existe</h1>
+        </div>
+    </div>
+</div>
+

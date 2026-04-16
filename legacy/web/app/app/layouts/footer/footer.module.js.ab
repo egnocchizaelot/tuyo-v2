@@ -1,0 +1,10 @@
+## footer.module.js
+
+**Summary:** Declares the `footer` AngularJS module with no dependencies. Serves as the container for the site-wide footer component.
+
+**Dependencies:**
+- None
+
+**Tags:** footer, module, layout
+
+**Implementation:** app/app/layouts/footer/footer.module.js

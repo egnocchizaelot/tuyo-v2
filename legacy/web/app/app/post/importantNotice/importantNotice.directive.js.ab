@@ -1,0 +1,41 @@
+# File: app/app/post/importantNotice/importantNotice.directive.js.ab
+# Purpose: Directive (element: "importantNotice") that renders admin-created important notices — template adds feed-grid-full-width class so notice cards span all 3 columns in the desktop grid
+# Dependencies: [app/app/post/post.module.js, app/app/scripts/services/api.js]
+# Tags: [tag-post, tag-notices, tag-directive, tag-admin, tag-ui, tag-feed-grid]
+
+## Overview
+Directive (element: "importantNotice") that renders admin-created important notices at the top of the feed. Renders HTML content via $sce.trustAsHtml and provides a "stop showing" button that calls the API to hide the notice permanently for the user. Template modified to include `feed-grid-full-width` class so that when a system notice or announcement card appears in the feed and the 3-column grid is active, the important notice card spans all 3 columns at full width with its layout and readability preserved (AC7).
+
+## Interface
+- Element directive: `<important-notice notice="notice"></important-notice>`
+- Scope binding: `notice` (two-way `=` binding) — the important notice data object
+- Template: `app/post/importantNotice/importantNotice.template.html`
+- Controller: `importantNoticeController`
+- Exposes to scope: `htmlText`, `stopShowing()`
+
+## Dependencies
+- app/app/post/post.module.js — registered on the post module
+- app/app/scripts/services/api.js — uses API.notShowImportantNotice to dismiss the notice
+
+## Implementation Notes
+
+### AC7 — Notice Cards Span Full Width (Template Change — Feed Grid Full-Width Class)
+The template root element (currently `<div class="card default-border-radius margin-bottom" style="padding-bottom: 15px; !important">`) must additionally include the `feed-grid-full-width` CSS class so that when this system notice or announcement card renders inside the `.feed-grid` container, it spans all 3 grid columns at full width.
+
+The class is added directly and unconditionally to the root element: `<div class="card default-border-radius margin-bottom feed-grid-full-width" style="padding-bottom: 15px; !important">`. When the 3-column grid is active on desktop, the important notice card spans all 3 columns at full width and its layout and readability are preserved. In single-column mode (mobile at or below the mobile breakpoint), `grid-column: 1 / -1` on a 1-column grid has no visual effect — mobile layout is not affected. This is safe to apply unconditionally.
+
+### No JavaScript Logic Changes
+The directive's link function, $sce.trustAsHtml rendering, and stopShowing() API call remain completely unchanged. The change is purely a template class addition. Card content and card design do not change.
+
+### Existing Behavior Preserved
+- HTML content rendering via $sce.trustAsHtml
+- "Entendido" / close button calling stopShowing()
+- API.notShowImportantNotice call to permanently dismiss the notice
+- Element removal from DOM after successful dismissal
+
+## Examples
+Used inside the post feed template within the important notices ng-repeat:
+```
+<important-notice notice='notice'></important-notice>
+```
+When rendered inside the `.feed-grid` container on a desktop viewport above the mobile breakpoint, this important notice card spans all 3 columns because of the `feed-grid-full-width` class on its root element. On mobile, the single-column layout is unchanged.

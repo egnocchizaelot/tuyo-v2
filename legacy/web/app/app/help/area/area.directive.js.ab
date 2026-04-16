@@ -1,0 +1,13 @@
+## area.directive.js
+
+**Summary:** Directive (`<area-help>`) that displays a paginated list of help topics for a given area (help or problem). Accepts a `what` attribute to determine which area to load. Fetches topics from `API.areaTopics()` with pagination support, manages page navigation with prev/next arrow states, enables navigation to individual topics via `$state.go`, and scrolls to top on page changes.
+
+**Dependencies:**
+- app/app/help/help.module.js — registers on the `help` module
+- app/app/help/area/area.controller.js — uses `areaController`
+- app/app/scripts/services/api.js — `API` service for `areaTopics()`
+- app/app/app.service.js — `appService` for `helpTopicsPageSize`
+
+**Tags:** help, faq, directive, pagination, topics, ui
+
+**Implementation:** app/app/help/area/area.directive.js

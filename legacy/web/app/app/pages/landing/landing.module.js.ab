@@ -1,0 +1,10 @@
+## landing.module.js
+
+**Summary:** Declares the `landing` AngularJS module with no dependencies. This module serves as the container for the landing page feature, which provides the public-facing entry point with login and registration functionality.
+
+**Dependencies:**
+- None
+
+**Tags:** landing, module, authentication
+
+**Implementation:** app/app/pages/landing/landing.module.js

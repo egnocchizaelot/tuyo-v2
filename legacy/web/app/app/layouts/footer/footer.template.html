@@ -1,0 +1,97 @@
+<div class="landing" ng-controller="tuyoFooterController">
+    <footer class="br-top-grey">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 margin-bottom">
+                    <div class="row">
+                        <div class="col-xs-4 text-right pr-0">
+                            <img src="assets/images/footer-image.svg" class="img-responsive footer-image-icon">
+                        </div>
+                        <div class="col-xs-8">
+                            <img src="assets/images/text-footer.svg" class="img-responsive logo-footer">
+                            <p class="legales"><a data-ui-sref="app.terycon" target="_blank" data-ui-sref-opts="{reload: true, notify: true}">Términos y Condiciones</a></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 text-center hidden-sm hidden-xs">
+                    <ul class="list-inline list-unstyled iconos-sociales">
+                        <li class="icon-facebook">
+                            <a target="_blank" href="https://www.facebook.com/SiLoVenisABuscarEsTuyo.Oficial/">Facebook</a>
+                        </li>
+
+                        <li class="icon-twitter">
+                            <a target="_blank" href="https://twitter.com/Es_Tuyo_">Twitter</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="col-xs-12 col-sm-12 col-md-5 col-lg-5" ng-if="!loggedIn">
+                    <!-- <ul class="nav navbar-nav navbar-right">
+
+                        <li ng-if='landing'>
+                            <a class="f-login" data-toggle="modal" data-target="#registrarse1">
+                                <span><i class="fa fa-facebook" aria-hidden="true"></i> Regístrate</span>
+                            </a>
+                        </li>
+
+                        <li ng-if="!landing">
+                            <a class="f-login" ng-href='{{landingPage}}' target="_self" title="Regístrate">
+                                <span><i class="fa fa-facebook" aria-hidden="true"></i> Regístrate</span>
+                            </a>
+                        </li>
+
+
+                        <li>
+                            <a>
+                                <span class="btn btn-line-primary" ng-click='login()'>Iniciar Sesión</span>
+                            </a>
+                        </li>
+                    </ul> -->
+
+<!--
+                    <ul ng-if="!onLanding" class="nav navbar-nav navbar-right">
+                        <li>
+                            <a class="f-login" ng-href='{{landingPage}}' target="_self" title="Regístrate">
+                                <span><i class="fa fa-facebook" aria-hidden="true"></i> Regístrate</span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a ng-href='{{landingPage}}' target="_self" >
+                                <span class="btn btn-line-primary">Iniciar Sesión</span>
+                            </a>
+                        </li>
+                    </ul> -->
+
+                    <!-- <ul ng-if="onLanding" class="nav navbar-nav navbar-right">
+                        <li>
+                            <a class="f-login" ng-click="login()" title="Regístrate">
+                                <span><i class="fa fa-facebook" aria-hidden="true"></i> Regístrate</span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a ng-click="login()">
+                                <span class="btn btn-line-primary">Iniciar Sesión</span>
+                            </a>
+                        </li>
+
+                    </ul> -->
+                </div>
+
+                <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 text-center visible-sm visible-xs">
+                    <ul class="list-inline list-unstyled iconos-sociales">
+                        <li class="icon-facebook">
+                            <a target="_blank" href="https://www.facebook.com/SiLoVenisABuscarEsTuyo.Oficial/">Facebook</a>
+                        </li>
+                        <li class="icon-twitter">
+                            <a target="_blank" href="https://twitter.com/Es_Tuyo_">Twitter</a>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </footer>
+</div>

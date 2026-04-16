@@ -1,0 +1,13 @@
+## authorizer.js
+
+**Summary:** Legacy role-based authorization module that defines permission roles using the `angular-permission` library's `RoleStore`. Defines roles including superuser, admin, regular, read_access, write_access, create_access, sinister_access, agent, client, broker, is_creating_application, add_relationship, and agent_has_permissions. Contains significant insurance-domain remnants (Polizas, Solicitudes, Siniestros, Clientes, Empresa modules) that are not part of the current Tuyo donation platform, indicating this file was carried over from a prior insurance management application. The file's own comment at line 1 notes it is not currently in use.
+
+**Dependencies:**
+- app/app/scripts/services/auth.js — Auth service used to read userData, user_permissions, and checkLogin state
+- app/app/scripts/services/api.js — API service used to read API.modules for route-to-module mapping
+- angular-permission (Permission, RoleStore) — third-party library for defining and checking role-based access
+- angular ($state, $rootScope) — AngularJS core services for state management and event handling
+
+**Tags:** authorization, legacy
+
+**Implementation:** app/app/scripts/services/authorizer.js

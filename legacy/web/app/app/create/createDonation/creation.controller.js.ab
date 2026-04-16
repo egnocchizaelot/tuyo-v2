@@ -1,0 +1,11 @@
+## creation.controller.js
+
+**Summary:** Controller for the multi-step donation creation wizard. Tracks the current step (1-4), collects step-completion callbacks from child directives via readyToGo events, and initializes editing mode when an existing donation is provided.
+
+**Dependencies:**
+- app/app/create/createDonation/creation.module.js — registered on the creation module
+- app/app/app/app.service.js — uses appService.isMobile for mobile styling
+
+**Tags:** creation, donations, controller, wizard
+
+**Implementation:** app/app/create/createDonation/creation.controller.js

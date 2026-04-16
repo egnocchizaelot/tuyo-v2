@@ -1,0 +1,13 @@
+## app.service.js
+
+**Summary:** Global application service providing browser version detection, mobile device detection, Facebook login orchestration, and Tuyo-native registration flow. On instantiation, parses the user agent to detect outdated browsers (Firefox < 52, Chrome < 56, Opera < 48, Safari < 9, Edge < 15) and alerts the user. Detects mobile devices via UA sniffing and adds a `mobile-view` CSS class to the body. Exposes `AuthLogin()` for handling post-login routing logic (banned users, incomplete registration, whitelist checks), `facebookLogin()` for Facebook OAuth flow using the global FB SDK, `login()` as the public entry point that checks `facebookIsLoaded`, and `AuthRegister()` for native registration with similar post-register handling. Also defines UI constants for pagination sizes, navigation heights, chat dimensions, image constraints, and the Socket.IO server URL.
+
+**Dependencies:**
+- app/app/scripts/services/facebook.js — Facebook factory (imported but Facebook login is done via global FB object directly)
+- app/app/scripts/services/auth.js — Auth service for login(), register(), logout(), and checkLogin()
+- app/deploy_config.js — provides global SOCKET_SERVER and FACEBOOK_APP_ID variables read at initialization
+- angular ($localStorage, $state, $cookies, growl) — AngularJS services for storage, routing, cookies, and toast notifications
+
+**Tags:** authentication, facebook, oauth, configuration, session
+
+**Implementation:** app/app/app.service.js

@@ -1,0 +1,34 @@
+<div class="text-center hero-usuario" style="padding-bottom: 30px; !important" ng-if="state === states.CALIFICATE">
+    <h2><strong>Se ha cancelado la reserva.</strong></h2>
+    <div class="avatar">
+        <img ng-src="{{mediaURL}}{{imgPath}}" class="img-responsive" onerror="this.onerror=null; if (this.src != 'error.jpg') this.src = 'assets/images/user2.png';"/>
+    </div>
+    <p class="margin-bottom double-line-height">¿Cómo fue tu experiencia con <br>{{name}}?</p>
+    <div class="container">
+        <form class="opciones-calificacion">
+
+            <div class="radio mala">
+                <label id="mala">
+                    <input style="cursor: pointer;" type="radio" name="optionsRadios" value="option1" ng-click="calificate('mala')">
+                    Mala
+                </label>
+            </div>
+            <div class="radio neutro">
+                <label id="neutro">
+                    <input style="cursor: pointer;" href="" type="radio" name="optionsRadios" value="option2" ng-click="calificate('neutro')">
+                    Neutro
+                </label>
+            </div>
+
+        </form>
+    </div>
+
+    <div class="row text-center">
+        <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8 col-xs-offset-2 col-sm-offset-2 col-md-offset-2 col-lg-offset-2">
+            <a href="" class="btn display-block btn-primary" id="continuarPuntaje" ng-click="continuar()">Continuar</a>
+        </div>
+    </div>
+</div>
+
+<end-good-cancel left-path='leftPath' right-path='rightPath' mine='mine' ng-if ="state === states.GOOD"></end-good-cancel>
+<end-bad-cancel donation='donation' ng-if = "state === states.BAD"></end-bad-cancel>

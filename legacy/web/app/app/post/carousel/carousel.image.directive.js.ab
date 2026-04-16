@@ -1,0 +1,10 @@
+## carousel.image.directive.js
+
+**Summary:** Simple attribute directive (onImageLoad) that emits an "imageHasLoaded" event when an image element finishes loading. Used by the carousel to track when all images are ready for display.
+
+**Dependencies:**
+- app/app/post/post.module.js — registered on the post module
+
+**Tags:** post, carousel, directive, images, ui
+
+**Implementation:** app/app/post/carousel/carousel.image.directive.js

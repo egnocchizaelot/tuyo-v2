@@ -1,0 +1,20 @@
+# File: app/styles/bootstrap.min.css.ab
+# Purpose: Bootstrap 3.3.7 CSS framework — minified production copy stored in app/styles/
+# Dependencies: []
+
+## Overview
+Minified copy of Bootstrap v3.3.7 CSS framework. Provides the grid system, responsive utilities, typography baseline, form controls, buttons, navbars, modals, panels, alerts, and all other Bootstrap 3 components used by the TuyoTools frontend. This is a vendor file placed in `app/styles/` as a static asset alongside the Bower-managed copy.
+
+## Interface
+No exports. Loaded as a `<link>` stylesheet in `app/index.html`.
+
+## Dependencies
+No project-level dependencies. Vendor file.
+
+## Implementation Notes
+- Bootstrap version: 3.3.7 (MIT License, Copyright 2011-2016 Twitter, Inc.)
+- Includes normalize.css v3.0.3 inlined at the top
+- Minified to 5 lines (~6757 lines in unminified form)
+- Identical in content to `app/assets/css/bootstrap.min.css`
+- The `app/styles/` location is the older Compass output directory; Bootstrap was later also copied to `app/assets/css/bootstrap.min.css`
+- Referenced via `app/index.html` for the running SPA

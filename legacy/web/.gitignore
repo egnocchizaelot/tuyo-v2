@@ -1,0 +1,9 @@
+/node_modules
+/dist
+/.tmp
+/.sass-cache
+/bower_components
+.idea/
+/.project
+app/deploy_config.js
+.DS_Store

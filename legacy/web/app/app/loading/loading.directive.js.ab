@@ -1,0 +1,11 @@
+## loading.directive.js
+
+**Summary:** Directive (`<loading>`) that displays an animated loading indicator. Accepts a `data` binding and a `back` attribute to select the background style — `'grey'` uses a feed-specific loading GIF while the default uses a standard loading GIF. Renders the appropriate loading image based on the context.
+
+**Dependencies:**
+- app/app/loading/loading.module.js — registers on the `loadingModule` module
+- app/app/loading/loading.controller.js — uses `loadingController`
+
+**Tags:** loading, directive, ui, animation
+
+**Implementation:** app/app/loading/loading.directive.js

@@ -1,0 +1,13 @@
+## message.directive.js
+
+**Summary:** Directive (element: "forumMessage") rendering a single forum message with sender info, ranking stars, date, response toggling, like/unlike, comment enabling (green highlight), applicant removal, donor reservation actions (select user with confirmation popup via modalServices.ReserveConfirmation), and profile navigation with forum close.
+
+**Dependencies:**
+- app/app/contact/forums/forum.module.js — registered on forumModule
+- app/app/scripts/services/api.js — uses API for likes and reservation actions
+- app/app/scripts/services/auth.js — uses Auth for user data
+- app/app/modals/modals.service.js — uses modalServices.ReserveConfirmation
+
+**Tags:** forum, communication, directive, likes, donations, ui
+
+**Implementation:** app/app/contact/forums/message/message.directive.js

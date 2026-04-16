@@ -1,0 +1,18 @@
+# File: app/styles/screen.css.ab
+# Purpose: Minified single-line compiled application stylesheet for mobile/responsive views — legacy app/styles/ location
+# Dependencies: []
+
+## Overview
+A single-line minified version of the compiled application stylesheet for mobile/responsive views. This is the compressed form of what is expanded in `app/assets/css/screen.css`. Located in the older `app/styles/` Compass output directory. Contains the full mobile-first application CSS: ProximaNova font faces, CSS reset, navbar styles, card components, form elements, and all mobile view-specific rules.
+
+## Interface
+No exports. Stylesheet file — loaded as a `<link>` tag.
+
+## Dependencies
+No project-level `.ab` dependencies. Requires ProximaNova font files at `../fonts/proximanova-*.ttf`.
+
+## Implementation Notes
+- Single-line minified (1 line) — the expanded form is `app/assets/css/screen.css` (9182 lines)
+- This file is in the older `app/styles/` Compass output directory, which predates the move to `app/assets/css/`
+- The expanded `app/assets/css/screen.css` is the authoritative source for understanding the styles
+- Compiled from `app/assets/scss/` SCSS source files via Compass

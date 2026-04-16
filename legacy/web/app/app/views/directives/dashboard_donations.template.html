@@ -1,0 +1,9 @@
+<div class="dashboard-destacadas">
+	<h2>Donaciones</h2>
+	<div class="list-wrapper row">
+	  <div class="no-results col-xs-12" ng-if="donations && donations.length === 0" data-elements='donations.length'>
+	    No hay elementos para mostrar.
+	  </div>
+	  <donations-list-item ng-animate class="list-item col-xs-12 col-sm-6 col-md-4 col-4 ng-scope" ng-repeat="donation in donations" donation="donation"></donations-list-item>
+	</div>
+</div>

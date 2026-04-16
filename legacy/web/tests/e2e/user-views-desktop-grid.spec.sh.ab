@@ -1,0 +1,167 @@
+# File: tests/e2e/user-views-desktop-grid.spec.sh.ab
+# Purpose: Verify the desktop listing feed displays product cards in a 3-column grid with correct card content, partial rows, carousel containment, text overflow protection, and usable footer actions
+# Dependencies: [app/assets/scss/_feed-grid.scss.ab, app/assets/scss/desktop.scss.ab, app/app/post/post.directive.js.ab]
+
+## Overview
+An authenticated user loads the listing feed on a desktop viewport and sees product cards arranged in a 3-column grid that fills the available screen width. Cards preserve all existing content, partial rows render without placeholders, image carousels stay contained within columns, long text doesn't break card boundaries, and footer action buttons remain usable.
+
+## Covers
+app/assets/scss/_feed-grid.scss.ab, app/assets/scss/desktop.scss.ab, app/app/post/post.directive.js.ab
+
+## Business Actor
+Authenticated user viewing the main listing feed on a desktop browser.
+
+## Business Goal
+Browse listings efficiently in a 3-column grid layout that fills the available screen width without losing any card content or interactivity.
+
+## Test Accounts
+<!-- Credentials are defined here and used verbatim by the translator. Do NOT read from .env or any external file. -->
+<!-- Each actor gets a base email. At runtime the translator appends +<random_id> to make it unique per run. -->
+- Actor `user`: base email `e2e.user@test.local`, password `Test1234!`
+
+## Preconditions
+- Each run creates a fresh isolated account using `e2e.user+<random_id>@test.local` via the registration API before Scenario A runs. This account is fully isolated — no shared state with other specs or runs.
+- The test environment contains at least 6 existing donation listings (read-only seed data) so that multi-row grid scenarios can be verified.
+- At least one listing has a multi-image carousel (Slick slider).
+- At least one listing has a very long unbroken URL string in its description field.
+- Desktop viewport is set above 768px (e.g., 1280x800).
+
+Teardown (after all scenarios, even on failure):
+- Delete the per-run account created during setup and all records it owns.
+- Do NOT delete shared read-only seed fixtures (existing listings).
+
+## Business Scenarios
+- Scenario A (DB-1): User loads the feed with 3+ listings and sees a 3-column grid filling available width
+- Scenario B (DB-2): User loads the feed with fewer than 3 listings and sees cards at normal width with empty cells
+- Scenario C (DB-3): User views a card with a multi-image carousel that renders correctly within its column
+- Scenario D (DB-4): User views a card with a long unbroken URL that stays constrained within the card boundary
+- Scenario E (DB-5): User interacts with card footer action buttons that remain fully visible and clickable
+
+## Actor Variants
+- EQ-1 — Desktop viewport with exactly 3 listings: minimum to complete one full row -> DB-1
+- EQ-2 — Desktop viewport with 6 listings (2 complete rows): confirms multi-row left-to-right fill -> DB-1
+- EQ-3 — Desktop viewport with more than 6 listings (mixed full and partial rows): general case -> DB-1
+- EQ-4 — Desktop viewport with 1 listing: smallest partial row, card at normal width, 2 empty cells -> DB-2
+- EQ-5 — Desktop viewport with 2 listings: partial row, 2 cards at normal width, 1 empty cell -> DB-2
+- EQ-6 — Desktop viewport with a card containing a multi-image Slick carousel -> DB-3
+- EQ-7 — Desktop viewport with a card whose description contains a very long unbroken URL string -> DB-4
+
+## Outcome Branches
+- DB-1 -> Cards fill rows left to right, 3 per row, filling available width (EQ-1, EQ-2, EQ-3)
+- DB-2 -> Cards at normal card width, remaining cells visually empty with no placeholder or stretch (EQ-4, EQ-5)
+- DB-3 -> Carousel renders at column width, navigation indicators stay within card boundaries (EQ-6)
+- DB-4 -> Text constrained within card boundary, card does not expand beyond grid cell (EQ-7)
+- DB-5 -> All action buttons (share, like, options) fully visible and clickable, none hidden or overlapping
+
+## Business Boundaries
+- BV-1 (grid row threshold, at minimum 3 listings): cards fill exactly one complete row of 3 columns
+- BV-2 (grid row threshold, below minimum at 2 listings): partial row with one empty cell, no stretching
+- BV-3 (breakpoint, at 768px): desktop 3-column grid activates
+- BV-4 (breakpoint, at 767px): single-column mobile layout displays
+
+## Acceptance Criteria
+- AC1: On desktop with 3+ listings, the feed displays cards in a 3-column grid filling the available screen width, with cards filling rows left to right (DB-1, EQ-1, EQ-2, EQ-3, BV-1)
+- AC2: On desktop with fewer than 3 listings, cards display at normal width and remaining grid cells are visually empty with no placeholder or stretched card (DB-2, EQ-4, EQ-5, BV-2)
+- AC3: Each card in the grid shows user avatar, name, date, star rating, urgency, location, description, full-size product image, status badge, and social action buttons — identical to current content (DB-1, DB-2)
+- AC4: A card with a multi-image carousel renders the carousel correctly at column width with navigation indicators within card boundaries (DB-3, EQ-6)
+- AC5: A card with a very long unbroken URL in the description constrains the text within the card boundaries without the card expanding beyond its grid cell (DB-4, EQ-7)
+- AC6: All footer action buttons (share, like, options) remain fully visible and clickable with no interactive element hidden or overlapping (DB-5)
+- AC7: At the breakpoint boundary (768px), the desktop 3-column grid activates; at 767px, single-column displays (BV-3, BV-4)
+- AC8: No placeholder cards, stretched cards, or visual artifacts appear in empty grid cells (ABSENT-1)
+- AC9: No card overflows or expands beyond its grid column boundary (ABSENT-2)
+- AC10: No interactive element is hidden behind another element or clipped (ABSENT-3)
+- AC11: No raw JSON data or debug overlay is visible in any card (ABSENT-4)
+
+## Absent Elements
+- After grid renders with a partial row (1-2 cards): no placeholder or stretched card in the empty grid cells
+- While card with long text is visible: no card overflowing or expanding beyond its grid column boundary
+- While grid is displayed: no interactive element (share, like, options) hidden behind another element or clipped
+- At all times in the grid view: no raw JSON data or debug overlay visible in any card
+
+## Steps
+
+### Scenario A: User loads the feed with 3+ listings on desktop
+<!-- covers: DB-1, EQ-1, EQ-2, EQ-3, BV-1 -->
+1. Log in as the test user on a desktop viewport (1280x800)
+2. Navigate to the listing feed at $E2E_BASE_URL
+3. Wait for the feed to load with donation cards visible
+4. Verify AC1: cards are arranged in a 3-column grid filling the available screen width
+5. Verify AC3: the first visible card shows user avatar, name, date, star rating, urgency, location, description, product image, status badge, and social action buttons
+6. Count visible rows — with 6+ listings, at least 2 complete rows of 3 cards each should be visible
+7. Verify cards fill rows left to right (first card top-left, second card top-center, third card top-right)
+8. Verify Absent: no raw JSON data or debug overlay visible in any card
+9. Take a screenshot and save to $E2E_ARTIFACTS_DIR/desktop-grid/3-column-layout.png
+
+### Scenario B: User loads the feed with fewer than 3 listings
+<!-- covers: DB-2, EQ-4, EQ-5, BV-2, ABSENT-1 -->
+1. Set up the feed to display only 1 listing (or filter to a category with 1 result)
+2. Verify AC2: the single card displays at normal card width
+3. Verify Absent: remaining grid cells are visually empty — no placeholder card, no stretched card
+4. Set up the feed to display exactly 2 listings
+5. Verify AC2: both cards display at normal card width with one empty cell
+6. Verify Absent: the empty cell has no placeholder or visual artifact
+7. Take a screenshot and save to $E2E_ARTIFACTS_DIR/desktop-grid/partial-row.png
+
+### Scenario C: Card with multi-image carousel renders correctly in grid
+<!-- covers: DB-3, EQ-6 -->
+1. Log in and navigate to the feed on desktop
+2. Locate a listing card that contains a multi-image carousel
+3. Verify AC4: the carousel renders correctly within the column width
+4. Verify the carousel navigation indicators (dots or arrows) are within the card boundaries
+5. Navigate through the carousel images — each image fits within the card column
+6. Take a screenshot and save to $E2E_ARTIFACTS_DIR/desktop-grid/carousel-in-grid.png
+
+### Scenario D: Card with long unbroken URL stays constrained
+<!-- covers: DB-4, EQ-7, ABSENT-2 -->
+1. Log in and navigate to the feed on desktop
+2. Locate a listing card whose description contains a very long unbroken URL string
+3. Verify AC5: the text is constrained within the card boundaries
+4. Verify Absent: the card does not overflow or expand beyond its grid column boundary
+5. Verify neighboring cards in the same row are not pushed out of alignment
+6. Take a screenshot and save to $E2E_ARTIFACTS_DIR/desktop-grid/long-text-contained.png
+
+### Scenario E: Footer action buttons remain usable in grid
+<!-- covers: DB-5, ABSENT-3 -->
+1. Log in and navigate to the feed on desktop
+2. Locate a listing card with status badge and action buttons in the footer
+3. Verify AC6: share, like, and options buttons are all fully visible
+4. Verify Absent: no interactive element is hidden behind another element or clipped
+5. Click the like button — verify it responds to the click action
+6. Take a screenshot and save to $E2E_ARTIFACTS_DIR/desktop-grid/footer-actions.png
+
+### Boundary: Breakpoint transition at 768px/767px
+<!-- covers: BV-3, BV-4 -->
+1. Log in and set viewport width to exactly 768px
+2. Navigate to the feed
+3. Verify AC7: the 3-column grid layout is active
+4. Resize viewport to exactly 767px
+5. Verify AC7: the layout switches to single-column
+6. Take a screenshot at each width and save to $E2E_ARTIFACTS_DIR/desktop-grid/breakpoint-768.png and $E2E_ARTIFACTS_DIR/desktop-grid/breakpoint-767.png
+
+## Coverage Map
+
+| Case ID | Type | Description | Scenario | Status |
+|---------|------|-------------|----------|--------|
+| DB-1 | Decision Branch | 3+ listings on desktop -> 3-column grid | Scenario A | ✅ covered |
+| DB-2 | Decision Branch | <3 listings -> normal width, empty cells | Scenario B | ✅ covered |
+| DB-3 | Decision Branch | Carousel renders at column width | Scenario C | ✅ covered |
+| DB-4 | Decision Branch | Long URL constrained within card | Scenario D | ✅ covered |
+| DB-5 | Decision Branch | Footer buttons visible and clickable | Scenario E | ✅ covered |
+| EQ-1 | Equivalence Class | Exactly 3 listings (one full row) | Scenario A | ✅ covered |
+| EQ-2 | Equivalence Class | 6 listings (2 complete rows) | Scenario A | ✅ covered |
+| EQ-3 | Equivalence Class | >6 listings (mixed rows) | Scenario A | ✅ covered |
+| EQ-4 | Equivalence Class | 1 listing (smallest partial row) | Scenario B | ✅ covered |
+| EQ-5 | Equivalence Class | 2 listings (partial row) | Scenario B | ✅ covered |
+| EQ-6 | Equivalence Class | Card with Slick carousel | Scenario C | ✅ covered |
+| EQ-7 | Equivalence Class | Card with long unbroken URL | Scenario D | ✅ covered |
+| BV-1 | Boundary Value | At minimum 3 listings for full row | Scenario A | ✅ covered |
+| BV-2 | Boundary Value | Below minimum at 2 listings | Scenario B | ✅ covered |
+| BV-3 | Boundary Value | Viewport at 768px (desktop activates) | Boundary | ✅ covered |
+| BV-4 | Boundary Value | Viewport at 767px (mobile activates) | Boundary | ✅ covered |
+| ABSENT-1 | Absent Element | No placeholder in empty grid cells | Scenario B | ✅ covered |
+| ABSENT-2 | Absent Element | No card overflow beyond column | Scenario D | ✅ covered |
+| ABSENT-3 | Absent Element | No hidden/clipped interactive element | Scenario E | ✅ covered |
+| ABSENT-4 | Absent Element | No raw JSON or debug overlay (global) | Scenario A | ✅ covered |
+
+## Artifacts
+All written to $E2E_ARTIFACTS_DIR/desktop-grid/ with explicit filenames.

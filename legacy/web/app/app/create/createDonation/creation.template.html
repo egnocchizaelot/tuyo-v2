@@ -1,0 +1,60 @@
+
+
+<div ng-show="step !== 4">
+  <nav class="bg-brand-color modal-navbar" id="creationNavBar">
+    <div class="container">
+
+            <a href="" ng-click="Back()" class="btn-back modals-visible-mobile" title="Anterior" id="backButton">
+                <i class="fa fa-angle-left" aria-hidden="true"></i>
+            </a>
+
+            <h2 class="titulo-ofrecer text-center">
+                <span>Ofrecer</span>
+            </h2>
+
+
+            <button ng-click="Back()" type="button" class="close modals-hidden-mobile" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+
+        </div>
+    </nav>
+
+    <div class="modal-body-content">
+        <step-one ng-show="step === 1" ></step-one>
+        <step-two ng-show="step === 2" ></step-two>
+        <step-three ng-show="step === 3" ></step-three>
+    </div>
+
+    <div id="nextSteps" class="nav-next-steps new-nav-next-steps" ng-show="showNext">
+      <div class="container overflow-hidden">
+
+        <ul class="list-unstyled list-inline display-inline">
+          <li ng-class="{active: step >= 1 }">
+            <a href="" ng-click="changeStep(1)" title="Paso 1">
+              <i class="fa fa-info" aria-hidden="true"></i>
+            </a>
+          </li>
+          <li ng-class="{active: step >= 2 }">
+            <a href="" ng-click="changeStep(2)" title="Paso 2">
+              <i class="fa fa-clock-o" aria-hidden="true"></i>
+            </a>
+          </li>
+
+          <li ng-class="{active: step >= 3 }">
+            <a href="" ng-click="changeStep(3)" title="Paso 3">
+              <i class="fa fa-map-marker" aria-hidden="true"></i>
+            </a>
+          </li>
+        </ul>
+
+        <a ng-click="nextButton()" class="btn btn-primary float-right" title="Siguiente">Siguiente</a>
+      </div>
+  </div><!-- /.nav-next-steps -->
+
+</div>
+
+<preview-donation ng-show="step === 4"></preview-donation>
+
+
+<div ng-if="loadingImgs" class="full-screen-loader">
+  <loading data='loadingData'></loading>
+</div>

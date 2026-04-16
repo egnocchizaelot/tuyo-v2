@@ -1,0 +1,50 @@
+<div id="desktop" class="body-bg-whtie pagina-ayuda">
+
+  		<div class="gray-light-border-bottom text-center ribbon-volver">
+  			<div class="container">
+  				<p>< Volver a <a ng-href='{{backPath}}' target="_self">Sección de Ayuda</a></p>
+  			</div>
+  		</div>
+
+        <div class="container">
+
+            <div class="subtitulos-ayuda buzon-de-ayuda">
+                <h2>Buzón de ayuda</h2>
+                <p>Antes de contactarte por favor intenta encontrar las respuestas tu mismo.</p>
+            </div>
+
+            <div class="wrapper-list-links">
+                <ul class="list-unstyled">
+                    <li>
+                        <a class="color-brand ng-scope" ng-href="{{helpPath}}" target="_self">Necesito ayuda para usar el sitio.</a>
+                    </li>
+
+                    <li>
+                        <a class="color-brand ng-scope" ng-href="{{ruelesPath}}" target="_self">Tengo una duda sobre el reglamento.</a>
+                    </li>
+                </ul>
+
+            </div><!--/wrapper-list-links-->
+
+            <p>
+                Asunto
+            </p>
+            <select ng-model="option">
+                <option value="" disabled selected hidden>Selecciona un asunto</option>
+                <option value="Informa de un error en el sitio">Informa de un error en el sitio</option>
+                <option value="Pregunta">Pregunta</option>
+                <option value="Realiza una denuncia">Realiza una denuncia</option>
+                <option value="Sugerencia">Sugerencia</option>
+                <option value="Otro">Otro</option>
+            </select>
+
+            <p style="margin-top:15px">
+                Mensaje:
+            </p>
+            <textarea maxlength="{{maxLength}}" style="width: 100%; background: #f4f4f4; border-radius:10px !important; border-width:1px !important; border-style:solid !important; border-color:#00c074 !important " rows="5" ng-model="message"></textarea>
+
+            <div class="row" style="padding-top: 20px">
+                <a ng-click="send()" class="btn btn-primary display-block col-xs-3 col-xs-offset-9">Enviar</a>
+            </div>
+    </div>
+</div>

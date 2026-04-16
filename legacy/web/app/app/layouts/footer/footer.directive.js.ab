@@ -1,0 +1,13 @@
+## footer.directive.js
+
+**Summary:** Directive (`tuyoFooter`) that renders the site-wide footer. Checks authentication status and current route (landing vs other pages) to conditionally display login links and landing page references. Emits `footerLogin` event when the login link is clicked. Uses isolate scope.
+
+**Dependencies:**
+- app/app/layouts/footer/footer.module.js — registers directive on `footer` module
+- app/app/layouts/footer/footer.controller.js — uses `tuyoFooterController`
+- app/app/scripts/services/auth.js — Auth for checkLogin
+- app/app/app.service.js — appService (injected)
+
+**Tags:** footer, directive, layout, authentication
+
+**Implementation:** app/app/layouts/footer/footer.directive.js

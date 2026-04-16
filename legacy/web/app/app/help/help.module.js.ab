@@ -1,0 +1,10 @@
+## help.module.js
+
+**Summary:** Declares the `help` AngularJS module with a dependency on the `creation` module. This module serves as the root for the help/FAQ system, including FAQ areas, contact forms, site help topics, and individual topic detail views.
+
+**Dependencies:**
+- app/app/creation/ — depends on the `creation` module
+
+**Tags:** help, faq, module, angularjs
+
+**Implementation:** app/app/help/help.module.js

@@ -1,0 +1,19 @@
+# File: app/assets/css/desktop-prueba.css.ab
+# Purpose: Experimental/test variant of the desktop stylesheet — compiled on a Linux environment
+# Dependencies: []
+
+## Overview
+An earlier or alternative compiled version of the desktop stylesheet (4726 lines). Compiled on a Linux server using Ruby 2.3.0 (path: `/var/lib/gems/2.3.0/gems/compass-core-1.0.3`). Has the same structure as `app/assets/css/desktop.css` — Compass reset, ProximaNova fonts, desktop layout rules — but represents an older snapshot from when the project was developed on a Linux build environment. The name "prueba" (Spanish for "test/trial") indicates experimental status.
+
+## Interface
+No exports. Experimental stylesheet; not referenced in the current `app/index.html`.
+
+## Dependencies
+No project-level `.ab` dependencies. Requires ProximaNova font files at `../fonts/proximanova-*.ttf`.
+
+## Implementation Notes
+- 4726 lines (shorter than the current `desktop.css` at 8468 lines)
+- Compiled with Compass on Linux Ubuntu (Ruby 2.3.0 via `/var/lib/gems/`)
+- "prueba" = Spanish for "test"
+- Represents an earlier version of the desktop styles from an older Compass compilation run
+- Not actively loaded in production

@@ -1,0 +1,19 @@
+# File: app/styles/font-awesome.min.css.ab
+# Purpose: Font Awesome 4.6.3 icon font CSS — minified copy stored in app/styles/
+# Dependencies: []
+
+## Overview
+Minified copy of Font Awesome 4.6.3 CSS (4 lines). Provides the complete set of Font Awesome icon classes (`.fa`, `.fa-*`) used throughout the TuyoTools UI for icons, action buttons, and indicators. Loads the FontAwesome webfont files from `../fonts/fontawesome-webfont.*` relative paths.
+
+## Interface
+No exports. Loaded as a `<link>` stylesheet in `app/index.html`.
+
+## Dependencies
+No project-level dependencies. Vendor file. Requires font files at `app/fonts/fontawesome-webfont.{eot,woff2,woff,ttf,svg}`.
+
+## Implementation Notes
+- Font Awesome version: 4.6.3 (Font: SIL OFL 1.1, CSS: MIT License, by @davegandy)
+- Defines `@font-face` for the FontAwesome glyph font
+- Includes all `.fa-*` icon utility classes and modifier classes (`.fa-lg`, `.fa-2x`, `.fa-spin`, `.fa-fw`, etc.)
+- Identical in content to `app/assets/css/font-awesome.min.css`
+- The `app/styles/` copy is the older location; `app/assets/css/` is the current location

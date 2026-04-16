@@ -1,0 +1,75 @@
+<navigation-bar-desktop ></navigation-bar-desktop>
+
+<div ng-if="notFound" class="container lonely-tempalte">
+    <div class="card default-border-radius margin-bottom" style="padding-bottom: 15px; !important">
+        <div class="container" style="text-align: center !important;">
+            <h1>Este artículo ya no está disponible</h1>
+        </div>
+    </div>
+</div>
+
+
+<!-- LOGGED IN -->
+<div ng-if="loggedIn" class="container lonely-tempalte">
+
+    <div ng-if="!donationLoaded">
+        <loading back="grey"></loading>
+    </div>
+
+    <div ng-if="donationLoaded && !notFound">
+        <donation-post donation="donation" ng-if="!donation.appreciation" id='donation_{{donation.id}}'></donation-post>
+        <thanks-post donation='donation' ng-if='donation.appreciation'  id='donation_{{donation.id}}'></thanks-post>
+    </div>
+
+    <div>
+        <a class="btn btn-primary" style="width: 100% !important; font-size: 1.3em !important;" ui-sref="app.donations.dashboard"> VER TODOS LOS OFRECIMIENTOS </a>
+    </div>
+
+</div>
+
+
+<!-- NOT LOGGED IN -->
+<div ng-if="!loggedIn" class="container lonely-tempalte">
+
+    <div ng-if="!donationLoaded">
+        <loading back="grey"></loading>
+    </div>
+
+    <div ng-if="donationLoaded">
+
+        <!--   ***   THE DONATION   ***   -->
+        <div id='lonelyDonation' class="card default-border-radius margin-bottom" style="padding-bottom: 15px; !important" ng-show="true">
+            <div class="container">
+
+                <p class="with-icon" ng-repeat="address in donation.addresses track by $index" style="margin-left: 3px; !important">
+                    <i class="fa fa-map-marker" aria-hidden="true" style="top:0px; !important"></i>
+                    {{address.address.district}} {{address.district ? ", " + address.district : "" }}
+                </p>
+
+                <p style="white-space: pre-wrapl !important">{{donation.description}}</p><!--style="white-space: pre-wrap"-->
+            </div>
+
+            <!-- SLIDER -->
+            <div class="carousel slide" data-ride="carousel" data-interval="9999999999">
+
+                <div id="sliderContainer" ng-if='sliderImages.length !== 0'>
+                    <the-slider id='slider' images="sliderImages"></the-slider>
+                </div>
+
+                <div ng-if='sliderImages.length === 0'>
+                    <img src="assets/images/sin_foto.png" class="img-responsive"/>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+    <div class="card default-border-radius margin-bottom" style="padding-bottom: 15px; !important">
+        <div class="container text-center">
+            <div style="margin-bottom: 15px;"> Sé parte de la comunidad </div>
+            <a class="btn btn-primary" ui-sref="app.landing"> Registrate </a>
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,10 @@
+## endgood.directive.js
+
+**Summary:** Directive (element: "endGoodCancel") showing the successful neutral-rating result after cancellation. Displays role-specific text (donor sees "offering still available", applicant sees "no longer reserved") and provides buttons to select a new user or close.
+
+**Dependencies:**
+- app/app/calification/calification.module.js — registered on calification module
+
+**Tags:** calification, rating, cancelled, directive, ui
+
+**Implementation:** app/app/calification/cancelled/endGood/endgood.directive.js

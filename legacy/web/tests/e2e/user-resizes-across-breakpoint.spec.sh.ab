@@ -1,0 +1,124 @@
+# File: tests/e2e/user-resizes-across-breakpoint.spec.sh.ab
+# Purpose: Verify the listing feed layout transitions cleanly between 1-column and 3-column when the browser window is resized across the 768px breakpoint
+# Dependencies: [app/assets/scss/_feed-grid.scss.ab, app/app/post/post.directive.js.ab]
+
+## Overview
+An authenticated user resizes the browser window across the 768px mobile breakpoint while viewing the listing feed. The layout switches between single-column and 3-column without a page reload and without losing scroll position. This is handled entirely by the CSS media query — no JavaScript intervention.
+
+## Covers
+app/assets/scss/_feed-grid.scss.ab, app/app/post/post.directive.js.ab
+
+## Business Actor
+Authenticated user viewing the listing feed on a desktop browser who resizes the window.
+
+## Business Goal
+Experience a seamless layout transition when resizing the browser across the responsive breakpoint, without losing context or scroll position.
+
+## Test Accounts
+<!-- Credentials are defined here and used verbatim by the translator. Do NOT read from .env or any external file. -->
+<!-- Each actor gets a base email. At runtime the translator appends +<random_id> to make it unique per run. -->
+- Actor `user`: base email `e2e.resizeuser@test.local`, password `Test1234!`
+
+## Preconditions
+- Each run creates a fresh isolated account using `e2e.resizeuser+<random_id>@test.local` via the registration API before Scenario A runs. This account is fully isolated — no shared state with other specs or runs.
+- The test environment contains at least 6 existing donation listings (read-only seed data) so that scroll position can be meaningfully tested.
+- Initial viewport is set to desktop width (e.g., 1280x800).
+
+Teardown (after all scenarios, even on failure):
+- Delete the per-run account created during setup and all records it owns.
+- Do NOT delete shared read-only seed fixtures.
+
+## Business Scenarios
+- Scenario A (DB-1): User resizes from desktop to mobile — layout switches to single-column
+- Scenario B (DB-2): User resizes from mobile back to desktop — layout switches to 3-column
+
+## Actor Variants
+- EQ-1 — User resizes from desktop (>768px) to mobile (<768px) while viewing the feed -> DB-1
+- EQ-2 — User resizes from mobile (<768px) back to desktop (>768px) -> DB-2
+- EQ-3 — User resizes across the breakpoint multiple times in quick succession (stress / debounce case) -> DB-1, DB-2
+
+## Outcome Branches
+- DB-1 -> Layout switches to single-column without a page reload (EQ-1, EQ-3)
+- DB-2 -> Layout switches to 3-column without a page reload (EQ-2, EQ-3)
+
+## Business Boundaries
+- BV-1 (resize from 769px to 767px): crossing the breakpoint by minimum delta (2px), expect layout switch
+- BV-2 (resize from 767px to 769px): crossing back by minimum delta (2px), expect layout switch back
+
+## Acceptance Criteria
+- AC1: When the user resizes from desktop to below mobile breakpoint, the layout switches from 3-column to single-column without a page reload (DB-1, EQ-1)
+- AC2: When the user resizes from mobile back to desktop, the layout switches from single-column to 3-column without a page reload (DB-2, EQ-2)
+- AC3: Scroll position is preserved after resizing across the breakpoint in both directions (DB-1, DB-2)
+- AC4: Multiple rapid resizes across the breakpoint do not cause visual glitches or broken layout (EQ-3)
+- AC5: At the minimum boundary crossing (769px -> 767px), layout transitions cleanly (BV-1)
+- AC6: At the minimum boundary crossing back (767px -> 769px), layout transitions cleanly (BV-2)
+- AC7: After resize, no full-page reload occurs — the URL and application state remain intact (ABSENT-1)
+- AC8: After resize, scroll position is not lost (ABSENT-2)
+
+## Absent Elements
+- After resize: no full-page reload (URL and AngularJS state remain intact; no loading spinner for initial page load)
+- After resize: scroll position not lost (content the user was viewing remains visible or near-visible)
+
+## Steps
+
+### Scenario A: Desktop to mobile resize
+<!-- covers: DB-1, EQ-1, BV-1, ABSENT-1, ABSENT-2 -->
+1. Log in as the test user on a desktop viewport (1280x800)
+2. Navigate to the listing feed at $E2E_BASE_URL
+3. Wait for the feed to load and verify cards are in 3-column grid
+4. Scroll down so that some cards are visible below the initial viewport
+5. Note the current scroll position and the content visible on screen
+6. Resize the viewport to 767px width (crossing below the breakpoint)
+7. Verify AC1: cards are now displayed in a single column
+8. Verify AC7 (Absent): no full-page reload occurred — URL has not changed, no initial loading spinner appeared
+9. Verify AC3/AC8 (Absent): scroll position is preserved — the same approximate content area is visible
+10. Take a screenshot and save to $E2E_ARTIFACTS_DIR/resize-breakpoint/desktop-to-mobile.png
+
+### Scenario A (boundary): Minimum delta crossing 769px to 767px
+<!-- covers: BV-1 -->
+11. Set viewport to exactly 769px, verify 3-column layout is active
+12. Resize viewport to exactly 767px
+13. Verify AC5: layout transitions to single-column cleanly at this 2px boundary crossing
+14. Take a screenshot and save to $E2E_ARTIFACTS_DIR/resize-breakpoint/boundary-769-to-767.png
+
+### Scenario B: Mobile to desktop resize
+<!-- covers: DB-2, EQ-2, BV-2, ABSENT-1, ABSENT-2 -->
+1. Starting from the mobile viewport (767px) from Scenario A
+2. Note the current scroll position and visible content
+3. Resize the viewport back to desktop width (1280px)
+4. Verify AC2: cards are now displayed in a 3-column grid again
+5. Verify AC7 (Absent): no full-page reload occurred
+6. Verify AC3/AC8 (Absent): scroll position is preserved
+7. Take a screenshot and save to $E2E_ARTIFACTS_DIR/resize-breakpoint/mobile-to-desktop.png
+
+### Scenario B (boundary): Minimum delta crossing 767px to 769px
+<!-- covers: BV-2 -->
+8. Set viewport to exactly 767px, verify single-column layout
+9. Resize viewport to exactly 769px
+10. Verify AC6: layout transitions to 3-column cleanly at this 2px boundary crossing
+11. Take a screenshot and save to $E2E_ARTIFACTS_DIR/resize-breakpoint/boundary-767-to-769.png
+
+### Rapid resize stress test
+<!-- covers: EQ-3 -->
+1. Set viewport to desktop width (1280px), verify 3-column grid
+2. Rapidly resize the viewport across the breakpoint multiple times (e.g., 1280 -> 600 -> 1280 -> 600 -> 1280) in quick succession
+3. After the final resize to desktop, verify AC4: the 3-column grid is displayed correctly with no visual glitches or broken layout
+4. Verify all cards are properly arranged without overlapping or misalignment
+5. Take a screenshot and save to $E2E_ARTIFACTS_DIR/resize-breakpoint/rapid-resize-final.png
+
+## Coverage Map
+
+| Case ID | Type | Description | Scenario | Status |
+|---------|------|-------------|----------|--------|
+| DB-1 | Decision Branch | Desktop->mobile resize -> single-column | Scenario A | ✅ covered |
+| DB-2 | Decision Branch | Mobile->desktop resize -> 3-column | Scenario B | ✅ covered |
+| EQ-1 | Equivalence Class | Desktop to mobile resize | Scenario A | ✅ covered |
+| EQ-2 | Equivalence Class | Mobile back to desktop resize | Scenario B | ✅ covered |
+| EQ-3 | Equivalence Class | Rapid successive resizes | Rapid resize stress test | ✅ covered |
+| BV-1 | Boundary Value | 769px to 767px minimum delta | Scenario A (boundary) | ✅ covered |
+| BV-2 | Boundary Value | 767px to 769px minimum delta | Scenario B (boundary) | ✅ covered |
+| ABSENT-1 | Absent Element | No full-page reload after resize | Scenario A, Scenario B | ✅ covered |
+| ABSENT-2 | Absent Element | Scroll position not lost after resize | Scenario A, Scenario B | ✅ covered |
+
+## Artifacts
+All written to $E2E_ARTIFACTS_DIR/resize-breakpoint/ with explicit filenames.

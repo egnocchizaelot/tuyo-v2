@@ -1,0 +1,12 @@
+## cancel.directive.js
+
+**Summary:** Directive (element: "cancelDelivery") handling the cancelled reservation rating flow. Shows the other user involved, presents neutral/bad rating options, submits ratings via API.rateUser, and transitions between CALIFICATE, GOOD (neutral rated), and BAD (report form) sub-states. Handles close events from child endBad/endGood components.
+
+**Dependencies:**
+- app/app/calification/calification.module.js — registered on calification module
+- app/app/scripts/services/api.js — uses API.rateUser for rating submission
+- app/app/scripts/services/auth.js — uses Auth for user identification
+
+**Tags:** calification, rating, cancelled, directive, api
+
+**Implementation:** app/app/calification/cancelled/cancel.directive.js

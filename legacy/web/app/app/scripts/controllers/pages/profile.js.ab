@@ -1,0 +1,13 @@
+## profile.js
+
+**Summary:** Legacy controller (`ProfileFormPage`) and directives (`pwCheck`, `checkUser`) registered on the `TuyoTools` module for user profile management. The controller handles profile data loading, profile picture upload via FileUploader, user data modification with validation (including Uruguayan CI number validation), notification settings management, and password change with confirmation matching. The `pwCheck` directive validates password confirmation fields match. The `checkUser` directive guards routes by checking authentication status on route changes. Also includes a standalone `validateCi` function for Uruguayan national ID validation.
+
+**Dependencies:**
+- app/app/app/app.js — registers controller and directives on root `TuyoTools` module
+- app/app/scripts/services/api.js — API for user_profile_edit, obtain_user_profile_data, save_notification_settings, profile_picture_upload
+- app/app/scripts/services/auth.js — Auth for userData, loadUserData
+- angular-file-upload — FileUploader for profile picture uploads
+
+**Tags:** legacy, controller, directive, user-profile, validation
+
+**Implementation:** app/app/scripts/controllers/pages/profile.js

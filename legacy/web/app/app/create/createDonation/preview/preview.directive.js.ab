@@ -1,0 +1,11 @@
+## preview.directive.js
+
+**Summary:** Directive (element: "previewDonation") showing a preview of the donation before publishing. Assembles a preview donation object from collected wizard data, renders it using the donationPost component, and provides edit/publish/save action buttons. Sets button text to "Guardar" in edit mode.
+
+**Dependencies:**
+- app/app/create/createDonation/creation.module.js — registered on the creation module
+- app/app/scripts/services/auth.js — uses Auth for creator data in preview
+
+**Tags:** creation, donations, directive, preview, ui
+
+**Implementation:** app/app/create/createDonation/preview/preview.directive.js

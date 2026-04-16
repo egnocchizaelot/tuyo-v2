@@ -1,0 +1,10 @@
+## reserve.controller.js
+
+**Summary:** Controller for the reserve post component that defines reservation state constants (RESERVED, CANCELLED, COMPLETED) used by the reserve directive.
+
+**Dependencies:**
+- app/app/post/post.module.js — registered on the post module
+
+**Tags:** post, donations, reserve, controller
+
+**Implementation:** app/app/post/reserve/reserve.controller.js

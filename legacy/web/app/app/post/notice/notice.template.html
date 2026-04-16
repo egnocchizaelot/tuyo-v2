@@ -1,0 +1,48 @@
+<div class="card default-border-radius margin-bottom feed-grid-full-width">
+    <div class="container">
+
+        <div class="user-header">
+            <div class="avatar">
+                <a>
+                    <img src="assets/images/notice_user.png" style="width:100%; height:100%" onerror="this.onerror=null; if (this.src != 'error.jpg') this.src = 'assets/images/user2.png';"/>
+                </a>
+            </div>
+
+            <h3>
+                <a>{{notice.title}}</a>
+                <span>{{noticeDate}}</span>
+            </h3>
+        </div>
+
+        <div class="container contentHolder" ng-bind-html="htmlText"></div>
+    </div>
+
+
+    <div class="carousel slide" data-ride="carousel" data-interval="9999999999">
+        <img ng-src="{{notice.file_url}}" class="img-responsive" style="margin: auto !important;"/>
+    </div>
+
+
+    <div class="container footer text-right">
+        <div class="footer-btn-wrapper">
+
+
+                <div href="" class="footer-item btn-counter" ng-click="likeClick()" title="Like">
+                    <span>{{notice.count_likes}}</span>
+                    <strong ng-if="!notice.like" class="btn-svg btn-svg-like" title="Like">Likes</strong>
+                    <strong ng-if="notice.like" class="btn-svg btn-svg-like liked" title="Like">Likes</strong>
+                </div>
+
+
+
+                <div class="footer-item btn-counter" ng-click="showForumModal()" title="Mensajes">
+                    <span>{{notice.public_messages_count}}</span>
+                    <strong class="btn-svg btn-svg-chat">Chat</strong>
+                </div>
+
+        </div>
+
+    </div>
+
+
+</div>

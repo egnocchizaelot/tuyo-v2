@@ -1,0 +1,10 @@
+## step2.controller.js
+
+**Summary:** Controller for step 2 of donation creation, initializing pickup time text and mandatory checkbox state.
+
+**Dependencies:**
+- app/app/create/createDonation/creation.module.js — registered on the creation module
+
+**Tags:** creation, donations, controller, wizard
+
+**Implementation:** app/app/create/createDonation/step2/step2.controller.js

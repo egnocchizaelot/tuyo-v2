@@ -1,0 +1,13 @@
+## publicUser.directive.js
+
+**Summary:** Directive (`userPublic`) that implements the public user profile page. Fetches the target user's public data via `API.getPublicUser`, computes their star ranking, retrieves donation counts and history (delivered, received, appreciations), and broadcasts data to child directives. Implements scroll-based pagination for the history section. Uses isolate scope with `userId` binding.
+
+**Dependencies:**
+- app/app/pages/user/user.module.js — registers directive on the `user` module
+- app/app/pages/user/public/publicUser.controller.js — uses `userPublicController` as its controller
+- app/app/scripts/services/api.js — API for getPublicUser, getUserCounts, getDeliveredDonations, getReceivedDonations, getAppreciationDonations
+- app/app/app.service.js — appService (injected for configuration)
+
+**Tags:** user-profile, directive, public, donations
+
+**Implementation:** app/app/pages/user/public/publicUser.directive.js

@@ -1,0 +1,11 @@
+## donation_details.js
+
+**Summary:** Legacy controller (`DonationDetailsPage`) registered on the `TuyoTools` module for viewing individual donation details. Currently contains only commented-out API call code; the active implementation is effectively empty, suggesting this controller is deprecated or pending reimplementation.
+
+**Dependencies:**
+- app/app/app/app.js — registers controller on root `TuyoTools` module
+- app/app/scripts/services/api.js — API (injected, previously used for donation_details)
+
+**Tags:** legacy, controller, donations
+
+**Implementation:** app/app/scripts/controllers/pages/donation_details.js

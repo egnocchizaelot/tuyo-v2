@@ -1,0 +1,10 @@
+## settings.controller.js
+
+**Summary:** Empty controller for the settings publication popup. Serves as a placeholder controller required by the `settingsPublication` directive; all logic resides in the directive's link function.
+
+**Dependencies:**
+- app/app/popUps/popups.module.js — registers on the `popUps` module
+
+**Tags:** popups, settings, controller, angularjs
+
+**Implementation:** app/app/popUps/settings/settings.controller.js

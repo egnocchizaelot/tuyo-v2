@@ -1,0 +1,10 @@
+## message.controller.js
+
+**Summary:** Empty controller for the forum message component. Logic is in the directive.
+
+**Dependencies:**
+- app/app/contact/forums/forum.module.js — registered on forumModule
+
+**Tags:** forum, communication, controller
+
+**Implementation:** app/app/contact/forums/message/message.controller.js

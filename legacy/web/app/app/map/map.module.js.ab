@@ -1,0 +1,10 @@
+## map.module.js
+
+**Summary:** Declares the `map` AngularJS module with no external module dependencies. This module provides Google Maps integration for location selection, geocoding, and address management used in donation creation and filtering.
+
+**Dependencies:**
+- None
+
+**Tags:** map, location, google-maps, module, angularjs
+
+**Implementation:** app/app/map/map.module.js

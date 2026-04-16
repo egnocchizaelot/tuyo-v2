@@ -1,0 +1,102 @@
+<div id="desktop" class="body-bg-whtie pagina-ayuda">
+
+  		<div class="gray-light-border-bottom text-center ribbon-volver">
+  			<div class="container">
+  				<p><a class="back-to-help" ng-href='{{backPath}}' target="_self">< Volver a Sección de Ayuda</a></p>
+  			</div>
+  		</div>
+
+
+    	<div class="container">
+
+    		<h2>{{tema.topic_title}}</h2>
+            <span ng-if="topictext">
+                <div ng-bind-html="tema.topic_text">
+                </div>
+            </span>
+
+            <!-- This displays youtube videos only -->
+            <span ng-if="video">
+              <iframe width="394" height="315"
+                src="{{videoUrl}}">
+              </iframe>
+            </span>
+            <br ng-if="video">
+
+            <br ng-if="video">
+            <span ng-if="steps">
+                <div ng-bind-html="tema.topic_steps">
+                </div>
+            </span>
+            <br ng-if="steps">
+
+            <span ng-if="qa">
+                <div ng-bind-html="tema.topic_qa">
+                </div>
+            </span>
+
+
+            <span ng-if="tema.related_topics && tema.related_topics.length > 0">
+                <h2>Temas relacionados:</h2>
+                <div class="wrapper-list-links">
+                    <ul class="list-unstyled">
+                        <li ng-repeat="related in tema.related_topics track by $index">
+                            <a ng-click="goToTopic($index)">{{related.topic_title}}</a>
+                        </li>
+                    </ul>
+                </div><!--/wrapper-list-links-->
+            </span>
+
+    		<div class="row text-center bloques-respuestas-rapidas-horizontal">
+
+    			<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6" ng-click="goToArea('faq')" style="cursor: pointer; !important">
+    				<div class="bloques-respuestas-rapidas">
+    					<div class="img-wrapper">
+    						<img src="assets/images/respuestas-rapidas.svg" class="img-responsive">
+    					</div>
+    					<h4>Respuestas rápidas</h4>
+    					<p>Encuentra respuesta a las preguntas más frecuentes.</p>
+    					<a class="ver-mas">Ver más</a>
+    				</div><!-- /bloques-respuestas-rapidas -->
+    			</div>
+
+    			<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6" ng-click="goToArea('ayuda')" style="cursor: pointer; !important">
+    				<div class="bloques-respuestas-rapidas">
+    					<div class="img-wrapper">
+    						<img src="assets/images/ayuda-para-usar-el-sitio.svg" class="img-responsive">
+    					</div>
+    					<h4>Ayuda para usar el sitio</h4>
+    					<p>Como funciona el nuevo sitio explicado paso a paso.</p>
+    					<a class="ver-mas">Ver más</a>
+    				</div><!-- /bloques-respuestas-rapidas -->
+    			</div>
+    		</div><!-- /row -->
+
+    		<div class="row text-center">
+    			<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6" ng-click="goToArea('problema')" style="cursor: pointer; !important">
+    				<div class="bloques-respuestas-rapidas">
+    					<div class="img-wrapper">
+    						<img src="assets/images/tengo-un-problema.svg" class="img-responsive">
+    					</div>
+    					<h4>Tengo un problema!</h4>
+    					<p>Encuentra solución a los problemas más comunes.</p>
+    					<a  class="ver-mas">Ver más</a>
+    				</div><!-- /bloques-respuestas-rapidas -->
+    			</div>
+
+    			<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6" ng-click="goToArea('buzon')" style="cursor: pointer; !important">
+    				<div class="bloques-respuestas-rapidas">
+    					<div class="img-wrapper">
+    						<img src="assets/images/buzon-de-ayuda.svg" class="img-responsive">
+    					</div>
+    					<h4>Buzón de ayuda</h4>
+    					<p>Contacta a los administradores para recibir ayuda.</p>
+    					<a class="ver-mas">Ver más</a>
+    				</div><!-- /bloques-respuestas-rapidas -->
+    			</div>
+
+    		</div><!-- /row -->
+
+    	</div><!-- end container -->
+
+	</div>

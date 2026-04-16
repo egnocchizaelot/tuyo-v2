@@ -1,0 +1,19 @@
+<navigation-bar-desktop ></navigation-bar-desktop>
+
+<loading back="grey" ng-if="!notificationLoaded"></loading>
+
+<div class="container lonely-tempalte" ng-if="notificationLoaded">
+    <div class="card default-border-radius margin-bottom" style="padding-bottom: 15px; !important">
+        <!-- <div class="container">
+            <p style="white-space: pre-wrap; !important">{{text}}</p>
+        </div> -->
+
+        <div class="container" ng-bind-html="text" style="white-space: pre-wrap">
+
+        </div>
+
+        <div class="carousel slide" data-ride="carousel" data-interval="9999999999">
+            <img ng-src="{{image}}" class="img-responsive"/>
+        </div>
+    </div>
+</div>

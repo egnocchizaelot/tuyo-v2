@@ -1,0 +1,36 @@
+<div class="card gray-border-bottom">
+    <div class="container">
+        <div class="user-header">
+            <div class="avatar">
+               <img ng-if="user.picture_url" ng-src="{{imagePath}}" class="img-responsive" onerror="this.onerror=null; if (this.src != 'error.jpg') this.src = 'assets/images/user2.png';"/>
+              <img ng-if="!user.picture_url" src="assets/images/user2.png" class="img-responsive"/>
+            </div>
+            <h3> {{user.full_name}}</h3>
+            <ul class="list-unstyled list-inline star-points">
+                <li class="got-star" ng-repeat="x in ranking() track by $index"></li>
+            </ul>
+        </div><!-- end user header-->
+
+    </div><!-- end container -->
+</div><!-- end card -->
+
+
+<textarea maxlength="{{maxLength}}" class="form-control full-textarea bg-gray-lighter" rows="10" placeholder="Describe tu artículo..." ng-model="description"></textarea>
+
+<div id="uploadImages" class="nav-upload-images sticked-to-bottom-nav" ng-style="!isMobile ? {'bottom': '40px' } : {}">
+    <loading ng-if="loadingImgs"></loading>
+    <div class="container" ng-show="!loadingImgs">
+
+        <div class="uploaded-image" ng-repeat="image in donationImages track by $index" ng-if="image">
+            <div class="img-wrapper">
+                <img ng-src="{{image.img}}" class="img-responsive">
+            </div>
+            <a ng-click="removeImage($index)" class="fa fa-times" aria-hidden="true" title="Eliminar imagen"></a>
+        </div>
+
+        <div class="btn-upload-image" ng-show="!donationImages || donationImages.length < 3">
+            <input type="file" required ng-model="donationImages" accept="image/*" multiple app-filereader loading="loading" images="donationImages"/>
+            <i class="fa fa-camera" aria-hidden="true"></i>
+        </div>
+    </div>
+</div>

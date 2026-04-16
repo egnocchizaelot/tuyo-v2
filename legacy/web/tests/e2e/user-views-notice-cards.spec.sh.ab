@@ -1,0 +1,119 @@
+# File: tests/e2e/user-views-notice-cards.spec.sh.ab
+# Purpose: Verify notice and important notice cards span all 3 grid columns at full width on desktop, render normally on mobile, and dismiss correctly
+# Dependencies: [app/app/post/notice/notice.directive.js.ab, app/app/post/importantNotice/importantNotice.directive.js.ab, app/assets/scss/_feed-grid.scss.ab, app/app/post/post.directive.js.ab]
+
+## Overview
+An authenticated user views the listing feed on desktop and sees system notice and important notice cards spanning the full width of the 3-column grid. The notices preserve their content and readability. On mobile, the full-width class has no visual effect. Dismissing an important notice reflows the grid correctly.
+
+## Covers
+app/app/post/notice/notice.directive.js.ab, app/app/post/importantNotice/importantNotice.directive.js.ab, app/assets/scss/_feed-grid.scss.ab, app/app/post/post.directive.js.ab
+
+## Business Actor
+Authenticated user viewing the listing feed where system notices or important notices are present.
+
+## Business Goal
+See announcement and notice cards clearly spanning the full feed width on desktop, with correct display on mobile, and the ability to dismiss important notices.
+
+## Test Accounts
+<!-- Credentials are defined here and used verbatim by the translator. Do NOT read from .env or any external file. -->
+<!-- Each actor gets a base email. At runtime the translator appends +<random_id> to make it unique per run. -->
+- Actor `user`: base email `e2e.noticeuser@test.local`, password `Test1234!`
+
+## Preconditions
+- Each run creates a fresh isolated account using `e2e.noticeuser+<random_id>@test.local` via the registration API before Scenario A runs. This account is fully isolated — no shared state with other specs or runs.
+- The test environment contains at least one system notice and at least one important notice in the feed (read-only seed data or admin-created fixtures).
+- The test environment contains at least 3 donation listings interspersed with the notices.
+- Desktop viewport is set above 768px (e.g., 1280x800).
+
+Teardown (after all scenarios, even on failure):
+- Delete the per-run account created during setup and all records it owns.
+- Do NOT delete shared read-only seed fixtures (notices and listings).
+
+## Business Scenarios
+- Scenario A (DB-1): Desktop — notice card spans all 3 columns at full width
+- Scenario B (DB-2): Mobile — notice card renders normally in single-column (no regression)
+- Scenario C (DB-3): Desktop — important notice dismissed via 'Entendido' button, grid reflows
+
+## Actor Variants
+- EQ-1 — Desktop feed with a notice-type card among donation cards -> DB-1
+- EQ-2 — Desktop feed with an importantNotice-type card at the top of the feed -> DB-1
+- EQ-3 — Desktop feed with both notice and donation cards interspersed -> DB-1
+- EQ-4 — Mobile viewport with a notice card present -> DB-2
+
+## Outcome Branches
+- DB-1 -> Notice card with feed-grid-full-width class spans all 3 columns, full width, layout and readability preserved (EQ-1, EQ-2, EQ-3)
+- DB-2 -> Mobile: notice card displays at 100% column width, single-column layout unchanged (EQ-4)
+- DB-3 -> Important notice dismissed, card removed from DOM, grid reflows normally
+
+## Business Boundaries
+- BV-1 (notice content volume, minimal): short-text notice still spans full width
+- BV-2 (notice content volume, rich): long-text notice with embedded HTML and action buttons preserves readability at full grid width
+
+## Acceptance Criteria
+- AC1: On desktop, notice cards span all 3 columns at full width with layout and readability preserved (DB-1, EQ-1, EQ-2, EQ-3)
+- AC2: On desktop, important notice cards also span all 3 columns at full width (DB-1, EQ-2)
+- AC3: Notice and donation cards can be interspersed in the same feed — donations fill 3-column rows, notices span full width (DB-1, EQ-3)
+- AC4: On mobile, notice cards display at full column width in single-column layout with no regression (DB-2, EQ-4)
+- AC5: A minimal-content notice still spans the full 3-column width (BV-1)
+- AC6: A rich-content notice with long text preserves readability at full grid width (BV-2)
+- AC7: After dismissing an important notice via 'Entendido', the card is removed and the grid reflows without leaving a gap (DB-3)
+- AC8: No notice card renders at only one column width on desktop (ABSENT-1)
+- AC9: No notice card is wider than the viewport on mobile (ABSENT-2)
+
+## Absent Elements
+- When notice card is visible on desktop: no partial-width rendering — notice does not occupy only one grid column
+- When notice card is visible on mobile: no layout regression — card displays at 100% column width, not wider than viewport
+
+## Steps
+
+### Scenario A: Notice cards span full width on desktop
+<!-- covers: DB-1, EQ-1, EQ-2, EQ-3, BV-1, BV-2, ABSENT-1 -->
+1. Log in as the test user on a desktop viewport (1280x800)
+2. Navigate to the listing feed at $E2E_BASE_URL
+3. Wait for the feed to load with donation cards and notice cards visible
+4. Locate a system notice card in the feed
+5. Verify AC1: the notice card visually spans the full width of the 3-column grid (all 3 columns)
+6. Verify Absent: the notice is not rendered at a single-column width
+7. Verify the notice content (text, any embedded HTML) is readable at this full width
+8. Locate an important notice card (if visible at the top of the feed)
+9. Verify AC2: the important notice also spans all 3 columns at full width
+10. Verify AC3: donation cards around the notices are arranged in the normal 3-column grid
+11. Verify AC5: a short-text notice spans full width (BV-1)
+12. If a rich-content notice with long text or HTML is present, verify AC6: readability is preserved (BV-2)
+13. Take a screenshot and save to $E2E_ARTIFACTS_DIR/notice-cards/desktop-full-width.png
+
+### Scenario B: Notice cards on mobile — no regression
+<!-- covers: DB-2, EQ-4, ABSENT-2 -->
+1. Resize viewport to mobile width (375x812)
+2. Verify AC4: notice cards display at full column width in single-column layout
+3. Verify Absent: no notice card is wider than the viewport — no horizontal scrollbar
+4. Verify the mobile layout is identical to pre-grid behavior
+5. Take a screenshot and save to $E2E_ARTIFACTS_DIR/notice-cards/mobile-notice.png
+
+### Scenario C: Important notice dismissed — grid reflows
+<!-- covers: DB-3 -->
+1. Resize viewport back to desktop width (1280x800)
+2. Locate an important notice card in the feed
+3. Click the 'Entendido' (dismiss) button on the important notice
+4. Verify AC7: the important notice card is removed from the feed
+5. Verify the remaining cards reflow in the grid without leaving a gap where the notice was
+6. Take a screenshot and save to $E2E_ARTIFACTS_DIR/notice-cards/notice-dismissed.png
+
+## Coverage Map
+
+| Case ID | Type | Description | Scenario | Status |
+|---------|------|-------------|----------|--------|
+| DB-1 | Decision Branch | Desktop: notice spans 3 columns | Scenario A | ✅ covered |
+| DB-2 | Decision Branch | Mobile: notice in single column, no regression | Scenario B | ✅ covered |
+| DB-3 | Decision Branch | Important notice dismissed, grid reflows | Scenario C | ✅ covered |
+| EQ-1 | Equivalence Class | Notice card among donation cards | Scenario A | ✅ covered |
+| EQ-2 | Equivalence Class | Important notice at top of feed | Scenario A | ✅ covered |
+| EQ-3 | Equivalence Class | Notice and donations interspersed | Scenario A | ✅ covered |
+| EQ-4 | Equivalence Class | Notice on mobile viewport | Scenario B | ✅ covered |
+| BV-1 | Boundary Value | Minimal content notice, full-width span | Scenario A | ✅ covered |
+| BV-2 | Boundary Value | Rich content notice, readability preserved | Scenario A | ✅ covered |
+| ABSENT-1 | Absent Element | No partial-width notice on desktop | Scenario A | ✅ covered |
+| ABSENT-2 | Absent Element | No notice wider than viewport on mobile | Scenario B | ✅ covered |
+
+## Artifacts
+All written to $E2E_ARTIFACTS_DIR/notice-cards/ with explicit filenames.

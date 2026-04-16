@@ -1,0 +1,38 @@
+<div class="login-page">
+  <h1 data-annotation-alignment="bottom">
+    Si lo venís a buscar, es tuyo!
+  </h1>
+  <div id="fb-root"></div>
+  <form class="login-form" ng-animate name="login_form" novalidate>
+    <h4 style="color:#F00">
+        {{welcomeMsg}}
+    </h4>
+    <button type="button" ng-click="login_fb()" ng-hide="isLoggedIn" class="btn btn-default navbar-btn">
+        LOGIN FACEBOOK SERVIDOR
+    </button>
+    <button type="button" ng-click="logoutFacebook()" ng-hide="!isLoggedIn" class="btn btn-default navbar-btn">
+        LOGOUT
+    </button>
+  </form>
+  <!--form class="login-form" ng-animate ng-submit="submitLoginForm(login.user, login.password)" name="login_form" novalidate>
+    <div class="form-group has-feedback">
+      <input class="form-control" ng-model="login.user" autofocus placeholder="Usuario" type="text" name="user" ng-required="true" />
+      <span class="glyphicon glyphicon-user form-control-feedback"></span>
+    </div>
+    <div class="alert alert-danger" ng-show="(login_form.user.$dirty || login_form.$submitted) && login_form.user.$error.required">
+      Campo requerido.
+    </div>
+    <div class="form-group has-feedback">
+      <input class="form-control" ng-model="login.password" placeholder="Contraseña" type="password" name="password" ng-required="true" />
+      <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+    </div>
+    <div class="alert alert-danger" ng-show="(login_form.password.$dirty || login_form.$submitted) && login_form.password.$error.required">
+      Campo requerido.
+    </div>
+    <div class="alert alert-danger" ng-show="login_form.error_message">
+      {{login_form.error_message}}
+    </div>
+    <input class="btn btn-primary btn-lg btn-block" type="submit" value="Ingresar">
+  </form-->
+
+</div>

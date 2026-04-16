@@ -1,0 +1,24 @@
+<div class="tab-wrapper info-tab bg-white">
+
+<!--
+    <p class="gray-light-border-bottom location-icon" ng-repeat="address in addresses">
+        {{address}}
+    </p>
+-->
+    <p class="gray-light-border-bottom" ng-if="mutualsLoaded">
+        <span class="facebook-friends">{{mutualFriends.data.length}} amigos en común</span>
+        <span>{{nameList}}</span>
+    </p>
+
+    <!-- <p class="gray-light-border-bottom" ng-if="linkLoaded">
+        <a href="" ng-click="openFacebook()" class="ver-perfil-facebook">Ver perfil de Facebook</a>
+    </p> -->
+
+    <p class="bg-gray">Miembro desde: {{joinDate}}</p>
+    <p class="bg-gray gray-light-border-bottom">{{userData.description}}</p>
+
+    <div class="gray-light-border-bottom colaborador-wrapper" ng-if="userData.colaborator">
+        <p>{{userData.full_name}} es colaborador de este sitio. <a href="" class="color-brand">¡Quiero ser colaborador!</a></p>
+    </div>
+
+</div>

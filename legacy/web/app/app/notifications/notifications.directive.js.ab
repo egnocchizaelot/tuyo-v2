@@ -1,0 +1,14 @@
+## notifications.directive.js
+
+**Summary:** Main notifications directive (`<notifications>`) that manages the full notification lifecycle. Loads paginated notifications from the API on initialization, polls for new notifications every 3 seconds via `socketService`, tracks unread count, and handles show/hide toggling for both mobile (via state navigation to `mobileModal`) and web (dropdown toggle). Marks notifications as read via `API.notificationsRead()` when opened, broadcasts `moreNotifications` events to child components, and cleans up intervals and event listeners on destroy.
+
+**Dependencies:**
+- app/app/notifications/notifications.module.js — registers on the `notifications` module
+- app/app/notifications/notifications.controller.js — uses `notificationsController`
+- app/app/scripts/services/api.js — `API` service for `notifications()`, `notificationsRead()`
+- app/app/app.service.js — `appService` for `isMobile`, `notificationsPageSize`
+- app/app/socket.service.js — `socketService` for real-time notification polling via `newNotifications()` and `notificationCallback`
+
+**Tags:** notifications, directive, realtime, socket-io, polling, pagination, ui
+
+**Implementation:** app/app/notifications/notifications.directive.js

@@ -1,0 +1,12 @@
+## confirm.directive.js
+
+**Summary:** Directive (element: "confirmDelivery") handling the delivery confirmation rating flow. Shows the other user, presents bad/good/excellent rating buttons, submits ratings via API.rateUser, and transitions through CALIFICATE, GOOD, and BAD sub-states. Handles close events from endBad/endGood children.
+
+**Dependencies:**
+- app/app/calification/calification.module.js — registered on calification module
+- app/app/scripts/services/api.js — uses API.rateUser for rating submission
+- app/app/scripts/services/auth.js — uses Auth for user identification
+
+**Tags:** calification, rating, confirm, directive, api
+
+**Implementation:** app/app/calification/confirm/confirm.directive.js

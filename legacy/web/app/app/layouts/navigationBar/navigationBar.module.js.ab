@@ -1,0 +1,10 @@
+## navigationBar.module.js
+
+**Summary:** Declares the `navigationBar` AngularJS module with a dependency on `notifications`. Serves as the container for the main navigation bar component, which has separate implementations for desktop layout, logged-in state, and not-logged-in state.
+
+**Dependencies:**
+- app/app/pages/notifications/notifications.module.js — notifications module dependency
+
+**Tags:** navigation, module, layout
+
+**Implementation:** app/app/layouts/navigationBar/navigationBar.module.js

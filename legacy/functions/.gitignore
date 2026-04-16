@@ -1,0 +1,10 @@
+.nimbella
+.deployed
+.env
+__deployer__.zip
+__pycache__/
+node_modules
+package-lock.json
+.DS_Store
+/packages/tuyo/notifications/virtualenv/
+/packages/tuyo/emails/virtualenv/

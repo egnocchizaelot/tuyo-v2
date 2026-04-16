@@ -1,0 +1,19 @@
+
+<!--  CREATE DONATIONS  -->
+<create-donation ng-if="case === cases.CREATE_DONATION" donation="data.donation" close="close(result)"></create-donation>
+<create-appreciation ng-if="case === cases.CREATE_APPRECIATION" donation='data.donation' close="close(result)"></create-appreciation>
+
+
+<!--  FORUMS  -->
+<forum ng-if="case === cases.FORUM" donation='data.donation' reserved-or-not="data.reservedOrNot(state, sender, chat, donation)" close="close(result)" appreciation='appreciation'></forum>
+<private-chat ng-if="case === cases.CHAT" donation='data.donation' reserved-or-not='data.reservedOrNot' close="close(result)"></private-chat>
+<public-forum ng-if="case === cases.APPRECIATION_FORUM" data="data.donation" close="close(result)"> </public-forum>
+
+
+<!--  CALIFICATION  -->
+<cancel-delivery ng-if="case === cases.CALIFICATION && data.state === 'cancelled'" donation='data.donation' selected-user='data.selected' close='close(result)'></cancel-delivery>
+<confirm-delivery ng-if="case === cases.CALIFICATION && data.state === 'delivered'" donation='data.donation' close='close(result)'></confirm-delivery>
+
+
+<!--  NOTIFICATIONS  -->
+ <notifications-dropdown ng-if="case === cases.NOTIFICATIONS" notifications="data.notifications" close="close(result)"></notifications-dropdown>

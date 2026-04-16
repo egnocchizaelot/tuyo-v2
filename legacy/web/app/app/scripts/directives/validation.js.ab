@@ -1,0 +1,10 @@
+## validation.js
+
+**Summary:** Legacy directives (`validCi`, `validRut`, `dropzone`) registered on the `TuyoTools` module for form validation and file handling. `validCi` validates Uruguayan national ID (cedula) numbers using a checksum algorithm. `validRut` validates Uruguayan RUT (tax ID) numbers with a multiplicator-based verification digit check. `dropzone` handles drag-and-drop file uploads by reading dropped files and calling `scope.addfile()`. Also exports standalone `validateCi` and `validateRut` helper functions.
+
+**Dependencies:**
+- app/app/app/app.js — registers directives on root `TuyoTools` module
+
+**Tags:** legacy, directive, validation, file-upload
+
+**Implementation:** app/app/scripts/directives/validation.js

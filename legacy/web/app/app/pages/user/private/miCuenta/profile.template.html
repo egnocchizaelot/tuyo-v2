@@ -1,0 +1,82 @@
+<div class="tab-wrapper info-tab bg-white" id="miCuenta">
+
+    <h2 class="header"> Notificaciones </h2>
+
+
+    <!-- E-MAIL: START -->
+
+    <p class="profile-email gray-light-border-bottom" ng-if="!emailEditing">
+        {{email}}
+        <a ng-click='editMail()' class="btn-edit">Editar</a>
+    </p>
+
+    <div class="edit-row" ng-if="emailEditing">
+      <input id="email" class="form-control" placeholder="mail@mail.com" ng-model="email">
+      <a href='' ng-click='editMail()' class="btn btn-empty-primary">Cancelar</a>
+      <a href='' ng-click='changeEmail()' class="btn btn-primary">Ok</a>
+    </div><!-- /row -->
+
+    <div class="edit-row" ng-if="!userData.email_confirmed">
+        <i class="fa fa-warning" style="color: #ffc300; !important"></i>
+        <p style="display:inline"> e-mail no confirmado </p>
+        <a href='' ng-click='resendConfirmation()' class="btn btn-primary float-right">Reenviar</a>
+        <p class="color-primary color-brand" ng-if="refreshIndication">Si ya confirmaste el e-mail por favor refresca la página para ver los cambios</p>
+    </div>
+
+    <h2 class="header"> Ubicaciones </h2>
+
+    <!-- LOCATION: START -->
+    <p class="gray-light-border-bottom location-icon" ng-repeat="address in addresses track by $index">
+        {{address}}
+        <a href="" ng-click="editAddress($index)" class="btn-edit">Editar</a>
+    </p>
+
+    <a href="" ng-click="newAddress()" class="text-icon btn-agregar color-brand"> Agregar ubicación </a>
+    <!-- LOCATION: END -->
+
+
+
+    <h2 class="header"> Información </h2>
+
+    <p>Miembro desde: {{joinDate}}</p>
+
+    <!-- DESCRIPTION: START -->
+    <span ng-if="!descriptionEditing">
+        <p style="white-space: pre-wrap;">{{description}}</p>
+    </span>
+
+    <span  ng-if="descriptionEditing">
+        <textarea maxlength="{{maxLength}}" id="description" class="form-control full-textarea bg-gray-lighter" rows="5" placeholder="Cuenta algo sobre ti y tu experiencia en esta comunidad." ng-model="description"></textarea>
+    </span>
+
+    <p class="gray-light-border-bottom">
+        <span ng-if="!descriptionEditing">
+            <a href='' ng-if="!userData.description || userData.description === ''" class="color-brand" ng-click="editDescription()">Cuenta algo sobre ti y tu experiencia en esta comunidad.</a>
+            <a href='' ng-if="userData.description && userData.description !== ''" class="color-brand" ng-click="editDescription()">Editar</a>
+        </span>
+
+    </p>
+
+    <div class="edit-row" ng-if="descriptionEditing">
+      <!--<input id="email" class="form-control placeholder="mail@mail.com" ng-model="email">-->
+      <a href='' ng-click="editDescription()" class="btn btn-empty-primary">Cancelar</a>
+      <a href='' ng-click="changeDescription()" class="btn btn-primary">Ok</a>
+    </div><!-- /row -->
+
+
+    <!-- DESCRIPTION: END -->
+<!--
+    <div class="gray-light-border-bottom colaborador-wrapper" ng-if="!userData.colaborator">
+        <p>Conviértete en Colaborador y ayuda a que el sitio pueda seguir funcionando.</p>
+        <a href="" class="color-brand">Leer más</a>
+    </div>
+ -->
+    <h2 class="header" >Mi cuenta </h2>
+    <p class="bg-gray">
+        <a href="" class="color-brand" ng-click="logout()"> Cerrar sesión </a>
+    </p>
+
+    <p class="bg-gray">
+        <a href="" class="color-brand btn-eliminar" ng-click="deleteAccount()"> Eliminar mi cuenta </a>
+    </p>
+</div>

@@ -1,0 +1,11 @@
+## dashboardapplications.js
+
+**Summary:** Jasmine unit test specification for the `dashboardApplications` directive. Loads the `feApp` module, creates a new scope, then compiles the `<dashboard-applications>` element and asserts its rendered text content matches the expected placeholder string. This is a scaffold-generated test verifying the directive compiles and renders correctly.
+
+**Dependencies:**
+- app/pages/dashboard/ — the dashboard module containing the directive being tested
+- angular-mocks — provides `module()`, `inject()`, and `$compile` test helpers
+
+**Tags:** testing, jasmine, spec, directives
+
+**Implementation:** test/spec/directives/dashboardapplications.js

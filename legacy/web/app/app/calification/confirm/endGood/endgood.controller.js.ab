@@ -1,0 +1,10 @@
+## endgood.controller.js
+
+**Summary:** Empty controller for the good-outcome delivery confirmation result screen.
+
+**Dependencies:**
+- app/app/calification/calification.module.js — registered on calification module
+
+**Tags:** calification, rating, confirm, controller
+
+**Implementation:** app/app/calification/confirm/endGood/endgood.controller.js

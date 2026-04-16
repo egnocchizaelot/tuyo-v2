@@ -1,0 +1,18 @@
+# File: app/assets/css/bootstrap.css.ab
+# Purpose: Bootstrap 3.3.7 CSS framework — unminified development reference copy in app/assets/css/
+# Dependencies: []
+
+## Overview
+Unminified copy of Bootstrap v3.3.7 CSS (6757 lines). The readable, commented version of the Bootstrap framework for development inspection and debugging. The minified counterpart `bootstrap.min.css` is used in the running application.
+
+## Interface
+No exports. Reference/development file.
+
+## Dependencies
+No project-level dependencies. Vendor file.
+
+## Implementation Notes
+- Bootstrap version: 3.3.7
+- 6757 lines
+- Same content as `app/styles/bootstrap.css`
+- Used for developer reference; `bootstrap.min.css` is loaded in production

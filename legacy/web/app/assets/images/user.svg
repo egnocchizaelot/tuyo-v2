@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="200" height="200" viewBox="0 0 200 200">
+  <!-- Head -->
+  <circle cx="100" cy="60" r="40" fill="#FFFFE1" stroke="#3c3c3b" stroke-width="5"/>
+  
+  <!-- Body -->
+  <rect x="65" y="100" width="70" height="80" rx="30" fill="#96F8A7" stroke="#3c3c3b" stroke-width="5"/>
+  <rect x="55" y="140" width="90" height="50" rx="20" fill="#ffffff"/>
+
+  
+  <!-- Gift -->
+  <rect x="125" y="110" width="40" height="35" rx="5" fill="#FFFFE1" stroke="#3c3c3b" stroke-width="3"/>
+  <line x1="125" y1="120" x2="140" y2="120" stroke="#3c3c3b" stroke-width="3"/>
+  <line x1="150" y1="120" x2="165" y2="120" stroke="#3c3c3b" stroke-width="3"/>
+  <line x1="140" y1="110" x2="140" y2="145" stroke="#3c3c3b" stroke-width="3"/>
+  <line x1="150" y1="110" x2="150" y2="145" stroke="#3c3c3b" stroke-width="3"/>
+  <path d="M 124 110 Q 135 90, 145 110" stroke="#3c3c3b" stroke-width="3" fill="none"/>
+  <path d="M 145 110 Q 155 90, 164 110" stroke="#3c3c3b" stroke-width="3" fill="none"/>
+
+  <!-- Face details -->
+  <path d="M85 75 Q100 85 115 75" stroke="#3c3c3b" stroke-width="5" fill="none"/>
+</svg>

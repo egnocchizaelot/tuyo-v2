@@ -1,0 +1,10 @@
+## information.controller.js
+
+**Summary:** Controller (`publicInformationController`) for the public user information section. Listens for `mutualFriends` and `facebookLink` broadcast events to display Facebook mutual friends list (up to 20 names) and a link to the user's Facebook profile.
+
+**Dependencies:**
+- app/app/pages/user/user.module.js — registers controller on the `user` module
+
+**Tags:** user-profile, controller, public, facebook
+
+**Implementation:** app/app/pages/user/public/informacion/information.controller.js

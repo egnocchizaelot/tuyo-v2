@@ -1,0 +1,10 @@
+## config.js
+
+**Summary:** Configuration service that bridges the global deploy_config variables (BASE_URL, HELP_URL, MEDIA_URL) into an Angular-injectable `Config` service. Also defines a mock base URL (`_data/`) for local data stubs. This service is the single point where environment-specific URLs enter the Angular dependency injection system, consumed primarily by the API service to construct endpoint URLs.
+
+**Dependencies:**
+- app/deploy_config.js — provides the global BASE_URL, HELP_URL, and MEDIA_URL variables that this service reads at initialization
+
+**Tags:** configuration
+
+**Implementation:** app/app/scripts/services/config.js

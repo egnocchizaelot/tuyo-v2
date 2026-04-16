@@ -1,0 +1,10 @@
+## endgood.directive.js
+
+**Summary:** Directive (element: "endGoodConfirm") showing the successful delivery rating result. Displays a congratulatory message and provides buttons to create an appreciation or close.
+
+**Dependencies:**
+- app/app/calification/calification.module.js — registered on calification module
+
+**Tags:** calification, rating, confirm, directive, ui
+
+**Implementation:** app/app/calification/confirm/endGood/endgood.directive.js

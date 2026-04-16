@@ -1,0 +1,11 @@
+## actividad.controller.js
+
+**Summary:** Controller (`userActivityController`) for the private user activity tab. Manages three panels (reserved, offered, wanted) with their respective donation/reservation lists, pagination state, and count indicators. Listens for broadcast events to populate data, and transforms reserved donations by flattening the rates array into individual donation-rate pairs for display.
+
+**Dependencies:**
+- app/app/pages/user/user.module.js — registers controller on the `user` module
+- app/app/app.service.js — appService (injected for configuration)
+
+**Tags:** user-profile, controller, private, donations, activity
+
+**Implementation:** app/app/pages/user/private/actividad/actividad.controller.js

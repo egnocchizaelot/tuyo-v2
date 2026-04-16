@@ -1,0 +1,10 @@
+## step3.controller.js
+
+**Summary:** Controller for step 3 of donation creation, initializing map dimension defaults.
+
+**Dependencies:**
+- app/app/create/createDonation/creation.module.js — registered on the creation module
+
+**Tags:** creation, donations, controller, wizard, map
+
+**Implementation:** app/app/create/createDonation/step3/step3.controller.js

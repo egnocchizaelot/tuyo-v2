@@ -1,0 +1,28 @@
+<div class="card gray-border-bottom text-center">
+    <h3>Día / horario de retiro</h3>
+</div><!-- end card -->
+
+<div class="form-group input-with-icon">
+    <label for="exampleInputEmail1" class="hidden">Time</label>
+    <textarea maxlength="{{maxLength}}" class="form-control bg-gray-lighter" rows="3" placeholder="Escribe día / horario" id="timeText" ng-model="pickupTime"></textarea>
+    <span class="fa fa-clock-o" aria-hidden="true"></span>
+</div>
+
+
+<div class="container w-help-alert bot" ng-if="pickupTime === ''">
+    <div class="help-alert text-center">
+        <div class="container">
+            <p>Puedes escribir día y horario de tu conveniencia o dejarlo en blanco si tienes felixibilidad.</p>
+        </div>
+    </div>
+</div>
+
+<div class="container w-help-alert top sticked-to-bottom-nav" ng-if="pickupTime !== ''">
+    <div class="checkbox">
+        <label class="checkbox-wrapper">
+            <input type="checkbox" ng-model="checkbox.only">
+            <span>Únicamente en esta fecha/hora</span>
+        </label>
+    </div>
+    
+</div>

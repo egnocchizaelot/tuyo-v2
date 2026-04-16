@@ -1,0 +1,12 @@
+## .gitlab-ci.yml
+
+**Summary:** GitLab CI/CD pipeline configuration with a single `build_install` stage and three branch-based jobs: `build_dev` (devel branch), `build_test` (test branch), and `build_prod` (master branch). Each job uses nvm to install Node 8, runs `npm install` and `npx bower install`, installs ruby-compass for SCSS compilation, executes `npx grunt build --verbose`, then deploys the `dist/` output to `/var/www/tuyo_tools/www/` on the target server. Jobs are tagged with their respective environment runners (development, test, prod). The production job additionally installs nvm from scratch in its before_script.
+
+**Dependencies:**
+- package.json — npm dependencies installed during build
+- bower.json — Bower dependencies installed during build
+- Gruntfile.js — grunt build task executed to produce dist/ output
+
+**Tags:** ci-cd, gitlab, build, grunt, configuration
+
+**Implementation:** .gitlab-ci.yml

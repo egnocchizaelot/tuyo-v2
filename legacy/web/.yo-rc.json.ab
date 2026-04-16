@@ -1,0 +1,10 @@
+## .yo-rc.json
+
+**Summary:** Yeoman generator configuration file, currently an empty JSON object. Indicates the project was scaffolded using the Yeoman Angular generator (version 0.12.0 per project docs), but no generator-specific configuration options are persisted. Yeoman uses this file to mark the project root and store generator settings.
+
+**Dependencies:**
+- (none) — standalone configuration marker file
+
+**Tags:** configuration, build
+
+**Implementation:** .yo-rc.json

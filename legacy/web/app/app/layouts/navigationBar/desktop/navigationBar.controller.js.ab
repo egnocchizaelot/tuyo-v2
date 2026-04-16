@@ -1,0 +1,10 @@
+## navigationBar.controller.js
+
+**Summary:** Controller (`navigationBarControllerDesktop`) for the desktop navigation bar. Currently an empty controller placeholder that serves as the controller for the desktop navigation bar directive.
+
+**Dependencies:**
+- app/app/layouts/navigationBar/navigationBar.module.js — registers controller on `navigationBar` module
+
+**Tags:** navigation, controller, layout
+
+**Implementation:** app/app/layouts/navigationBar/desktop/navigationBar.controller.js

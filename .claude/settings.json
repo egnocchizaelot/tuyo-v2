@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(//Users/innovation/Documents/GitHub/**)",
+      "Bash(python architect/scaffold.py tuyo-v2 web api)",
+      "Bash(find . -name \".DS_Store\" -delete)",
+      "Bash(grep -A 10 \"DATABASES\" /Users/innovation/Documents/GitHub/tuyo-v2/api/TuyoTools/settings_*.py)"
+    ],
+    "additionalDirectories": [
+      "/Users/innovation/Documents/GitHub/tuyo-v2/tuyotoolsfe-devel/.git",
+      "/Users/innovation/Documents/GitHub/tuyo-v2/tuyotoolsfe-devel",
+      "/Users/innovation/Documents/GitHub/tuyo-v2/TuyoToolsBE-devel",
+      "/Users/innovation/Documents/GitHub/tuyo-v2/tuyo_functions-main"
+    ]
+  }
+}

@@ -1,0 +1,10 @@
+## step1.controller.js
+
+**Summary:** Controller for step 1 of donation creation, initializing empty description and donationImages array.
+
+**Dependencies:**
+- app/app/create/createDonation/creation.module.js — registered on the creation module
+
+**Tags:** creation, donations, controller, wizard
+
+**Implementation:** app/app/create/createDonation/step1/step1.controller.js

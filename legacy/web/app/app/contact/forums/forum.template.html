@@ -1,0 +1,97 @@
+
+<div class="foro-anotados foro has-replay-nav">
+
+    <nav class="navbar navbar-fixed-top secondary-navbar" id='navBar' style="z-index: 99; !important">
+        <div class="container">
+            <div class="modal-navbar-back">
+              <a href="" class="btn-back" ng-click="Back()">
+                  <i class="fa fa-angle-left" aria-hidden="true"></i>
+              </a>
+            </div>
+            <p>
+                <span>{{donation.user_applicants.length}}</span> Interesados
+            </p>
+
+            <a id="orderIcon" class="btn btn-empty-white float-right" ng-if="ImDonator" ng-click="showOrder()" title="Ordenar">
+                {{orderText}}
+                <i class="fa fa-caret-down"></i>
+            </a>
+
+        </div>
+    </nav>
+
+    <div class="collapse modal-ordenar" id="ordenar" ng-if="ImDonator" style="position: absolute; width: 100%; z-index: 98; background: #ffffff; !important">
+        <ul class="list-unstyled text-right">
+            <li class="icon-reputacion">
+                <a href="" ng-click="OrderBy(0)" title="Reputación">
+                    Reputación
+                </a>
+            </li>
+
+            <li class="icon-tegusta">
+                <a href="" ng-click="OrderBy(1)" title="Te gusta">
+                    Te gusta
+                </a>
+            </li>
+
+            <li class="icon-ordendellegada">
+                <a href="" ng-click="OrderBy(3)">
+                    Orden de llegada
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <div id='messageContainer' ng-controller="forumController" style="overflow: auto;" ng-style="!isMobile ? {'padding-bottom': '75px' } : {}">
+
+        <!-- <div ng-if="messagesLoaded" ng-repeat="message in donation.messageTree track by $index"> -->
+        <div ng-if="messagesLoaded" ng-repeat="message in donation.messageTree track by message.repeatId">
+            <forum-message
+                message='message'
+                already-applicant='donation.already_applicant'
+                reserved-donation="reservedDonation"
+                donor='ImDonator'
+                donation-id='donation.id'
+                delivered="delivered"
+                closed="closed">
+            </forum-message>
+        </div>
+
+        <span ng-if="!closed">
+
+            <div ng-if='!donation.already_applicant && !ImDonator && !delivered' class="nav-chat-replay bg-brand-color">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8 no-padding-right">
+                            <textarea maxlength="{{maxLength}}" id="messageText" rows="1" style="width:100% !important" placeholder="Escribir mensaje" ng-keyup="expand('#messageText')" ng-model='text.message' ng-enter='MeAnoto()'></textarea>
+                        </div>
+
+                        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                            <a class="btn btn-empty-white display-block" aria-hidden="true" ng-click="MeAnoto()" title="Me anoto">Me anoto</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </span>
+    </div>
+
+    <span ng-if="!closed">
+
+        <div ng-if='responding' class="nav-chat-replay bg-brand-color">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8 no-padding-right">
+                        <textarea maxlength="{{maxLength}}" id="respondingText" rows="1" style="width:100% !important" placeholder="Escribir mensaje" ng-keyup="expand('#respondingText')" ng-model='text.response' ng-enter='Respond()'></textarea>
+                    </div>
+
+                    <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                        <a class="btn btn-empty-white display-block" aria-hidden="true" ng-click="Respond()" title="Responder">Responder</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </span>
+
+</div>

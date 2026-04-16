@@ -1,0 +1,17 @@
+# File: grunt backup/vendor.css.ab
+# Purpose: Backup copy of the vendor CSS bundle from an earlier Grunt build snapshot
+# Dependencies: [vendor.css.ab]
+
+## Overview
+A preserved copy of a vendor.css build artifact stored in the `grunt backup/` directory. Similar content to `build files - backup/vendor.css` and the root `vendor.css` — concatenated minified third-party CSS (select2, slick-carousel, growl, etc.). Approximately 100 KB, slightly larger than the `build files - backup/` copy, suggesting a different build iteration.
+
+## Interface
+No exports. A reference/archive file not loaded by the running application.
+
+## Dependencies
+- vendor.css.ab — the canonical source this was copied from
+
+## Implementation Notes
+- File size: ~100 KB
+- Part of the `grunt backup/` directory, which appears to be a manually created snapshot of a Grunt build output at a different point in time than `build files - backup/`
+- Not referenced by any active build configuration or `app/index.html`

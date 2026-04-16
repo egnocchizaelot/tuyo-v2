@@ -1,0 +1,14 @@
+## post.module.js
+
+**Summary:** Declares the "post" AngularJS module, which is the core module for displaying donation posts, notices, and appreciations in the feed. Depends on popUps, forumModule, publicForum, chat, slickCarousel, modal, ngclipboard, and angular-inview modules.
+
+**Dependencies:**
+- app/app/popUps/popups.module.js — depends on popUps module for report/settings popups
+- app/app/contact/forums/forum.module.js — depends on forumModule for public forum features
+- app/app/contact/publicForum/publicForum.module.js — depends on publicForum module
+- app/app/contact/privateChat/privateChat.module.js — depends on chat module for private messaging
+- app/app/modals/modals.module.js — depends on modal module for dialog overlays
+
+**Tags:** post, donations, module, feed, ui
+
+**Implementation:** app/app/post/post.module.js

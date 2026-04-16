@@ -1,0 +1,55 @@
+# File: test/spec/directives/dashboard_desktop_feed_grid.js.ab
+# Purpose: Unit tests for the dashboardDesktop directive's infinite scroll and viewport-fill behavior under the 3-column feed grid layout
+# Dependencies: [app/app/pages/dashboard/desktop/dashboard.directive.js.ab]
+# Tags: [tag-testing, tag-jasmine, tag-directives, tag-dashboard, tag-infinite-scroll, tag-feed-grid]
+
+## Overview
+Jasmine unit test suite that verifies the dashboardDesktop directive correctly handles infinite scroll when the 3-column CSS Grid layout reduces the document height. When the desktop listing feed displays product cards arranged in a 3-column grid, the same number of cards occupies roughly one-third the vertical space. This can cause the next page of listings to never load automatically because the scroll threshold is already passed on initial render. These tests validate that infinite scroll still triggers correctly (AC6) and that real-time new listings do not cause disorienting reflow (AC10).
+
+## Interface
+Exports a Jasmine `describe` block registered under the `dashboard` module.
+
+## Dependencies
+- app/app/pages/dashboard/desktop/dashboard.directive.js.ab — the directive under test
+- angular-mocks — provides `module()`, `inject()`, `$compile`, `$httpBackend`
+- app/app/scripts/services/api.js — mocked via `$httpBackend` for getNextDonations/getPrevDonations
+
+## Test Cases
+
+- Test: AC6 — Infinite scroll still triggers correctly — auto-loads additional pages when initial content does not fill the viewport
+  - Given: The dashboard directive is compiled with a desktop viewport above the mobile breakpoint, and the initial API response returns a small batch of donations (e.g., 6 cards) that fills rows left to right, 3 per row
+  - When: The 3-column grid compresses those 6 cards into 2 rows, and the document height is less than the viewport height so the user cannot scroll toward the bottom of the feed
+  - Then: The directive automatically triggers a second call to getNextDonations so the next page of listings loads automatically, repeating until the page height exceeds the viewport height or the API returns empty results
+  - Note: The feed never silently stops loading because the scroll threshold was already passed on initial render
+
+- Test: AC6 — Scroll threshold fires correctly on a shorter page from grid compression
+  - Given: The directive is compiled with enough donations to just fill the viewport in the 3-column grid layout
+  - When: The user scrolls toward the bottom of the feed, reaching within 400px of the document bottom
+  - Then: The directive calls getNextDonations with the correct lastDate cursor and the next page of listings loads automatically
+
+- Test: AC6 — Loading stops when API returns empty results (no infinite loop)
+  - Given: The directive has loaded some pages and the viewport-fill check has been triggered because the 3-column grid reduced the document height
+  - When: The API responds with an empty elements array (all content has been loaded)
+  - Then: The directive does not make any further getNextDonations calls, the loading indicator is hidden, and donationsDone is set
+
+- Test: AC10 — Previous donations still load when user scrolls to top (real-time new listings)
+  - Given: The directive is compiled with the desktop listing feed displaying product cards in the 3-column grid
+  - When: The user scrolls to the very top of the page (scrollTop <= 0), simulating checking for real-time new listings
+  - Then: The directive calls getPrevDonations to load newer donations, and the new card appears at the top of the feed without causing existing visible cards to jump or reorder in a disorienting way
+
+- Test: Scroll listener and polling intervals are cleaned up on directive destroy
+  - Given: The directive is compiled with the scroll listener and periodic polling interval active
+  - When: The directive scope is destroyed ($destroy event fires)
+  - Then: The scroll event handler is removed from the window, polling intervals are cancelled, and no further getNextDonations or getPrevDonations calls are made
+
+## Test Framework
+Karma + Jasmine (as per ab_config)
+
+## Notes
+- Use `angular.mock.module('dashboard')` to load the module
+- Use `$httpBackend` to mock API.getNextDonations and API.getPrevDonations responses
+- Use `$compile` to compile the `<dashboard-desktop>` directive element into a test DOM
+- Mock `$window` properties (scrollTop, height) and `$(document).height()` to simulate scroll positions and viewport/document dimensions for both desktop viewport above the mobile breakpoint and the shorter document height caused by the 3-column grid
+- Follow existing test patterns from `test/spec/directives/dashboardapplications.js` — load the `feApp` module, create scope, compile element
+- The viewport-fill check is the critical behavioral change: when the 3-column grid reduces the document height below the viewport height, the directive must keep requesting pages until scrollable or the API returns empty. This ensures infinite scroll still triggers correctly even though the grid layout compresses vertical space
+- Test that the feed never silently stops loading because the scroll threshold was already passed on initial render

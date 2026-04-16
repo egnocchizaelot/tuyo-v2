@@ -1,0 +1,17 @@
+media/
+media_deprecated/
+*.pyc
+.idea/
+.settings/
+*.iml
+*.swp
+*.save
+*.save.1
+*.save.2
+static/
+mysql.cnf
+Dockerfile.enrique
+docker-compose.yaml
+docker-compose.yml
+TuyoTools/settings_base.py
+.DS_Store

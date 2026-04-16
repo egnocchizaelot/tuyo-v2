@@ -1,0 +1,12 @@
+## user.module.js
+
+**Summary:** Declares the `user` AngularJS module with a dependency on `post`, and configures the `app.user` UI Router state that maps the URL `profile/:id` to the `userProfileController` and `userProfile.template.html`. Accepts `id` and `state` parameters for routing to specific user profiles and profile tabs.
+
+**Dependencies:**
+- app/app/pages/post/post.module.js — post module dependency for donation post components
+- app/app/pages/user/userProfile.controller.js — userProfileController referenced in state config
+- app/app/pages/user/userProfile.template.html — template for the user profile state
+
+**Tags:** user-profile, module, routing
+
+**Implementation:** app/app/pages/user/user.module.js

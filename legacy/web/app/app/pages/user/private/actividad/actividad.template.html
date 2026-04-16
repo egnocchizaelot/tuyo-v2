@@ -1,0 +1,77 @@
+<div class="tab-wrapper" id="actividad">
+
+    <div class="menu-actividad-wrapper">
+        <ul class="menu-actividad text-center list-inline" id="menuActividad">
+
+            <li ng-class="{'active': activePanel === panel.RESERVED}">
+                <a href="" ng-click="changeActivePanel(panel.RESERVED)" role="tab" data-toggle="tab">
+                    <span ng-if="reservedCount === -1">...</span>
+                    <span ng-if="reservedCount !== -1">{{reservedCount}}</span>
+                    Reservas
+                </a>
+            </li>
+
+            <li ng-class="{'active': activePanel === panel.OFFERED}">
+                <a href="" ng-click="changeActivePanel(panel.OFFERED)" role="tab" data-toggle="tab">
+                    <span ng-if="offeredCount === -1">...</span>
+                    <span ng-if="offeredCount !== -1">{{offeredCount}}</span>
+                    Ofrecidos
+                </a>
+            </li>
+            <li ng-class="{'active': activePanel === panel.WANTED}">
+                <a href="" ng-click="changeActivePanel(panel.WANTED)" role="tab" data-toggle="tab">
+                    <span ng-if="wantedCount === -1">...</span>
+                    <span ng-if="wantedCount !== -1">{{wantedCount}}</span>
+                    Solicitados
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Tab panes -->
+    <div class="tab-content">
+
+        <!-- RESERVATIONS -->
+        <div ng-show="activePanel === panel.RESERVED">
+            <div ng-if="!reservatiosLoaded">
+                <loading back="grey" data='{text: "Cargando reservas..." }'></loading>
+            </div>
+
+            <div role="tabpanel" class="tab-pane active" id="reservas" ng-if="reservatiosLoaded">
+                <div ng-repeat="reservation in reservations track by $index">
+                    <reserve-post donation='reservation' in-view="onViewActivity($index, $inview)" id="{{panel.RESERVED}}_{{$index}}"></reserve-post>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- OFFERED DONATIONS -->
+        <div ng-show="activePanel === panel.OFFERED">
+            <div ng-if="!myDonationsLoaded">
+                <loading back="grey" data='{text: "Cargando donaciones..." }'></loading>
+            </div>
+
+            <div role="tabpanel" class="tab-pane margin-top" id="ofrecidos" ng-if="myDonationsLoaded">
+                <div ng-repeat="donation in myDonations track by $index">
+                    <donation-post donation='donation' in-view="onViewActivity($index, $inview)" id="{{panel.OFFERED}}_{{$index}}"></donation-post>
+                </div>
+            </div>
+        </div>
+
+        <!-- WANTED DONATIONS -->
+        <div ng-show="activePanel === panel.WANTED">
+            <div ng-if="!wantedDonationsLoaded">
+                <loading back="grey" data='{text: "Cargando donaciones..." }'></loading>
+            </div>
+
+            <div role="tabpanel" class="tab-pane margin-top" id="wanted" ng-if="wantedDonationsLoaded">
+                <div ng-repeat="donation in wantedDonations track by $index">
+                    <donation-post donation='donation' in-view="onViewActivity($index, $inview)" id="{{panel.WANTED}}_{{$index}}"></donation-post>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<loading back="grey" ng-if="activityReloading"></loading>

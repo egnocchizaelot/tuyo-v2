@@ -1,0 +1,11 @@
+## filter.directive.js
+
+**Summary:** Directive (`<filter-donations>`) that wraps the filter donations modal content. Provides an empty isolate scope and link function, delegating rendering to the filter template. Uses `filterDonationsController` for modal close behavior.
+
+**Dependencies:**
+- app/app/modals/modals.module.js — registers on the `modal` module
+- app/app/modals/filter/filter.controller.js — uses `filterDonationsController`
+
+**Tags:** modals, dialogs, directive, filter, ui
+
+**Implementation:** app/app/modals/filter/filter.directive.js

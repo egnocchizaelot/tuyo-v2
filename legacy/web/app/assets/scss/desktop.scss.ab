@@ -1,0 +1,59 @@
+# File: app/assets/scss/desktop.scss.ab
+# Purpose: Main SCSS entry point for desktop styles — adding the feed-grid partial import to enable the 3-column desktop listing feed grid
+# Dependencies: [app/assets/scss/_feed-grid.scss.ab, app/assets/scss/_variables.scss]
+# Tags: [tag-scss, tag-styles, tag-entry-point, tag-feed-grid]
+
+## Overview
+Main desktop SCSS entry point that imports Compass reset and aggregates all desktop-specific SCSS partials. This modification adds the new `_feed-grid` partial import to the existing import chain, enabling the 3-column grid layout for the desktop listing feed (AC1). Without this import, the `.feed-grid` and `.feed-grid-full-width` CSS classes have no effect.
+
+## Interface
+Compiles to the main desktop CSS file consumed by `index.html`. Enables the desktop listing feed to display product cards arranged in a 3-column grid that fills the available screen width.
+
+## Dependencies
+- `_variables.scss` — project-wide SCSS variables (colors, breakpoints, typography)
+- `_general-desktop.scss` — base desktop layout styles (includes the `600px` container width being overridden)
+- `_buttons.scss` — button styles
+- `_forms.scss` — form element styles
+- `_perfil-desktop.scss` — desktop profile styles
+- `_perfil.scss` — base profile styles
+- `_chat.scss` — chat interface styles
+- `_blocks-desktop.scss` — desktop content block/card styles (feed-grid extends these)
+- `_feed-grid.scss` — NEW: 3-column feed grid layout for the desktop listing feed
+- `_navbar-desktop.scss` — desktop navigation bar styles
+- `_paginas-corporativas.scss` — corporate pages styles
+- `_registrate.scss` — registration page styles
+- `_modales.scss` — modal dialog styles
+- `_responsive.scss` — responsive breakpoint overrides
+- `_landing.scss` — landing page styles
+
+## Implementation Notes
+
+### Import Order (AC1 — Desktop Shows 3-Column Grid)
+The existing import chain is:
+1. compass/reset
+2. variables
+3. general-desktop
+4. buttons
+5. forms
+6. perfil-desktop, perfil
+7. chat
+8. blocks-desktop
+9. **feed-grid** (NEW — inserted here, after blocks-desktop, enables the 3-column grid)
+10. navbar-desktop
+11. paginas-corporativas
+12. registrate
+13. modales
+14. responsive
+15. landing
+
+The `feed-grid` import is placed immediately after `blocks-desktop` because:
+- It overrides `.card .container` width rules defined in `_general-desktop.scss` so card content fills the grid column width instead of the hardcoded 600px
+- It extends block-level card styling from `_blocks-desktop.scss`
+- It must come before `_responsive.scss` so that responsive overrides for the mobile breakpoint can cascade on top if needed
+- The responsive media query inside `_feed-grid.scss` handles the transition between 3-column desktop and single-column mobile (AC2, AC5)
+
+### Exact Change
+Add `@import "feed-grid";` on a new line immediately after the existing `@import "blocks-desktop";` line. No other changes to the import chain.
+
+## Examples
+No usage examples needed — this is a build entry point. Once imported, the `.feed-grid` class in `post.template.html` activates the 3-column grid on desktop viewports above the mobile breakpoint.

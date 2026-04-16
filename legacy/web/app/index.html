@@ -1,0 +1,407 @@
+<!doctype html>
+<html>
+  <head>
+
+    <meta property="og:url" content="https://www.tuyo.uy"/>
+    <meta property="fb:app_id" content="FACEBOOK_APP_ID"/>
+    <meta property="og:title" content="Si lo venis a buscar, es tuyo!"/>
+    <meta property="og:description" content="La comunidad colaborativa más grande de Uruguay.
+                                              Un sitio donde regalar lo que ya no usás."/>
+    <meta property="og:image" content="https://www.tuyo.uy/assets/images/facebookTuyo.jpg"/>
+    <meta property="og:type" content="article"/>
+    <meta property="og:site_name" content="Tuyo" />
+
+    <meta charset="utf-8">
+    <meta name="google-site-verification" content="GOOGLE_SITE_VERIFICATION_TOKEN" />
+    <title>Tuyo.uy</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+
+    <!-- bower:css -->
+    <!-- build:css(.) styles/vendor.css -->
+    <link rel="stylesheet" href="bower_components/angular-growl-v2/build/angular-growl.css" />
+    <link rel="stylesheet" href="bower_components/angular-loading-bar/build/loading-bar.css" />
+    <link rel="stylesheet" href="bower_components/angular-ui-select/dist/select.css" />
+    <link rel="stylesheet" href="bower_components/animate.css/animate.css" />
+    <link rel="stylesheet" href="bower_components/select2/select2.css" />
+    <link rel="stylesheet" href="bower_components/angular-tooltips/dist/angular-tooltips.min.css" />
+    <link rel="stylesheet" href="bower_components/slick-carousel/slick/slick.css" />
+    <link rel="stylesheet" href="bower_components/slick-carousel/slick/slick-theme.css" />
+    <!-- endbower -->
+    <!-- endbuild -->
+
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/css/font-awesome.min.css" rel="stylesheet">
+    <link href="assets/css/desktop.css" media="screen, projection" rel="stylesheet" type="text/css" />
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=GA_TRACKING_ID"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'GA_TRACKING_ID');
+    </script>
+    <script type="text/javascript" src="//www.youtube.com/iframe_api"></script>
+
+    <!-- Esta linea se comenta para test y produccion -->
+    <script src="deploy_config.js"></script>
+
+  </head>
+  <body ng-app="TuyoTools">
+    <div class="ng-cloak" ui-view autoscroll="true" style="overflow: hidden;"></div>
+
+    <!-- bower:js -->
+    <!-- build:js(.) scripts/vendor.js -->
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.js"></script>
+    <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+    <script src="bower_components/angular-cookies/angular-cookies.js"></script>
+    <script src="bower_components/angular-file-upload/angular-file-upload.min.js"></script>
+    <script src="bower_components/angular-growl-v2/build/angular-growl.js"></script>
+    <script src="bower_components/angular-loading-bar/build/loading-bar.js"></script>
+    <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="bower_components/angular-ui-select/dist/select.js"></script>
+    <script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap.js"></script>
+    <script src="bower_components/select2/select2.js"></script>
+    <script src="bower_components/ui-select/src/select3.js"></script>
+    <script src="bower_components/angular-permission/dist/angular-permission.js"></script>
+    <script src="bower_components/angular-sortable-view/src/angular-sortable-view.js"></script>
+    <script src="bower_components/ng-file-upload/ng-file-upload.js"></script>
+    <script src="bower_components/ngmap/build/scripts/ng-map.js"></script>
+    <script src="bower_components/ngstorage/ngStorage.js"></script>
+    <script src="bower_components/jquery-file-download/src/Scripts/jquery.fileDownload.js"></script>
+    <!-- <script src="bower_components/ng-facebook/ngFacebook.js"></script> -->
+    <script src="bower_components/moment/moment.js"></script>
+    <script src="bower_components/angular-moment/angular-moment.js"></script>
+    <script src="bower_components/angular-modal-service/dst/angular-modal-service.js"></script>
+    <script src="bower_components/angular-socialshare/dist/angular-socialshare.min.js"></script>
+    <script src="bower_components/gsap/src/uncompressed/TweenMax.js"></script>
+    <script src="bower_components/clipboard/dist/clipboard.js"></script>
+    <script src="bower_components/ngclipboard/dist/ngclipboard.js"></script>
+    <script src="bower_components/angular-inview/angular-inview.js"></script>
+    <script src="bower_components/jquery-ui/jquery-ui.js"></script>
+    <script src="bower_components/angular-tooltips/dist/angular-tooltips.min.js"></script>
+    <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+    <script src="bower_components/slick-carousel/slick/slick.min.js"></script>
+    <script src="bower_components/angular-slick-carousel/dist/angular-slick.js"></script>
+    <script src="bower_components/parallax.js/parallax.min.js"></script>
+    <script src="bower_components/lodash/lodash.js"></script>
+    <script src="bower_components/moment/locale/es.js"></script>
+    <script src="bower_components/exif-js/exif.js"></script>
+    <script src="bower_components/angular-sanitize/angular-sanitize.min.js"></script>
+    <!-- endbuild -->
+    <!-- endbower -->
+
+
+    <!-- Para uso de GoogleMaps -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=GOOGLE_MAPS_API_KEY&libraries=places" async defer></script>
+    <!-- End GoogleMaps -->
+
+    <!-- build:js scripts/scripts.js -->
+    <script src="app/app.js"></script>
+    <script src="app/app_config.js"></script>
+    <script src="app/routers.js"></script>
+    <script src="app/app.service.js"></script>
+    <script src="app/socket.service.js"></script>
+
+    <script src="app/scripts/controllers/site.js"></script>
+    <script src="app/scripts/controllers/auth_aux.js"></script>
+    <script src="app/scripts/controllers/pages/login.js"></script>
+    <script src="app/scripts/controllers/pages/dashboard.js"></script>
+    <script src="app/scripts/controllers/pages/admin_dashboard.js"></script>
+    <script src="app/scripts/controllers/pages/new_donation.js"></script>
+    <script src="app/scripts/controllers/pages/profile.js"></script>
+    <script src="app/scripts/controllers/pages/donation_details.js"></script>
+    <script src="app/scripts/controllers/layouts/donations.js"></script>
+    <script src="app/scripts/services/auth.js"></script>
+    <script src="app/scripts/services/api.js"></script>
+    <script src="app/scripts/services/config.js"></script>
+    <script src="app/scripts/services/authorizer.js"></script>
+    <script src="app/scripts/services/filter_fields.js"></script>
+    <script src="app/scripts/services/facebook.js"></script>
+    <script src="app/scripts/directives/filters.js"></script>
+    <script src="app/scripts/directives/dashboard_donations.js"></script>
+    <script src="app/scripts/directives/donations_list_item.js"></script>
+    <script src="app/scripts/directives/validation.js"></script>
+    <script src="app/scripts/directives/donations_header.js"></script>
+
+    <!-- Extras -->
+    <script src="app/extras/tuyoAux.module.js"></script>
+        <script src="app/extras/onEnter.directive.js"></script>
+
+    <!-- Pages -->
+    <script src="app/pages/staticPages/staticPages.module.js"></script>
+
+        <script src="app/pages/staticPages/art_prohibidos/artprohibidos.controller.js"></script>
+        <script src="app/pages/staticPages/colaboradores/colaboradores.controller.js"></script>
+        <script src="app/pages/staticPages/confirmationSuccess/confirmationSuccess.controller.js"></script>
+        <script src="app/pages/staticPages/proyecto/proyecto.controller.js"></script>
+        <script src="app/pages/staticPages/reglamento/reglamento.controller.js"></script>
+        <script src="app/pages/staticPages/terminos_y_condiciones/terycon.controller.js"></script>
+        <script src="app/pages/staticPages/troubleshooting/troubleshooting.controller.js"></script>
+        <script src="app/pages/staticPages/wrongEmailLink/wrongEmailLink.controller.js"></script>
+
+    <script src="app/pages/landing/landing.module.js"></script>
+        <script src="app/pages/landing/landing.controller.js"></script>
+
+    <!-- Navigarion bar -->
+    <script src="app/layouts/navigationBar/navigationBar.module.js"></script>
+
+        <script src="app/layouts/navigationBar/desktop/navigationBar.controller.js"></script>
+        <script src="app/layouts/navigationBar/desktop/navigationBar.directive.js"></script>
+
+        <script src="app/layouts/navigationBar/loggedIn/navBarYes.controller.js"></script>
+        <script src="app/layouts/navigationBar/loggedIn/navBarYes.directive.js"></script>
+
+        <script src="app/layouts/navigationBar/notLoggedin/navBarNotL.controller.js"></script>
+        <script src='app/layouts/navigationBar/notLoggedin/navBarNotL.directive.js'></script>
+
+    <!-- Footer -->
+    <script src="app/layouts/footer/footer.module.js"></script>
+
+        <script src="app/layouts/footer/footer.controller.js"></script>
+        <script src="app/layouts/footer/footer.directive.js"></script>
+
+    <!-- Notifications -->
+    <script src="app/notifications/notifications.module.js"></script>
+
+        <script src="app/notifications/notifications.controller.js"></script>
+        <script src="app/notifications/notifications.directive.js"></script>
+
+            <script src="app/notifications/notificationDropdown/notificationDropdown.controller.js"></script>
+            <script src="app/notifications/notificationDropdown/notificationDropdown.directive.js"></script>
+
+            <script src="app/notifications/notification/notification.controller.js"></script>
+            <script src="app/notifications/notification/notification.directive.js"></script>
+
+        <script src="app/notifications/lonelyNotification/lonelyNotification.controller.js"></script>
+
+    <!-- Post -->
+    <script src="app/post/post.module.js"></script>
+    <script src="app/post/post.service.js"></script>
+    <script src="app/post/post_mobile.service.js"></script>
+    <script src="app/post/post_web.service.js"></script>
+
+        <script src="app/post/post.controller.js"></script>
+        <script src="app/post/post.directive.js"></script>
+
+            <script src="app/post/donation/donation.controller.js"></script>
+            <script src="app/post/donation/donation.directive.js"></script>
+            <script src="app/post/donation/donation.service.js"></script>
+
+            <script src="app/post/thanks/thanks.controller.js"></script>
+            <script src="app/post/thanks/thanks.directive.js"></script>
+
+                <script src="app/post/carousel/carousel.controller.js"></script>
+                <script src="app/post/carousel/carousel.directive.js"></script>
+                <script src="app/post/carousel/carousel.image.directive.js"></script>
+
+            <script src="app/post/reserve/reserve.controller.js"></script>
+            <script src="app/post/reserve/reserve.directive.js"></script>
+
+            <script src="app/post/notice/notice.controller.js"></script>
+            <script src="app/post/notice/notice.directive.js"></script>
+
+            <script src="app/post/importantNotice/importantNotice.controller.js"></script>
+            <script src="app/post/importantNotice/importantNotice.directive.js"></script>
+
+        <script src="app/post/lonelyDonation/lonely.controller.js"></script>
+
+    <!-- Forums -->
+    <script src="app/contact/forums/forum.module.js"></script>
+    <script src="app/contact/forums/forum.services.js"></script>
+
+        <script src="app/contact/forums/forum.controller.js"></script>
+        <script src="app/contact/forums/forum.directive.js"></script>
+
+            <script src="app/contact/forums/message/message.controller.js"></script>
+            <script src="app/contact/forums/message/message.directive.js"></script>
+
+                <script src="app/contact/forums/message/childMessage/childMessage.controller.js"></script>
+                <script src="app/contact/forums/message/childMessage/childMessage.directive.js"></script>
+
+
+    <script src="app/contact/publicForum/publicForum.module.js"></script>
+
+        <script src="app/contact/publicForum/publicForum.controller.js"></script>
+        <script src="app/contact/publicForum/publicForum.directive.js"></script>
+
+            <script src="app/contact/publicForum/publicMessage/publicMessage.controller.js"></script>
+            <script src="app/contact/publicForum/publicMessage/publicMessage.directive.js"></script>
+
+    <!-- Chat -->
+    <script src="app/contact/privateChat/privateChat.module.js"></script>
+
+        <script src="app/contact/privateChat/privateChat.controller.js"></script>
+        <script src="app/contact/privateChat/privateChat.directive.js"></script>
+
+            <script src="app/contact/privateChat/block/block.controller.js"></script>
+            <script src="app/contact/privateChat/block/block.directive.js"></script>
+
+    <!-- Popups -->
+    <script src="app/popUps/popups.module.js"></script>
+
+        <script src="app/popUps/reportPublication/report.controller.js"></script>
+        <script src="app/popUps/reportPublication/report.directive.js"></script>
+
+        <script src="app/popUps/settings/settings.controller.js"></script>
+        <script src="app/popUps/settings/settings.directive.js"></script>
+
+
+    <!-- Dashboard -->
+    <script src="app/pages/dashboard/dashboard.module.js"></script>
+        <script src="app/pages/dashboard/desktop/dashboard.controller.js"></script>
+        <script src="app/pages/dashboard/desktop/dashboard.directive.js"></script>
+
+    <!-- Modals -->
+    <script src="app/modals/modals.module.js"></script>
+    <script src="app/modals/modals.service.js"></script>
+
+        <script src="app/modals/basicModal/basicModal.controller.js"></script>
+        <script src="app/modals/cancelModal/cancelModal.controller.js"></script>
+        <script src="app/modals/basicSingleButtonModal/basicSingleButtonModal.controller.js"></script>
+
+        <script src="app/modals/meAnoto/meAnoto.controller.js"></script>
+        <script src="app/modals/chatModal/chat.controller.js"></script>
+        <script src="app/modals/publicForum/publicForum.controller.js"></script>
+        <script src="app/modals/privateChat/privateChat.controller.js"></script>
+        <script src="app/modals/appreciation/appreciation.controller.js"></script>
+        <script src="app/modals/createDonation/createDonation.controller.js"></script>
+        <script src="app/modals/reserveConfirmation/reserveConfirmation.controller.js"></script>
+
+        <script src="app/modals/calification/confirm/calificationConfirmModal.controller.js"></script>
+        <script src="app/modals/calification/cancel/calificationCancelModal.controller.js"></script>
+
+        <script src="app/modals/loading/loading.controller.js"></script>
+
+        <script src="app/modals/filter/filter.controller.js"></script>
+        <script src="app/modals/filter/filter.directive.js"></script>
+
+        <script src="app/modals/mobilePage/mobilePage.controller.js"></script>
+
+    <!-- User pages -->
+    <script src="app/pages/user/user.module.js"></script>
+    <script src="app/pages/user/userProfile.controller.js"></script>
+
+        <script src="app/pages/user/private/user.controller.js"></script>
+        <script src="app/pages/user/private/user.directive.js"></script>
+
+            <script src="app/pages/user/private/actividad/actividad.controller.js"></script>
+            <script src="app/pages/user/private/actividad/actividad.directive.js"></script>
+
+            <script src="app/pages/user/private/historial/historial.controller.js"></script>
+            <script src="app/pages/user/private/historial/historial.directive.js"></script>
+
+            <script src="app/pages/user/private/miCuenta/profile.controller.js"></script>
+            <script src="app/pages/user/private/miCuenta/profile.directive.js"></script>
+
+        <script src="app/pages/user/public/publicUser.controller.js"></script>
+        <script src="app/pages/user/public/publicUser.directive.js"></script>
+
+            <script src="app/pages/user/public/historial/publicHistorial.controller.js"></script>
+            <script src="app/pages/user/public/historial/publicHistorial.directive.js"></script>
+
+            <script src="app/pages/user/public/informacion/information.controller.js"></script>
+            <script src="app/pages/user/public/informacion/information.directive.js"></script>
+
+    <!-- Creations -->
+    <script src="app/create/createDonation/creation.module.js"></script>
+
+        <script src="app/create/createDonation/creation.controller.js"></script>
+        <script src="app/create/createDonation/creation.directive.js"></script>
+
+            <script src="app/create/createDonation/step1/step1.controller.js"></script>
+            <script src="app/create/createDonation/step1/step1.directive.js"></script>
+
+            <script src="app/create/createDonation/step2/step2.controller.js"></script>
+            <script src="app/create/createDonation/step2/step2.directive.js"></script>
+
+            <script src="app/create/createDonation/step3/step3.controller.js"></script>
+            <script src="app/create/createDonation/step3/step3.directive.js"></script>
+
+            <script src="app/create/createDonation/preview/preview.controller.js"></script>
+            <script src="app/create/createDonation/preview/preview.directive.js"></script>
+
+    <script src="app/create/createAppreciation/createAppreciation.module.js"></script>
+
+        <script src="app/create/createAppreciation/createAppreciation.controller.js"></script>
+        <script src="app/create/createAppreciation/createAppreciation.directive.js"></script>
+
+            <script src="app/create/createAppreciation/preview/preview.controller.js"></script>
+            <script src="app/create//createAppreciation/preview/preview.directive.js"></script>
+
+    <script src="app/create/appFileReader.js"></script>
+
+    <!-- Map -->
+    <script src="app/map/map.module.js"></script>
+
+        <script src="app/map/map.services.js"></script>
+
+        <script src="app/map/map.controller.js"></script>
+        <script src="app/map/map.directive.js"></script>
+
+            <script src="app/map/mapPage/mapPage.controller.js"></script>
+
+    <!-- Calification -->
+    <script src="app/calification/calification.module.js"></script>
+
+        <script src="app/calification/confirm/confirm.controller.js"></script>
+        <script src="app/calification/confirm/confirm.directive.js" ></script>
+
+            <script src="app/calification/confirm/endGood/endgood.controller.js"></script>
+            <script src="app/calification/confirm/endGood/endgood.directive.js"></script>
+
+            <script src="app/calification/confirm/endBad/endbad.controller.js"></script>
+            <script src="app/calification/confirm/endBad/endbad.directive.js"></script>
+
+        <script src="app/calification/cancelled/cancel.controller.js"></script>
+        <script src="app/calification/cancelled/cancel.directive.js"></script>
+
+            <script src="app/calification/cancelled/endGood/endgood.controller.js"></script>
+            <script src="app/calification/cancelled/endGood/endgood.directive.js"></script>
+
+            <script src="app/calification/cancelled/endBad/endbad.controller.js"></script>
+            <script src="app/calification/cancelled/endBad/endbad.directive.js"></script>
+
+    <!-- Loading -->
+    <script src="app/loading/loading.module.js"></script>
+    <script src="app/loading/loading.service.js"></script>
+
+        <script src="app/loading/loading.controller.js"></script>
+        <script src="app/loading/loading.directive.js"></script>
+
+    <!-- Loading -->
+    <script src="app/reports/reports.module.js"></script>
+
+        <script src="app/reports/comment/reportComment.controller.js"></script>
+        <script src="app/reports/comment/reportComment.directive.js"></script>
+
+        <script src="app/reports/donation/reportDonation.controller.js"></script>
+        <script src="app/reports/donation/reportDonation.directive.js"></script>
+
+        <script src="app/reports/appreciations/reportAppreciation.controller.js"></script>
+        <script src="app/reports/appreciations/reportAppreciation.directive.js"></script>
+
+    <!-- Help -->
+    <script src="app/help/help.module.js"></script>
+    <script src="app/help/help.controller.js"></script>
+
+        <script src="app/help/siteHelp/siteHelp.controller.js"></script>
+        <script src="app/help/siteHelp/siteHelp.directive.js"></script>
+
+        <script src="app/help/area/area.controller.js"></script>
+        <script src="app/help/area/area.directive.js"></script>
+
+        <script src="app/help/contact/contact.controller.js"></script>
+        <script src="app/help/contact/contact.directive.js"></script>
+
+        <script src="app/help/tema/tema.controller.js"></script>
+        <script src="app/help/tema/tema.directive.js"></script>
+
+    <!-- endbuild -->
+</body>
+</html>

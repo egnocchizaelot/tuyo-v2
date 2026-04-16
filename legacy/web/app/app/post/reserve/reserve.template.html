@@ -1,0 +1,115 @@
+<div class="card-reserva">
+    <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+            <div class="row margin-bottom">
+
+                <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                    <img ng-src="{{img}}" class="img-responsive">
+                </div>
+
+                <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8 no-padding-left">
+                    <a ng-href="{{goToUser()}}" target="_self" title="Resrvado para {{name}}">
+                        <p class="reservado-para">{{title}} <span>{{name}}</span></p>
+                    </a>
+                    <p style="white-space: pre-wrap; word-break: break-all;">{{description}}</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+
+            <div class="row" ng-if="state === states.RESERVED">
+
+                <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 text-center no-padding-left">
+
+                    <div class="avatar-round">
+                        <a ng-href="{{goToUser()}}" target="_self">
+                            <img ng-src="{{mediaURL}}{{userImage}}" class="img-responsive" onerror="this.onerror=null; if (this.src != 'error.jpg') this.src = 'assets/images/user2.png';"/>
+                        </a>
+                    </div>
+
+                </div>
+
+                <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8 no-padding-left">
+                    <ul class="list-unstyled options-list">
+                        <li class="cancelar-reserva">
+                            <a href="" ng-click="cancelReservation()">Cancelar reserva</a>
+                        </li>
+
+                        <li class="entregado">
+                            <a href="" ng-if="isCreator" ng-click="deliverDonation()">Entregado</a>
+                            <a href="" ng-if="!isCreator" ng-click="deliverDonation()">Recibido</a>
+                        </li>
+
+                        <li class="ir-al-chat">
+                            <div class="pop-number">
+                                <span ng-if="donation.unread_private_messages_count" class="margin-left"> {{donation.unread_private_messages_count}} </span>
+                                <a href="" ng-click="privateChat()">Ir al chat</a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+
+
+
+            <div class="row" ng-if="state === states.COMPLETED">
+                <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 text-center no-padding-left">
+                    <div class="entregado">
+
+                        <div class="avatar-round" ng-click="goToUser()">
+                            <a ng-href="{{goToUser()}}" target="_self">
+                                <img ng-src="{{mediaURL}}{{userImage}}" class="img-responsive" onerror="this.onerror=null; if (this.src != 'error.jpg') this.src = 'assets/images/user2.png';"/>
+                            </a>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8 no-padding-left">
+                    <ul class="list-unstyled options-list">
+                        <li>
+                            <a href="" class="btn btn-primary" ng-click="deliverCalification()">Califica tu experiencia</a>
+                        </li>
+                        <li>
+                            <p>
+                                <a href="" ng-click="publishThanks()">Publica un agradecimiento</a>
+                            </p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+
+
+            <div class="row" ng-if="state === states.CANCELLED">
+                <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 text-center no-padding-left">
+                    <div class="cancelado">
+
+                        <div class="avatar-round" ng-click="goToUser()">
+                            <a ng-href="{{goToUser()}}" target="_self">
+                                <img ng-src="{{mediaURL}}{{userImage}}" class="img-responsive" onerror="this.onerror=null; if (this.src != 'error.jpg') this.src = 'assets/images/user2.png';"/>
+                            </a>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8 no-padding-left">
+                    <ul class="list-unstyled options-list">
+                        <li>
+                            <a href="" class="btn btn-primary" ng-click="cancelledCalification()">Califica tu experiencia</a>
+                        </li>
+                        <li>
+                            <p>
+                                <a data-ui-sref="app.help({ s: 'topic', t: 39 })" data-ui-sref-opts="{reload: true, notify: true}">¿Qué debo hacer?</a>
+                            </p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</div>

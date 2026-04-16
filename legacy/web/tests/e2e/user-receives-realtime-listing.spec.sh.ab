@@ -1,0 +1,116 @@
+# File: tests/e2e/user-receives-realtime-listing.spec.sh.ab
+# Purpose: Verify that new listings arriving in real time via Socket.IO appear at the top of the 3-column grid without disorienting reflow of existing cards
+# Dependencies: [app/app/pages/dashboard/desktop/dashboard.directive.js.ab, app/app/post/post.directive.js.ab, app/app/socket.service.js]
+
+## Overview
+An authenticated user is viewing the desktop 3-column feed when a new listing is added in real time. The new card appears at the top of the feed and existing visible cards shift naturally within the grid without jumping or reordering in a disorienting way. The grid re-lays out incrementally.
+
+## Covers
+app/app/pages/dashboard/desktop/dashboard.directive.js.ab, app/app/post/post.directive.js.ab, app/app/socket.service.js
+
+## Business Actor
+Authenticated user actively viewing the listing feed on a desktop browser when new content arrives via real-time push.
+
+## Business Goal
+See new listings appear at the top of the feed naturally without losing track of the listings already being browsed.
+
+## Test Accounts
+<!-- Credentials are defined here and used verbatim by the translator. Do NOT read from .env or any external file. -->
+<!-- Each actor gets a base email. At runtime the translator appends +<random_id> to make it unique per run. -->
+- Actor `viewer`: base email `e2e.viewer@test.local`, password `Test1234!`
+- Actor `poster`: base email `e2e.poster@test.local`, password `Test1234!`
+
+## Preconditions
+- Each run creates fresh isolated accounts using `e2e.viewer+<random_id>@test.local` and `e2e.poster+<random_id>@test.local` via the registration API before Scenario A runs. These accounts are fully isolated — no shared state with other specs or runs.
+- The test environment contains at least 6 existing donation listings (read-only seed data) so the viewer has a populated 3-column feed.
+- Desktop viewport is set to 1280x800.
+- The `poster` account is used to create new listings during the test to trigger real-time updates visible to the `viewer`.
+
+Teardown (after all scenarios, even on failure):
+- Delete the per-run accounts created during setup and all records they own (including any new listings created by the poster).
+- Do NOT delete shared read-only seed fixtures.
+
+## Business Scenarios
+- Scenario A (DB-1): A single new listing arrives — card appears at position 1, existing cards shift incrementally
+- Scenario B (DB-2): Multiple new listings arrive in succession — each prepended sequentially, no bulk reorder
+
+## Actor Variants
+- EQ-1 — Viewer at the top of the feed when a single new listing arrives via socket -> DB-1
+- EQ-2 — Viewer scrolled to mid-feed when a new listing arrives (new card prepended at top, may not be visible) -> DB-1
+- EQ-3 — Multiple new listings arrive in rapid succession (3 arrivals within the polling interval) -> DB-2
+
+## Outcome Branches
+- DB-1 -> New card appears at first position in grid, existing visible cards shift within their grid cells without jumping to unexpected positions (EQ-1, EQ-2)
+- DB-2 -> Each card prepended in sequence, grid re-lays out incrementally each time, no disorienting bulk reorder (EQ-3)
+
+## Business Boundaries
+- BV-1 (exactly 1 new listing prepended): minimum real-time update; existing first row shifts by one card
+- BV-2 (exactly 3 new listings prepended): shifts entire existing first row by one full row
+
+## Acceptance Criteria
+- AC1: When a new listing arrives, the new card appears at the top of the feed in the first grid position (DB-1, EQ-1, BV-1)
+- AC2: Existing visible cards shift naturally within the grid — cards in the first row move one position to the right, and the last card in the first row moves to the start of the second row (DB-1, EQ-1)
+- AC3: When the viewer is scrolled to mid-feed, the new card is prepended at the top without disrupting the visible area (DB-1, EQ-2)
+- AC4: When multiple new listings arrive, each is prepended in sequence and the grid reflows incrementally without a disorienting bulk reorder (DB-2, EQ-3, BV-2)
+- AC5: No existing card jumps to a non-adjacent grid position after a real-time update (ABSENT-1)
+- AC6: No duplicate cards appear after a real-time update (ABSENT-2)
+- AC7: No raw socket data, JSON payloads, or debug overlays appear in any card or the feed container (ABSENT-3)
+
+## Absent Elements
+- After real-time update: no existing card jumping to a non-adjacent position (e.g., card from row 2 appearing in row 5)
+- After real-time update: no duplicate cards visible in the grid (same card appearing twice)
+- At all times: no raw socket data, JSON payloads, or debug overlays rendered in any card or the feed container
+
+## Steps
+
+### Scenario A: Single new listing arrives while viewing at top of feed
+<!-- covers: DB-1, EQ-1, BV-1, ABSENT-1, ABSENT-2 -->
+1. Log in as the `viewer` user on a desktop viewport (1280x800)
+2. Navigate to the listing feed at $E2E_BASE_URL
+3. Wait for the feed to load and note the card currently in the first grid position (top-left)
+4. In a separate session, log in as the `poster` user and create a new donation listing
+5. Return to the `viewer`'s feed and wait for the real-time update to appear (up to 20 seconds for the polling interval)
+6. Verify AC1: a new card appears at the first position of the grid (top-left)
+7. Verify AC2: the card that was previously in position 1 is now in position 2 (top-center)
+8. Verify AC5 (Absent): no card has jumped to a non-adjacent position
+9. Verify AC6 (Absent): no duplicate cards are visible
+10. Take a screenshot and save to $E2E_ARTIFACTS_DIR/realtime-listing/single-new-listing.png
+
+### Scenario A (scrolled): New listing arrives while viewer is scrolled to mid-feed
+<!-- covers: EQ-2 -->
+11. Scroll down to the middle of the feed so the first row is no longer visible
+12. In the `poster`'s session, create another new donation listing
+13. Wait for the polling interval to pass
+14. Verify AC3: the visible area of the feed has not disrupted — the cards the viewer was looking at remain in approximately the same viewport position
+15. Scroll back to the top to confirm the new card was prepended at the first position
+16. Take a screenshot and save to $E2E_ARTIFACTS_DIR/realtime-listing/new-listing-while-scrolled.png
+
+### Scenario B: Multiple new listings arrive in rapid succession
+<!-- covers: DB-2, EQ-3, BV-2, ABSENT-1, ABSENT-2, ABSENT-3 -->
+1. Return to the top of the feed and note the current first-row cards
+2. In the `poster`'s session, create 3 new donation listings in rapid succession
+3. Wait for the real-time updates to appear in the `viewer`'s feed
+4. Verify AC4: all 3 new cards have been prepended at the top of the grid
+5. Verify the original first-row cards have shifted down by approximately one full row
+6. Verify AC5 (Absent): no card has jumped to a non-adjacent position
+7. Verify AC6 (Absent): no duplicate cards are visible
+8. Verify AC7 (Absent): no raw socket data or debug overlays visible
+9. Take a screenshot and save to $E2E_ARTIFACTS_DIR/realtime-listing/multiple-new-listings.png
+
+## Coverage Map
+
+| Case ID | Type | Description | Scenario | Status |
+|---------|------|-------------|----------|--------|
+| DB-1 | Decision Branch | Single new listing -> prepend at top, incremental shift | Scenario A | ✅ covered |
+| DB-2 | Decision Branch | Multiple listings -> sequential prepend, no bulk reorder | Scenario B | ✅ covered |
+| EQ-1 | Equivalence Class | Viewer at top of feed | Scenario A | ✅ covered |
+| EQ-2 | Equivalence Class | Viewer scrolled to mid-feed | Scenario A (scrolled) | ✅ covered |
+| EQ-3 | Equivalence Class | 3 rapid arrivals within polling interval | Scenario B | ✅ covered |
+| BV-1 | Boundary Value | Exactly 1 listing prepended | Scenario A | ✅ covered |
+| BV-2 | Boundary Value | Exactly 3 listings prepended (full row shift) | Scenario B | ✅ covered |
+| ABSENT-1 | Absent Element | No card jumps to non-adjacent position | Scenario A, B | ✅ covered |
+| ABSENT-2 | Absent Element | No duplicate cards after update | Scenario A, B | ✅ covered |
+| ABSENT-3 | Absent Element | No raw socket/JSON data visible (global) | Scenario B | ✅ covered |
+
+## Artifacts
+All written to $E2E_ARTIFACTS_DIR/realtime-listing/ with explicit filenames.

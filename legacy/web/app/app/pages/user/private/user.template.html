@@ -1,0 +1,59 @@
+<div class="perfil-usuario-desktop">
+    <div class="container position-relative">
+        <div class="text-center hero-usuario-desktop">
+
+            <div class="avatar-container">
+                <div class="avatar" ng-click="triggerFileInput()">
+                    <img ng-if="userData.picture_url" ng-src="{{mediaURL}}{{userData.picture_url}}" class="img-responsive" onerror="this.onerror=null; if (this.src != 'error.jpg') this.src = 'assets/images/user2.png';">
+                    <img ng-if="!userData.picture_url" src="assets/images/image-upload-placeholder.svg" class="img-responsive">
+                    <div class="upload-overlay">
+                        <i class="fa fa-upload" aria-hidden="true"></i>
+                        <span>Cambiar foto</span>
+                    </div>
+                </div>
+            </div>
+            <input id="fileInput" type="file" style="display: none;" ng-model="profileImage" accept="image/*" app-filereader loading="loading"/>
+
+            <h1 class="text-icon best-user" ng-if="scope.userData.colaborator">
+                <strong>{{userData.full_name}}</strong>
+            </h1>
+
+            <h1 class="text-icon" ng-if="!scope.userData.colaborator">
+                <strong>{{userData.full_name}}</strong>
+            </h1>
+
+            <a href="#" class="back-to-top">
+                <i class="fa fa-arrow-circle-up"></i>
+            </a>
+
+            <ul class="list-unstyled list-inline star-points">
+                <li class="got-star" ng-repeat="x in goldStars() track by $index"></li><li ng-repeat="x in greyStars() track by $index"></li>
+            </ul>
+
+        </div>
+
+        <div class="text-center bg-gray-superlighter" id="switchMenu">
+            <ul class="list-inline nav nav-tabs" role="tablist" style="cursor:pointer">
+                <li role="presentation" ng-class="{'active': active === state.ACTIVITY}">
+                    <a href="" ng-click="changeState(state.ACTIVITY)">Actividad</a>
+                </li>
+                <li role="presentation" ng-class="{'active': active === state.HISTORY}">
+                    <a href="" ng-click="changeState(state.HISTORY)">Historial</a>
+                </li>
+                <li role="presentation" ng-class="{'active': active === state.PROFILE}">
+                    <a href="" ng-click="changeState(state.PROFILE)">Mi cuenta</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+        <div class="container perfil-contenido">
+            <!--<div class="tab-content"> -->
+                <user-activity ng-show="active === state.ACTIVITY"></user-activity>
+                <user-history ng-show="active === state.HISTORY"></user-history>
+                <mi-cuenta ng-show="active === state.PROFILE"></mi-cuenta>
+            <!-- </div> -->
+        </div>
+
+</div>
+

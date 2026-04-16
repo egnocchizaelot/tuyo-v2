@@ -1,0 +1,19 @@
+# File: app/assets/css/bootstrap.min.css.ab
+# Purpose: Bootstrap 3.3.7 CSS framework — minified production copy stored in app/assets/css/
+# Dependencies: []
+
+## Overview
+Minified copy of Bootstrap v3.3.7 CSS framework (4 lines). Provides the complete Bootstrap 3 component library: grid system, responsive utilities, typography, forms, buttons, navbars, modals, and all other components. This is the active vendor copy loaded by the application, located in the current `app/assets/css/` directory.
+
+## Interface
+No exports. Loaded as a `<link>` stylesheet in `app/index.html`.
+
+## Dependencies
+No project-level dependencies. Vendor file.
+
+## Implementation Notes
+- Bootstrap version: 3.3.7 (MIT License, Copyright 2011-2016 Twitter, Inc.)
+- Includes normalize.css v3.0.3 inlined
+- 4 lines minified (same content as `app/styles/bootstrap.min.css`, 5 lines in that copy)
+- This is the authoritative copy loaded at runtime via `app/index.html`
+- The `app/styles/` copy is older and may be superseded by this one

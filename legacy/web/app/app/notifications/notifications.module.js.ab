@@ -1,0 +1,10 @@
+## notifications.module.js
+
+**Summary:** Declares the `notifications` AngularJS module with no external module dependencies. This module serves as the root for all notification-related components including the notification list, individual notification display, notification dropdown, and standalone notification view.
+
+**Dependencies:**
+- None
+
+**Tags:** notifications, module, angularjs
+
+**Implementation:** app/app/notifications/notifications.module.js

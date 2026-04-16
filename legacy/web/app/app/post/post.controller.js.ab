@@ -1,0 +1,12 @@
+## post.controller.js
+
+**Summary:** Controller for the main donation post feed. Manages the list of visible and showing donations, handles pagination events (firstDonations, nextDonations, prevDonations), deduplicates donations/notices by trackId, and emits lastDonation/topDonations events to coordinate infinite scroll loading. Also manages important notices display.
+
+**Dependencies:**
+- app/app/post/post.module.js — registers on the post module
+- app/app/post/post.service.js — uses postServices injected via scope
+- app/app/app/app.service.js — uses appService for donationsPagination config
+
+**Tags:** post, donations, controller, feed, pagination, notices
+
+**Implementation:** app/app/post/post.controller.js

@@ -1,0 +1,10 @@
+## block.directive.js
+
+**Summary:** Directive (element: "block") rendering a group of consecutive messages from the same sender in the private chat. Formats timestamps using moment.js calendar format, separates first/middle/last messages for styling, and applies "usuario" or "destinatario" CSS class based on sender identity.
+
+**Dependencies:**
+- app/app/contact/privateChat/privateChat.module.js — registered on chat module
+
+**Tags:** chat, communication, directive, ui
+
+**Implementation:** app/app/contact/privateChat/block/block.directive.js

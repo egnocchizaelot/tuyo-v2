@@ -1,0 +1,10 @@
+## publicForum.module.js
+
+**Summary:** Declares the "publicForum" AngularJS module for public forum views on notices and appreciations. No external module dependencies.
+
+**Dependencies:**
+(none)
+
+**Tags:** forum, communication, module
+
+**Implementation:** app/app/contact/publicForum/publicForum.module.js

@@ -1,0 +1,18 @@
+# File: stylesheets/ie.css.ab
+# Purpose: Empty Compass IE override stylesheet placeholder in the default stylesheets/ output directory
+# Dependencies: []
+
+## Overview
+An empty CSS file at the default Compass `stylesheets/` output directory. Contains only the standard Compass IE override welcome comment instructing how to import it via conditional comments. No IE-specific overrides have been authored.
+
+## Interface
+No exports. Empty placeholder stylesheet.
+
+## Dependencies
+No project-level dependencies.
+
+## Implementation Notes
+- 6 lines — only the Compass IE override comment, no actual CSS rules
+- Located in the default Compass output directory at the project root
+- Counterpart to `app/styles/ie.css` and `app/assets/css/ie.css` — all three are empty or near-empty
+- The `stylesheets/` location is the Compass default output; the project uses `app/assets/css/` as its primary directory

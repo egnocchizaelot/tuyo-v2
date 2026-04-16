@@ -1,0 +1,10 @@
+## report.controller.js
+
+**Summary:** Controller for the report publication popup. Initializes a `reportCheckbox` object with four boolean flags (noApropiado, noOfrecimiento, publicidad, otra) representing the report reason options available to the user when reporting a publication.
+
+**Dependencies:**
+- app/app/popUps/popups.module.js — registers on the `popUps` module
+
+**Tags:** popups, reports, complaints, controller, angularjs
+
+**Implementation:** app/app/popUps/reportPublication/report.controller.js

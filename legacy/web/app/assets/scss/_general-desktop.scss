@@ -1,0 +1,313 @@
+//
+// General tag styles
+//
+
+body{
+	font-family: $font-family-sans-serif;
+	background: #C9C9C9; //$gray-light;
+}
+
+
+//
+// General tools
+//
+
+//Anchors
+a:focus,
+a:active{
+	outline: none;
+	text-decoration: none;
+}
+a:hover{
+	cursor: pointer !important;
+	text-decoration: none;
+}
+
+//Displays
+.display-block{
+	display: block;
+}
+.inline-block,
+.display-inline{
+	display: inline-block;
+}
+.overflow-hidden{
+	overflow: hidden;
+}
+
+//Positions
+.position-relative{
+	position: relative;
+}
+
+//Text
+strong{
+	font-family: $font-family-sans-serif-semibold;
+}
+
+//Floats
+.float-left{
+	float: left;
+}
+.float-right{
+	float: right;
+}
+
+//Spacing
+.margin-top{
+	margin-top: 1rem !important;
+}
+.margin-right{
+	margin-right: 1rem;
+}
+.margin-bottom{
+	margin-bottom: 15px !important;
+}
+.preview-margin-bottom{
+	margin-bottom: 60px !important;
+}
+.double-margin-bottom{
+	margin-bottom: 2rem !important;
+}
+.double-line-height{
+	line-height: 1.4rem;
+}
+.padding-top{
+	padding-top: 20%;
+}
+.margin-left{
+	margin-left: 15px;
+}
+.no-padding-right{
+	padding-right: 0 !important;
+}
+.no-padding-left{
+	padding-left: 0 !important;
+}
+
+
+//
+//Specific
+
+.full-width{
+	width: 100%;
+}
+
+.container{
+	width: 600px;
+	max-width: 100%;
+}
+
+.wider-container .container{
+	width: 900px;
+	max-width: 100%;
+}
+
+.avatar-round{
+	display: inline-block;
+	border-radius: 100%;
+	overflow: hidden;
+	width: 60px;
+	height: 60px;
+	border: 1px solid $brand-primary;
+}
+
+.p-w-icon{
+	position: relative;
+	padding-left: 2.5rem;
+	text-align: left !important;
+	i{
+		display: inline-block;
+		position: absolute;
+		left: 0;
+		top: 0;
+		font-size: 2rem;
+	}
+}
+
+
+
+//
+// Colors
+//
+.color-primary,
+.color-brand{
+	color: $brand-primary !important;
+}
+
+.color-warning{
+	color: $brand-warning !important;
+}
+
+.color-gray{
+	color: $gray !important;
+}
+
+.color-yellow{
+	color: #FFC828 !important;
+}
+
+.color-white{
+	color: #FFFFFF !important;
+}
+
+.bg-gray-darker{
+	background-color: #dadbde !important;
+}
+
+.bg-yellow{
+	background-color: #ffcd69;
+}
+
+.bg-brand-color{
+	background-color: $brand-primary !important;
+}
+
+.bg-gray-lighterr,
+.bg-gray-superlighter,
+.bg-gray{
+	background: $gray-lighter;
+}
+
+.bg-gray-lighter{
+	background: lighten($gray-lighter, 3%);
+}
+
+.bg-white{
+	background: #ffffff;
+}
+
+.bg-primary-lighter{
+	background-color: #7deeac;
+	padding-bottom: 2rem;
+}
+
+
+//Borders
+.primary-border-bottom{
+	border-bottom: 1px solid $brand-primary;
+	padding-top: 20px !important;
+    padding-bottom: 5px !important;
+}
+
+.gray-border-bottom{
+	//border-bottom: 1px solid $gray-lighter;
+    border-bottom: 1px solid #d6d6d6;
+}
+
+.gray-light-border-bottom{
+	border-bottom: 1px solid $gray-light;
+}
+
+
+//
+//Lists
+//
+.underline-list{
+	li{
+		border-bottom: 1px solid $gray-light;
+		padding-bottom: 0.8rem;
+		padding-top: 0.8rem;
+	}
+}
+
+
+//
+//	Icons
+//
+.text-icon{
+	position: relative;
+	&.best-user:after{
+		content: " ";
+		display: inline-block;
+		width: 0.7rem;
+    	height: 1.2rem;
+		background: url("../images/icons/colaborador.svg") no-repeat center;
+		background-size: 100%;
+		margin-left: 10px;
+		position: absolute;
+		top: -1px;
+	}
+}
+
+
+//	Star points
+.star-points{
+	li{
+		width: 20px;
+		height: 20px;
+		background: url("../images/icons/star-points.svg") no-repeat;
+		background-position: 0px -24px;
+		background-size: 100%;
+		&.got-star{
+			background-position: 0 0;
+		}
+
+	}
+}
+
+
+
+//Carousel
+.carousel-inner>.item>img{
+	width: 100%;
+	max-width: 100%;
+	height: auto;
+}
+
+footer{
+		border: 0px none;
+		border-top: 1px solid #a8a8a8;
+}
+
+//
+// Container sin Paddings
+//
+.container.no-padding-container{
+	padding-left: 0;
+	padding-right: 0;
+}
+
+//
+// Type
+//
+.semibold{
+	font-family: $font-family-sans-serif-semibold;
+}
+
+
+.btn-full-width{
+	margin: 50px 0 0;
+	.btn{
+		display: block;
+		width: 100%;
+	}
+}
+
+@media only screen and (min-width: 767px){
+	.btn-full-width{
+		display: none;
+	}
+}
+
+.space-top{
+	margin-top: 30px;
+}
+
+.filters-nav{
+	.container{
+		padding-left: 0;
+		padding-right: 0;
+	}
+}
+
+.container.lonely-tempalte{
+	padding-left: 0;
+	padding-right: 0;
+}
+
+.agradecimiento-oferente h3 a.btn-right-top,
+.agradecimiento-solicitante h3 a.btn-right-top {
+    float: right;
+    color: #757579;
+}

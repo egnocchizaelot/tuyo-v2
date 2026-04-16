@@ -1,0 +1,10 @@
+## map.controller.js
+
+**Summary:** Controller for the map directive. Defines text ID constants (`ZONA`, `DESCRIPCION`, `LUGAR`, `BUSCANDO`) used to toggle which informational text is displayed on the map interface. Contains commented-out mobile height adjustment logic.
+
+**Dependencies:**
+- app/app/map/map.module.js — registers on the `map` module
+
+**Tags:** map, controller, angularjs, ui
+
+**Implementation:** app/app/map/map.controller.js

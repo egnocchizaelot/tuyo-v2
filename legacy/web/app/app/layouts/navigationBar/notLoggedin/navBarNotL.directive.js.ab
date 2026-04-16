@@ -1,0 +1,12 @@
+## navBarNotL.directive.js
+
+**Summary:** Directive (`navBarNo`) that implements the navigation bar for unauthenticated users. Provides links to rules, project info, and landing pages, a login button that emits `navBarLogin` event, and navigation helpers that redirect to the landing page before opening registration or login modals. Includes responsive mobile menu toggle with slide animations and click-outside-to-close behavior.
+
+**Dependencies:**
+- app/app/layouts/navigationBar/navigationBar.module.js — registers directive on `navigationBar` module
+- app/app/layouts/navigationBar/notLoggedin/navBarNotL.controller.js — uses `navBarNoController`
+- app/app/app.service.js — appService for adminMail
+
+**Tags:** navigation, directive, layout, unauthenticated
+
+**Implementation:** app/app/layouts/navigationBar/notLoggedin/navBarNotL.directive.js

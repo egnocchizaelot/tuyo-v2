@@ -1,0 +1,5 @@
+#Crontab file for TuyoToolsBE
+*/1 * * * * source /etc/environment; /usr/local/bin/python /tuyotoolsbe/TuyoTools_api/cron_scripts/clean_social_user.py >> /tmp/clean_social_login.log 2>&1;
+#
+#Deferred Notif
+*/1 * * * * source /etc/environment; /usr/local/bin/python /tuyotoolsbe/TuyoTools_api/cron_scripts/deferred_notif.py >> /tmp/listener_notif.log 2>&1; /usr/local/bin/python /tuyotoolsbe/TuyoTools_api/cron_scripts/deferred_forum_notif.py >> /tmp/listener_forum_notif.log 2>&1; /usr/local/bin/python /tuyotoolsbe/manage.py clearsessions;

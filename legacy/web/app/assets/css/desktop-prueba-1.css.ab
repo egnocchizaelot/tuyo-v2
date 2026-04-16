@@ -1,0 +1,21 @@
+# File: app/assets/css/desktop-prueba-1.css.ab
+# Purpose: Second experimental variant of the desktop stylesheet with ProximaNova fonts but no Compass reset
+# Dependencies: []
+
+## Overview
+A second experimental desktop stylesheet variant (3263 lines). Unlike `desktop-prueba.css`, this file does NOT begin with the full Compass CSS reset — it starts directly with ProximaNova `@font-face` declarations followed by base body and utility styles. The name "prueba-1" suggests this was the first alternative version tried. Contains the same general pattern as `desktop.css` (body font, display utilities, float helpers, margin/padding helpers) in a more concise form.
+
+## Interface
+No exports. Experimental stylesheet; not referenced in the current `app/index.html`.
+
+## Dependencies
+No project-level `.ab` dependencies. Requires ProximaNova font files at `../fonts/proximanova-*.ttf`.
+
+## Implementation Notes
+- 3263 lines
+- No Compass CSS reset at the top — starts directly with ProximaNova `@font-face` declarations
+- Body style: `font-family: "ProximaRegular", Helvetica, Arial, sans-serif; background: #e9e9e9`
+- Utility classes: `.display-block`, `.inline-block`, `.display-inline`, `.overflow-hidden`, `.position-relative`, `.float-left`, `.float-right`, `.margin-top`, etc.
+- "prueba-1" = Spanish for "test-1" — experimental iteration
+- Shorter than `desktop-prueba.css` (4726 lines), suggesting fewer styles were compiled
+- Not actively loaded in production

@@ -1,0 +1,18 @@
+# File: build files - backup/vendor.js.ab
+# Purpose: Backup copy of the vendor JavaScript bundle preserved from a previous Grunt build
+# Dependencies: [vendor.js.ab]
+
+## Overview
+A preserved copy of a previous `vendor.js` build artifact stored in the `build files - backup/` directory. Contains the same concatenated minified vendor JavaScript (jQuery, Angular, Angular modules, and all other Bower dependencies) as the root `vendor.js`, captured at a specific point in time as a rollback reference. Approximately 1.2 MB.
+
+## Interface
+No exports. A reference/archive file not loaded by the running application.
+
+## Dependencies
+- vendor.js.ab — the canonical source this was copied from
+
+## Implementation Notes
+- Paired with `build files - backup/vendor.css` as a complete build artifact snapshot
+- File size: ~1.2 MB
+- Not referenced by `app/index.html` or any build configuration
+- Intended as a manual backup, not part of the automated build pipeline

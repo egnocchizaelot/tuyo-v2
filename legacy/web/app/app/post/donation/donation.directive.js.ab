@@ -1,0 +1,15 @@
+## donation.directive.js
+
+**Summary:** Core directive (element: "donationPost") responsible for rendering a single donation card in the feed. Handles: user identification (creator/applicant), date formatting, description truncation with show-more, like/unlike with optimistic updates via API, image carousel integration, donation state changes (Published/Reserved/Completed/OpenChat), real-time donation updates, share links (Facebook, Twitter, clipboard), modal openings for forum/chat/appreciation/edit/calification, and deep-link handling for modals via URL parameters.
+
+**Dependencies:**
+- app/app/post/post.module.js — registered on the post module
+- app/app/post/post.service.js — uses postServices for modal operations
+- app/app/post/donation/donation.controller.js — uses donationPostController
+- app/app/scripts/services/api.js — uses API for likes, deletion, Facebook sharing
+- app/app/scripts/services/auth.js — uses Auth for current user data
+- app/app/app/app.service.js — uses appService for mobile detection, dev mode
+
+**Tags:** post, donations, directive, likes, sharing, realtime, ui
+
+**Implementation:** app/app/post/donation/donation.directive.js

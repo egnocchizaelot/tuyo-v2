@@ -1,0 +1,11 @@
+## siteHelp.controller.js
+
+**Summary:** Controller for the site-wide help/FAQ component. Retrieves the authenticated user's full name from `Auth.userData` for display in the help section.
+
+**Dependencies:**
+- app/app/help/help.module.js — registers on the `help` module
+- app/app/scripts/services/auth.js — `Auth` service for `userData.full_name`
+
+**Tags:** help, faq, controller, authentication
+
+**Implementation:** app/app/help/siteHelp/siteHelp.controller.js

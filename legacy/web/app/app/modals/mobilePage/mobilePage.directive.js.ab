@@ -1,0 +1,10 @@
+## mobilePage.directive.js
+
+**Summary:** Empty directive file for the mobile page modal. The file exists but contains no code (0 bytes). The mobile page functionality is handled entirely by the `mobilePage.controller.js` and its associated template.
+
+**Dependencies:**
+- app/app/modals/modals.module.js — registers on the `modal` module
+
+**Tags:** modals, mobile, directive, placeholder
+
+**Implementation:** app/app/modals/mobilePage/mobilePage.directive.js

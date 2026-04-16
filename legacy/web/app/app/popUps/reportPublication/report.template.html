@@ -1,0 +1,26 @@
+<a class="btn-right-top" role="button" ng-click="Show()" title="Reportar">
+    <i class="fa fa-eye" aria-hidden="true"></i>
+</a>
+
+<div class="collapse report-menu" id="reportMenu" style="width: 100%; !important">
+    <report-comment entity-id="entityId" ng-if="type === 'M'"></report-comment>
+    <report-donation entity-id="entityId" ng-if="type === 'D'"></report-donation>
+    <report-appreciation entity-id="entityId" ng-if="type === 'A'"></report-appreciation>
+</div>
+
+<!-- <div class="modal white-modal" id="reportarGracias" tabindex="-1" role="dialog" aria-labelledby="reportarGracias" style="z-index: 97; !important">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="height: auto">
+                    <span aria-hidden="true" class="fa fa-close" style="color: gray; !important"></span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">Gracias por avisarnos</h4>
+            </div>
+
+            <div class="modal-body">
+                <p>{{text}}</p>
+            </div>
+        </div>
+    </div>
+</div> -->

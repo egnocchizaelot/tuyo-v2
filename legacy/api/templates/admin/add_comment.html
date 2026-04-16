@@ -1,0 +1,37 @@
+{% extends "admin/base_site.html" %}
+
+{% block content %}
+	 <form action="" method="post">
+	 	{% csrf_token %}
+	    <h2 >Notificacion a enviar</h2> </br>
+	  	 {{ form.notificacion }} </br>
+	  	 {{ form.notificacion.errors }}
+	    </br>  </br>
+	    <b>Esta notificacion sera enviada a los siguientes usuarios</b> </br>
+		<ul>
+			{% if place = "user" %}
+				{% for user in users %}
+					<li>
+						{{user.full_name}} 
+						<input type="hidden" name="_selected_action" value="{{ user.id }}">
+					</li>	
+		    	{% endfor %} 
+			{% else %}	
+				{% for user in users %}
+					<li>
+						{{user.creator.full_name}} 
+						<input type="hidden" name="_selected_action" value="{{ user.id }}">
+					</li>	
+		    	{% endfor %} 
+			{%endif%}
+				
+		     
+		</ul> 
+	    <input type="hidden" name="action" value="send_notification" />
+        <input type="hidden" name="do_action" value="yes"> 
+	 	<input type="submit" value="Enviar Comentario"  /> 
+	 	<input type=button value="Atras" onClick="javascript:history.go(-1);">
+	</form> 
+
+{% endblock %}
+  

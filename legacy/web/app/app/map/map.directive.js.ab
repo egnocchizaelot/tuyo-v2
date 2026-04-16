@@ -1,0 +1,15 @@
+## map.directive.js
+
+**Summary:** Core map directive (`<address-map>`) providing a full Google Maps location picker. Accepts lat/lng coordinates, accept/cancel/delete callbacks, filter mode flag, and dimensions via isolate scope. Initializes a Google Map centered on provided coordinates or falls back to Montevideo with browser geolocation. Uses a draggable center marker with overlay circle for zone visualization. Implements reverse geocoding via `google.maps.Geocoder` to resolve location names (country, city, district) using `mapService.getData()`. Supports text editing for custom location descriptions, mobile-responsive map sizing, and provides Accept/Cancel/Delete actions. Includes a `giveMeTheAddress` event listener for external components to request current map data. Also defines global helper functions `getDistanceFromLatLonInKm()` and `deg2rad()` for distance calculations.
+
+**Dependencies:**
+- app/app/map/map.module.js — registers on the `map` module
+- app/app/map/map.controller.js — uses `mapController`
+- app/app/map/map.services.js — `mapService` for geocoder result parsing
+- app/app/modals/modals.service.js — `modalServices` for `BasicModal`, `BasicSingleButtonModal`
+- growl — notification toasts for validation feedback
+- Google Maps JavaScript API — external dependency for `google.maps.*`
+
+**Tags:** map, location, google-maps, directive, geocoding, ui, mobile
+
+**Implementation:** app/app/map/map.directive.js

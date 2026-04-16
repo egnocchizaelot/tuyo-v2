@@ -1,0 +1,17 @@
+# File: app/assets/css/bootstrap-theme.css.ab
+# Purpose: Bootstrap 3.3.7 optional theme CSS — unminified copy in app/assets/css/
+# Dependencies: []
+
+## Overview
+Unminified copy of the Bootstrap 3.3.7 optional theme CSS (587 lines). Provides gradient, shadow, and transition enhancements on top of the base Bootstrap grid and components. Development reference counterpart to `bootstrap-theme.min.css`.
+
+## Interface
+No exports. Reference file.
+
+## Dependencies
+No project-level dependencies. Vendor file. Requires `bootstrap.css` to be loaded first.
+
+## Implementation Notes
+- Bootstrap theme version: 3.3.7
+- 587 lines
+- Same content as `app/styles/bootstrap-theme.css`

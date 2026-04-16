@@ -1,0 +1,32 @@
+# File: Dockerfile.ab
+# Purpose: Docker container definition for the TuyoTools frontend development and build environment
+# Dependencies: [package.json.ab, bower.json.ab, Gruntfile.js.ab]
+
+## Overview
+Defines a Docker image based on Node 8 that installs the full frontend build toolchain, executes a Grunt build, and serves the development server on port 9000. Provides a containerized, reproducible environment for building and running the TuyoTools AngularJS SPA without requiring local Ruby, Node, or Bower installations.
+
+## Interface
+No exports. Consumed via `docker build .` or by the `docker-compose.yaml` `build: .` directive.
+
+## Dependencies
+- node:8 — base Docker image
+- package.json — npm devDependencies installed by `npm install`
+- bower.json — Bower dependencies (installed implicitly during grunt build; note: `npx bower install` is not called explicitly — grunt handles it via the bower task)
+- Gruntfile.js — `grunt --force` and `grunt serve --force` tasks executed inside the container
+
+## Implementation Notes
+- Installs `grunt-cli@1.3.2` globally as a prerequisite before `npm install`
+- Copies `package.json` and `bower.json` first (before the full project copy) to leverage Docker layer caching for dependency installation
+- Runs `grunt --force` as a build step, using `--force` to bypass task errors that would halt the build in a container context
+- Exposes port 9000 (the Grunt connect development server port with livereload on 35729, but only 9000 is exposed in this Dockerfile)
+- Default command is `grunt serve --force` — starts the live development server inside the container
+
+## Examples
+```
+# Build and run via Docker Compose (preferred):
+docker-compose up
+
+# Direct usage:
+docker build -t tuyo-fe .
+docker run -p 9000:9000 tuyo-fe
+```

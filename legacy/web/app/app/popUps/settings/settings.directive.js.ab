@@ -1,0 +1,12 @@
+## settings.directive.js
+
+**Summary:** Directive (`<settings-publication>`) that provides a dropdown settings menu for donation publications owned by the user. Accepts callback functions for `showForum`, `showChat`, `deleteDonation`, and `editDonation`, plus a `reserved` flag via isolate scope. Toggles a collapsible menu with options to edit, view applicant list, open chat, republish, or delete the publication. The Delete action prompts for confirmation via `modalServices.BasicModal` before executing. Auto-closes on outside clicks via `$document` click listener.
+
+**Dependencies:**
+- app/app/popUps/popups.module.js — registers on the `popUps` module
+- app/app/popUps/settings/settings.controller.js — uses `settingsPublicationController`
+- app/app/modals/modals.service.js — `modalServices` for `BasicModal` confirmation dialog
+
+**Tags:** popups, settings, directive, ui, modals, dialogs
+
+**Implementation:** app/app/popUps/settings/settings.directive.js

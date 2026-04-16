@@ -1,0 +1,67 @@
+//
+// Feed Grid
+// 3-column CSS Grid layout for the desktop donation feed.
+// Imported by desktop.scss after _variables.scss.
+//
+
+.feed-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+
+  // Grid gap handles row spacing; suppress the card utility's bottom margin
+  .margin-bottom {
+    margin-bottom: 0 !important;
+  }
+
+  // Override the hardcoded 600px from _general-desktop.scss so card content
+  // fills the grid column width naturally
+  .card .container {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  // Text overflow protection inside grid cells
+  .card {
+    word-break: break-word;
+    overflow-wrap: break-word;
+    // Critical: overrides CSS Grid's implicit min-width: auto, which would allow
+    // long unbroken strings to blow out the column width
+    min-width: 0;
+
+    .footer {
+      flex-wrap: wrap;
+    }
+
+    // Prevent carousel content from exceeding the column boundary
+    .carousel,
+    .slick-slider {
+      max-width: 100%;
+      overflow: hidden;
+
+      img {
+        max-width: 100%;
+        height: auto;
+      }
+    }
+  }
+}
+
+// Notice and importantNotice cards span all three columns
+.feed-grid-full-width {
+  grid-column: 1 / -1;
+}
+
+// Mobile: collapse to single column (preserves existing mobile layout)
+@media (max-width: $screen-sm - 1) {
+  .feed-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+// Outer wrapper for the dashboard feed - replaces the fixed-width .container
+// so the 3-column grid fills the full available viewport width (AC1)
+.feed-grid-container {
+  padding-left: 0;
+  padding-right: 0;
+}

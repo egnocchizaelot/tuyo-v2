@@ -1,0 +1,73 @@
+<div class="form-agradecimiento" ng-show="editing && !publishing">
+    <nav class="bg-brand-color modal-navbar" id='navBar'>
+        <div class="container">
+
+            <a href="" ng-click="Back()" class="btn-back modals-visible-mobile" title="Anterior" id="backButton">
+                <i class="fa fa-angle-left" aria-hidden="true"></i>
+            </a>
+
+            <h2 class="titulo-ofrecer text-center">
+                <span>Agradecimiento</span>
+            </h2>
+
+            <button ng-click="Back()" type="button" class="close modals-hidden-mobile" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+
+        </div>
+    </nav>
+
+    <div id='else'>
+
+        <div class="modal-body-content">
+
+            <div class="card gray-border-bottom">
+                <div class="container">
+                    <div class="user-header">
+
+                        <div class="avatar">
+                            <img ng-if="leftPath" ng-src="{{leftPath}}" class="img-responsive" onerror="this.onerror=null; if (this.src != 'error.jpg') this.src = 'assets/images/user2.png';"/>
+                            <img ng-if="!leftPath" src="assets/images/user2.png" class="img-responsive"/>
+                        </div>
+
+                        <div class="avatar last-child">
+                            <img ng-if="rightPath" ng-src="{{rightPath}}" class="img-responsive" onerror="this.onerror=null; if (this.src != 'error.jpg') this.src = 'assets/images/user2.png';"/>
+                            <img ng-if="!rightPath" src="assets/images/user2.png" class="img-responsive"/>
+                        </div>
+
+                        <div style="padding-left: 50px;"><h3>{{fullName}}</h3></div>
+                    </div>
+                </div>
+            </div>
+
+            <textarea maxlength="{{maxLength}}" class="form-control full-textarea bg-gray-lighter" rows="10" placeholder="Escribe tu agradecimiento..." ng-model="description"></textarea>
+
+            <div class="nav-upload-images sticked-to-bottom-nav" ng-style="!isMobile ? {'bottom': '40px' } : {}">
+                <loading ng-if="loadingImgs"></loading>
+                <div class="container" ng-show="!loadingImgs">
+
+                    <div class="uploaded-image" ng-repeat="image in appreciationImages track by $index" ng-if="image">
+                        <div class="img-wrapper">
+                            <img ng-src="{{image.img}}" class="img-responsive">
+                        </div>
+                        <a ng-click="removeImage($index)" class="fa fa-times" aria-hidden="true" title="Eliminar"></a>
+                    </div>
+
+                    <div class="btn-upload-image" ng-show="!appreciationImages || appreciationImages.length < 3">
+                        <input type="file" required ng-model="appreciationImages" accept="image/*" multiple app-filereader loading="loading" images="appreciationImages" />
+                        <i class="fa fa-camera" aria-hidden="true"></i>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+        <div class="nav-next-steps  new-nav-next-steps">
+            <div class="container overflow-hidden">
+                <a ng-click="showPreview()" class="btn btn-line-green float-right" title="Siguiente">Listo</a>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<preview-appreciation ng-if="!editing && !publishing" path-l="leftPath" path-r="rightPath" description="description" images="appreciationImages" full-name="userData.full_name" mine="mine"></preview-appreciation>

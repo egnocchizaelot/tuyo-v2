@@ -1,0 +1,12 @@
+## site.js
+
+**Summary:** Legacy root-level controller (`SiteController`) registered on the `TuyoTools` module. Watches Auth.userData for changes and exposes notification helper methods (showError, showSuccess, showWarning, showInfo) via the growl service. Acts as the global error/notification handler that child controllers reference via `$scope.SiteController`.
+
+**Dependencies:**
+- app/app/app/app.js — registers controller on root `TuyoTools` module
+- app/app/scripts/services/auth.js — Auth for userData
+- angular-growl — growl service for toast notifications
+
+**Tags:** legacy, controller, notifications
+
+**Implementation:** app/app/scripts/controllers/site.js

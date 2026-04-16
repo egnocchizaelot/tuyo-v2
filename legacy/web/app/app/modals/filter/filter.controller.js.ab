@@ -1,0 +1,10 @@
+## filter.controller.js
+
+**Summary:** Controller for the filter donations modal. Provides a minimal `close()` method to dismiss the modal with a result. The actual filter logic is handled by the filter directive and parent components.
+
+**Dependencies:**
+- app/app/modals/modals.module.js — registers on the `modal` module
+
+**Tags:** modals, dialogs, controller, filter
+
+**Implementation:** app/app/modals/filter/filter.controller.js

@@ -1,0 +1,18 @@
+# File: stylesheets/print.css.ab
+# Purpose: Empty Compass print media stylesheet placeholder in the default stylesheets/ output directory
+# Dependencies: []
+
+## Overview
+An empty CSS file at the default Compass `stylesheets/` output directory. Contains only the standard Compass print stylesheet welcome comment instructing how to import it for print media. No actual print-specific styles have been defined.
+
+## Interface
+No exports. Empty placeholder stylesheet.
+
+## Dependencies
+No project-level dependencies.
+
+## Implementation Notes
+- 4 lines — only the Compass welcome/import comment, no actual CSS rules
+- Located in the default Compass output directory at the project root
+- Counterpart to `app/styles/print.css` and `app/assets/css/print.css` — all three are empty
+- The `stylesheets/` location is the Compass default; the project uses `app/assets/css/` as its primary output

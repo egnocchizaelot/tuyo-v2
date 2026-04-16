@@ -1,0 +1,13 @@
+## notificationDropdown.directive.js
+
+**Summary:** Directive (`<notifications-dropdown>`) that renders the scrollable notification list within a dropdown panel. Accepts `notifications`, `pages`, and `close` callback via isolate scope. Listens for `moreNotifications` broadcast events to update the list. Implements infinite-scroll pagination: on mobile via window scroll events, on desktop via mousewheel events on the `#theNotifications` container. Loads additional pages from the API when the user scrolls to the bottom. Provides a close/hide mechanism that emits `hideNotifications` on web or calls the `close` callback on mobile.
+
+**Dependencies:**
+- app/app/notifications/notifications.module.js — registers on the `notifications` module
+- app/app/notifications/notificationDropdown/notificationDropdown.controller.js — uses `notificationsDropdownController`
+- app/app/app.service.js — `appService` for `isMobile`, `notificationsPageSize`
+- app/app/scripts/services/api.js — `API` service for paginated `notifications()` calls
+
+**Tags:** notifications, directive, ui, pagination, infinite-scroll, dropdown, mobile
+
+**Implementation:** app/app/notifications/notificationDropdown/notificationDropdown.directive.js

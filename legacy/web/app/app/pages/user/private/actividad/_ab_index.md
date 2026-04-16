@@ -1,0 +1,20 @@
+## actividad.controller.js
+- **Implementation:** app/app/pages/user/private/actividad/actividad.controller.js
+- **Summary:** Controller (`userActivityController`) for the private user activity tab. Manages three panels (reserved, offered, wanted) with their respective donation/reservation lists, pagination state, and count indicators. Listens for broadcast events to populate data, and transforms reserved donations by flattening the rates array into individual donation-rate pairs for display.
+- **Tags:** user-profile, controller, private, donations, activity
+- **Dependencies:**
+  - app/app/pages/user/user.module.js — registers controller on the `user` module
+  - app/app/app.service.js — appService (injected for configuration)
+
+---
+
+## actividad.directive.js
+- **Implementation:** app/app/pages/user/private/actividad/actividad.directive.js
+- **Summary:** Directive (`userActivity`) that implements the private user activity view with three switchable panels (reserved, offered, wanted). Tracks visible donation items and uses Socket.IO via `socketService.donationChanged` to poll for real-time updates at configurable intervals. Handles panel switching with proper socket callback cleanup, and implements paginated scroll loading for each panel by fetching additional pages from the API.
+- **Tags:** user-profile, directive, private, donations, activity, real-time, infinite-scroll
+- **Dependencies:**
+  - app/app/pages/user/user.module.js — registers directive on the `user` module
+  - app/app/pages/user/private/actividad/actividad.controller.js — uses `userActivityController` as its controller
+  - app/app/scripts/services/api.js — API for reservedDonations, myDonations, wantedDonations
+  - app/app/socket.service.js — socketService for donationChanged polling and removeCallback cleanup
+  - app/app/app.service.js — appService for donationUpdateTime interval

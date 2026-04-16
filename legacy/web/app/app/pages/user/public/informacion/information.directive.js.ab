@@ -1,0 +1,12 @@
+## information.directive.js
+
+**Summary:** Directive (`publicInformation`) that displays public user profile information including the join date (formatted as relative time via moment.js) and a link to open the user's Facebook profile in a new window. Uses isolate scope with `userData` binding.
+
+**Dependencies:**
+- app/app/pages/user/user.module.js — registers directive on the `user` module
+- app/app/pages/user/public/informacion/information.controller.js — uses `publicInformationController` as its controller
+- moment — moment.js library for date formatting
+
+**Tags:** user-profile, directive, public, facebook
+
+**Implementation:** app/app/pages/user/public/informacion/information.directive.js

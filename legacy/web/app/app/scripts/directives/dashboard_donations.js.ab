@@ -1,0 +1,11 @@
+## dashboard_donations.js
+
+**Summary:** Legacy directive (`dashboardDonations`) registered on the `TuyoTools` module that renders a dashboard donations list. Uses isolate scope with two-way bindings for `donations` and `userData`. Currently has an empty link function, relying entirely on its template for rendering.
+
+**Dependencies:**
+- app/app/app/app.js — registers directive on root `TuyoTools` module
+- app/app/scripts/services/api.js — API (injected but unused in link)
+
+**Tags:** legacy, directive, dashboard, donations
+
+**Implementation:** app/app/scripts/directives/dashboard_donations.js

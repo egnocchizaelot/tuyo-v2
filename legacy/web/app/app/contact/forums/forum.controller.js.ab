@@ -1,0 +1,10 @@
+## forum.controller.js
+
+**Summary:** Empty controller for the forum component. All logic is in the forum directive.
+
+**Dependencies:**
+- app/app/contact/forums/forum.module.js — registered on forumModule
+
+**Tags:** forum, communication, controller
+
+**Implementation:** app/app/contact/forums/forum.controller.js

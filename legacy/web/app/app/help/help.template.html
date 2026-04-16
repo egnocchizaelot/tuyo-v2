@@ -1,0 +1,20 @@
+<div class="pagina-ayuda">
+
+    <navigation-bar-desktop ></navigation-bar-desktop>
+
+
+    <stie-help ng-if="!state || state === 'faq'"></stie-help>
+
+    <area-help ng-if="state === 'ayuda'" what="ayuda"></area-help>
+    <area-help ng-if="state === 'problema'"  what="problema"></area-help>
+
+    <contact-help ng-if="state === 'buzon'"></contact-help>
+
+    <tema ng-if="state === 'topic'"></tema>
+
+
+    <tuyo-footer></tuyo-footer>
+
+
+
+</div>

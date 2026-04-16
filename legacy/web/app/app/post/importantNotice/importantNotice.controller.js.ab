@@ -1,0 +1,10 @@
+## importantNotice.controller.js
+
+**Summary:** Empty controller for the important notice component. Logic is in the directive.
+
+**Dependencies:**
+- app/app/post/post.module.js — registered on the post module
+
+**Tags:** post, notices, controller
+
+**Implementation:** app/app/post/importantNotice/importantNotice.controller.js

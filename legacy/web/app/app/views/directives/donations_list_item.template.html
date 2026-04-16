@@ -1,0 +1,99 @@
+<div class="info-container">
+  <div class="list-item-header">
+    <div style="width: auto; display: inline-block; float: left;">
+      <div id="menu-user-image">
+        <img ng-if="donation.creator.picture_url" ng-src="{{donation.creator.picture_url}}" onerror="this.onerror=null; if (this.src != 'error.jpg') this.src = 'images/no-image-default.png';">
+        <img ng-if="!donation.creator.picture_url" src="../images/perfilImage-default.jpg">
+      </div>
+      <h3>
+        {{donation.creator.full_name}}
+      </h3>
+      <p>- {{donation.created['date']}}</p>
+    </div>
+    <nav>
+      <ul>
+        <li><span class="state state-{{donation.state.name}}">{{donation.state.name}}</span></li>
+        <li class="pin-btn">
+          <a href="" ng-click="" data-toggle="dropdown" tooltip-placement="top" tooltip="Funcionalidad en desarrollo">
+            <i class="glyphicon glyphicon-eye-open"></i>
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenu">
+            <li><a href="#">Denunciar publicacion</a></li>
+            <li><a href="#">Denunciar usuario</a></li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+  </div>
+
+  <div class="list-item-info">
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <h3 style="margin-top:10px">
+          <a tooltip-placement="top" tooltip="Más información" href="" ng-click="donation_modal_view()"> {{donation.title}}</a>
+        </h3>
+        <p ng-text-truncate="donation.description" ng-tt-chars-threshold="60" ng-tt-more-label="Ver mas" ng-tt-less-label="Ocultar">
+        </p>
+        <!--span style="display:block;width:100%;word-wrap:break-word;">{{donation.description }}.<a tooltip-placement="top"  tooltip="Más información" href="">Ver más <i class="glyphicon glyphicon-plus"></i></a></span-->
+      </div>
+      <div class="file-wrapper">
+        <div class="img-wrapper">
+          <img style="max-width: 100%; max-height: 100%;" ng-src="{{MEDIAURL}}{{donation.files[0].file_url}}" onerror="this.onerror=null; if (this.src != 'error.jpg') this.src = 'images/no-image-default.png';" alt="No cuenta con imagen"/>
+        </div>
+      </div>
+    </div>
+    
+    <div ng-if="donation.state.name == 'Published'" class="row">
+      <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+        <a href="" ng-click="" tooltip-placement="top"  tooltip="Funcionalidad en desarrollo">
+          Compartir
+        </a>
+      </div>
+      <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+        <a ng-if="!donation.like" href="" ng-click="add_like(donation)" tooltip-placement="top" tooltip="Funcionalidad en desarrollo">
+          {{donation.count_likes}} <i class="glyphicon glyphicon-heart-empty"></i>
+        </a>
+        <a ng-if="donation.like" href="" ng-click="remove_like(donation)" tooltip-placement="top" tooltip="Funcionalidad en desarrollo">
+          {{donation.count_likes}} <i class="glyphicon glyphicon-heart"></i>
+        </a>
+      </div>
+      <div ng-if="donation.creator.id != userData.id" class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+        <a ng-if="!donation.already_applicant" href="" ng-click="" tooltip-placement="top"  tooltip="Funcionalidad en desarrollo">
+          {{donation.applicants_count}} ANOTARSE
+        </a>
+        <a ng-if="donation.already_applicant" href="" ng-click="" tooltip-placement="top"  tooltip="Funcionalidad en desarrollo">
+          {{donation.applicants_count}} ESTOY ANOTADO
+        </a>
+      </div>
+      <div ng-if="donation.creator.id == userData.id" class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+        <a href="" ng-click="" tooltip-placement="top"  tooltip="Funcionalidad en desarrollo">
+          {{donation.applicants_count}} Ver solicitudes
+        </a>
+      </div>
+    </div>
+    <div ng-if="donation.state.name == 'Reserved' || donation.state.name == 'Completed'" class="row">
+      <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+        <a ng-if="!donation.like" href="" ng-click="add_like(donation)" tooltip-placement="top" tooltip="Funcionalidad en desarrollo">
+          {{donation.count_likes}} <i class="glyphicon glyphicon-heart-empty"></i>
+        </a>
+        <a ng-if="donation.like" href="" ng-click="remove_like(donation)" tooltip-placement="top" tooltip="Funcionalidad en desarrollo">
+          {{donation.count_likes}} <i class="glyphicon glyphicon-heart"></i>
+        </a>
+      </div>
+      <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+        <div style="width: auto; display: inline-block;">
+          <div id="menu-user-image" style="width: 30px; height: 30px; border-radius: 200px; text-align: center;">
+            <img src="../images/perfilImage-default.jpg">
+          </div>
+          <span>RESERVADO</span>
+      </div>
+    </div>
+  </div>
+  <div class="list-item-info">
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        FORO
+      </div>
+    </div>
+  </div>
+</div>

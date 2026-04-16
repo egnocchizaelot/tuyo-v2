@@ -1,0 +1,57 @@
+
+<div class="card default-border-radius margin-bottom first-card-margin" id="mapContainer">
+    <div class="container mb-1">
+        <p ng-if="!editingText" class="with-icon bigger-location text-left">
+            <i class="fa fa-map-marker" aria-hidden="true" style="top:0px !important"></i>
+
+            <!--
+            <span id="zona" ng-show="isfilter">Zona de búsqueda</span>     DONE
+
+            <span id="descripcion" ng-show="!dragging && !editingText && !goodLocation && !isfilter" style="color: red !important;">Ingresa una descripción para el lugar</span>
+            <span id="lugar" ng-show="!dragging && !editingText && goodLocation && !isfilter">{{info}}</span>
+
+            <span id="buscando" ng-show="dragging && !isfilter">Buscando...</span>   DONE
+            -->
+
+            <span id="zona">Zona de búsqueda</span>
+
+            <span id="descripcion" style="color: red !important;">Zona sin nombre</span>
+            <span id="lugar">{{info}}</span>
+
+            <span id="buscando">Buscando...</span>
+
+
+        </p>
+        <!-- <input type="text" ng-model="inputData.info" ng-if="editingText && !isfilter" style="margin-bottom:10px;" class="form-control" /> -->
+        <input id="descText" type="text" ng-model="inputData.info" style="margin-bottom:10px;" class="form-control" />
+        <div class="text-right">
+            <!--
+            <a ng-if="!dragging && !editingText && !goodLocation && !isfilter" ng-click='startEditingText()' style="font-size: 14px; color: #00c074;" ng-if="!editingText && !isfilter">Editar descripción</a>
+            <a ng-if="editingText && !isfilter" ng-click='stopEditingText(inputData.info)' style="float: right; font-size: 14px; color: #00c074;">Aceptar</a>
+            -->
+
+            <a id="editDesc" ng-click='startEditingText()' style="font-size: 14px; color: #00c074;" ng-if="!editingText && !isfilter">Editar nombre</a>
+            <a id="accDesc" ng-click='stopEditingText(inputData.info)' style="float: right; font-size: 14px; color: #00c074;">Aceptar</a>
+        </div>
+    </div>
+
+
+    <div id="map"></div>
+
+    <div id="marker"></div>
+
+    <div id="circle" ng-show="isfilter"></div>
+    <!-- <div id="circle" ng-if="!isfilter"></div> -->
+
+
+<!-- <img src="assets/images/circulo_zona__mapa.png" class="img-responsive"> -->
+
+
+
+     <div class="container footer text-right">
+         <a id="map-delete" class="btn btn-primary float-left margin-left" ng-click='Delete()' ng-if="editing"> Eliminar </a>
+
+         <a id="map-accept" class="btn btn-primary float-right margin-left" ng-if="accept()" ng-click="Accept()">  Aceptar </a>
+         <a id="map-cancel" class="btn btn-line-green float-right margin-left" ng-if="cancel()" ng-click='Cancel()'> Cancelar </a>
+     </div>
+</div>

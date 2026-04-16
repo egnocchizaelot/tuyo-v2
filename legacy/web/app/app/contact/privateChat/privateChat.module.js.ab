@@ -1,0 +1,10 @@
+## privateChat.module.js
+
+**Summary:** Declares the "chat" AngularJS module for private one-on-one messaging between donation creator and reserved applicant. No external module dependencies.
+
+**Dependencies:**
+(none)
+
+**Tags:** chat, communication, module
+
+**Implementation:** app/app/contact/privateChat/privateChat.module.js

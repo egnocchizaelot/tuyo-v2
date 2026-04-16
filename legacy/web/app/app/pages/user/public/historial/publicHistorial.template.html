@@ -1,0 +1,76 @@
+<div class="tab-wrapper" id="historial">
+
+    <div class="menu-actividad-wrapper">
+        <ul class="menu-actividad text-center list-inline" id="menuHistorial">
+            <li ng-class="{'active': historyPanel === donationStates.DELIVERED}">
+                <a href="" ng-click="changeHistoryPanel(donationStates.DELIVERED)" role="tab" data-toggle="tab">
+                    <span ng-if="deliveredCount === -1">...</span>
+                    <span ng-if="deliveredCount !== -1">{{deliveredCount}}</span>
+                    Entregados
+                </a>
+            </li>
+            <li ng-class="{'active': historyPanel === donationStates.GIVEN}">
+                <a href="" ng-click="changeHistoryPanel(donationStates.GIVEN)" role="tab" data-toggle="tab">
+                    <span ng-if="receiveCount === -1">...</span>
+                    <span ng-if="receiveCount !== -1">{{receiveCount}}</span>
+                    Recibidos
+                </a>
+            </li>
+            <li ng-class="{'active': historyPanel === donationStates.THANKS}">
+                <a href="" ng-click="changeHistoryPanel(donationStates.THANKS)" role="tab" data-toggle="tab">
+                    <span ng-if="thanksCount === -1">...</span>
+                    <span ng-if="thanksCount !== -1">{{thanksCount}}</span>
+                    Gracias
+                </a>
+            </li>
+        </ul>
+    </div>
+
+
+  <!-- Tab panes -->
+    <div class="tab-content">
+
+
+        <!-- DONACIONES ENTREGADAS -->
+        <div ng-show="historyPanel === donationStates.DELIVERED">
+            <div ng-if="!deliveredDonationsLoaded">
+                <loading back="grey" data='{text: "Cargando donaciones..." }'></loading>
+            </div>
+
+            <div role="tabpanel" class="tab-pane margin-top" id="ofrecidos" ng-if="deliveredDonationsLoaded">
+                <div ng-repeat="donation in deliveredDonations">
+                    <donation-post donation='donation' in-view="onViewHistory($index, $inview)" id="{{donationStates.DELIVERED}}_{{$index}}"></donation-post>
+                </div>
+            </div>
+        </div>
+
+        <!-- DONACIONES RECIVIDAS -->
+        <div ng-show="historyPanel === donationStates.GIVEN">
+            <div ng-if="!givenDonationsLoaded">
+                <loading back="grey" data='{text: "Cargando donaciones..." }'></loading>
+            </div>
+
+            <div role="tabpanel" class="tab-pane margin-top" id="wanted" ng-if="givenDonationsLoaded">
+                <div ng-repeat="donation in givenDonations">
+                    <donation-post donation='donation' in-view="onViewHistory($index, $inview)" id="{{donationStates.GIVEN}}_{{$index}}"></donation-post>
+                </div>
+            </div>
+        </div>
+
+        <!-- APRECIACIONES -->
+        <div ng-show="historyPanel === donationStates.THANKS">
+            <div ng-if="!appreciationsLoaded">
+                <loading back="grey" data='{text: "Cargando donaciones..." }'></loading>
+            </div>
+
+            <div role="tabpanel" class="tab-pane margin-top" id="wanted" ng-if="appreciationsLoaded">
+                <div ng-repeat="appreciation in appreciations">
+                    <thanks-post donation='appreciation' in-view="onViewHistory($index, $inview)" id="{{donationStates.THANKS}}_{{$index}}"></thanks-post>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<loading back="grey" ng-if="historyReloading"></loading>

@@ -1,0 +1,10 @@
+## docker-compose.yaml
+
+**Summary:** Docker Compose configuration (version 3.7) defining a single service `tuyo-fe` that builds from the project root Dockerfile and exposes port 9000 (the Grunt development server port) to the host. Provides a containerized development environment for the frontend application.
+
+**Dependencies:**
+- Dockerfile — referenced by the `build: .` directive to construct the container image
+
+**Tags:** docker, configuration
+
+**Implementation:** docker-compose.yaml

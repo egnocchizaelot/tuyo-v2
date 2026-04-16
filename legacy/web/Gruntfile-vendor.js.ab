@@ -1,0 +1,12 @@
+## Gruntfile-vendor.js
+
+**Summary:** Legacy/alternate Grunt build configuration generated from the original `yo angular` generator (version 0.12.0). Defines a more traditional Angular build pipeline with wiredep for Bower injection, Compass SCSS compilation, autoprefixer, ngAnnotate for DI-safe minification, concat, Babel ES2015 transpilation, uglify, copy (including Bootstrap fonts), imagemin, svgmin, htmlmin, filerev for cache-busting, usemin for asset rewriting, cdnify for CDN replacement, Karma test runner integration, and concurrent task execution. Exposes `serve` (dev server), `test` (Karma unit tests), `build` (full production pipeline), and `default` (jshint + test + build) tasks. This file appears to be the original generator output before the project migrated to the simplified Gruntfile.js.
+
+**Dependencies:**
+- bower.json — read for appPath configuration
+- package.json — npm devDependencies providing grunt plugins
+- test/karma.conf.js — Karma test configuration referenced by the test task
+
+**Tags:** configuration, legacy
+
+**Implementation:** Gruntfile-vendor.js

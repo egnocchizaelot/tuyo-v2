@@ -1,0 +1,15 @@
+## privateChat.directive.js
+
+**Summary:** Core directive (element: "privateChat") implementing the private chat between donor and applicant. Handles message sending with validation (max 800 chars), message grouping into blocks by sender, real-time polling via socketService every 2 seconds, cancel reservation and deliver donation actions with API calls, forum state change detection, auto-scroll to latest message, and text area auto-expansion. Contains the BlockThemOut helper function for grouping messages by sender.
+
+**Dependencies:**
+- app/app/contact/privateChat/privateChat.module.js — registered on chat module
+- app/app/scripts/services/api.js — uses API for messages, forum, and donation state
+- app/app/scripts/services/auth.js — uses Auth for user identification
+- app/app/socket.service.js — uses socketService for real-time chat polling
+- app/app/modals/modals.service.js — uses modalServices for confirmation dialogs
+- app/app/app/app.service.js — uses appService for mobile/modal height
+
+**Tags:** chat, communication, directive, realtime, socket-io, donations
+
+**Implementation:** app/app/contact/privateChat/privateChat.directive.js

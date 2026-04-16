@@ -1,0 +1,12 @@
+## user.controller.js
+
+**Summary:** Controller for the private user profile view that exposes the authenticated user's data and media URL, manages tab state (activity, history, profile) via `$scope.state` and `$scope.active`, and handles profile picture upload by converting base64 images to File objects and POSTing them to the `upload_profile_picture` API endpoint using the Fetch API with authorization headers.
+
+**Dependencies:**
+- app/app/pages/user/user.module.js — registers controller on the `user` module
+- app/app/scripts/services/auth.js — Auth for userData and changeData
+- app/app/scripts/services/api.js — API for mediaURL and baseURL (profile picture upload endpoint)
+
+**Tags:** user-profile, controller, private, profile-picture
+
+**Implementation:** app/app/pages/user/private/user.controller.js

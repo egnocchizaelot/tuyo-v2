@@ -1,0 +1,66 @@
+<div id="theMessage_{{message.id}}" ng-class="message.reserved ? 'card primary-border-bottom card-alert' : 'card gray-light-border-bottom'">
+
+    <div class="container">
+        <div class="user-header">
+
+            <!-- <div class="avatar" ng-click="goToUser()" style="cursor: pointer"> -->
+            <a data-ui-sref="app.user({id: message.sender.id})" data-ui-sref-opts="{reload: true, inherit: false, notify: true}" target="_blank">
+                <div class="avatar" style="cursor: pointer">
+                    <img ng-if="message.sender.picture_url" ng-src="{{mediaURL}}{{message.sender.picture_url}}" class="img-responsive" onerror="this.onerror=null; if (this.src != 'error.jpg') this.src = 'assets/images/user2.png';"/>
+                    <img ng-if="!message.sender.picture_url" src="assets/images/user2.png" class="img-responsive"/>
+
+                </div>
+            </a>
+
+            <h3>
+                <!-- <a href="" ng-click="goToUser()">{{message.sender.full_name}} -->
+                <a data-ui-sref="app.user({id: message.sender.id})" data-ui-sref-opts="{reload: true, inherit: false, notify: true}" target="_blank">{{message.sender.full_name}}
+                    <span am-time-ago="sendDate  || 'YYYY-MM-DD HH:mm:ss'"></span>
+                </a>
+            </h3>
+
+            <ul ng-if="message.sender.ranking > 0" class="list-unstyled list-inline star-points">
+                <li class="got-star" ng-repeat="x in ranking() track by $index"></li>
+            </ul>
+
+            <h3 ng-if="message.sender.ranking === 0">
+                <span>Nuevo usuario</span>
+            </h3>
+
+            <report-publication ng-if="!mine" entity-id="message.id" type="M"></report-publication>
+
+        </div>
+        <p>{{message.content}}</p>
+
+
+        <div ng-if="responses">
+            <div id="theResponses" class="container footer collapse">
+                <div ng-repeat="child in message.children">
+                    <child-message child="child"></child-message>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="container footer">
+            <div class="row">
+                <div class="col-xs-6">
+                    <a class="desplegar-respuestas" style="white-space: nowrap; line-height: 2.5; !important" role="button" data-toggle="collapse" ng-click="toggleResponses()" aria-expanded="false" ng-if="responses">
+                        <i class="fa fa-sort-down" ng-show="!selected"></i>
+                        <i class="fa fa-sort-up" ng-show="selected"></i>
+                        {{message.children.length}} Respuestas
+                    </a>
+                </div>
+
+                <!-- <div class="col-xs62">
+                    <a>
+                        <strong class="btn-svg btn-svg-chat" ng-click="EnableComent()">Comments</strong>
+                    </a>
+                </div> -->
+            </div>
+        </div>
+    </div>
+
+
+    </div>
+</div>

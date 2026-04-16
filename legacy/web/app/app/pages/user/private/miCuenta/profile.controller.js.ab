@@ -1,0 +1,10 @@
+## profile.controller.js
+
+**Summary:** Controller (`miCuentaController`) for the "My Account" profile editing section. Listens for the `email confirmed` event broadcast from the parent directive and updates the local userData's email confirmation status accordingly.
+
+**Dependencies:**
+- app/app/pages/user/user.module.js — registers controller on the `user` module
+
+**Tags:** user-profile, controller, private, account-settings
+
+**Implementation:** app/app/pages/user/private/miCuenta/profile.controller.js

@@ -1,0 +1,97 @@
+<div id="desktop" class="body-bg-whtie pagina-ayuda">
+
+  		<div class="gray-light-border-bottom text-center ribbon-volver">
+  			<div class="container">
+  				<p><a ng-href='{{backPath}}' target="_self">< Volver a Sección de Ayuda</a></p>
+  			</div>
+  		</div>
+
+        <div class="container">
+
+            <div class="subtitulos-ayuda ayuda-para-usar-el-sitio" ng-if="area === areas.AYUDA">
+                <h2>Ayuda para usar el sitio</h2>
+                <p>¿Cómo hago para...?</p>
+            </div>
+
+            <div class="subtitulos-ayuda tengo-un-problema" ng-if="area === areas.PROBLEMA">
+                <h2>Tengo un problema!</h2>
+            </div>
+
+            <div class="wrapper-list-links">
+                <ul class="list-unstyled">
+
+                    <li ng-repeat="topic in topics[page] track by $index">
+                        <a ng-click="goToTopic($index)">{{topic.topic_title}}</a>
+                    </li>
+
+
+                </ul>
+
+                <div class="pagination text-right">
+                    <div class="pagination-wrapper">
+                        <a class="prev" ng-click="goToPage(page-1)">Prev</a>
+                            <ul class="list-unstyled list-inline">
+
+                                <!-- <li ng-repeat="i in getPages() track by $index"> -->
+                                <li ng-repeat="i in getPages() track by $index" ng-click="goToPage($index+1)" style="cursor: pointer; !important" ng-class="{active: $index + 1 === page}">
+                                    {{$index+1}}
+                                </li>
+
+                            </ul>
+                        <a class="next" ng-click="goToPage(page+1)">Next</a>
+                    </div>
+                </div><!-- /pagination -->
+            </div><!--/wrapper-list-links-->
+
+
+
+        <div class="row text-center bloques-respuestas-rapidas-vertical">
+
+            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4" ng-click="goToArea('faq')" style="cursor: pointer; !important">
+                <div class="bloques-respuestas-rapidas">
+                    <div class="img-wrapper">
+                        <img src="assets/images/respuestas-rapidas.svg" class="img-responsive">
+                    </div>
+                    <h4>Respuestas rápidas</h4>
+                    <p>Encuentra respuesta a las preguntas más frecuentes.</p>
+                    <a class="ver-mas">Ver más</a>
+                </div><!-- /bloques-respuestas-rapidas -->
+            </div>
+
+            <div ng-if="area === areas.PROBLEMA" class="col-xs-12 col-sm-4 col-md-4 col-lg-4"ng-click="goToArea('ayuda')" style="cursor: pointer; !important">
+                <div class="bloques-respuestas-rapidas">
+                    <div class="img-wrapper">
+                        <img src="assets/images/ayuda-para-usar-el-sitio.svg" class="img-responsive">
+                    </div>
+                    <h4>Ayuda para usar el sitio</h4>
+                    <p>Como funciona el nuevo sitio explicado paso a paso.</p>
+                    <a class="ver-mas">Ver más</a>
+                </div><!-- /bloques-respuestas-rapidas -->
+            </div>
+
+            <div ng-if="area === areas.AYUDA" class="col-xs-12 col-sm-4 col-md-4 col-lg-4" ng-click="goToArea('problema')" style="cursor: pointer; !important">
+                <div class="bloques-respuestas-rapidas">
+                    <div class="img-wrapper">
+                        <img src="assets/images/tengo-un-problema.svg" class="img-responsive">
+                    </div>
+                    <h4>Tengo un problema!</h4>
+                    <p>Encuentra solución a los problemas más comunes.</p>
+                    <a class="ver-mas">Ver más</a>
+                </div><!-- /bloques-respuestas-rapidas -->
+            </div>
+
+            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4" ng-click="goToArea('buzon')" style="cursor: pointer; !important">
+                <div class="bloques-respuestas-rapidas">
+                    <div class="img-wrapper">
+                        <img src="assets/images/buzon-de-ayuda.svg" class="img-responsive">
+                    </div>
+                    <h4>Buzón de ayuda</h4>
+                    <p>Contacta a los administradores para recibir ayuda.</p>
+                    <a class="ver-mas">Ver más</a>
+                </div><!-- /bloques-respuestas-rapidas -->
+            </div>
+
+        </div><!-- /row -->
+
+    </div><!-- end container -->
+</div>

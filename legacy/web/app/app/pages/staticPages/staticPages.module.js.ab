@@ -1,0 +1,10 @@
+## staticPages.module.js
+
+**Summary:** Declares the `staticPagesModule` AngularJS module with no dependencies. Serves as the container for all static informational page controllers (project info, rules, collaborators, terms, prohibited articles, troubleshooting, wrong email link, confirmation success).
+
+**Dependencies:**
+- None
+
+**Tags:** static-pages, module
+
+**Implementation:** app/app/pages/staticPages/staticPages.module.js

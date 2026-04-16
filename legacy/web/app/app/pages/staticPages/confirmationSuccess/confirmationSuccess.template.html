@@ -1,0 +1,13 @@
+<navigation-bar-desktop ></navigation-bar-desktop>
+
+<div class="container lonely-tempalte">
+    <div class="card default-border-radius margin-bottom" style="padding-bottom: 15px; !important">
+        <div class="container" style="text-align: center;">
+            <p style="white-space: pre-wrap; !important">¡La confirmación de tu correo se realizó con éxito!</p>
+            <p style="white-space: pre-wrap; !important">Ten en cuenta que es posible que tu usuario aún no haya</br> sido aprobado por los administradores.</p>
+
+            <p ng-if="id" style="white-space: pre-wrap; !important">Si necesitas modificar la información de tu usuario </br>puedes hacerlo través de la sección <a data-ui-sref="app.user({id: {{id}} })">Mi perfil</a></p>
+            <p ng-if="!id" style="white-space: pre-wrap; !important">Si necesitas modificar la información de tu usuario </br>puedes hacerlo través de la sección Mi perfil una vez estés habilitado a entrar al sitio</p>
+        </div>
+    </div>
+</div>

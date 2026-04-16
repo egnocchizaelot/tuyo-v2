@@ -1,0 +1,131 @@
+<div id="theMessage_{{message.id}}" ng-class="message.reserved ? 'card primary-border-bottom card-alert' : 'card gray-light-border-bottom'">
+
+    <div class="container">
+
+        <div class="user-header">
+            <!-- <div class="avatar" ng-click="goToUser()" style="cursor: pointer"> -->
+
+            <a data-ui-sref="app.user({id: message.sender.id})" data-ui-sref-opts="{reload: true, inherit: false, notify: true}" target="_blank">
+                <div class="avatar" style="cursor: pointer">
+                    <img ng-if="message.sender.picture_url" ng-src="{{mediaURL}}{{message.sender.picture_url}}" class="img-responsive" onerror="this.onerror=null; if (this.src != 'error.jpg') this.src = 'assets/images/user2.png';"/>
+                    <img ng-if="!message.sender.picture_url" src="assets/images/user2.png" class="img-responsive"/>
+
+                </div>
+            </a>
+
+            <h3>
+                <!-- <a href="" ng-click="goToUser()">{{message.sender.full_name}} -->
+                <a data-ui-sref="app.user({id: message.sender.id})" data-ui-sref-opts="{reload: true, inherit: false, notify: true}" target="_blank">{{message.sender.full_name}}
+                    <span am-time-ago="sendDate  || 'YYYY-MM-DD HH:mm:ss'"></span>
+                </a>
+            </h3>
+
+            <ul ng-if="message.sender.ranking > 0" class="list-unstyled list-inline star-points">
+                <li class="got-star" ng-repeat="x in ranking() track by $index"></li>
+            </ul>
+
+            <h3 ng-if="message.sender.ranking === 0">
+                <span>Nuevo usuario</span>
+            </h3>
+
+            <report-publication ng-if="!mine" entity-id="message.id" type="M"></report-publication>
+
+        </div>
+        <p>{{message.content}}</p>
+
+
+        <div ng-if="responses">
+            <div id="theResponses" class="footer collapse">
+                <div ng-repeat="child in message.children track by child.id">
+                    <child-message child="child"></child-message>
+                </div>
+            </div>
+        </div>
+
+        <!-- SI ES UN USUARIO CUALQUIERA: Solo cartel de respuestas -->
+        <div class="footer" ng-if="!mine && !donor && responses">
+            <div class="row">
+                <a class="desplegar-respuestas col-xs-4" style="white-space: nowrap; line-height: 2.5; !important" role="button" data-toggle="collapse" ng-click="toggleResponses()" aria-expanded="false" ng-if="responses">
+                    <i class="fa fa-sort-down" ng-show="!selected"></i>
+                    <i class="fa fa-sort-up" ng-show="selected"></i>
+                    {{message.children.length}} Respuestas
+                </a>
+            </div>
+        </div>
+
+        <!-- SI ES EL QUE ESCRIBIO EL MENSAJE -->
+        <div class="footer" ng-if="mine && !donor && alreadyApplicant && !delivered">
+            <div class="row">
+                <div class="col-xs-4">
+                    <a class="desplegar-respuestas col-xs-4" style="white-space: nowrap; line-height: 2.5; !important" role="button" data-toggle="collapse" ng-click="toggleResponses()" aria-expanded="false" ng-if="responses">
+                        <i class="fa fa-sort-down" ng-show="!selected"></i>
+                        <i class="fa fa-sort-up" ng-show="selected"></i>
+                        {{message.children.length}} Respuestas
+                    </a>
+                </div>
+
+                <div ng-show="!closed">
+                    <div class="col-xs-2 text-right">
+                        <!-- <a>
+                            <strong class="btn-svg btn-svg-chat" ng-click="EnableComent()">Comments</strong>
+                        </a> -->
+                    </div>
+
+                    <div class="col-xs-6 text-right">
+                        <a class="btn btn-line-green" ng-if="!message.reserved" ng-click='RemoveApplication()'>Eliminar solicitud</a>
+                    </div>
+                </div>
+
+                <div class="col-xs-4 text-right"></div>
+
+                <div class="col-xs-2 text-right">
+                    <span ng-if="message.reserved">
+                        <a class="btn btn-primary" style="float-right" ng-click="GoToReservedChat()">Ir al chat</a>
+                    </span>
+                </div>
+
+            </div>
+        </div>
+
+
+
+        <!-- SI ES EL DONANTE -->
+        <div class="footer" ng-if="donor && !delivered">
+            <div class="row">
+                <div class="col-xs-4">
+                    <a class="desplegar-respuestas" style="white-space: nowrap; line-height: 2.5; !important" role="button" data-toggle="collapse" ng-click="toggleResponses()" aria-expanded="false" ng-if="responses">
+                        <i class="fa fa-sort-down" ng-show="!selected"></i>
+                        <i class="fa fa-sort-up" ng-show="selected"></i>
+                        {{message.children.length}} Respuestas
+                    </a>
+                </div>
+
+                <div class="col-xs-2">
+                    <!-- <a ng-if="!closed && message.applicant && reservedDonation === -1">
+                        <strong class="btn-svg btn-svg-chat" ng-click="EnableComent()">Comments</strong>
+                    </a> -->
+                </div>
+
+                <a class="btn-counter col-xs-2" ng-click="likeClick(message)">
+                    <strong ng-if="!message.like" class="btn-svg btn-svg-like">Likes</strong>
+                    <strong ng-if="message.like" class="btn-svg btn-svg-like liked">Likes</strong>
+                </a>
+
+                <div class="col-xs-2" ng-if="message.applicant">
+                    <span ng-if="!message.reserved && reservedDonation === -1">
+                        <a class="btn btn-line-green" ng-click='AddReservation()'>Es tuyo!</a>
+                    </span>
+
+                    <span ng-if="message.reserved">
+                        <a class="btn btn-primary" style="float-right" ng-click="GoToReservedChat()">Ir al chat</a>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    </div>
+</div>

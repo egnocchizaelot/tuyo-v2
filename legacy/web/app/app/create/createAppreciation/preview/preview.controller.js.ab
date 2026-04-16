@@ -1,0 +1,10 @@
+## preview.controller.js
+
+**Summary:** Controller for the appreciation preview, initializing the donationLoaded flag. Registered on the creation module.
+
+**Dependencies:**
+- app/app/create/createDonation/creation.module.js — registered on creation module
+
+**Tags:** appreciation, creation, controller, preview
+
+**Implementation:** app/app/create/createAppreciation/preview/preview.controller.js

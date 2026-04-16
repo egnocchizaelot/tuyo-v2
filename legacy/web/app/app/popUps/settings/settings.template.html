@@ -1,0 +1,78 @@
+<a class="btn-right-top" role="button" ng-click="Show()" title="Opciones">
+    <i class="fa fa-cog fa-6" aria-hidden="true"></i>
+</a>
+
+<div class="collapse settings-menu" id="settingsMenu">
+    <ul class="list-unstyled container">
+        <div class="arrow-up"></div>
+
+        <!-- EDIT -->
+        <li ng-if='!reserved'>
+            <a href="" ng-click="Edit()">
+                <i class="fa fa-pencil"></i>
+                Editar la publicación
+            </a>
+        </li>
+
+        <li style='opacity: 0.5' ng-if='reserved'>
+            <a>
+                <i class="fa fa-pencil"></i>
+                Editar la publicación
+            </a>
+        </li>
+
+
+        <!-- FORUM LIST -->
+        <li>
+            <a href="" ng-click="List()">
+                <i class="fa fa-list" ></i>
+                Lista de interesados
+            </a>
+        </li>
+
+
+        <!-- CHAT -->
+        <li ng-if='reserved'>
+            <a href="" ng-click="Chat()">
+                <i class="fa fa-comments-o" ></i>
+                Chat privado
+            </a>
+        </li>
+
+        <li style='opacity: 0.5' ng-if='!reserved'>
+            <a>
+                <i class="fa fa-comments-o" ></i>
+                Chat privado
+            </a>
+        </li>
+
+        <!-- DELETE -->
+        <li ng-if='!reserved'>
+            <a href="" ng-click="Delete()">
+                <i class="fa fa-trash-o" ></i>
+                Eliminar la publicación
+            </a>
+        </li>
+
+        <li style='opacity: 0.5' ng-if='reserved'>
+            <a>
+                <i class="fa fa-trash-o" ></i>
+                Eliminar la publicación
+            </a>
+        </li>
+
+        <li ng-if='!reserved'>
+            <a href="" ng-click="Republish()">
+                <i class="fa fa-repeat" ></i>
+                Republicar
+            </a>
+        </li>
+
+        <li style='opacity: 0.5' ng-if='reserved'>
+            <a>
+                <i class="fa fa-repeat" ></i>
+                Republicar
+            </a>
+        </li>
+    </ul>
+</div>

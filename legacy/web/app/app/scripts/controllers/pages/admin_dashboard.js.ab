@@ -1,0 +1,11 @@
+## admin_dashboard.js
+
+**Summary:** Legacy controller (`AdminDashboardPage`) registered on the `TuyoTools` module for the admin dashboard view. Currently a minimal stub that immediately sets `finish_loading` to true with no actual data loading, suggesting the admin functionality is deprecated or not yet implemented.
+
+**Dependencies:**
+- app/app/app/app.js — registers controller on root `TuyoTools` module
+- app/app/scripts/services/api.js — API (injected but unused)
+
+**Tags:** legacy, controller, dashboard, admin
+
+**Implementation:** app/app/scripts/controllers/pages/admin_dashboard.js

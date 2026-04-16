@@ -1,0 +1,11 @@
+<div ng-show="!finish_loading" class="container dashboard-page">Cargando Dashboard...</div>
+<div ng-show="finish_loading" class="container dashboard-page">
+  <div ng-if="donations.length ===0 && acctual_section==='dashboard'" class="container applications_new-page ng-scope dashboard-start" style="">
+    <h2 class="text-center empty-dashboard">No hay donaciones.</h2>
+    <p class="text-center">Puedes <a ui-sref="app.donations.new_donation" ng-click="resetFilters();" ui-sref-opts="{reload: true, inherit: false, notify: true}">crear una donacion</a></p>
+  </div>
+
+  <dashboard-donations donations="donations" ng-if="donations.length > 0">
+    Cargando...
+  </dashboard-donations>
+</div>

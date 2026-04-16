@@ -1,0 +1,10 @@
+## calification.module.js
+
+**Summary:** Declares the "calification" AngularJS module for user rating/qualification flows after donation delivery or cancellation. No external module dependencies.
+
+**Dependencies:**
+(none)
+
+**Tags:** calification, rating, module
+
+**Implementation:** app/app/calification/calification.module.js

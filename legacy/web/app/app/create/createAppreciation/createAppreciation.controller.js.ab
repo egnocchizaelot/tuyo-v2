@@ -1,0 +1,11 @@
+## createAppreciation.controller.js
+
+**Summary:** Controller for the appreciation creation form. Initializes the description text, appreciation images array, and styles the mobile back button.
+
+**Dependencies:**
+- app/app/create/createAppreciation/createAppreciation.module.js — registered on createAppreciation module
+- app/app/app/app.service.js — uses appService.isMobile for mobile styling
+
+**Tags:** appreciation, creation, controller
+
+**Implementation:** app/app/create/createAppreciation/createAppreciation.controller.js

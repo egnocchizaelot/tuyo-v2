@@ -1,0 +1,10 @@
+## createAppreciation.module.js
+
+**Summary:** Declares the "createAppreciation" AngularJS module for appreciation/thanks creation. Depends on slickCarousel for image display.
+
+**Dependencies:**
+(none beyond slickCarousel third-party)
+
+**Tags:** appreciation, creation, module
+
+**Implementation:** app/app/create/createAppreciation/createAppreciation.module.js

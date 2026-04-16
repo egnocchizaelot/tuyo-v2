@@ -1,0 +1,11 @@
+## preview.controller.js
+
+**Summary:** Controller for the donation creation preview step. Initializes the loaded state flag and styles a mobile back button.
+
+**Dependencies:**
+- app/app/create/createDonation/creation.module.js — registered on the creation module
+- app/app/app/app.service.js — uses appService.isMobile
+
+**Tags:** creation, donations, controller, preview
+
+**Implementation:** app/app/create/createDonation/preview/preview.controller.js

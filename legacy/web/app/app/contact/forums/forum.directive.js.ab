@@ -1,0 +1,16 @@
+## forum.directive.js
+
+**Summary:** Core directive (element: "forum") implementing the public donation forum. Handles applicant registration (MeAnoto) and removal, message threading with parent-child relationships, real-time message polling via socketService every 5 seconds, message ordering (by reputation/likes/friends/FIFO), donor reservation management, forum state tracking (open/closed), text area auto-expansion, and response targeting.
+
+**Dependencies:**
+- app/app/contact/forums/forum.module.js — registered on forumModule
+- app/app/contact/forums/forum.services.js — uses forumService for message tree operations
+- app/app/scripts/services/api.js — uses API for forum operations and message sending
+- app/app/scripts/services/auth.js — uses Auth for user identification
+- app/app/socket.service.js — uses socketService for real-time forum updates
+- app/app/app/app.service.js — uses appService for mobile detection
+- app/app/post/post.service.js — uses postServices for closing forum modals
+
+**Tags:** forum, communication, directive, realtime, socket-io, donations
+
+**Implementation:** app/app/contact/forums/forum.directive.js

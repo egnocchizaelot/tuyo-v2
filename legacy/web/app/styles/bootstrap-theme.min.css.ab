@@ -1,0 +1,17 @@
+# File: app/styles/bootstrap-theme.min.css.ab
+# Purpose: Bootstrap 3.3.7 theme CSS — minified production copy stored in app/styles/
+# Dependencies: []
+
+## Overview
+Minified copy of the Bootstrap 3.3.7 optional theme CSS (5 lines). The compressed form of `app/styles/bootstrap-theme.css`, providing gradient and shadow enhancements on Bootstrap components.
+
+## Interface
+No exports. Loaded as a `<link>` stylesheet in `app/index.html`.
+
+## Dependencies
+No project-level dependencies. Vendor file. Requires `bootstrap.min.css` to be loaded first.
+
+## Implementation Notes
+- Bootstrap theme version: 3.3.7
+- 5 lines minified
+- Identical in content to `app/assets/css/bootstrap-theme.min.css`

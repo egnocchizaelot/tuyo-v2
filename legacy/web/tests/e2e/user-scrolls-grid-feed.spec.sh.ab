@@ -1,0 +1,117 @@
+# File: tests/e2e/user-scrolls-grid-feed.spec.sh.ab
+# Purpose: Verify infinite scroll works correctly in the 3-column grid — viewport-fill auto-load triggers when the grid compresses height, and manual scrolling loads more pages
+# Dependencies: [app/app/pages/dashboard/desktop/dashboard.directive.js.ab, app/assets/scss/_feed-grid.scss.ab, app/app/post/post.directive.js.ab]
+
+## Overview
+An authenticated user loads the desktop listing feed in the 3-column grid. Because the grid compresses vertical height (3 cards per row instead of 1), the initial batch of cards may not make the page scrollable. The viewport-fill check must automatically load additional pages until the page is scrollable, then normal scroll-based pagination takes over as the user scrolls toward the bottom.
+
+## Covers
+app/app/pages/dashboard/desktop/dashboard.directive.js.ab, app/assets/scss/_feed-grid.scss.ab, app/app/post/post.directive.js.ab
+
+## Business Actor
+Authenticated user browsing the listing feed on a desktop browser, expecting continuous content loading without dead ends.
+
+## Business Goal
+Scroll through an endless listing feed without encountering a premature stop — the feed should keep loading pages whether triggered automatically (viewport fill) or by user scrolling.
+
+## Test Accounts
+<!-- Credentials are defined here and used verbatim by the translator. Do NOT read from .env or any external file. -->
+<!-- Each actor gets a base email. At runtime the translator appends +<random_id> to make it unique per run. -->
+- Actor `user`: base email `e2e.scrolluser@test.local`, password `Test1234!`
+
+## Preconditions
+- Each run creates a fresh isolated account using `e2e.scrolluser+<random_id>@test.local` via the registration API before Scenario A runs. This account is fully isolated — no shared state with other specs or runs.
+- The test environment contains a sufficient number of donation listings (read-only seed data) such that multiple pages of results are available from the API.
+- Desktop viewport is set to 1280x800 so that the initial 3-column batch may not fill the full viewport height.
+
+Teardown (after all scenarios, even on failure):
+- Delete the per-run account created during setup and all records it owns.
+- Do NOT delete shared read-only seed fixtures.
+
+## Business Scenarios
+- Scenario A (DB-1): Feed loads and page is not scrollable — viewport-fill auto-loads next page
+- Scenario B (DB-2): After viewport fill, user scrolls toward bottom and triggers normal infinite scroll
+- Scenario C (DB-3): API returns empty results during auto-load — cycle terminates cleanly
+
+## Actor Variants
+- EQ-1 — First page renders in 3-column grid and document height does not exceed viewport -> viewport-fill auto-load triggers -> DB-1
+- EQ-2 — First page renders and document height already exceeds viewport (page is scrollable) -> no auto-load needed, user scrolls normally -> DB-2
+- EQ-3 — All available content exhausted during viewport-fill cycle (API returns empty before page becomes scrollable) -> DB-3
+
+## Outcome Branches
+- DB-1 -> Viewport-fill check triggers automatic next-page load; repeated until page is scrollable (EQ-1)
+- DB-2 -> User scrolling toward bottom triggers further normal infinite-scroll loads (EQ-2)
+- DB-3 -> API returns empty elements array during auto-load cycle; cycle terminates, feed stops loading, no silent loop (EQ-3)
+
+## Business Boundaries
+- BV-1 (document height exactly equals viewport height after first batch): auto-load should still trigger since the page is not scrollable
+- BV-2 (document height 1px below viewport height): clearly below threshold, auto-load must trigger
+- BV-3 (document height 1px above viewport height): above threshold, auto-load must NOT trigger again
+
+## Acceptance Criteria
+- AC1: When the 3-column grid compresses content height below the viewport, additional pages load automatically without the user scrolling (DB-1, EQ-1)
+- AC2: After the page becomes scrollable (via viewport fill or sufficient initial content), scrolling toward the bottom triggers the next page load (DB-2, EQ-2)
+- AC3: When the API returns an empty result set during auto-load, the cycle terminates cleanly and the feed shows all available content (DB-3, EQ-3)
+- AC4: At the boundary where document height equals viewport height, auto-load still triggers (BV-1)
+- AC5: When document height just barely exceeds viewport, auto-load does not trigger unnecessarily (BV-3)
+- AC6: No further API calls are made after all content is loaded (ABSENT-1)
+- AC7: No duplicate cards appear across batches during viewport-fill auto-load (ABSENT-2)
+- AC8: The feed never silently stops at the first batch with whitespace below (ABSENT-3)
+
+## Absent Elements
+- After all content is loaded: no further API calls made (auto-load cycle terminates cleanly)
+- During viewport-fill auto-load: no duplicate cards rendered across batches
+- When feed has been loaded without user scrolling: feed does not silently stop at first batch with whitespace below
+
+## Steps
+
+### Scenario A: Viewport-fill auto-load triggers on short page
+<!-- covers: DB-1, EQ-1, BV-1, BV-2, ABSENT-2, ABSENT-3 -->
+1. Log in as the test user on a desktop viewport (1280x800)
+2. Navigate to the listing feed at $E2E_BASE_URL
+3. Wait for the initial batch of cards to render in the 3-column grid
+4. Observe whether the page becomes scrollable after the first batch
+5. If the page is not scrollable (first batch height < viewport), verify AC1: additional cards appear automatically without the user scrolling
+6. Wait for the auto-load cycle to complete (page becomes scrollable or all content loads)
+7. Verify AC8 (Absent): the feed is not stuck at the first batch with whitespace below the last card
+8. Verify AC7 (Absent): no duplicate cards are visible — each listing appears exactly once
+9. Count the total cards visible — should be more than the first batch if auto-load triggered
+10. Take a screenshot and save to $E2E_ARTIFACTS_DIR/grid-scroll/viewport-fill-complete.png
+
+### Scenario B: Normal infinite scroll after viewport fill
+<!-- covers: DB-2, EQ-2, BV-3 -->
+1. After Scenario A completes, the page should now be scrollable
+2. Scroll toward the bottom of the feed (within 400px of the document bottom)
+3. Verify AC2: a loading indicator appears and a new batch of cards loads
+4. Verify the new cards append below the existing ones in the 3-column grid
+5. Scroll to the bottom again to confirm infinite scroll continues working
+6. Take a screenshot and save to $E2E_ARTIFACTS_DIR/grid-scroll/infinite-scroll-next-page.png
+
+### Scenario C: API returns empty — auto-load terminates
+<!-- covers: DB-3, EQ-3, ABSENT-1 -->
+1. Continue scrolling through the feed until all available listings have been loaded
+2. Verify AC3: the feed shows all available content and stops loading
+3. Verify AC6 (Absent): no further loading indicators appear — the auto-load cycle has terminated
+4. Scroll to the very bottom — no additional API requests trigger
+5. Verify the feed displays a natural end state (no infinite spinner)
+6. Take a screenshot and save to $E2E_ARTIFACTS_DIR/grid-scroll/all-content-loaded.png
+
+## Coverage Map
+
+| Case ID | Type | Description | Scenario | Status |
+|---------|------|-------------|----------|--------|
+| DB-1 | Decision Branch | Page not scrollable -> viewport-fill auto-load | Scenario A | ✅ covered |
+| DB-2 | Decision Branch | Page scrollable -> normal infinite scroll | Scenario B | ✅ covered |
+| DB-3 | Decision Branch | API empty -> cycle terminates | Scenario C | ✅ covered |
+| EQ-1 | Equivalence Class | First batch doesn't fill viewport | Scenario A | ✅ covered |
+| EQ-2 | Equivalence Class | First batch fills viewport | Scenario B | ✅ covered |
+| EQ-3 | Equivalence Class | All content exhausted during auto-load | Scenario C | ✅ covered |
+| BV-1 | Boundary Value | Doc height = viewport height, auto-load triggers | Scenario A | ✅ covered |
+| BV-2 | Boundary Value | Doc height 1px below viewport, auto-load triggers | Scenario A | ✅ covered |
+| BV-3 | Boundary Value | Doc height 1px above viewport, auto-load stops | Scenario B | ✅ covered |
+| ABSENT-1 | Absent Element | No further API calls after all content loaded | Scenario C | ✅ covered |
+| ABSENT-2 | Absent Element | No duplicate cards across batches | Scenario A | ✅ covered |
+| ABSENT-3 | Absent Element | No silent stop at first batch | Scenario A | ✅ covered |
+
+## Artifacts
+All written to $E2E_ARTIFACTS_DIR/grid-scroll/ with explicit filenames.

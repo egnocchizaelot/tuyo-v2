@@ -1,0 +1,12 @@
+## app_config.js
+
+**Summary:** Application bootstrap configuration combining the AuthInterceptor factory, a promise-based Confirm dialog factory, growl notification settings, Facebook SDK async initialization, CSRF/auth header defaults, route guard logic, and browser history management. The AuthInterceptor catches 401 responses and redirects to the landing page. The run block asynchronously loads the Facebook JS SDK with the configured FACEBOOK_APP_ID, sets the global `facebookIsLoaded` flag on completion, calls `Auth.loadUserData()` to restore session from localStorage, configures HTML5 history state tracking for modal back-button support, and implements the `$stateChangeStart` route guard that enforces authentication (redirecting unauthenticated users to landing, redirecting authenticated users away from landing to the dashboard, and logging out users with incomplete registration).
+
+**Dependencies:**
+- app/app/scripts/services/auth.js — Auth service for loadUserData(), checkLogin(), logout(), and userData
+- app/deploy_config.js — provides global FACEBOOK_APP_ID used for FB.init()
+- angular ($rootScope, $q, $location, $state, $modalStack, $window, $http, $cookies) — AngularJS core services
+
+**Tags:** authentication, facebook, session, configuration, token-management
+
+**Implementation:** app/app/app_config.js

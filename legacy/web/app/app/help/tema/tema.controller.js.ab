@@ -1,0 +1,10 @@
+## tema.controller.js
+
+**Summary:** Controller for the individual help topic detail view. Reads the topic object and topic ID from `$stateParams` to pass to the tema directive for rendering.
+
+**Dependencies:**
+- app/app/help/help.module.js — registers on the `help` module
+
+**Tags:** help, faq, controller, topic-detail
+
+**Implementation:** app/app/help/tema/tema.controller.js

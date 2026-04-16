@@ -1,0 +1,35 @@
+<div class="nube">
+    <div class="nube-header">
+        <div class="avatar-round" ng-style="pos === 0 ? {'top': '0rem' } : {}">
+            <img ng-if="first.sender.picture_url" ng-src="{{mediaURL}}{{first.sender.picture_url}}" class="img-responsive" onerror="this.onerror=null; if (this.src != 'error.jpg') this.src = 'assets/images/user2.png';"/>
+            <img ng-if="!first.sender.picture_url" src="assets/images/user2.png" class="img-responsive"/>
+        </div>
+        <p> <span am-time-ago="first.send_date.replace('T', ' ')  || 'YYYY-MM-DD HH:mm:ss'"></span> </p>
+        <p><strong>{{first.sender.full_name}}</strong></p>
+    </div><!-- end header -->
+
+    <div class="message-wrapper only-msg" ng-if="messages.length === 0 && !last">
+        <p style="overflow-x: auto; !important">{{first.content}}</p>
+    </div>
+
+    <div class="message-wrapper first-msg" ng-if="messages.length > 0 || last">
+        <p style="overflow-x: auto; !important">{{first.content}}</p>
+    </div>
+
+
+    <div class="message-wrapper" ng-repeat="message in messages">
+        <p style="overflow-x: auto; !important">
+            {{message.content}}
+            <span class="time">{{message.date}}</span>
+        </p>
+    </div>
+
+
+    <div class="message-wrapper last-msg" ng-if="last">
+        <p style="overflow-x: auto; !important">
+            {{last.content}}
+            <span class="time">{{last.date}}</span>
+        </p>
+    </div>
+
+</div>

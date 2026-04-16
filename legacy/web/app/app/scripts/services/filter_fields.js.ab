@@ -1,0 +1,10 @@
+## filter_fields.js
+
+**Summary:** Simple Angular service that manages filter state for list views. Maintains an array of selected filters, a sort type (defaulting to `insurance__internal_code`), and a sort direction flag. Reads the `ordering` parameter from `$stateParams` on initialization to restore sort state from the URL, supporting both ascending and descending orders via a leading dash prefix convention.
+
+**Dependencies:**
+- angular ($stateParams) — AngularJS UI Router state parameters used to initialize sort state from the URL
+
+**Tags:** filtering, legacy
+
+**Implementation:** app/app/scripts/services/filter_fields.js

@@ -1,0 +1,13 @@
+## post_mobile.service.js
+
+**Summary:** Mobile-specific service for post modal operations. Instead of opening Bootstrap modals (as the web service does), it navigates to the app.mobileModal state with appropriate data/case parameters for each action: me-anoto confirmation, public forum, private chat, appreciation creation, donation editing, calification flows (delivered/cancelled), and new donation creation.
+
+**Dependencies:**
+- app/app/post/post.module.js — registered on the post module
+- app/app/modals/modals.service.js — uses modalServices.BasicModal for confirmations
+- app/app/app/app.service.js — uses appService for pickup description defaults
+- app/app/scripts/services/auth.js — uses Auth for user data and navigation
+
+**Tags:** post, donations, mobile, service, modals, navigation
+
+**Implementation:** app/app/post/post_mobile.service.js

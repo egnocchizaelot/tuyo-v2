@@ -1,0 +1,197 @@
+<div class="agradecimiento-wrapper" ng-show="!showingDonation">
+
+    <div class="card default-border-radius margin-bottom card-alert agradecimiento">
+        <div class="container">
+            <div class="user-header">
+                <div class="avatars-wrapper">
+
+                    <div class="avatar first-child active">
+                        <a role="tab" data-toggle="tab" ng-click="changeUser(user.DONOR)">
+                            <img ng-if="donation.creator.picture_url" ng-src="{{mediaURL}}{{donation.creator.picture_url}}" class="img-responsive" onerror="this.onerror=null; if (this.src != 'error.jpg') this.src = 'assets/images/user2.png';"/>
+                            <img ng-if="!donation.creator.picture_url" src="assets/images/user2.png" class="img-responsive"/>
+                        </a>
+                    </div>
+                    <div class="avatar second-child">
+                        <a role="tab" data-toggle="tab" ng-click="changeUser(user.APPLICANT)">
+                            <img ng-if="donation.selected_user.picture_url" ng-src="{{mediaURL}}{{donation.selected_user.picture_url}}" class="img-responsive" onerror="this.onerror=null; if (this.src != 'error.jpg') this.src = 'assets/images/user2.png';"/>
+                            <img ng-if="!donation.selected_user.picture_url" src="assets/images/user2.png" class="img-responsive"/>
+                        </a>
+
+                    </div>
+
+                </div>
+                <a class="btn-right-top ver-publicacion" ng-click="showDonation()">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+        </div>
+
+
+        <div class="tab-content">
+
+            <!-- APPLICANT APPRECIATION: User image and appreciation itself -->
+            <span ng-show="selected === user.APPLICANT">
+
+                <span ng-show="applicantAppreciation">
+
+                    <div role="tabpanel" class="agradecimiento-solicitante" ng-if="applicantAppreciation">
+                        <div class="container">
+                            <div class="arrow-up"></div>
+
+                            <h3>
+                                <a ng-href='{{selectedPath}}' target="_self" style="color: inherit; !important">
+                                    {{donation.selected_user.full_name}}
+                                </a>
+                                <span>{{applicantTime}}</span>
+
+                                <report-publication ng-if="applicantAppreciationCreator !== userData.id" entity-id="applicantAppreciationId" type="A"></report-publication>
+                            </h3>
+
+                            <p ng-if="!appAppInReview">
+                                <span style="white-space: pre-wrap;">{{applicantMessage}}</span>
+                            </p>
+
+                            <p ng-if="appAppInReview">
+                                <span style="white-space: pre-wrap;">Este agradecimiento está siendo revisado por los administradores</span>
+                            </p>
+
+                        </div>
+                    </div>
+
+                    <div ng-if="!appAppInReview" class="img-wrapper" style="position: relative; !important">
+
+                        <div id="applicantSliderContainer" ng-if='applicantSliderImages && applicantSliderImages.length !== 0'>
+                            <the-slider id='applicantSlider' images="applicantSliderImages"></the-slider>
+                        </div>
+
+                    </div>
+
+
+                </span>
+
+                <span ng-show="!applicantAppreciation">
+                    <div role="tabpanel" class="agradecimiento-solicitante">
+                        <div class="container">
+                            <div class="arrow-up"></div>
+                            <a ng-href='{{selectedPath}}' target="_self">
+                                <h3>
+                                    {{donation.selected_user.full_name}}
+                                </h3>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="container" style="text-align: center; !important">
+                        <a class="btn btn-primary margin-left" ng-click="makeAppreciation(user.APPLICANT)" style="margin-bottom: 15px; !important">  Agradece </a>
+                    </div>
+                </span>
+            </span>
+
+
+            <!-- DONOR APPRECIATION: User image and appreciation itself -->
+            <span ng-show="selected === user.DONOR">
+
+                <span ng-show="donorAppreciation">
+                    <div role="tabpanel" class=" agradecimiento-oferente" ng-if="donorAppreciation">
+                        <div class="container">
+                            <div class="arrow-up"></div>
+                            <h3>
+                                <a ng-href='{{creatorPath}}' target="_self" style="color: inherit; !important">
+                                        {{donation.creator.full_name}}
+                                </a>
+                                <span>{{donorTime}}</span>
+                                <report-publication ng-if="donorAppreciationCreator !== userData.id" entity-id="donorAppreciationId" type="A"></report-publication>
+                            </h3>
+
+                            <p ng-if="!donAppInReview">
+                                <span style="white-space: pre-wrap;">{{donorMessage}}</span>
+                            </p>
+
+                            <p ng-if="donAppInReview">
+                                <span style="white-space: pre-wrap;">Este agradecimiento está siendo revisado por los administradores</span>
+                            </p>
+
+                        </div>
+                    </div>
+
+                    <div ng-if="!donAppInReview" class="img-wrapper" style="position: relative; !important">
+
+                        <div id="donorSliderContainer" ng-if='donorSliderImages.length !== 0'>
+                            <the-slider id='donorSlider' images="donorSliderImages"></the-slider>
+                        </div>
+
+                    </div>
+
+                </span>
+
+
+                <span ng-show="!donorAppreciation">
+                    <div role="tabpanel" class="agradecimiento-oferente">
+                        <div class="container">
+                            <div class="arrow-up"></div>
+                            <a ng-href='{{creatorPath}}' target="_self">
+                                <h3>
+                                    {{donation.creator.full_name}}
+                                </h3>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="container" style="text-align: center; !important">
+                        <a class="btn btn-primary margin-left" ng-click="makeAppreciation(user.DONOR)">  Agradece </a>
+                    </div>
+                </span>
+            </span>
+
+
+            <div class="dropdown-menu" id="shareLink">
+                <div class="text-center">
+
+                    <a  href={{twitterShareLink}} target="_blank">
+                        <i class="fa fa-twitter" ></i>
+                    </a>
+
+                    <a class="" target="_blank" onclick="return !window.open(this.href, 'Facebook', 'width=640,height=300')"
+                        href="https://www.facebook.com/sharer/sharer.php?u={{facebookShareLink}}">
+                        <i class="fa fa-facebook"></i>
+                    </a>
+
+                    <a href="" ngclipboard data-clipboard-text="{{linkToShare}}" ngclipboard-success="linkCopied()">
+                        <i class="fa fa-link"></i>
+                    </a>
+
+                    <p>¿Conoces a alguien que podría estar interesado?</p>
+                    <p>
+                        <strong>Comparte esta publicación</strong>
+                    </p>
+                    <div class="arrow-down"></div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="container footer text-right">
+            <div class="footer-btn-wrapper">
+                <div class="footer-item dropdown inline-block">
+                    <div role="button" class="btn-svg btn-svg-compartir" ng-click="showShareLinks()">
+                        <i class="fa fa-reply" aria-hidden="true"></i>
+                    </div>
+                </div>
+
+                <div href="" class="footer-item btn-counter" ng-click="likeClick()">
+                    <span>{{donation.appreciation.count_likes}}</span>
+                    <strong ng-if="!donation.appreciation.like" class="btn-svg btn-svg-like">Likes</strong>
+                    <strong ng-if="donation.appreciation.like" class="btn-svg btn-svg-like liked">Likes</strong>
+                </div>
+
+                <div class="footer-item btn-counter" ng-click="showForumModal()">
+                    <span>{{donation.appreciation.public_messages_count || '0'}}</span>
+                    <strong class="btn-svg btn-svg-chat">Chat</strong>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<donation-post id='theDonation' donation='donation' from-appreciation='true' ng-show="showingDonation"></donation-post>

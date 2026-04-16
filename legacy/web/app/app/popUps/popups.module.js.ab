@@ -1,0 +1,10 @@
+## popups.module.js
+
+**Summary:** Declares the `popUps` AngularJS module with a dependency on the `reports` module. Provides popup UI components for reporting publications and managing publication settings (edit, delete, chat, forum access).
+
+**Dependencies:**
+- app/app/reports/reports.module.js — depends on the `reports` module
+
+**Tags:** popups, module, angularjs, ui
+
+**Implementation:** app/app/popUps/popups.module.js

@@ -1,0 +1,62 @@
+<section class="filters">
+  <a href="" ng-click="toggleFiltersForm()">
+    <!-- <i class="glyphicon glyphicon-filter"></i> Filtrar -->
+  </a>
+
+  <form action="" ng-show="showFilters" ng-submit="submitFiltersForm($event)">
+    <div ng-repeat="filter in availableFilters" class="filter_field" ng-switch="filter.type">
+      <div ng-switch-when="select" class="form-group">
+        <div class="form-select">
+          <label for="filters_{{filter.id}}">{{filter.label}}</label>
+          <ui-select theme="bootstrap" ng-model="formSelectedFilters[filter.id]" id="filters_{{filter.id}}" search-enabled="false"> <!--ng-init="formSelectedFilters[filter.id] = filter.options[0]"-->
+            <ui-select-match allow-clear="true" placeholder="{{filter.label}}">
+              {{$select.selected}}
+            </ui-select-match>
+            <ui-select-choices repeat="opt in filter.options | orderBy:'-id':true" refresh-delay="0">
+              {{opt}}
+            </ui-select-choices>
+          </ui-select>
+        </div>
+      </div>
+      <div ng-switch-when="subselect" ng-show="formSelectedFilters[filter.parent].value>0 && filter.options[formSelectedFilters[filter.parent].value].length>0">
+        <ui-select ng-model="formSelectedFilters[filter.id]" id="filters_{{filter.id}}" theme="bootstrap" search-enabled="false" ng-init="formSelectedFilters[filter.id] = filter.options[0]">
+          <ui-select-match placeholder="">
+            {{$select.selected[filter.labelField || 'label']}}
+          </ui-select-match>
+          <ui-select-choices repeat="opt in filter.options[formSelectedFilters[filter.parent].value]" refresh-delay="0">
+            {{opt[filter.labelField || 'label']}}
+          </ui-select-choices>
+        </ui-select>
+      </div>
+      <div ng-switch-when="text" class="form-group">
+        <label for="filters_{{filter.id}}">{{filter.label}}</label>
+        <input class="form-control" ng-model="formSelectedFilters[filter.id]" placeholder="{{filter.label}}" type="text">
+      </div>
+      <div ng-switch-when="integer" class="form-group">
+        <label for="filters_{{filter.id}}">{{filter.label}}</label>
+        <input class="form-control" ng-model="formSelectedFilters[filter.id]" placeholder="{{filter.label}}" type="text" onkeypress='return event.charCode >= 48 && event.charCode <= 57'>
+      </div>
+      <div ng-switch-when="date" class="form-group">
+        <label for="filters_{{filter.id}}">{{filter.label}}</label>
+        <input class="form-control" ng-model="formSelectedFilters[filter.id]" type="date">
+      </div>
+      <div ng-switch-when="boolean" class="form-group">
+        <label for="filters_{{filter.id}}" class="checkbox-wrapper">
+          <input ng-model="formSelectedFilters[filter.id]" type="checkbox" />
+          <span>{{filter.label}}</span>
+        </label>
+      </div>
+    </div>
+    <div class="form-group text-right">
+      <a href="" ng-click="toggleFiltersForm()" class="cancel-filters">Cancelar</a>
+       <input class="btn btn-primary agregar-filters" type="submit" value="Agregar">
+    </div>
+  </form>
+  <div class="selected-filters">
+    <div class="selected-filter" ng-repeat="selectedfilter in selectedFilters">
+      <span>{{selectedfilter.filter.label}}:</span> <p ng-if="selectedfilter.filter.label === 'Ver solicitudes ya procesadas'">Si</p> <p ng-if="selectedfilter.filter.label != 'Ver solicitudes ya procesadas'">{{selectedfilter.value.value}}</p><a href="" ng-click="removeSelectedFilter(selectedfilter)" class="delete-filter">
+        <i class="glyphicon glyphicon-remove"></i>
+      </a>
+    </div>
+  </div>
+</section>

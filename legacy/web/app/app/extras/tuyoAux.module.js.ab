@@ -1,0 +1,10 @@
+## tuyoAux.module.js
+
+**Summary:** Declares the `tuyoAux` AngularJS module with no external dependencies. This module provides auxiliary utility directives used across the application, such as keyboard event handling.
+
+**Dependencies:**
+- None
+
+**Tags:** utility, module, angularjs, extras
+
+**Implementation:** app/app/extras/tuyoAux.module.js

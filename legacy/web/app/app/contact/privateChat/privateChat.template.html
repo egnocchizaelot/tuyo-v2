@@ -1,0 +1,96 @@
+
+<div class="scroll-bottom">
+
+    <nav  class="navbar navbar-fixed-top secondary-navbar" id='navBar'>
+        <div class="container">
+            <a href="" class="btn-back" ng-click="Back()" title="Anterior">
+                <i class="fa fa-angle-left" aria-hidden="true"></i>
+            </a>
+            <p class="text-center">Chat Reserva</p>
+        </div>
+    </nav>
+
+    <div class="text-center hero-chat-privado hero-chat-blanco" id='header'>
+        <div class="container" id='imageHeader'>
+            <div class="avatar">
+
+                <span ng-if="owner">
+                    <img ng-if="donation.selected_user.picture_url" ng-src="{{mediaURL}}{{donation.selected_user.picture_url}}" class="img-responsive" onerror="this.onerror=null; if (this.src != 'error.jpg') this.src = 'assets/images/user2.png';"/>
+                    <img ng-if="!donation.selected_user.picture_url" src="assets/images/user2.png" class="img-responsive"/>
+                </span>
+
+                <span ng-if="!owner">
+                    <img ng-if="donation.creator.picture_url" ng-src="{{mediaURL}}{{donation.creator.picture_url}}" class="img-responsive" onerror="this.onerror=null; if (this.src != 'error.jpg') this.src = 'assets/images/user2.png';"/>
+                    <img ng-if="!donation.creator.picture_url" src="assets/images/user2.png" class="img-responsive"/>
+                </span>
+
+            </div>
+
+            <span ng-if="owner">
+                <p ng-if="!delivered">Reservado para {{donation.selected_user.full_name}}</p>
+                <p ng-if="delivered">Entregado a {{donation.selected_user.full_name}}</p>
+            </span>
+
+            <span ng-if="!owner">
+                <p>Ofrecido por {{donation.creator.full_name}}</p>
+            </span>
+
+        </div>
+        <div class="row" ng-if="!delivered">
+
+            <div ng-if="owner">
+                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                </div>
+                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                    <a href="" class="btn btn-gray btn-cancelar-icon display-block" ng-click="cancelReservation()" title="Cancelar">Cancelar reserva</a>
+                </div>
+            </div>
+
+            <div ng-if="!owner">
+                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                </div>
+                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                    <a href="" class="btn btn-gray btn-cancelar-icon display-block" ng-click="cancelReservation()" title="Cancelar">Cancelar reserva</a>
+                </div>
+                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                    <!-- <a ng-if="owner" href="" class="btn btn-yellow btn-entregado-icon display-block" ng-click="deliverDonation()" title="Entregado">Entregado</a> -->
+                    <!-- <a ng-if="!owner" href="" class="btn btn-yellow btn-entregado-icon display-block" ng-click="deliverDonation()" title="Recibido">Recibido</a> -->
+                </div>
+            </div>
+
+
+
+
+
+
+        </div>
+
+
+
+
+
+    </div>
+
+    <!-- <div class="bg-gray-lighterr chat-wrapper" id='chatContainer'> -->
+    <div class="bg-gray-lighterr chat-wrapper" id='chatContainer' style="margin-bottom: 50px; padding-top: 280px; !important">
+        <div id="theContainer" class="container" ng-if="messagesLoaded">
+            <block ng-repeat="block in donation.private_forum.blocks" pos="$index" block="block"></block>
+        </div>
+
+        <div ng-if="!messagesLoaded">
+            <loading></loading>
+        </div>
+    </div>
+
+
+    <div class="nav-chat-replay">
+        <div class="container" ng-if="!delivered">
+            <textarea maxlength="{{maxLength}}" id="messageText" rows="1" class="form-control private-chat" ng-keyup="expand()" ng-model='chat.response' ng-enter='Send()' ng-click="animateHeader()"></textarea>
+            <a href="" class="btn-enviar float-right" aria-hidden="true" ng-click='Send()' title="Enviar"><i class="fa fa-paper-plane" aria-hidden="true"></i></a>
+        </div>
+        <div class="container" style="height: 50px;" ng-if="delivered">
+
+        </div>
+    </div>
+
+</div>

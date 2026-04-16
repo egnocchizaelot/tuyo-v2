@@ -1,0 +1,699 @@
+<navigation-bar-desktop></navigation-bar-desktop>
+
+<div id="desktop" class="wider-container landing registrate custom-modals" ng-controller="landingController">
+
+		<!-- Modal -->
+	<div class="modal modal-landing-registrarse" id="registrarse1" tabindex="-1" role="dialog" aria-labelledby="registrarse1Label">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="text-center steps-container">
+				<ul class="list-unstyled list-inline">
+					<li class="active"><a>1</a></li>
+					<li><a>2</a></li>
+						<li><a>3</a></li>
+					</ul>
+			</div><!-- /steps-container -->
+				<div class="container text-center">
+				<h2 class="facebook-solicitud">Ingresaste con tu cuenta de Facebook.</h2>
+				<form>
+					<div class="checkbox text-center">
+						<label class="checkbox-wrapper">
+							<input type="checkbox" ng-model="checkbox.terms">
+							<span>He leído y acepto los <a ng-click="goToTerms()">Términos y Condiciones</a>.</span>
+						</label>
+						<span ng-if="showErrorDiag" class="error-dialog">Para continuar debes aceptar las condiciones<i class="fa fa-caret-up" aria-hidden="true"></i></span>
+					</div>
+					<div class="row action-row-buttons">
+						<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+                			<a class="btn btn-empty-primary" ng-click="cancel()">Cancelar</a>
+                		</div>
+                		<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+                			<a class="btn btn-primary" ng-click="termsContinue()">Continuar</a>
+            			</div>
+            		</div>
+
+					</form>
+			</div><!-- /container -->
+			</div>
+		</div>
+	</div><!-- /modal1 -->
+
+  		<!-- Modal -->
+	<div class="modal modal-landing-registrarse" id="registrarse2" tabindex="-1" role="dialog" aria-labelledby="registrarse2Label">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="text-center steps-container">
+				<ul class="list-unstyled list-inline">
+					<li class="done"><a>1</a></li>
+					<li class="active"><a>2</a></li>
+						<li><a>3</a></li>
+					</ul>
+			</div><!-- /steps-container -->
+
+            <div class="container text-center">
+                <div style="overflow: hidden !important" id="map-container" >
+                    <address-map ng-if="showMap"></address-map>
+
+                    <div ng-if="!showMap">
+                        <p>
+                            Agregaste una dirección:
+                        </br> </br> </br>
+                            <span>{{address.district}}</span>
+                        </p>
+                        </br> </br>
+                        <a class="btn btn-primary" ng-click='cancelLocation()'>Cancelar</a>
+                    </div>
+                </div>
+                <div class="row action-row-buttons">
+                	<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+                    	<a class="btn btn-empty-primary" ng-click="cancel()">Cancelar</a>
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+                    	<a class="btn btn-primary" ng-click="continueMap()">Continuar</a>
+                    </div>
+                </div>
+            </div>
+
+			</div>
+		</div>
+	</div><!-- /modal2 -->
+
+	<!-- Modal3 -->
+	<div class="modal modal-landing-registrarse" id="registrarse3" tabindex="-1" role="dialog" aria-labelledby="registrarse3Label">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="text-center steps-container">
+				<ul class="list-unstyled list-inline">
+						<li class="done"><a>1</a></li>
+						<li class="done"><a>2</a></li>
+						<li class="active"><a>3</a></li>
+					</ul>
+			</div><!-- /steps-container -->
+				<div class="container text-center">
+				<h2 class="col-xs-12 confirma-mail">Confirma tu dirección de mail</h2>
+
+                <form class="select-radius" ng-if="originalMail && email">
+					<p>Recibirás las notificaciones importantes en la siguiente casilla:</p>
+					<p>{{email}}</p>
+					<div class="action-row-buttons">
+						<a class="btn btn-empty-primary margin-bottom" ng-click="otherMail()">Utilizar otra casilla</a>
+						<a class="btn btn-primary margin-bottom" ng-click="continueMail()">Continuar</a>
+					</div>
+				</form>
+
+                <form class="select-radius" ng-if="!originalMail || !email" name="newEmails">
+                    <p>Recibirás las notificaciones importantes en la siguiente casilla:</p>
+                    <input class="form-control margin-bottom" type="email" placeholder="Escribe tu mail" ng-model="newMail.mail1" name="mail1" required ng-change="mailChanged('mail1')" ng-style="!validEmail.mail1 ? {'border-color': 'red' } : {}">
+                    <input class="form-control margin-bottom" type="email" placeholder="Escríbelo nuevamente" ng-model="newMail.mail2" name="mail2" required ng-change="mailChanged('mail2')" ng-style="!validEmail.mail2 ? {'border-color': 'red' } : {}">
+
+                    <div class="action-row-buttons">
+                        <a id="changeMailButton" class="btn btn-primary margin-bottom" ng-click="changeMail()">{{mailContText}}</a>
+                    </div>
+
+                </form>
+
+			</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Modal3 gracias -->
+	<div class="modal modal-landing-registrarse" id="gracias" tabindex="-1" role="dialog" aria-labelledby="graciasLabel">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="container text-center" style='margin-top: 50px !important'>
+    				<h2><strong>Gracias {{fullName}}, tu solicititud para ingresar a la comunidad se envió correctamente y ha quedado en lista de espera.</strong></h2>
+    				<form class="select-radius">
+    					<p>Para preservar la seguridad de este espacio, las solicitudes de nuevos miembros deben ser revisadas antes de admitirse. Esto podría tardar más de lo deseado. </br>Te enviaremos un mail a <strong class="color-brand">{{email}}</strong></p>
+    					<div class="action-row-buttons">
+    						<a class="btn btn-primary margin-bottom" ng-click="theEnd()">OK</a>
+    					</div>
+    				</form>
+		         </div><!-- /container -->
+			</div>
+		</div>
+	</div><!-- /gracias -->
+
+	<!-- ModalTuyo0 -->
+	<div class="modal modal-landing-registrarse" id="registrarse-tuyo0" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false" aria-labelledby="registrarseTuyo">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="container text-center">
+					<h2 class="col-xs-12 registro-tuyo registro-tuyo-large">Regístrate para ofrecer y recibir!</h2>
+
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+
+					<form class="select-radius" name="registrationForm">
+
+						<input class="form-control" type="email" placeholder="correo electrónico" ng-model="user.email" name="email" required ng-change="emailChanged()">
+
+						<div class="error-container">
+							<span ng-if="errorMessage" class="error-message">
+								{{errorMessage}}
+							</span>
+						</div>
+
+					</form>
+
+					<div class="action-row authentication-button">
+						<a id="registerButton" class="btn btn-primary-dark" ng-click="!isLoading && checkEmailAvailable()" ng-class="{'disabled': isLoading}">{{registerButtonText}}</a>
+					</div>
+
+					<div class="action-row" style="margin-bottom: 30px;">
+						<p class="side-lines">o seguí con</p>
+						<a 
+							ng-class="{'f-login': !inMaintenance, 'f-login f-login-disabled': inMaintenance}"
+							ng-click="decideLogIn()"
+						>
+							<i class="fa fa-facebook"></i> Continúa con Facebook
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- ModalEmailExistente -->
+	<div class="modal modal-landing-registrarse" id="email-existente" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false" aria-labelledby="emailExistente">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="container text-center">
+					<h2 class="col-xs-12 email-existente">Ya existe una cuenta para {{user.email}}</h2>
+
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					
+					<row>
+						<p class="descripcion" style="text-align: center !important; max-width: 220px !important;">
+							Si no recuerdas tu contraseña, haz click en el botón debajo para iniciar el proceso de recuperación
+						</p>
+					</row>
+
+					<div class="row action-row authentication-button">
+						<a class="btn btn-primary-dark" ng-click="recoverPassword()">Recuperar mi contraseña</a>
+					</div>
+
+
+					<div class="action-row" style="margin-bottom: 30px;">
+						<p class="side-lines">o seguí con</p>
+						<a 
+							ng-class="{'f-login': !inMaintenance, 'f-login f-login-disabled': inMaintenance}"
+							ng-click="decideLogIn()"
+						>
+							<i class="fa fa-facebook"></i> Continúa con Facebook
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- ModalTuyo1 -->
+	<div class="modal modal-landing-registrarse" id="registrarse-tuyo1" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false" aria-labelledby="registrarseTuyo1">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="container text-center">
+					<h2 class="col-xs-12 registro-tuyo">Crear una nueva cuenta {{user.email}}</h2>
+
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+
+					<form class="select-radius" name="registrationForm">
+
+						<input class="form-control" style="margin-bottom: 5px;" type="text" placeholder="nombre" ng-model="user.firstName" name="firstName" required minlength="3" ng-change="firstNameChanged()" title="El nombre solo puede contener letras y espacios.">
+
+						<input class="form-control" type="text" placeholder="apellido" ng-model="user.lastName" name="lastName" required minlength="3" ng-change="lastNameChanged()" title="El apellido solo puede contener letras y espacios.">
+
+						<div class="error-container">
+							<span ng-if="invalidNameMessage" class="error-message margin-bottom">
+								{{invalidNameMessage}}
+							</span>
+						</div>
+
+						<input class="form-control" style="margin-bottom: 5px;" type="password" placeholder="contraseña" ng-model="user.password" name="password" required ng-change="passwordChanged()" minlength="8" title="La contraseña debe tener al menos 8 caracteres, una letra mayúscula, una letra minúscula y un número.">
+
+						<input class="form-control" type="password" placeholder="Confirma tu contraseña" ng-model="user.confirmPassword" name="confirmPassword" required ng-change="passwordChanged()" title="confirmación">
+
+						<div class="error-container">
+							<span ng-if="invalidPasswordMessage" class="error-message">
+								{{invalidPasswordMessage}}
+							</span>
+						</div>
+
+						<div class="checkbox text-center">
+							<label class="checkbox-wrapper">
+								<input type="checkbox" ng-model="checkbox.terms">
+								<span>He leído y acepto los <a ng-click="goToTerms()">Términos y Condiciones</a>.</span>
+							</label>
+						</div>
+
+						<div class="error-container">
+							<span ng-if="errorMessage" class="error-message">
+								{{errorMessage}}
+							</span>
+						</div>
+					</form>
+
+					<div class="action-row authentication-button" style="margin-bottom: 30px;">
+						<a id="registerButton" class="btn btn-primary-dark margin-bottom" ng-click="!isLoading && register()">{{registerButtonText}}</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- ModalTuyo2 -->
+	<div class="modal modal-landing-registrarse" id="registrarse-tuyo2" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false" aria-labelledby="registrarseTuyo2">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="container text-center">
+					<h2 class="col-xs-12 registro-tuyo registro-tuyo-large">Bienvenido a TUYO!</h2>
+
+					<button type="button" ng-click="goToDashboard()" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					
+					<row>
+						<p class="bienvenido-tuyo">
+							Te hemos enviado un e-mail para confirmar la creación de tu cuenta.
+						</p>
+						<p class="bienvenido-tuyo">
+							Ingresa a tu casilla y haz click en el vínculo que está en el e-mail para confirmar
+						</p>
+					</row>
+
+					<div class="row action-row authentication-button" style="margin-bottom: 60px;">
+						<a class="btn btn-primary-dark" ng-click="completeProfile()">{{registerButtonText}}</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- ModalTuyo3 -->
+	<div class="modal modal-landing-registrarse" id="registrarse-tuyo3" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false" aria-labelledby="registrarseTuyo3">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="container text-center">
+					<h2 class="col-xs-12 registro-tuyo">Agrega una foto de perfil</h2>
+
+					<button type="button" ng-click="goToDashboard()" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+
+					<row>
+						<p class="descripcion" style="font-style: italic;">
+							Los perfiles con foto son elegidos para recibir tres veces más que otros!
+							Sube una foto para que nuestra comunidad te conozca.
+						</p>
+					</row>
+					<div id="uploadImages">
+						<loading ng-if="loadingImgs"></loading>
+
+						<div class="container" ng-show="!loadingImgs">
+							<div class="avatar-container">
+								<div class="avatar" style="border: 2px solid #00c074" ng-click="!isLoading && triggerFileInput()">
+									<img ng-if="profileImage" ng-src="{{profileImage.img}}" class="img-responsive" onerror="this.onerror=null; if (this.src != 'error.jpg') this.src = 'assets/images/user.svg';">
+									<img ng-if="!profileImage" src="assets/images/image-upload-placeholder.svg" class="img-responsive">
+									<div class="upload-overlay">
+										<i class="fa fa-upload" aria-hidden="true"></i>
+										<span>Subir foto</span>
+									</div>
+								</div>
+							</div>
+	
+							<input id="fileInput" type="file" style="display: none;" ng-model="profileImage" accept="image/*" app-filereader loading="loading"/>
+						</div>
+					</div>
+
+					<div class="row action-row authentication-button" style="margin-bottom: 60px;">
+						<a class="btn btn-primary-dark" ng-click="!isLoading && finishRegistration()" ng-class="{'disabled': isLoading}">{{registerButtonText}}</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- ModalTuyo4 -->
+	<div class="modal modal-landing-registrarse" id="registrarse-tuyo4" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false" aria-labelledby="registrarseTuyo4">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="container text-center">
+					<div class="avatar-container" style="margin-top: 20px;">
+						<div class="avatar">
+							<img ng-if="profileImage" ng-src="{{profileImage.img}}" class="img-responsive" onerror="this.onerror=null; if (this.src != 'error.jpg') this.src = 'assets/images/user.svg';">
+							<img ng-if="!profileImage" src="assets/images/user.svg" class="img-responsive">
+						</div>
+					</div>
+
+					<p class="descripcion" style="text-align: center !important; padding-bottom: 30px;">
+						Bienvenido/a a TUYO.UY la comunidad colaborativa más grande de Uruguay.
+					</p>
+
+					<h2 class="registro-finalizado">Está todo listo {{user.firstName}}!</h2>
+
+					<div class="row action-row authentication-button">
+						<a class="btn btn-primary-dark margin-bottom" ng-click="navigateTo('donar')">
+							<img src="assets/images/icons/regalo-negro.svg" class="img-responsive"> Ofrecer un artículo
+						</a>
+					</div>
+
+					<div class="row action-row authentication-button" style="margin-bottom: 60px;">
+						<a class="btn btn-primary-dark margin-bottom" ng-click="navigateTo('inicio')">
+							<img src="assets/images/icons/lupa-negra.svg" class="img-responsive"> Ver artículos ofrecidos
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Modal Iniciar Sesión -->
+	<div class="modal modal-landing-registrarse" id="iniciar-sesion" tabindex="-1" role="dialog" aria-labelledby="iniciarSesion" data-backdrop="static" data-keyboard="false">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="container text-center">
+					<h2 class="col-xs-12 iniciar-sesion-tuyo">Iniciar sesión en TUYO</h2>
+
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+
+					<form class="select-radius" name="loginForm">
+
+						<input class="form-control" style="margin-bottom: 5px;" type="email" placeholder="usuario" ng-model="user.email" name="email" required ng-change="emailChanged()">
+						
+						<input class="form-control" type="password" placeholder="contraseña" ng-model="user.password" name="password" required ng-change="passwordChanged()">
+						
+						<div class="error-container">
+							<span ng-if="errorMessage" class="error-message">
+								{{errorMessage}}
+							</span>
+						</div>
+						
+					</form>
+
+					<span ng-click="forgotPassword()" class="forgot-password-link">¿Olvidaste tu contraseña?</span>
+
+					<div class="action-row authentication-button">
+						<a id="loginButton" 
+						class="btn btn-primary-dark" 
+						ng-click="tuyoLogin()"
+						>{{loginButtonText}}</a>
+					</div>
+
+					<div class="action-row" style="margin-bottom: 30px;">
+						<p class="side-lines">o seguí con</p>
+						<a 
+							ng-class="{'f-login': !inMaintenance, 'f-login f-login-disabled': inMaintenance}"
+							ng-click="decideLogIn()"
+						>
+							<i class="fa fa-facebook"></i> Continúa con Facebook
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- ModalOlvideMiContraseña -->
+	<div class="modal modal-landing-registrarse" id="forgot-password" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false" aria-labelledby="forgotPassword">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="container text-center">
+					<h2 class="col-xs-12 registro-tuyo registro-tuyo-large">Recuperar mi contraseña</h2>
+
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+
+					<p class="descripcion" style="text-align: center !important; max-width: 220px !important;">
+						Si no recuerdas tu contraseña, completa el campo debajo con tu correo y haz click en el botón para iniciar el proceso de recuperación
+					</p>
+
+					<form class="select-radius" name="forgotPasswordForm">
+
+						<input class="form-control" style="margin-bottom: 5px;" type="email" placeholder="usuario" ng-model="user.email" name="email" required ng-change="emailChanged()">
+						
+						<div class="error-container">
+							<span ng-if="errorMessage" class="error-message">
+								{{errorMessage}}
+							</span>
+						</div>
+						
+					</form>
+
+					<div class="row action-row authentication-button">
+						<a class="btn btn-primary-dark" ng-click="recoverPassword()">Recuperar mi contraseña</a>
+					</div>
+
+
+					<div class="action-row" style="margin-bottom: 30px;">
+						<p class="side-lines">o seguí con</p>
+						<a 
+							ng-class="{'f-login': !inMaintenance, 'f-login f-login-disabled': inMaintenance}"
+							ng-click="decideLogIn()"
+						>
+							<i class="fa fa-facebook"></i> Continúa con Facebook
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- ModalResetearContraseña -->
+	<div class="modal modal-landing-registrarse" id="reset-password" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false" aria-labelledby="resetPassword">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="container text-center">
+					<h2 class="col-xs-12 registro-tuyo registro-tuyo-large">Reiniciar mi contraseña</h2>
+
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+
+					<form class="select-radius" name="resetPasswordForm">
+
+						<input class="form-control" style="margin-bottom: 5px;" type="password" placeholder="contraseña" ng-model="user.password" name="password" required ng-change="passwordChanged()" minlength="8" title="La contraseña debe tener al menos 8 caracteres, una letra mayúscula, una letra minúscula y un número.">
+
+						<input class="form-control" type="password" placeholder="Confirma tu contraseña" ng-model="user.confirmPassword" name="confirmPassword" required ng-change="passwordChanged()" title="confirmación">
+						
+						<div class="error-container">
+							<span ng-if="invalidPasswordMessage" class="error-message">
+								{{invalidPasswordMessage}}
+							</span>
+						</div>
+						
+					</form>
+
+					<div class="row action-row authentication-button" style="margin-bottom: 60px;">
+						<a class="btn btn-primary-dark" ng-click="resetPassword()">Reiniciar mi contraseña</a>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Modal en reparaciones -->
+	<div class="modal modal-landing-registrarse" id="repair" tabindex="-1" role="dialog" aria-labelledby="repairLabel">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="container text-center" style='margin-top: 50px !important'>
+    				<h2><strong>INFORMACIÓN IMPORTANTE</strong></h2>
+    				<form class="select-radius">
+    						<p>
+									Querida comunidad, estamos experimentando problemas con nuestro inicio de sesión en Facebook y nuestro equipo está trabajando para resolverlos.
+								</p>
+								<p>	Mientras tanto, los esperamos en el grupo de <a href="https://www.facebook.com/groups/492752487593759" target="_blank" rel="noopener noreferrer">Facebook oficial</a> que está habilitado para que puedan seguir sumándose a esta comunidad, donar y recibir.</p>
+								<p>Informaremos novedades a la brevedad.</p>
+								
+							
+    					<div class="action-row-buttons">
+    						<a class="btn btn-primary margin-bottom" ng-click="closeRepairModal()">Cerrar</a>
+    					</div>
+    				</form>
+		         </div><!-- /container -->
+			</div>
+		</div>
+	</div><!-- /Modal en reparaciones-->
+
+	<div class="modal modal-landing-registrarse" id="espere" tabindex="-1" role="dialog" aria-labelledby="espereLabel" data-backdrop="static" data-keyboard="false">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div ng-if="!popupWarning" class="container text-center" style='margin-top: 50px !important'>
+					<h2><strong>Espere por favor</strong></h2>
+					<loading></loading>
+				</div>
+
+				<div ng-if="popupWarning" class="container text-center" style='margin-top: 50px !important'>
+					<h2><strong>Espere por favor</strong></h2>
+					<h2><strong>Por favor verifique que su pop-up blocker esté apagado</strong></h2>
+					<div>
+						<h2>¿Necesitas ayuda para registrarte?</h2>
+						<p style="text-align: center">Te guiaremos paso a paso.</p>
+						<a data-ui-sref="app.troubleshooting" data-ui-sref-opts="{reload: true, notify: true}" target="_blank">AYUDA</a>
+					</div>
+					<loading></loading>
+				 </div><!-- /container -->
+			</div>
+		</div>
+	</div>
+
+    <div class="modal modal-landing-registrarse" id="blacklisted" tabindex="-1" role="dialog" aria-labelledby="graciasLabel">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="container text-center" style='margin-top: 50px !important'>
+			<h2><strong>Usted no tiene permitido ingresar en este sitio.</strong></h2>
+          <form class="select-radius">
+            <p>Por favor comuníquese con el administrado vía e-mail a la casilla: administrador@tuyo.uy </p>
+            <div class="action-row-buttons">
+              <a ng-click="logout()" class="btn btn-primary margin-bottom" data-dismiss="modal" data-target="modal" aria-label="Close">OK</a>
+            </div>
+          </form>
+        </div><!-- /container -->
+			</div>
+		</div>
+	</div><!-- /gracias -->
+
+    <div class="modal modal-landing-registrarse" id="notEnabled" tabindex="-1" role="dialog" aria-labelledby="graciasLabel" style="padding-top: 15px">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="container text-center" style='margin-top: 50px !important'>
+
+					<h2><strong>Hola {{fullName}}.</strong></h2>
+					<h2><strong>Todavía no puedes ingresar a "Si lo venís a buscar es tuyo".</strong></h2>
+					<form class="select-radius">
+						<p>Recuerda que no serán admitidas las solicitudes de perfiles que pertenezcan a menores de edad o sean de uso comercial, entre otros.</p>
+						<div class="action-row-buttons">
+							<a ng-click="logout()" class="btn btn-primary margin-bottom" data-dismiss="modal" data-target="modal" aria-label="Close">OK</a>
+						</div>
+					</form>
+				</div><!-- /container -->
+			</div>
+		</div>
+	</div><!-- /gracias -->
+
+
+        <!-- <div class="hero parallax-window" data-parallax="scroll" data-image-src="/assets/images/landing-hero.svg"> -->
+	<!-- <div class="hero parallax-window" data-parallax="scroll" data-image-src="assets/images/landing-hero.svg" > -->
+	<div class="hero" style="background-image: url('../assets/images/landing-hero.svg');">
+		<div class="container">
+			<div class="bg-brand-color text-center hero-modal">
+				<img src="assets/images/landing-hero-modal.svg" class="img-responsive"/>
+				<!-- <p>La comunidad colaborativa más grande de Uruguay</p> -->
+				<div class="action-row" style="margin-top: 20px;">
+					<a 
+					class="btn btn-empty-black"
+					ng-click="openLoginModal()"
+					>Iniciar Sesión</a>
+				</div>
+				<div class="action-row">
+					<a 
+						class="btn btn-black"
+						ng-click="registerWithTuyo()"
+						style="margin-top: 10px; margin-bottom: 20px;"
+					>Crear Cuenta</a>
+					
+				</div>
+				<div class="action-row">
+					<p class="side-lines">o seguí con</p>
+					<a 
+						ng-class="{'f-login': !inMaintenance, 'f-login f-login-disabled': inMaintenance}"
+						ng-click="decideLogIn()"
+					>
+						<i class="fa fa-facebook"></i> Continúa con Facebook
+					</a>
+				</div>
+			</div><!-- /hero-modal-->
+			<div class="numbers-modal text-center bg-brand-color visible-xs">
+    			<p class="numbers"><span class="color-yellow">{{usuariosT}}</span>Usuarios</p>
+				<p class="numbers"><span class="color-white">{{articulosT}}</span>Artículos ofrecidos</p>
+			</div><!-- /numbers-modal -->
+		</div><!-- /container -->
+	</div><!-- /hero-->
+	<div class="container">
+		<section>
+			<div class="row">
+				<div class="col-sm-6 col-md-6 col-lg-6 hidden-xs text-center">
+					<p class="numbers"><span>{{usuariosT}}</span>Usuarios</p>
+				</div><!-- /col -->
+				<div class="col-sm-6 col-md-6 col-lg-6 hidden-xs text-center">
+					<p class="numbers"><span>{{articulosT}}</span>Artículos ofrecidos</p>
+				</div><!-- /col -->
+			</div><!-- /row -->
+		</section>
+		<section class="br-top-grey">
+			<div class="row">
+				<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+				<p class="intro-heading"><span>Si lo venís a buscar, es tuyo!</span> es una comunidad de economía colaborativa, un espacio donde regalar lo que ya no usamos de forma simple y segura.</p>
+					<p>El proyecto fue inaugurado en enero de 2016 en Montevideo, Uruguay. Desde entonces, {{usuariosK}} mil personas se integraron a la comunidad y más de {{articulosK}} mil artículos encontraron un nuevo dueño. Actualmente, alrededor de 2.500 objetos y servicios gratuitos se ofrecen cada mes.</p>
+				</div><!-- /col -->
+				<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+					<p>Al regalar lo que ya no usamos iniciamos un ciclo de hechos positivos: liberamos espacio en casa, extendemos la vida útil de los objetos, reducimos desechos y conectamos con otras personas para formar una cadena de circulación de bienes.</p>
+				<p>Este emprendimiento cuenta con el apoyo de la Intendencia de Montevideo, la Agencia Nacional de Investigación e Innovación (ANII) y la Incubadora Sinergia.</p>
+				</div><!-- /col -->
+			<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+				 
+				<div class="col-xs-12 col-sm-6 col-md-8 col-sm-offset-3 col-md-offset-2">
+					<div class="row">
+						<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+							<img src="assets/images/logo-anii.svg" class="img-responsive center_margin">
+						</div>
+						<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+							<img src="assets/images/logo-sinergia.svg" class="img-responsive center_margin">
+						</div>
+					</div>
+					</div>
+				</div><!-- /col -->
+			</div><!-- /row -->
+		 
+		</section>
+		<div class="section br-top-grey">
+			<h3 class="section-title text-center">¿Cómo funciona?</h3>
+			<div class="row visible-md visible-lg">
+				<div class="col-md-3 col-lg-3">
+					<img src="assets/images/comofunciona/1.svg" class="img-responsive">
+				</div><!-- /col -->
+				<div class="col-md-3 col-lg-3">
+					<img src="assets/images/comofunciona/2.svg" class="img-responsive">
+				</div><!-- /col -->
+				<div class="col-md-3 col-lg-3">
+					<img src="assets/images/comofunciona/3.svg" class="img-responsive">
+				</div><!-- /col -->
+				<div class="col-md-3 col-lg-3">
+					<img src="assets/images/comofunciona/4.svg" class="img-responsive">
+				</div><!-- /col -->
+			</div>
+			<div class="row">
+				<div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 comofunciona-block">
+					<img src="assets/images/comofunciona/1.svg" class="img-responsive visible-xs visible-sm">
+					<h4>¿YA NO LO USÁS?</h4>
+					<p>Regalar es una forma eficiente y amigable de desprenderte de aquellos objetos que ya cumplieron su ciclo en tu vida.</p>
+				</div><!-- /col -->
+				<div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 comofunciona-block">
+					<img src="assets/images/comofunciona/2.svg" class="img-responsive visible-xs visible-sm">
+					<h4>PUBLICALO</h4>
+					<p>Ofrecé el artículo con descripción, zona de retiro y horario de tu preferencia. <br>Los interesados se postularán comentando tu publicación.</p>
+				</div><!-- /col -->
+				<div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 comofunciona-block">
+					<img src="assets/images/comofunciona/3.svg" class="img-responsive visible-xs visible-sm">
+					<h4>COORDINÁ EL RETIRO</h4>
+					<p>Tú eliges al destinatario según el criterio que consideres adecuado. <br>En cuestión de horas podrás concretar el retiro a domicilio.</p>
+				</div><!-- /col -->
+				<div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 comofunciona-block">
+					<img src="assets/images/comofunciona/4.svg" class="img-responsive visible-xs visible-sm">
+					<h4>LISTO!</h4>
+					<p>Los nuevos dueños acostumbran llevar un pequeño obsequio a modo de agradecimiento. <br>Compartir es una idea simple y poderosa.</p>
+				</div><!-- /col -->
+			</div><!-- /row -->
+		</div><!-- /section -->
+		<tuyo-footer></tuyo-footer>
+	</div>
+
+	</div>

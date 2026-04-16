@@ -1,0 +1,10 @@
+## confirm.controller.js
+
+**Summary:** Controller for the delivery confirmation calification flow. Defines state constants (CALIFICATE, GOOD, BAD) and rate options (BAD, GOOD, EXCELENT).
+
+**Dependencies:**
+- app/app/calification/calification.module.js — registered on calification module
+
+**Tags:** calification, rating, confirm, controller
+
+**Implementation:** app/app/calification/confirm/confirm.controller.js

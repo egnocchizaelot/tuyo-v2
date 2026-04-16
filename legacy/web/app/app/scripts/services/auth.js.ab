@@ -1,0 +1,11 @@
+## auth.js
+
+**Summary:** Authentication service managing login, registration, logout, and session state for the TuyoTools application. Supports both native Tuyo login and Facebook-based social login by delegating to the API service. Stores the auth token in cookies (`Authorization: Token <token>`) and user data in `$localStorage`. Listens for `changeUserData` and `changeUserProfilePicture` events on `$rootScope` to keep local user data in sync. Provides `checkLogin()` to verify active sessions and `changeData()` to update stored user data fields.
+
+**Dependencies:**
+- app/app/scripts/services/api.js — API service used for tuyoLogin, login (social), tuyoRegister, and logout HTTP calls
+- angular ($rootScope, $http, $cookies, $q, $localStorage, $state) — AngularJS core services for event bus, HTTP defaults, cookies, promises, local storage, and routing
+
+**Tags:** authentication, session, token-management, user-profiles
+
+**Implementation:** app/app/scripts/services/auth.js

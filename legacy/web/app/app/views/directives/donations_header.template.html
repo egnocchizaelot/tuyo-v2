@@ -1,0 +1,586 @@
+<!-- START HEADER NORMAL USERS -->
+<div ng-mouseup="expression" ng-if="!userData.is_superuser" class="header">
+  <h1>
+    <a class="brand-logo" ui-sref="app.donations.dashboard" ui-sref-opts="{reload: true, inherit: false}">
+      <img src="" alt="TuyoTools" />
+    </a>
+  </h1>
+
+  <!--  mobile menu -->
+  <nav class="nav navbar" role="navigation">
+    <div class="navbar-header">
+      <!-- note the ng-init and ng-click here: -->
+      <button type="button" class="navbar-toggle" ng-click="open_mobile_menu(); $event.stopPropagation();"> <!--ng-init="navCollapsed = true" ng-click="navCollapsed = !navCollapsed"-->
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand hidden" href="#">TuyoTools</a>
+    </div>
+    <div class="collapse navbar-collapse" ng-class="{'in':!navCollapsed}">  <!-- uib-collapse="navCollapsed" -->
+      <ul class="nav navbar-nav">
+       <!-- <div class="navbar-header">
+
+          <button type="button" class="navbar-toggle" ng-init="navCollapsed = true" ng-click="navCollapsed = !navCollapsed">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand hidden" href="#">TierOne</a>
+        </div>-->
+        <li>
+          <a ng-class="{active: $root.current_section === 'dashboard'}" ui-sref="app.donations.dashboard" ui-sref-opts="{reload: true, inherit: false}">Dashboard</a>
+        </li>
+        <li>
+          <a ng-class="{active: $root.current_section === 'donaciones'}" ui-sref="app.donations.new_donation" ui-sref-opts="{reload: true, inherit: false}">Donar</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <!-- end mobile menu -->
+
+  <!-- more options menu -->
+  <a ng-if="$root.side_menu" class="mas-opciones-menu"  ng-click="open_mobile_options_list(); $event.stopPropagation();">+</a>
+  <!-- end more options menu -->
+
+  <!-- mobile user info -->
+  <div class="user-info">
+    <nav ng-if="userData" class="user-menu-desktop">
+      <div>
+        <div style="width: auto; display: inline-block; float: left;">
+          <div id="menu-user-image">
+            <img ng-if="userData.picture_url" ng-src="{{MEDIAURL}}{{userData.picture_url}}" onerror="this.onerror=null; if (this.src != 'error.jpg') this.src = 'images/no-image-default.png';">
+          </div>
+        </div>
+        <div style="width: auto; display: inline-block; float: right; margin-left: 25px;">
+          <div>
+            <a href="" ui-sref="app.donations.profile_form" tooltip-placement="top" style="margin-top: 8px; display: inline-block;">{{userData.username}}</a>
+            <a tooltip-placement="left" tooltip="Cerrar sesión" href="" ng-click="SiteController.logout()" style="float:right; display: inline-block; margin: 8px 15px 0px 10px;">
+              <i class="glyphicon glyphicon-log-out"></i>
+            </a>
+          </div>
+          <div class="row profiles-row">
+            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 text-center">
+              <a tooltip-placement="left" tooltip="Tipo de Cliente" ui-sref-opts="{reload: true}"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></a>
+            </div>
+            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 text-center">
+              <a tooltip-placement="left"  tooltip="Donaciones" ui-sref-opts="{reload: true}" class="glyphicon glyphicon-heart">5</a>
+            </div>
+            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 text-center">
+              <a tooltip-placement="left"  tooltip="Solicitudes" class="glyphicon glyphicon-star">10</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+     <!--  mobile menu -->
+    <nav class="user-menu-mobile navbar" role="navigation">
+      <div id="menu-user-image" ng-click="open_mobile_profile_list(); $event.stopPropagation();">
+        <img ng-if="userData.picture_url" ng-src="{{MEDIAURL}}{{userData.picture_url}}" onerror="this.onerror=null; if (this.src != 'error.jpg') this.src = 'images/no-image-default.png';">
+        <img ng-if="!userData.picture_url" src="../images/perfilImage-default.jpg">
+      </div>
+      <div class="menu-user-mobile-ul hidden" id="menu-user-mobile">
+        <p>{{userData.person.full_name}}</p>
+        <ul>
+          <li>
+            <a href="" ui-sref="app.donations.profile_form" ng-click="open_mobile_profile_list(); $event.stopPropagation();" tooltip-placement="top">Mi cuenta</a>
+          </li>
+          <li>
+            <a href="" ng-click="SiteController.logout(); open_mobile_profile_list(); $event.stopPropagation();">Cerrar Sesión <i class="glyphicon glyphicon-log-out"></i></a>
+          </li>
+          <li >
+            <a  tooltip-placement="left" tooltip="Tipo de Cliente"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></a>
+            <a  tooltip-placement="left"  tooltip="Donaciones" class="glyphicon glyphicon-heart">5</a>
+            <a  tooltip-placement="left"  tooltip="Solicitudes" class="glyphicon glyphicon-star">10</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <!-- end mobile menu -->
+  </div>
+</div> <!-- end header -->
+
+<!-- END HEADER NORMAL USERS  -->
+
+
+
+<!-- START HEADER DJANGO ADMIN -->
+<div ng-mouseup="expression" ng-if="userData.is_superuser" class="header">
+  <h1>
+    <a class="brand-logo" ui-sref="app.donations.admin_dashboard" ui-sref-opts="{reload: true}">
+      <img src="" alt="TuyoTools" />
+    </a>
+  </h1>
+
+  <nav class="nav navbar" role="navigation">
+    <div class="navbar-header">
+      <!-- note the ng-init and ng-click here: -->
+      <button type="button" class="navbar-toggle" ng-click="open_mobile_menu(); $event.stopPropagation();"> <!--ng-init="navCollapsed = true" ng-click="navCollapsed = !navCollapsed"-->
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand hidden" href="#">TuyoTools</a>
+    </div>
+    <div class="collapse navbar-collapse" ng-class="{'in':!navCollapsed}">
+      <ul class="nav navbar-nav">
+        <li  only="['superuser']" ng-click="$event.stopPropagation();" ng-if="SiteController.userData.is_superuser" class="dropdown">
+          <a ng-class="{active: $root.current_section === 'clientes'}" id="drop-clientes" href="" class="dropdown-toggle" data-toggle="dropdown" rolw="button" aria-haspopup="true" aria-expanded="false">Clientes</a>
+          <ul class="dropdown-menu" aria-labelledby="drop-solicitud">
+            <li permissions only="['superuser']" ng-if="SiteController.userData.is_superuser">
+              <a ui-sref="app.insurances.client_list">Listado de usuarios</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- more options menu -->
+  <a ng-if="$root.side_menu" class="mas-opciones-menu"  ng-click="open_mobile_options_list(); $event.stopPropagation();">+</a>
+  <!-- end more options menu -->
+
+  <!-- mobile user info -->
+  <div class="user-info">
+    <nav ng-if="userData" class="user-menu-desktop">
+      <div>
+        <div style="width: auto; display: inline-block; float: left;">
+          <div id="menu-user-image">
+            <img src="../images/perfilImage-default.jpg">
+          </div>
+        </div>
+        <div style="width: auto; display: inline-block; float: right; margin-left: 25px;">
+          <div>
+            <a href="" ui-sref="app.donations.profile_form" tooltip-placement="top" style="margin-top: 8px; display: inline-block;">{{userData.username}}</a>
+            <a tooltip-placement="left" tooltip="Cerrar sesión" href="" ng-click="SiteController.logout()" style="float:right; display: inline-block; margin: 8px 15px 0px 10px;">
+              <i class="glyphicon glyphicon-log-out"></i>
+            </a>
+          </div>
+          <div class="row profiles-row">
+            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 text-center">
+              <p>Administrador</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+     <!--  mobile menu -->
+    <nav class="user-menu-mobile navbar" role="navigation">
+      <div id="menu-user-image" ng-click="open_mobile_profile_list(); $event.stopPropagation();">
+        <img ng-if="userData.picture_url" ng-src="{{MEDIAURL}}{{userData.picture_url}}" onerror="this.onerror=null; if (this.src != 'error.jpg') this.src = 'images/no-image-default.png';">
+        <img ng-if="!userData.picture_url" src="../images/perfilImage-default.jpg">
+      </div>
+      <div class="menu-user-mobile-ul hidden" id="menu-user-mobile">
+        <p>{{userData.person.full_name}}</p>
+        <ul>
+          <li>
+            <a href="" ui-sref="app.donations.profile_form" ng-click="open_mobile_profile_list(); $event.stopPropagation();" tooltip-placement="top">Mi cuenta</a>
+          </li>
+          <li>
+            <a href="" ng-click="SiteController.logout(); open_mobile_profile_list(); $event.stopPropagation();">Cerrar Sesión <i class="glyphicon glyphicon-log-out"></i></a>
+          </li>
+          <li >
+            <a tooltip-placement="left" tooltip="Administrador"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>Administrador</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <!-- end mobile menu -->
+  </div>
+</div>
+<!-- END HEADER DJANGO ADMIN -->
+
+
+
+
+<!--Comienzo menu lateral submenu-wrapper-->
+<div class="submenu-wrapper" ng-if="$root.side_menu">
+  <div ng-if="$root.current_section === 'foro'">
+    <nav>
+      <ul>
+        <li ng-if="$root.forum.insurance">
+          <a ui-sref="app.insurances.insurance_details({ insuranceId: $root.forum.insurance.id })">
+            <i class="glyphicon glyphicon-arrow-left"></i>
+            Volver atras
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+
+  <!-- submenu solicitud -->
+  <div ng-if="$root.current_section === 'solicitud'">
+    <!--h2 class="hidden">Solicitudes</h2-->
+    <ul>
+      <li ng-if="SiteController.userData.user_permissions.insurance_client">
+        <a ui-sref="app.insurances.applications_new" class="add-new-icon">
+          Nueva solicitud
+        </a>
+      </li>
+      <li>
+        <a ui-sref="app.insurances.applications" ng-click="resetFilters();" ui-sref-opts="{inherit: false, notify: true}" class="lista-icon">
+          Solicitudes existentes
+        </a>
+      </li>
+      <!--li>
+        <a ui-sref="app.insurances.applications({'insurance__status': 1})" ng-click="resetFilters();" ui-sref-opts="{inherit: false}" class="pending-icon">
+          Solicitudes pendientes
+        </a>
+      </li-->
+    </ul>
+    <!-- inner-menu-wrapper -->
+    <div ng-if="$root.insurance">
+      <nav class="inner-menu-wrapper">
+        <ul>
+          <li ng-if="(insurance.user_permissions.agent || insurance.user_permissions.insurance_client) && forums_agent_insuranceClient">
+            <a ui-sref="app.insurances.forum({ forumId: forums_agent_insuranceClient.id })" ui-sref-opts="{reload: true}" class="foro-icon">
+              Foro Corredor-Cliente <span ng-if="notify_client_forum" class="badge">1</span>
+            </a>
+          </li>
+          <li ng-if="(insurance.user_permissions.agent || insurance.user_permissions.broker || insurance.user_permissions.can_read_insurance) && forums_agent_broker">
+            <a ui-sref="app.insurances.forum({ forumId: forums_agent_broker.id })" ui-sref-opts="{reload: true}" class="foro-icon">
+              Foro Corredor-Broker  <span ng-if="notify_broker_forum" class="badge">1</span>
+            </a>
+          </li>
+          <li>
+            <a ng-if="!insurance.policy && (insurance.user_permissions.agent || (insurance.user_permissions.insurance_client && !insurance.policy))" ui-sref="app.insurances.applications_edit_form({ insuranceId: insurance.id })" class="edit-icon">
+              Modificar datos
+            </a>
+            <a permissions only="['agent', 'admin']" ng-if="insurance.policy && insurance.status.name != 'Obsoleta' && insurance.status.name != 'Poliza vigente' && (insurance.user_permissions.agent || (insurance.user_permissions.insurance_client && !insurance.policy))" ui-sref="app.insurances.policy_edit_form({ insuranceId: insurance.id })" class="edit-icon">
+              Modificar datos
+            </a>
+          </li>
+          <li permissions only="['agent', 'admin']">
+            <a ng-if="!insurance.policy && insurance.user_permissions.agent" href="" ng-click="open_close_rateApplicationModal()" class="edit-icon">
+              Nueva cotización
+            </a>
+          </li>
+          <li permissions only="['agent', 'admin']" ng-if="insurance.user_permissions.agent && !insurance.policy && insurance.status.name==='Solicitud procesada (Cotización aprobada)' && rate_application_takedOn">
+            <!--a ui-sref="app.insurances.create_policy_from_application({ insuranceId: insurance.id })"-->
+            <a href="" ng-click="createPolicy_step1()" ui-sref-opts="{reload: true}">
+              <i class="glyphicon glyphicon-new-window"></i>
+              Crear poliza
+            </a>
+          </li>
+          <li ng-if="insurance.policy && insurance.application && insurance.user_permissions.agent">
+            <a ui-sref="app.insurances.insurance_application_details({ insuranceId: insurance.id })">
+              <i class="glyphicon glyphicon-new-window"></i>
+              Ver Solicitud
+            </a>
+          </li>
+          <li ng-if="insurance.user_permissions.agent">
+            <a ng-if="insurance.application && !insurance.policy" ui-sref="app.insurances.insurance_application_permits({ insuranceId: insurance.id })">
+              <i class="glyphicon glyphicon-asterisk"></i>
+              Involucrados
+            </a>
+            <a ng-if="insurance.policy" ui-sref="app.insurances.insurance_policy_permits({ insuranceId: insurance.id })">
+              <i class="glyphicon glyphicon-asterisk"></i>
+              Involucrados
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+    <!-- /inner-menu-wrapper -->
+    <div class="inner-menu-wrapper" ng-if="$root.applications.length>0">
+      <filters filters-options="'applications'"></filters>
+    </div>
+  </div>
+  <!-- end submenu solicitud -->
+
+  <!-- submenu polizas -->
+  <div ng-if="$root.current_section === 'poliza'">
+    <!--h2 class="hidden">Polizas</h2-->
+    <ul>
+      <li>
+        <a href="#/policies" ui-sref-opts="{reload: true}" ng-click="resetFilters();" class="lista-icon">
+          Pólizas existentes
+        </a>
+      </li>
+      <li ng-if="SiteController.userData.user_permissions.agent">
+        <a ui-sref="app.insurances.create_policy_from_scratch" ui-sref-opts="{}" class="add-new-icon">
+          Nueva Póliza
+        </a>
+      </li>
+      <li ng-if="SiteController.userData.user_permissions.agent && go_back_to_insurance">
+        <a ui-sref="insurance_details({ insuranceId: go_back_to_insurance })" ui-sref-opts="{}" class="add-new-icon">
+          Nueva Póliza
+        </a>
+      </li>
+    </ul>
+
+    <div ng-if="$root.policies.length>0" class="inner-menu-wrapper">
+      <filters filters-options="'policies'"></filters>
+    </div>
+
+    <!-- inner-menu-wrapper -->
+    <div ng-if="insurance.id">
+      <nav class="inner-menu-wrapper">
+        <ul>
+          <li ng-if="insurance.policy && !insurance.user_permissions.broker && insurance.status.name=== 'Poliza vigente'">
+            <a ui-sref="app.insurances.create_sinister_from_policy({ insuranceId: insurance.id })">
+              <i class="glyphicon glyphicon-new-window"></i>
+              Nuevo siniestro
+            </a>
+          </li>
+          <li ng-if="insurance.policy && insurance.user_permissions.agent && (insurance.status.name=== 'Poliza vigente' || insurance.status.name=== 'Poliza vencida') && insurance_days_remaining <= 30 && !insurance.not_renovated">
+            <a href="" ng-click="renovatePolicy()" ui-sref-opts="{reload: true}">
+              <i class="glyphicon glyphicon-new-window"></i>
+              Renovar
+            </a>
+          </li>
+          <li ng-if="insurance.policy && insurance.user_permissions.agent && (insurance.status.name=== 'Poliza vigente' || insurance.status.name=== 'Poliza vencida') && insurance_days_remaining <= 30 && !insurance.not_renovated">
+            <a href="" ng-click="not_renovatePolicy()" ui-sref-opts="{reload: true}">
+              <i class="glyphicon glyphicon-new-window"></i>
+              NO Renovar
+            </a>
+          </li>
+          <!--li ng-if="insurance.policy && insurance.user_permissions.agent && insurance.status.name!= 'Obsoleta'">
+            <a href="" ng-click="endorsePolicy()" ui-sref-opts="{reload: true}">
+              <i class="glyphicon glyphicon-new-window"></i>
+              Endosar
+            </a>
+          </li-->
+         <li ng-if="(insurance.user_permissions.agent || insurance.user_permissions.insurance_client) && forums_agent_insuranceClient">
+            <a ui-sref="app.insurances.forum({ forumId: forums_agent_insuranceClient.id })" ui-sref-opts="{reload: true}" class="foro-icon">
+              Foro Corredor-Cliente <span ng-if="notify_client_forum" class="badge">1</span>
+            </a>
+         </li>
+          <li ng-if="(insurance.user_permissions.agent || insurance.user_permissions.broker || insurance.user_permissions.can_read_insurance) && forums_agent_broker">
+            <a ui-sref="app.insurances.forum({ forumId: forums_agent_broker.id })" ui-sref-opts="{reload: true}" class="foro-icon">
+              Foro Corredor-Broker  <span ng-if="notify_broker_forum" class="badge">1</span>
+            </a>
+          </li>
+          <li>
+            <a ng-if="!insurance.policy && (insurance.user_permissions.agent || (insurance.user_permissions.insurance_client && !insurance.policy))" ui-sref="app.insurances.applications_edit_form({ insuranceId: insurance.id })" class="edit-icon">
+            Modificar datos
+            </a>
+            <a ng-if="insurance.policy && insurance.status.name != 'Obsoleta' && insurance.status.name != 'Poliza vigente' && (insurance.user_permissions.agent || (insurance.user_permissions.insurance_client && !insurance.policy))" ui-sref="app.insurances.policy_edit_form({ insuranceId: insurance.id })" class="edit-icon">
+              Modificar datos
+            </a>
+          </li>
+          <li ng-if="insurance.user_permissions.agent && !insurance.policy && insurance.status.name==='Solicitud procesada (Cotización aprobada)' && rate_application_takedOn">
+          <!--a ui-sref="app.insurances.create_policy_from_application({ insuranceId: insurance.id })"-->
+            <a href="" ng-click="createPolicy_step1()" ui-sref-opts="{reload: true}">
+              <i class="glyphicon glyphicon-new-window"></i>
+              Crear poliza
+            </a>
+          </li>
+          <li ng-if="insurance.policy && insurance.application && insurance.user_permissions.agent">
+            <a ui-sref="app.insurances.insurance_application_details({ insuranceId: insurance.id })">
+              <i class="glyphicon glyphicon-new-window"></i>
+              Ver Solicitud
+            </a>
+          </li>
+          <li ng-if="insurance.user_permissions.agent">
+            <a ng-if="insurance.application && !insurance.policy" ui-sref="app.insurances.insurance_application_permits({ insuranceId: insurance.id })">
+              <i class="glyphicon glyphicon-asterisk"></i>
+              Involucrados
+            </a>
+            <a ng-if="insurance.policy" ui-sref="app.insurances.insurance_policy_permits({ insuranceId: insurance.id })">
+              <i class="glyphicon glyphicon-asterisk"></i>
+              Involucrados
+            </a>
+          </li>
+          <!--li ng-if="insurance.policy && insurance.application">
+            <a href="" ng-click="sendEmail()" ui-sref-opts="{reload: true}">
+              <i class="glyphicon glyphicon-menu-right"></i>
+              Prueba email
+            </a>
+          </li-->
+        </ul>
+      </nav>
+    </div>
+    <!-- /inner-menu-wrapper -->
+  </div>
+  <!-- end submenu polizas -->
+
+  <!-- submenu siniestros y siniestro -->
+  <div ng-if="$root.current_section === 'siniestros' || $root.current_section === 'siniestro'">
+    <!--h2 class="hidden">Siniestros</h2-->
+    <ul>
+      <li>
+        <a href="#/sinisters" ui-sref-opts="{reload: true}" ng-click="resetFilters();" class="lista-icon">
+          Siniestros existentes
+        </a>
+      </li>
+      <li ng-if="SiteController.userData.user_permissions.agent">
+        <a ui-sref="app.insurances.create_sinister_from_scratch" ui-sref-opts="{}" class="add-new-icon">
+          Nuevo Siniestro
+        </a>
+      </li>
+    </ul>
+    <div ng-if="$root.sinisters.length>0" class="inner-menu-wrapper">
+      <filters filters-options="'sinisters'"></filters>
+    </div>
+  </div>
+  <div ng-if="$root.current_section === 'siniestro'">
+    <nav class="inner-menu-wrapper">
+      <ul>
+        <li>
+          <a ui-sref="app.insurances.sinister_edit_form({ sinisterId: sinister.id })" class="edit-icon">
+            Editar siniestro
+          </a>
+        </li>
+        <li>
+          <a ng-click="sinister_delete()" href="" class="remove-icon" style="padding-left: 20px;">
+            <i class="glyphicon glyphicon-remove"></i> Eliminar siniestro
+          </a>
+        </li>
+        <li>
+          <a ui-sref="app.insurances.sinister_permits({ sinisterId: sinister.id })">
+            <i class="glyphicon glyphicon-asterisk"></i>
+            Involucrados
+          </a>
+        </li>
+        <!--li ng-if="SiteController.userData.user_permissions.agent">
+          <a ng-click="sinister_permanently_deleted()" href="" class="remove-icon" style="color:#d9534f;padding-left: 20px">
+            <i class="glyphicon glyphicon-remove" style="color:#d9534f;"></i> Eliminar siniestro <br>de forma permanente
+          </a>
+        </li-->
+      </ul>
+    </nav>
+  </div>
+  <!-- end submenu siniestros y siniestro -->
+
+  <!-- submenu relaciones -->
+  <div ng-if="$root.current_section === 'relaciones'">
+    <!--h2 class="hidden">Relaciones</h2-->
+    <ul>
+      <li ng-if="SiteController.userData.user_permissions.agent">
+        <a ui-sref="app.insurances.relationship({ type: 'clients' })" ng-click="resetFilters();" ui-sref-opts="{inherit: false, notify: true}" class="cliente-black-icon">
+          Clientes <br>(Usuarios y Empresas)
+        </a>
+      </li>
+      <li ng-if="SiteController.userData.user_permissions.agent">
+        <a ui-sref="app.insurances.relationship({ type: 'brokers' })" ui-sref-opts="{}" class="brokers-black-icon">
+          Brokers
+        </a>
+      </li>
+      <li ng-if="SiteController.userData.user_permissions.broker || SiteController.userData.user_permissions.insurance_client">
+        <a ui-sref="app.insurances.relationship({ type: 'agents' })" ui-sref-opts="{}" class="corredores-black-icon">
+          Corredores
+        </a>
+      </li>
+      <li>
+        <a ui-sref="app.insurances.relationship({ type: 'invitations' })" ui-sref-opts="{}" class="invitaciones-black-icon">
+          Invitaciones
+        </a>
+      </li>
+    </ul>
+
+    <div ng-if="$root.relationship_type=='clients'" class="inner-menu-wrapper">
+      <p><a href="" ng-click="open_close_clientModal();"><i class="glyphicon glyphicon-plus"></i> Agregar cliente</a></p>
+      <filters filters-options="'relationship_clients'"></filters>
+    </div>
+  </div>
+  <!-- end submenu relaciones -->
+
+  <!-- submenu perfil -->
+  <div ng-if="$root.current_section === 'perfil'">
+    <nav>
+      <ul>
+        <li>
+          <a ui-sref="app.insurances.profile_edit_form()" class="edit-icon">
+            Editar perfil
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+  <!-- end submenu perfil -->
+
+  <!-- submenues superusers -->
+
+  <!-- submenu clientes -->
+  <div ng-if="$root.current_section === 'clientes'">
+    <nav>
+      <ul>
+        <li>
+          <a href="" ng-click="open_close_clientModal();">
+            <i class="glyphicon glyphicon-plus"></i>
+            Agregar cliente
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+  <!-- end submenu clientes -->
+
+  <!-- submenu companias -->
+  <div ng-if="$root.current_section === 'compania'">
+    <nav>
+      <ul>
+        <li>
+          <a href="" ng-click="open_close_companyModal();">
+            <i class="glyphicon glyphicon-plus"></i>
+            Agregar compañía
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+  <!-- end submenu companias -->
+
+  <!-- submenu proveedores -->
+  <div ng-if="$root.current_section === 'proveedores'">
+    <nav>
+      <ul>
+        <li>
+          <a href="" ng-click="open_close_providerModal();">
+            <i class="glyphicon glyphicon-plus"></i>
+            Agregar proveedores
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+  <!-- end submenu proveedores -->
+
+  <!-- submenu usuarios -->
+  <div ng-if="$root.current_section === 'usuarios'">
+    <nav>
+      <ul>
+        <li>
+          <a href="" ng-click="open_close_userModal();">
+            <i class="glyphicon glyphicon-plus"></i>
+            Agregar usuario
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+  <!-- end submenu usuarios -->
+  <!-- end submenues superusers -->
+</div>
+<!--End menu lateral submenu-wrapper-->
+
+
+
+
+
+<!-- mobile menu ex-->
+<nav class="navbar navbar-default" role="navigation">
+    <div class="navbar-header">
+
+        <!-- note the ng-init and ng-click here: -->
+        <button type="button" class="navbar-toggle" ng-init="navCollapsed = true" ng-click="navCollapsed = !navCollapsed">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">Brand</a>
+    </div>
+
+    <div class="collapse navbar-collapse" uib-collapse="navCollapsed">
+        <ul class="nav navbar-nav">
+        ...
+        </ul>
+    </div>
+</nav>
+<!-- ends mobile menu ex-->

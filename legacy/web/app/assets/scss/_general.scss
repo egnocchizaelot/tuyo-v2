@@ -1,0 +1,399 @@
+body{
+	font-family: $font-family-sans-serif;
+	background-color: #ffffff;
+}
+
+.feed{
+	background: #dadbde;
+}
+
+a:hover{
+	cursor: pointer !important;
+}
+
+//
+// General tools
+//
+
+.wider-container .container{
+	width: 900px;
+	max-width: 100%;
+}
+
+.display-block{
+	display: block;
+}
+
+.inline-block{
+	display: inline-block;
+}
+
+.position-relative{
+	position: relative;
+}
+
+a:focus,
+a:active{
+	outline: none;
+	text-decoration: none;
+}
+
+strong{
+	font-family: $font-family-sans-serif-semibold;
+}
+
+.float-left{
+	float: left;
+}
+
+.float-right{
+	float: right;
+}
+
+.margin-top{
+	margin-top: 1rem !important;
+}
+
+.margin-right{
+	margin-right: 1rem;
+}
+
+.margin-bottom{
+	margin-bottom: 15px !important;
+}
+
+.preview-margin-bottom{
+	margin-bottom: 60px !important;
+}
+
+.double-margin-bottom{
+	margin-bottom: 2rem;
+}
+
+.double-line-height{
+	line-height: 1.4rem;
+}
+
+.padding-top{
+	padding-top: 20%;
+}
+
+.margin-left{
+	margin-left: 15px;
+}
+
+.no-padding-right{
+	padding-right: 0;
+}
+
+.avatar-round{
+	display: inline-block;
+	border-radius: 100%;
+	overflow: hidden;
+	width: 60px;
+	height: 60px;
+	border: 1px solid $brand-primary;
+}
+
+.p-w-icon{
+	position: relative;
+	padding-left: 2.5rem;
+	text-align: left !important;
+	i{
+		display: inline-block;
+		position: absolute;
+		left: 0;
+		top: 0;
+		font-size: 2rem;
+	}
+}
+
+
+.display-inline{
+	display: inline-block;
+}
+
+.overflow-hidden{
+	overflow: hidden;
+}
+
+
+//
+// Colors
+//
+
+
+.color-primary,
+.color-brand{
+	color: $brand-primary !important;
+}
+
+.color-warning{
+	color: $brand-warning !important;
+}
+
+.color-gray{
+	color: $gray !important;
+}
+
+.bg-gray-darker{
+	background-color: #dadbde !important;
+}
+
+.bg-yellow{
+	background-color: #ffcd69;
+}
+
+.bg-brand-color{
+	background-color: $brand-primary !important;
+}
+
+.bg-gray{
+	background: $gray-lighter;
+}
+
+.bg-gray-lighter{
+	background: lighten($gray-lighter, 3%);
+}
+
+.bg-gray-superlighter{
+	background: $gray-lighter;
+}
+
+.bg-white{
+	background: #ffffff;
+}
+.no-padding-left{
+	padding-left: 0;
+}
+
+.primary-border-bottom{
+	border-bottom: 1px solid $brand-primary;
+	padding-top: 20px !important;
+    padding-bottom: 5px !important;
+}
+
+.gray-border-bottom{
+	border-bottom: 1px solid $gray-lighter;
+}
+
+.gray-light-border-bottom{
+	border-bottom: 1px solid $gray-light;
+}
+
+
+//
+//	Icons
+//
+
+.text-icon{
+	position: relative;
+	&.best-user:after{
+		content: " ";
+		display: inline-block;
+		width: 0.7rem;
+    	height: 1.2rem;
+		background: url("../images/icons/colaborador.svg") no-repeat center;
+		background-size: 100%;
+		margin-left: 5%;
+		position: absolute;
+		top: -1px;
+	}
+}
+
+.underline-list{
+	li{
+		border-bottom: 1px solid $gray-light;
+		padding-bottom: 0.8rem;
+		padding-top: 0.8rem;
+	}
+}
+
+//
+//	Star points
+//
+
+.star-points{
+	li{
+		width: 20px;
+		height: 20px;
+		background: url("../images/icons/star-points.svg") no-repeat;
+		background-position: 0px -24px;
+		background-size: 100%;
+		&.got-star{
+			background-position: 0 0;
+		}
+
+	}
+}
+
+//
+// Modals
+//
+
+.navbar-fixed-top{
+	z-index: 7;
+}
+
+.modal-dialog{
+	margin-top: 20%;
+	z-index: 12;
+}
+
+.modal-backdrop.in {
+    z-index: 8;
+}
+
+.modal-content{
+	background: $brand-primary;
+	padding: 1rem;
+	.avatar-round{
+		width: 80px;
+		height: 80px;
+	}
+	h3{
+		line-height: 1.8rem;
+	}
+	.close {
+	    color: #fff;
+    	opacity: 1;
+	    font-size: 30px;
+    	text-shadow: none;
+	    height: 20px;
+    	line-height: 20px;
+    	position: absolute;
+    	right: 1rem;
+    	top: 1rem;
+	}
+}
+
+.modal-first-title{
+	margin-top: 1rem;
+	margin-bottom: -0.5rem;
+	font-size: 1.2rem;
+	text-align: center !important;
+	color: #ffffff;
+}
+
+.modal-title{
+	color: #ffffff;
+	text-align: center;
+	margin-top: 20px;
+	font-size: 16px;
+	i{
+		font-size: 40px;
+		display: block;
+		margin-bottom: 5px;
+	}
+}
+
+.modal-body{
+	h3{
+		color: #ffffff;
+		margin-top: 2rem;
+		margin-bottom: 1rem;
+		font-size: 1.3rem;
+	}
+}
+
+.modal-header{
+	border-bottom: 0px none;
+	padding-top: 30px;
+}
+
+.modal-footer{
+	border-top: 0px none;
+	text-align: center;
+	p{
+		text-align: center;
+		color: #fff !important;
+		font-family: $font-family-sans-serif-semibold;
+	}
+}
+
+
+.white-modal{
+	.modal-dialog{
+		margin-top: 30%;
+	}
+	.modal-header{
+		border-bottom: 0px none;
+		padding-bottom: 0;
+	}
+	h4{
+		color: $brand-primary;
+		font-size: 1.4rem;
+		margin-top: 2rem;
+		line-height: 1.5rem;
+	}
+	h3{
+		color: $gray;
+	}
+	p{
+		text-align: center;
+	}
+	.modal-content{
+		background-color: #ffffff;
+		padding-bottom: 2rem;
+		//p{
+		//	text-align: left !important;
+		//font-size:  0.9rem !important;
+		//}
+	}
+	.close{
+		color: $gray;
+	}
+}
+
+
+
+//#deskotp iframe .secondary-navbar .btn-back{
+//	display: none;
+//}
+
+
+
+.card-notification .avatar-round{
+	width: 100%;
+	height: auto;
+}
+
+.custom-checkbox + input{
+	margin-top: 0.5rem;
+}
+
+
+.color-yellow{
+	color: #FFC828 !important;
+}
+
+.color-white{
+	color: #FFFFFF !important;
+}
+
+
+
+// El reglamento
+.bg-primary-lighter{
+	background-color: #7deeac;
+	padding-bottom: 2rem;
+}
+.not-padding-left{
+	padding-left: 0 !important;
+}
+
+//
+// Container sin Paddings
+//
+.container.no-padding-container{
+	padding-left: 0;
+	padding-right: 0;
+}
+
+
+
+
+
+.modal-open .modal {
+    z-index: 999999 !important;
+}

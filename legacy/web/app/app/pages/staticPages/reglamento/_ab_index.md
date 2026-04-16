@@ -1,0 +1,8 @@
+## reglamento.controller.js
+- **Implementation:** app/app/pages/staticPages/reglamento/reglamento.controller.js
+- **Summary:** Controller (`reglamentoController`) for the "Rules" static page. Provides collapsible content sections with slide toggle animations and customizable toggle button text, displays admin contact email, and checks authentication status for conditional login links.
+- **Tags:** static-pages, controller, rules
+- **Dependencies:**
+  - app/app/pages/staticPages/staticPages.module.js — registers controller on `staticPagesModule`
+  - app/app/scripts/services/auth.js — Auth for checkLogin
+  - app/app/app.service.js — appService for adminMail, login function

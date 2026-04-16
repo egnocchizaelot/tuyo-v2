@@ -1,0 +1,54 @@
+<div class="entrega-confirmada bg-gray" style="padding-bottom: 30px; !important"  ng-if ="state === states.CALIFICATE">
+    <!-- <div class="text-center hero-usuario" ng-if ="state === states.CALIFICATE"> -->
+    <div class="text-center hero-usuario">
+        <h2>
+            <strong>
+                Has confirmado la entrega.
+            </strong>
+        </h2>
+
+        <div class="avatar">
+            <img ng-src="{{mediaURL}}{{imgPath}}" class="img-responsive" onerror="this.onerror=null; if (this.src != 'error.jpg') this.src = 'assets/images/user2.png';"/>
+        </div>
+
+        <p>¿Cómo fue tu experiencia con </br>{{name}}?</p>
+
+        <div class="container">
+            <form class="opciones-calificacion">
+
+                <div class="radio mala">
+                    <label id="mala">
+                        <input style="cursor: pointer;" type="radio" name="optionsRadios" value="option1" ng-click="calificate('mala')">
+                        Mala
+                    </label>
+                </div>
+
+                <div class="radio buena">
+                    <label id='buena'>
+                        <input style="cursor: pointer;" type="radio" name="optionsRadios" value="option2" ng-click="calificate('buena')">
+                        Buena
+                    </label>
+                </div>
+
+                <div class="radio genial">
+                    <label id='genial'>
+                        <input style="cursor: pointer;" type="radio" name="optionsRadios" value="option3" ng-click="calificate('genial')">
+                        Genial
+                    </label>
+                </div>
+
+            </form>
+        </div>
+
+        <div class="row text-center">
+			<div class="col-xs-8 col-sm-8 col-md-8 col-lg-8 col-xs-offset-2 col-sm-offset-2 col-md-offset-2 col-lg-offset-2">
+                <a href="" class="btn display-block btn-primary" id="continuarPuntaje" ng-click="continuar()" title="Continuar">Continuar</a>
+			</div>
+		</div>
+
+    </div>
+</div>
+
+
+<end-good-confirm left-path='leftPath' right-path='rightPath' creator="isCreator" ng-if ="state === states.GOOD"></end-good-confirm>
+<end-bad-confirm donation='donation' ng-if = "state === states.BAD"></end-bad-confirm>

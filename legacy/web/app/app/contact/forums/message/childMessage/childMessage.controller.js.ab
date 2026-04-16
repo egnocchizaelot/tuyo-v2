@@ -1,0 +1,10 @@
+## childMessage.controller.js
+
+**Summary:** Empty controller for the child message (reply) component.
+
+**Dependencies:**
+- app/app/contact/forums/forum.module.js — registered on forumModule
+
+**Tags:** forum, communication, controller
+
+**Implementation:** app/app/contact/forums/message/childMessage/childMessage.controller.js

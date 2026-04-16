@@ -1,0 +1,10 @@
+## mobilePage.controller.js
+
+**Summary:** Controller for the mobile full-page modal view. Defines case constants for different modal types (CREATE_DONATION=1, CREATE_APPRECIATION=2, FORUM=3, CHAT=4, CALIFICATION=5, APPRECIATION_FORUM=6, NOTIFICATIONS=7). Reads `close` callback, `data`, and `case` from `$stateParams` to determine which content to render. Redirects to the dashboard if the case is -1 (invalid/unset).
+
+**Dependencies:**
+- app/app/modals/modals.module.js — registers on the `modal` module
+
+**Tags:** modals, mobile, controller, routing, ui
+
+**Implementation:** app/app/modals/mobilePage/mobilePage.controller.js

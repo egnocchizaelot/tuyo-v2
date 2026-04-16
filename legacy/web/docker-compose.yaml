@@ -1,0 +1,6 @@
+version: '3.7'
+services:
+  tuyo-fe:
+    build: .
+    ports:
+      - 9000:9000

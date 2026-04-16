@@ -1,0 +1,237 @@
+<div class="card default-border-radius margin-bottom" ng-class="{reservado: donation.state.name === 'Reserved', entregado: donation.state.name === 'Completed'}">
+  <div class="container">
+
+    <div class="user-header">
+        <div class="avatar">
+            <a ng-href='{{goToProfile()}}' target="_self" title="Ver perfil de {{donation.creator.first_name}}">
+                <img ng-src="{{mediaURL}}{{donation.creator.picture_url}}" class="img-responsive" onerror="this.onerror=null; if (this.src != 'error.jpg') this.src = 'assets/images/user2.png';"/>
+            </a>
+        </div>
+
+        <h3>
+            <a ng-href='{{goToProfile()}}' target="_self" title="Ver perfil {{donation.creator.first_name}}">
+                {{donation.creator.full_name}}
+                <span class="icon-trophy" ng-if="donation.creator.colaborator"></span>
+            </a>
+            <span>{{donationDate}}</span>
+        </h3>
+
+        <ul ng-if="donation.creator.ranking > 0" class="list-unstyled list-inline star-points">
+            <li class="got-star" ng-repeat="x in ranking() track by $index"></li>
+        </ul>
+
+        <h3 ng-if="donation.creator.ranking === 0">
+            <span>Nuevo usuario</span>
+        </h3>
+
+        <report-publication ng-if="!fromAppreciation && !isCreator && !donation.preview" entity-id="donation.id" type="D"></report-publication>
+
+        <span ng-if="!fromAppreciation && isCreator && !donation.preview">
+            <settings-publication show-forum="showForumModal()" show-chat="showPrivateChat()" delete-donation="deleteDonation()" edit-donation="editDonation()" reserved="reserved"></settings-publication>
+        </span>
+
+
+        <a class="btn-right-top ver-publicacion" ng-if="fromAppreciation" ng-click="backToAppreciation()" title="Ver publicación">
+            <i class="fa fa-angle-left" style="padding-right: 6px; !important"></i>
+        </a>
+    </div>
+
+    <p class="with-icon color-primary semibold"  ng-if="donation.mandatory">
+        <i class="fa fa-clock-o" aria-hidden="true"></i>
+        <span style="white-space: pre-wrap;"> {{donation.pickup_description}} </span>
+    </p>
+
+    <p class="with-icon semibold" ng-if="!donation.mandatory">
+        <i class="fa fa-clock-o" aria-hidden="true"></i>
+        <span style="white-space: pre-wrap;"> {{donation.pickup_description}} </span>
+    </p>
+    <div class="adresses-row">
+        <p class="with-icon semibold" ng-repeat="address in donation.addresses track by $index" style="margin-left: 3px; !important">
+            <i class="fa fa-map-marker" aria-hidden="true"></i>
+            {{address.address.district}} {{address.district ? ", " + address.district : "" }}
+        </p>
+    </div>
+
+    <p style="white-space: pre-wrap;">{{showingDescription}} <a class="color-brand" ng-if="showMore" ng-click="showAll()">Ver más</a></p>
+  </div>
+  <!-- end container -->
+
+    <div class="carousel slide" data-ride="carousel" data-interval="9999999999">
+
+        <div id="sliderContainer" ng-if='sliderImages && sliderImages.length !== 0'>
+            <the-slider id='slider' images="sliderImages"></the-slider>
+        </div>
+
+        <div ng-if='sliderImages.length === 0'>
+            <img src="assets/images/sin_foto.png" class="img-responsive" style="width: 100%"/>
+        </div>
+
+        <div class="dropdown-menu" id="shareLink">
+            <div class="text-center">
+
+
+                <a  href={{twitterShareLink}} target="_blank">
+                    <i class="fa fa-twitter" ></i>
+                </a>
+
+
+                <!-- <a href="" ngclipboard data-clipboard-text="{{facebookShareLink}}" ngclipboard-success="facebookShare()" title="Copiar el link">
+                    <i class="fa fa-facebook"></i>
+                    000
+                </a> -->
+
+                <a class="" target="_blank" onclick="return !window.open(this.href, 'Facebook', 'width=640,height=300')"
+                    href="https://www.facebook.com/sharer/sharer.php?u={{facebookShareLink}}">
+                    <i class="fa fa-facebook"></i>
+                </a>
+
+                <!-- <a ng-click="facebookShare()">
+                    <i class="fa fa-facebook" ></i>
+                    007
+                </a> -->
+
+                <a href="" ngclipboard data-clipboard-text="{{linkToShare}}" ngclipboard-success="linkCopied()" title="Copiar el link">
+                    <i class="fa fa-link"></i>
+                </a>
+
+
+                <p>¿Conoces a alguien que podría estar interesado?</p>
+
+                <p>
+                    <strong>Comparte esta publicación</strong>
+                </p>
+
+                <div class="arrow-down"></div>
+            </div>
+        </div>
+
+        <div ng-if="showLoading" class="full-screen-loader">
+          <loading data='loadingData'></loading>
+        </div>
+
+        <div class="card-notification" id="otherInfo" style="display: none;">
+            <div class="text-center">
+
+                <a class="cross-btn" role="button" ng-click="hideOtherInfo()">
+                    <i class="fa fa-times" aria-hidden="true"></i>
+                </a>
+
+                <p class="color-primary">{{information}}</p>
+
+                <div class="text-center">
+                    <a ng-click="infoButtonClick()" class="btn btn-empty btn-empty-white">{{infoButton}}</a>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+
+    <div class="container footer text-right" ng-if="!donation.preview">
+
+        <div class="footer-btn-wrapper">
+            <!-- SHARE LINK -->
+            <div class="footer-item dropdown inline-block" style="cursor: pointer;">
+                <a role="button" class="btn-svg btn-svg-compartir" ng-click="showShareLinks()" title="Compartir">
+                    <i class="fa fa-reply" aria-hidden="true"></i>
+                </a>
+           </div>
+
+           <!-- LIKES -->
+            <div class="footer-item btn-counter btn-counter-iosfix" ng-click="likeClick()" title="Like" style="cursor: pointer">
+                <span>{{donation.count_likes}}</span>
+                <strong ng-if="!donation.like" class="btn-svg btn-svg-like" title="Like">Likes</strong>
+                <strong ng-if="donation.like" class="btn-svg btn-svg-like liked" title="Like">Likes</strong>
+            </div>
+
+            <!-- MESSAGES -->
+            <div class="footer-item btn-counter btn-counter-iosfix" ng-click="showForumModal()" title="Mensajes" style="cursor: pointer">
+                <div class="pop-number" ng-if="donation.unread_public_messages_count > 0" style="position: absolute !important; right: 0rem !important;">
+                    <span> {{donation.unread_public_messages_count}} </span>
+                </div>
+                <span>{{donation.user_applicants.length}}</span>
+                <strong class="btn-svg btn-svg-chat">Chat</strong>
+            </div>
+
+            <i ng-if="donation.state.name === 'Reserved'" class="footer-tip"> Reservado </i>
+            <i ng-if="donation.state.name === 'Completed'" class="footer-tip"> Nuevo dueño </i>
+
+
+            <span ng-if="!isCreator">
+
+                <span ng-if="donation.state.name === 'Published'">
+                    <span ng-if="!donation.already_applicant">
+                        <div class="footer-item btn btn-line-green float-right margin-left me-anoto"  ng-click="showForumModal()" title="Anotarse en este ofrecimiento">  Me anoto</div>
+                    </span>
+                    <span ng-if="donation.already_applicant">
+                        <div ng-if=" donation.already_applicant" class="footer-item btn btn-primary float-right margin-left" ng-click="showForumModal()" title="Estás anotado"> Anotado </div>
+                    </span>
+                </span>
+
+                <span ng-if="donation.state.name === 'Reserved'">
+                    <div class="inline-block float-right pop-number margin-left">
+                        <span ng-if="donation.unread_private_messages_count > 0"> {{donation.unread_private_messages_count}} </span>
+                        <div class="footer-item user-avatar" ng-if="donation.selected_user.id === userData.id" ng-click="showPrivateChat()" title="Chat privado">
+                            <img ng-if="donation.selected_user.picture_url" ng-src="{{mediaURL}}{{donation.selected_user.picture_url}}" class="img-responsive" onerror="this.onerror=null; if (this.src != 'error.jpg') this.src = 'assets/images/user2.png';"/>
+                        </div>
+
+                        <!-- <div class="footer-item user-avatar" ng-if="donation.selected_user.id !== userData.id" ng-href='{{goToReserved()}}' title="Chat reservado"> -->
+                        <div class="footer-item user-avatar" ng-if="donation.selected_user.id !== userData.id" data-ui-sref="app.user({ id: donation.selected_user.id  })" title="Chat reservado">
+                            <img ng-if="donation.selected_user.picture_url" ng-src="{{mediaURL}}{{donation.selected_user.picture_url}}" class="img-responsive" onerror="this.onerror=null; if (this.src != 'error.jpg') this.src = 'assets/images/user2.png';"/>
+                        </div>
+                    </div>
+                </span>
+
+                <span ng-if="donation.state.name === 'Completed'">
+                    <span ng-if="!donation.appreciation">
+                        <div class="footer-item user-avatar float-right" ng-click="showAppreciationModal()" ng-if="donation.selected_user.id === userData.id">
+                            <img ng-if="donation.selected_user.picture_url" ng-src="{{mediaURL}}{{donation.selected_user.picture_url}}" class="img-responsive" onerror="this.onerror=null; if (this.src != 'error.jpg') this.src = 'assets/images/user2.png';"/>
+                        </div>
+
+                        <!-- <div class="footer-item user-avatar float-right" ng-href='{{goToReserved()}}' ng-if="donation.selected_user.id !== userData.id"> -->
+                        <div class="footer-item user-avatar float-right" data-ui-sref="app.user({ id: donation.selected_user.id  })" ng-if="donation.selected_user.id !== userData.id">
+                            <img ng-if="donation.selected_user.picture_url" ng-src="{{mediaURL}}{{donation.selected_user.picture_url}}" class="img-responsive" onerror="this.onerror=null; if (this.src != 'error.jpg') this.src = 'assets/images/user2.png';"/>
+                        </div>
+                    </span>
+
+                    <!-- <div class="footer-item user-avatar float-right" ng-href='{{goToReserved()}}' ng-if="donation.appreciation"> -->
+                    <div class="footer-item user-avatar float-right" data-ui-sref="app.user({ id: donation.selected_user.id  })" ng-if="donation.appreciation">
+                        <img ng-if="donation.selected_user.picture_url" ng-src="{{mediaURL}}{{donation.selected_user.picture_url}}" class="img-responsive" onerror="this.onerror=null; if (this.src != 'error.jpg') this.src = 'assets/images/user2.png';"/>
+                    </div>
+                </span>
+
+            </span>
+
+            <span ng-if="isCreator">
+                <span ng-if="donation.state.name === 'Published'">
+                    <div class="footer-item btn-svg btn-svg-avatar-empty float-right" ng-click="showForumModal()" title="Foro"></div>
+                </span>
+
+                <span ng-if="donation.state.name === 'Reserved'">
+                    <div class="footer-item inline-block float-right pop-number margin-left">
+                        <span ng-if="donation.unread_private_messages_count > 0"> {{donation.unread_private_messages_count}} </span>
+                        <div class="user-avatar" ng-click="showPrivateChat()" title="Chat privado">
+                            <img ng-if="donation.selected_user.picture_url" ng-src="{{mediaURL}}{{donation.selected_user.picture_url}}" class="img-responsive" onerror="this.onerror=null; if (this.src != 'error.jpg') this.src = 'assets/images/user2.png';"/>
+                            <img ng-if="!donation.selected_user.picture_url" src="assets/images/user2.png" class="img-responsive"/>
+                        </div>
+                    </div>
+
+                </span>
+
+                <span ng-if="donation.state.name === 'Completed'">
+                    <div class="footer-item user-avatar float-right" ng-click="showAppreciationModal()" ng-if="!donation.appreciation">
+                        <img ng-if="donation.selected_user.picture_url" ng-src="{{mediaURL}}{{donation.selected_user.picture_url}}" class="img-responsive" onerror="this.onerror=null; if (this.src != 'error.jpg') this.src = 'assets/images/user2.png';"/>
+                        <img ng-if="!donation.selected_user.picture_url" src="assets/images/user2.png" class="img-responsive"/>
+                    </div>
+
+                    <!-- <div class="footer-item user-avatar float-right" ng-href='{{goToReserved()}}' target="_self" ng-if="donation.appreciation"> -->
+                    <div class="footer-item user-avatar float-right"data-ui-sref="app.user({ id: donation.selected_user.id  })" target="_self" ng-if="donation.appreciation">
+                        <img ng-if="donation.selected_user.picture_url" ng-src="{{mediaURL}}{{donation.selected_user.picture_url}}" class="img-responsive" onerror="this.onerror=null; if (this.src != 'error.jpg') this.src = 'assets/images/user2.png';"/>
+                        <img ng-if="!donation.selected_user.picture_url" src="assets/images/user2.png" class="img-responsive"/>
+                    </div>
+                </span>
+            </span>
+        </div>
+    </div>
+</div>

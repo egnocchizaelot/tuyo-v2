@@ -1,0 +1,26 @@
+# File: app/assets/css/angular-tooltips.min.css.ab
+# Purpose: angular-tooltips 1.1.10 CSS — minified styles for the Angular tooltip directive
+# Dependencies: []
+
+## Overview
+Minified CSS for the `angular-tooltips` library version 1.1.10 (720kb.github.io/angular-tooltips). Provides styles for the custom `<tooltip>` and `<tip>` elements including positioning, animations, and directional variants (`._top`, `._bottom`, `._left`, `._right`). Used by the TuyoTools frontend wherever the `angular-tooltips` directive is applied. Includes a CSS source map reference at the end.
+
+## Interface
+No exports. Loaded as a `<link>` stylesheet in `app/index.html`.
+
+Key CSS components:
+- `tooltip` element — inline-block container with relative positioning
+- `tooltip tip` — the tooltip bubble (dark background `rgba(0,0,0,0.85)`, white text, 8px 16px padding, border-radius 3px)
+- `tooltip._top`, `._bottom`, `._left`, `._right` — positional variants with CSS transform-based placement
+- `tooltip._slow`, `._fast`, `._steady` — animation speed variants
+- `@keyframes animate-tooltip` — fade-in animation (0%→100% opacity)
+- `.fa-exradicated-tooltip` — class for tooltips extracted from their DOM context
+
+## Dependencies
+No project-level dependencies. Vendor file. Requires the `angular-tooltips` Angular module (loaded via `vendor.js`).
+
+## Implementation Notes
+- Version: 1.1.10, released Wed Jan 25 2017 (MIT License)
+- 12 lines total (header comment + CSS + source map reference)
+- Stored in `app/assets/css/` rather than being loaded from Bower components directly
+- Referenced in `app/index.html` as a static asset link (not wired via Bower)

@@ -1,0 +1,10 @@
+## carousel.controller.js
+
+**Summary:** Empty controller for the image slider/carousel component used in donation posts. The carousel logic is entirely in the directive link function.
+
+**Dependencies:**
+- app/app/post/post.module.js — registered on the post module
+
+**Tags:** post, carousel, controller, ui
+
+**Implementation:** app/app/post/carousel/carousel.controller.js

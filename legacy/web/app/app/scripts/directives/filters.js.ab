@@ -1,0 +1,13 @@
+## filters.js
+
+**Summary:** Legacy directive (`filters`) registered on the `TuyoTools` module that implements a dynamic filter UI for the donations list. Loads available filter definitions from the API via `get_filters()`, supports select and subselect filter types, manages selected filters with add/remove/clear operations, persists filter state via `FilterFields` service, and triggers state navigation to update the donations view with applied filters. Uses isolate scope with bindings for template URLs, filter options, and change callbacks.
+
+**Dependencies:**
+- app/app/app/app.js — registers directive on root `TuyoTools` module
+- app/app/scripts/services/api.js — API for get_filters
+- app/app/scripts/services/auth.js — Auth (injected)
+- app/app/scripts/services/filterFields.js — FilterFields for persisting selectedFilters
+
+**Tags:** legacy, directive, donations, filters
+
+**Implementation:** app/app/scripts/directives/filters.js

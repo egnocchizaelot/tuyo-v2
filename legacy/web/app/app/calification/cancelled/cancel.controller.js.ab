@@ -1,0 +1,10 @@
+## cancel.controller.js
+
+**Summary:** Controller for the cancellation calification flow. Defines state constants (CALIFICATE, GOOD, BAD) and rate options (BAD, GOOD, EXCELENT, NEUTRO) for the cancelled reservation rating process.
+
+**Dependencies:**
+- app/app/calification/calification.module.js — registered on calification module
+
+**Tags:** calification, rating, cancelled, controller
+
+**Implementation:** app/app/calification/cancelled/cancel.controller.js
